@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Overlay fixture</title>
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, sans-serif; }
+  .page button { min-width: 48px; min-height: 48px; font: inherit; padding: 0 16px; }
+  .page button.a { position: absolute; top: 200px; left: 30px; width: 200px; }
+  .page button.b { position: absolute; top: 210px; left: 40px; width: 200px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <button class="a" type="button">First</button>
+  <button class="b" type="button">Second overlaps first</button>
+</div>
+</body>
+</html>

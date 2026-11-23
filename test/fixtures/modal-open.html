@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modal fixture</title>
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, sans-serif; }
+  .page { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px; }
+  .page button, .sheet button { min-width: 48px; min-height: 48px; font: inherit; padding: 0 16px; }
+  .sheet { position: fixed; left: 8px; right: 8px; bottom: 8px; top: 120px; background: #fff; border: 1px solid #999; border-radius: 16px; padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+</style>
+</head>
+<body>
+<div class="page" inert>
+  <button type="button">One</button><button type="button">Two</button><button type="button">Three</button>
+  <button type="button" style="position:absolute;top:200px;left:30px;width:200px">Behind the sheet</button>
+  <button type="button" style="position:absolute;top:210px;left:40px;width:200px">Also behind</button>
+</div>
+<div class="sheet" role="dialog" aria-modal="true" aria-label="Settings">
+  <button type="button">Close</button>
+  <p>Inside the modal.</p>
+  <button type="button">Save</button>
+</div>
+</body>
+</html>

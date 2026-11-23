@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Closed details fixture</title>
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: #fff; color: #123; padding: 16px; }
+  summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; }
+  /* A score chip too narrow for its number. Inside a closed details nobody can see it, so it is not a defect. */
+  .chip { background: #eef; border-radius: 12px; padding: 8px 12px; width: 96px; }
+  .chip b { display: block; font: 800 28px/1 system-ui; white-space: nowrap; }
+  .tiny { font-size: 8px; }
+  .tap { width: 20px; height: 20px; padding: 0; }
+</style>
+</head>
+<body>
+<details id="closed">
+  <summary>Closed. Details about the scores</summary>
+  <div class="chip" id="hidden-chip"><b>1.23e45678</b></div>
+  <p class="tiny" id="hidden-tiny">Tiny print nobody sees while this is closed.</p>
+  <button class="tap" id="hidden-tap" type="button">x</button>
+</details>
+<details id="open" open>
+  <summary>Open. Details about the scores</summary>
+  <div class="chip" id="shown-chip"><b>1.23e45678</b></div>
+</details>
+</body>
+</html>

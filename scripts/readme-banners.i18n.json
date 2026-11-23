@@ -1,0 +1,420 @@
+{
+  "es": {
+    "built": {
+      "label": "PROYECTOS",
+      "title": "¿Has hecho algo con 100x?",
+      "line": "Envíalo a theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALACIÓN",
+      "title": "Dos comandos y /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUES",
+      "title": "¿Falló una ejecución?",
+      "line": "Cuéntanos qué escribiste y qué pasó"
+    },
+    "contribute": {
+      "label": "CONTRIBUIR",
+      "title": "Ayuda a mejorar 100x",
+      "line": "Arreglos, comprobaciones, docs, traducciones"
+    }
+  },
+  "zh": {
+    "built": {
+      "label": "项目",
+      "title": "用 100x 做了东西？",
+      "line": "发到 theory@deadinternet.com"
+    },
+    "install": {
+      "label": "安装",
+      "title": "两条命令，再 /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "问题反馈",
+      "title": "运行出问题了？",
+      "line": "告诉我们你输入了什么、发生了什么"
+    },
+    "contribute": {
+      "label": "参与贡献",
+      "title": "让 100x 变得更好",
+      "line": "修复、检查、文档、翻译"
+    }
+  },
+  "pt": {
+    "built": {
+      "label": "PROJETOS",
+      "title": "Fez algo com o 100x?",
+      "line": "Mande para theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALAÇÃO",
+      "title": "Dois comandos e /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUES",
+      "title": "Uma execução deu errado?",
+      "line": "Conte o que você digitou e o que aconteceu"
+    },
+    "contribute": {
+      "label": "CONTRIBUIR",
+      "title": "Ajude a melhorar o 100x",
+      "line": "Correções, verificações, docs, traduções"
+    }
+  },
+  "ru": {
+    "built": {
+      "label": "ПРОЕКТЫ",
+      "title": "Сделали что-то с 100x?",
+      "line": "Пришлите на theory@deadinternet.com"
+    },
+    "install": {
+      "label": "УСТАНОВКА",
+      "title": "Две команды и /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ПРОБЛЕМЫ",
+      "title": "Запуск пошёл не так?",
+      "line": "Напишите, что вы ввели и что случилось"
+    },
+    "contribute": {
+      "label": "УЧАСТИЕ",
+      "title": "Помогите улучшить 100x",
+      "line": "Исправления, проверки, документация, переводы"
+    }
+  },
+  "ja": {
+    "built": {
+      "label": "プロジェクト",
+      "title": "100x で何か作った？",
+      "line": "theory@deadinternet.com に送ってください"
+    },
+    "install": {
+      "label": "インストール",
+      "title": "2 コマンドで /100x-setup へ",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "問題報告",
+      "title": "実行がうまくいかない？",
+      "line": "入力した内容と起きたことを教えてください"
+    },
+    "contribute": {
+      "label": "コントリビュート",
+      "title": "100x をもっと良くしよう",
+      "line": "修正、チェック、ドキュメント、翻訳"
+    }
+  },
+  "fr": {
+    "built": {
+      "label": "PROJETS",
+      "title": "Un projet fait avec 100x ?",
+      "line": "Envoyez-le à theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALLATION",
+      "title": "Deux commandes et /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUES",
+      "title": "Un run a mal tourné ?",
+      "line": "Ce que vous avez tapé, ce qui s'est passé"
+    },
+    "contribute": {
+      "label": "CONTRIBUER",
+      "title": "Aidez à améliorer 100x",
+      "line": "Corrections, vérifications, docs, traductions"
+    }
+  },
+  "de": {
+    "built": {
+      "label": "PROJEKTE",
+      "title": "Mit 100x etwas gebaut?",
+      "line": "Schick es an theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALLATION",
+      "title": "Zwei Befehle, dann /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUES",
+      "title": "Ging ein Lauf schief?",
+      "line": "Was du getippt hast und was passiert ist"
+    },
+    "contribute": {
+      "label": "MITWIRKEN",
+      "title": "Hilf, 100x besser zu machen",
+      "line": "Fixes, Prüfungen, Doku, Übersetzungen"
+    }
+  },
+  "ar": {
+    "built": {
+      "label": "المشاريع",
+      "title": "بنيت شيئًا بـ 100x؟",
+      "line": "أرسله إلى theory@deadinternet.com"
+    },
+    "install": {
+      "label": "التثبيت",
+      "title": "أمران، ثم /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "المشكلات",
+      "title": "هل ساء تشغيلٌ ما؟",
+      "line": "أخبرنا بما كتبته وبما حدث"
+    },
+    "contribute": {
+      "label": "المساهمة",
+      "title": "ساعدنا في تحسين 100x",
+      "line": "إصلاحات، فحوص، توثيق، ترجمات"
+    }
+  },
+  "hi": {
+    "built": {
+      "label": "प्रोजेक्ट",
+      "title": "100x से कुछ बनाया?",
+      "line": "उसे theory@deadinternet.com पर भेजें"
+    },
+    "install": {
+      "label": "इंस्टॉल",
+      "title": "दो कमांड, फिर /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "इशू",
+      "title": "कोई रन गड़बड़ हुआ?",
+      "line": "बताएँ कि आपने क्या लिखा और क्या हुआ"
+    },
+    "contribute": {
+      "label": "योगदान",
+      "title": "100x को बेहतर बनाएँ",
+      "line": "फ़िक्स, जाँचें, डॉक्स, अनुवाद"
+    }
+  },
+  "ko": {
+    "built": {
+      "label": "프로젝트",
+      "title": "100x로 뭔가 만들었나요?",
+      "line": "theory@deadinternet.com으로 보내 주세요"
+    },
+    "install": {
+      "label": "설치",
+      "title": "명령 두 개, 그다음 /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "이슈",
+      "title": "실행이 잘못됐나요?",
+      "line": "무엇을 입력했고 무슨 일이 있었는지 알려 주세요"
+    },
+    "contribute": {
+      "label": "기여하기",
+      "title": "100x를 더 좋게",
+      "line": "수정, 검사, 문서, 번역"
+    }
+  },
+  "id": {
+    "built": {
+      "label": "PROYEK",
+      "title": "Membuat sesuatu dengan 100x?",
+      "line": "Kirimkan ke theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALASI",
+      "title": "Dua perintah, lalu /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUE",
+      "title": "Ada run yang bermasalah?",
+      "line": "Apa yang Anda ketik dan apa yang terjadi"
+    },
+    "contribute": {
+      "label": "KONTRIBUSI",
+      "title": "Bantu buat 100x lebih baik",
+      "line": "Perbaikan, cek, dokumentasi, terjemahan"
+    }
+  },
+  "tr": {
+    "built": {
+      "label": "PROJELER",
+      "title": "100x ile bir şey mi yaptınız?",
+      "line": "theory@deadinternet.com adresine gönderin"
+    },
+    "install": {
+      "label": "KURULUM",
+      "title": "İki komut, sonra /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUE'LAR",
+      "title": "Bir çalışma ters mi gitti?",
+      "line": "Ne yazdığınızı ve ne olduğunu anlatın"
+    },
+    "contribute": {
+      "label": "KATKI",
+      "title": "100x'i geliştirmeye yardım edin",
+      "line": "Düzeltmeler, kontroller, belgeler, çeviriler"
+    }
+  },
+  "vi": {
+    "built": {
+      "label": "DỰ ÁN",
+      "title": "Bạn đã làm gì bằng 100x?",
+      "line": "Gửi về theory@deadinternet.com"
+    },
+    "install": {
+      "label": "CÀI ĐẶT",
+      "title": "Hai lệnh, rồi /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUE",
+      "title": "Lần chạy gặp trục trặc?",
+      "line": "Bạn đã gõ gì và chuyện gì xảy ra"
+    },
+    "contribute": {
+      "label": "ĐÓNG GÓP",
+      "title": "Giúp 100x tốt hơn",
+      "line": "Bản sửa, kiểm tra, tài liệu, bản dịch"
+    }
+  },
+  "bn": {
+    "built": {
+      "label": "প্রজেক্ট",
+      "title": "100x দিয়ে কিছু বানিয়েছেন?",
+      "line": "theory@deadinternet.com-এ পাঠান"
+    },
+    "install": {
+      "label": "ইনস্টল",
+      "title": "দুটি কমান্ড, তারপর /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ইস্যু",
+      "title": "কোনো রান গড়বড় হয়েছে?",
+      "line": "কী লিখেছিলেন আর কী হলো, জানান"
+    },
+    "contribute": {
+      "label": "অবদান",
+      "title": "100x-কে আরও ভালো করুন",
+      "line": "ফিক্স, যাচাই, ডকস, অনুবাদ"
+    }
+  },
+  "it": {
+    "built": {
+      "label": "PROGETTI",
+      "title": "Hai creato qualcosa con 100x?",
+      "line": "Mandalo a theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALLAZIONE",
+      "title": "Due comandi, poi /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUE",
+      "title": "Un run è andato storto?",
+      "line": "Raccontaci cosa hai scritto e cosa è successo"
+    },
+    "contribute": {
+      "label": "CONTRIBUIRE",
+      "title": "Aiutaci a migliorare 100x",
+      "line": "Correzioni, controlli, docs, traduzioni"
+    }
+  },
+  "pl": {
+    "built": {
+      "label": "PROJEKTY",
+      "title": "Zbudowałeś coś z 100x?",
+      "line": "Wyślij to na theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALACJA",
+      "title": "Dwa polecenia i /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ZGŁOSZENIA",
+      "title": "Coś poszło nie tak?",
+      "line": "Napisz, co wpisałeś i co się stało"
+    },
+    "contribute": {
+      "label": "WSPÓŁTWORZENIE",
+      "title": "Pomóż ulepszyć 100x",
+      "line": "Poprawki, kontrole, dokumentacja, tłumaczenia"
+    }
+  },
+  "th": {
+    "built": {
+      "label": "โปรเจกต์",
+      "title": "สร้างอะไรด้วย 100x ไหม?",
+      "line": "ส่งมาที่ theory@deadinternet.com"
+    },
+    "install": {
+      "label": "ติดตั้ง",
+      "title": "สองคำสั่ง แล้ว /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "แจ้งปัญหา",
+      "title": "การรันมีปัญหาไหม?",
+      "line": "บอกเราว่าคุณพิมพ์อะไรและเกิดอะไรขึ้น"
+    },
+    "contribute": {
+      "label": "ร่วมพัฒนา",
+      "title": "ช่วยให้ 100x ดีขึ้น",
+      "line": "แก้ไข ตรวจสอบ เอกสาร คำแปล"
+    }
+  },
+  "uk": {
+    "built": {
+      "label": "ПРОЄКТИ",
+      "title": "Створив щось у 100x?",
+      "line": "Надішли на theory@deadinternet.com"
+    },
+    "install": {
+      "label": "ВСТАНОВЛЕННЯ",
+      "title": "Дві команди, потім /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUES",
+      "title": "Запуск пішов не так?",
+      "line": "Розкажи, що ти ввів і що сталося"
+    },
+    "contribute": {
+      "label": "ДОЛУЧИТИСЯ",
+      "title": "Допоможи покращити 100x",
+      "line": "Правки, перевірки, документація, переклади"
+    }
+  },
+  "nl": {
+    "built": {
+      "label": "PROJECTEN",
+      "title": "Iets gebouwd met 100x?",
+      "line": "Stuur het naar theory@deadinternet.com"
+    },
+    "install": {
+      "label": "INSTALLEREN",
+      "title": "2 commando’s, dan /100x-setup",
+      "line": "Claude Code, Cursor or Codex · Node 22+"
+    },
+    "issue": {
+      "label": "ISSUES",
+      "title": "Ging een run mis?",
+      "line": "Vertel ons wat je typte en wat er gebeurde"
+    },
+    "contribute": {
+      "label": "BIJDRAGEN",
+      "title": "Help 100x beter te maken",
+      "line": "Fixes, controles, documentatie, vertalingen"
+    }
+  }
+}

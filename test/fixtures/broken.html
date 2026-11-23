@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Broken fixture</title>
+<style>
+  body { margin: 0; font: 16px/1.4 sans-serif; }
+  .wide { width: 1200px; background: #eee; padding: 8px; }
+  .tiny { width: 24px; height: 24px; padding: 0; }
+  .label { width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .small { font-size: 9px; }
+</style>
+</head>
+<body>
+<div class="wide">This row is wider than any phone.</div>
+<button class="tiny" type="button">x</button>
+<button class="label" type="button">A very long button label that gets cut</button>
+<p class="small">Tiny legal text.</p>
+<canvas id="blurry" style="width:300px;height:150px" width="100" height="50"></canvas>
+<canvas id="stretched" style="width:300px;height:150px" width="300" height="300"></canvas>
+<img src="missing.png" width="40" height="40" alt="missing">
+<script>console.error('boom');</script>
+</body>
+</html>

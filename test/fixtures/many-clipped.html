@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Many clipped controls</title>
+<style>
+  body { margin: 0; font: 16px system-ui, sans-serif; padding: 16px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; }
+  button { width: 56px; min-height: 48px; overflow: hidden; white-space: nowrap; font: inherit; }
+</style>
+</head>
+<body>
+<h1>Shop</h1>
+<div class="row">
+  <script>
+    for (let i = 1; i <= 30; i += 1) document.write(`<button>Upgrade number ${i} costs a lot</button>`);
+  </script>
+</div>
+</body>
+</html>

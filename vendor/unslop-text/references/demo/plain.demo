@@ -1,0 +1,3 @@
+# Rate limits
+
+Each API key can make 100 requests per minute. The limit applies per key, not per workspace. If you go over the limit, the server returns a `429` status code. Do not retry for at least 90 seconds. A key that keeps retrying is blocked for 15 minutes.

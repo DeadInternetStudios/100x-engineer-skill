@@ -1,0 +1,4 @@
+interface:
+  display_name: "Unslop Text"
+  short_description: "Rewrite English text plain and natural, then check numbers, code and links did not change"
+  default_prompt: "Use $unslop-text to rewrite this text so it reads plain and natural, then check that numbers, code and links did not change."

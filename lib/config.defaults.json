@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "review": {
+    "enabled": true,
+    "provider": null,
+    "driverKind": null,
+    "model": null,
+    "options": {},
+    "command": null,
+    "fallbackModel": null,
+    "fallbackOptions": {},
+    "timeoutMinutes": 90,
+    "rounds": 5,
+    "grind": false
+  },
+  "builder": { "provider": null, "model": null, "options": {} },
+  "quick": { "provider": null, "model": null, "options": {} },
+  "overnight": { "provider": null, "model": null, "options": {} },
+  "core": { "enabled": true },
+  "polish": { "passes": 3, "dudPasses": 1 },
+  "depth": { "predictedFollowups": true, "max": 5 },
+  "variants": { "count": 1, "parallel": false },
+  "subagents": { "atOnce": 1 },
+  "helper": { "only": null, "ceiling": null },
+  "test": { "budget": "after-polish" },
+  "deploy": { "preview": "auto", "prod": "on-say-so", "previewCommand": null },
+  "watchdog": { "mode": "schedule", "intervalMinutes": 20 },
+  "morning": { "windowHours": 18 },
+  "budget": { "tokens": null }
+}

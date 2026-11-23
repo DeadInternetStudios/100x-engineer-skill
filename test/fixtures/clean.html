@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clean fixture</title>
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, sans-serif; padding: env(safe-area-inset-top) 16px 16px; }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+  h1 { font-size: 20px; margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; margin-bottom: 16px; }
+  .card { border: 1px solid #ccc; border-radius: 8px; padding: 12px; overflow-wrap: anywhere; }
+  button { min-width: 48px; min-height: 48px; font: inherit; padding: 0 16px; }
+  canvas { display: block; width: 100%; max-width: 480px; aspect-ratio: 2 / 1; }
+</style>
+</head>
+<body>
+<header><h1>Clean fixture</h1><button id="go" type="button">Start</button></header>
+<main>
+  <div class="grid">
+    <div class="card"><p>Coins per second</p><button type="button">Upgrade</button></div>
+    <div class="card"><p>Offline earnings</p><button type="button">Collect</button></div>
+    <div class="card"><p>Prestige</p><button type="button">Reset</button></div>
+  </div>
+  <canvas id="stage"></canvas>
+</main>
+<script>
+function fit() {
+  const c = document.getElementById('stage');
+  const r = c.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  c.width = Math.round(r.width * dpr);
+  c.height = Math.round(r.height * dpr);
+  const g = c.getContext('2d');
+  g.fillStyle = '#246';
+  g.fillRect(0, 0, c.width, c.height);
+}
+fit();
+addEventListener('resize', fit);
+document.getElementById('go').addEventListener('click', () => {
+  document.body.insertAdjacentHTML('beforeend', '<p id="started">Started</p>');
+});
+</script>
+</body>
+</html>

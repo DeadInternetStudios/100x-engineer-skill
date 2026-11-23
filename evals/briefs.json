@@ -1,0 +1,105 @@
+{
+  "about": "Briefs for `100x eval bakeoff init --briefs evals/briefs.json`. The first three are the pilot. The twenty together are the run that can say \"ahead\": with fewer than 8 decisive pairs only a clean sweep passes the sign test, and a judge that flips on some pairs makes fewer pairs decisive. Each text is what an owner would type, with no mention of any skill.",
+  "briefs": [
+    {
+      "id": "lighthouse-idle",
+      "title": "An idle game about running a lighthouse",
+      "text": "Make an idle game about running a lighthouse, for a phone held in one hand. The keeper earns light over time, spends it on upgrades, and ships come in to be guided past the rocks. It should feel good to open for ten seconds and good to come back to after an hour. Progress is saved in the browser."
+    },
+    {
+      "id": "coffee-dashboard",
+      "title": "A dashboard for a coffee shop",
+      "text": "Make a dashboard for the owner of a small coffee shop. It shows sales today, the busiest hours, the best sellers and how this week compares with last week. Use made-up but believable numbers. The owner checks it on a laptop at the end of the day and wants to understand it in a glance."
+    },
+    {
+      "id": "dog-walking-lisbon",
+      "title": "A landing page for a dog walking service in Lisbon",
+      "text": "Make a landing page for a dog walking service in Lisbon. People should see what it costs, who the walkers are, where it works, and how to book a first walk. It should make a worried dog owner trust it within a few seconds."
+    },
+    {
+      "id": "habit-tracker",
+      "title": "A habit tracker for one person",
+      "text": "Make a habit tracker for one person, phone first. They add a few daily habits, tick them off each day, and see how long each streak is. Missing a day should feel gentle, not like a failure. Everything stays in the browser."
+    },
+    {
+      "id": "recipe-scaler",
+      "title": "A recipe scaler for the kitchen",
+      "text": "Make a recipe scaler. Someone pastes or types a recipe with amounts, picks how many people they are cooking for, and gets every amount rescaled in units that make sense. It is used with flour on the hands, on a tablet propped against the wall."
+    },
+    {
+      "id": "pricing-page",
+      "title": "A pricing page for a small software tool",
+      "text": "Make a pricing page for a small tool that turns meeting recordings into notes. Three plans, a monthly and yearly switch, a short comparison of what each plan includes, and answers to the questions people ask before paying. It is for people who are comparing a few tools in different tabs."
+    },
+    {
+      "id": "band-tour-page",
+      "title": "A tour page for a band",
+      "text": "Make a tour page for a four piece band. Upcoming dates in a list with the city, venue and a ticket link, a map or picture of where they are playing this month, one song to play right on the page, and a sign up for news. Made up dates are fine. It should look like this band and no other."
+    },
+    {
+      "id": "flashcards",
+      "title": "A flashcard trainer for a language learner",
+      "text": "Make a flashcard trainer for someone learning Portuguese. A deck of about twenty words, cards that come back sooner when they were hard, a count of how many are learned, and a way to add a card. It is used in short sessions on a phone on the train."
+    },
+    {
+      "id": "weather-hike",
+      "title": "A weather page for a hiker",
+      "text": "Make a weather page for someone deciding whether to hike tomorrow. Made-up forecast for a mountain trail: temperature by hour, wind, chance of rain, and a plain go, wait or stay home answer at the top. It is read on a phone, outdoors, in bright sun."
+    },
+    {
+      "id": "bill-splitter",
+      "title": "A bill splitter for friends",
+      "text": "Make a tool for splitting a restaurant bill between friends. People are added by name, items are given to one or more of them, tax and tip are shared fairly, and everyone sees what they owe. It is used at the table, on a phone, with one hand."
+    },
+    {
+      "id": "focus-timer",
+      "title": "A focus timer for working at home",
+      "text": "Make a focus timer for someone who works from home. Work sessions and breaks, a way to name what the session is for, and a log of the day. It sits on a second monitor all day, so it should be calm and easy to ignore until something changes."
+    },
+    {
+      "id": "map-museum",
+      "title": "A visitor page for a small museum",
+      "text": "Make a page for a small museum's exhibition of old maps. Visitors open it on a phone at the door: opening hours, five highlighted maps with a sentence each, and where the cafe and the toilets are. Made up details are fine."
+    },
+    {
+      "id": "chess-puzzle",
+      "title": "A chess puzzle for each day",
+      "text": "Make a one puzzle a day chess page. It shows a position, lets the player move the pieces, says at once whether the move was right, and keeps a streak of the days solved. It has to be playable on a phone without zooming."
+    },
+    {
+      "id": "invoice-maker",
+      "title": "An invoice maker for a freelancer",
+      "text": "Make a one page invoice maker for a freelance designer. They fill in the client, the line items and a due date, the total and the tax update as they type, and the result looks like something a client would pay. It prints cleanly."
+    },
+    {
+      "id": "breathing-guide",
+      "title": "A breathing guide before a meeting",
+      "text": "Make a breathing exercise for someone who is anxious before a meeting. One screen, a choice of two patterns, a guide that moves slowly with the breath, and no scores or streaks. It is quiet by default."
+    },
+    {
+      "id": "bakery-menu",
+      "title": "A menu and pre-order page for a bakery",
+      "text": "Make a page for a neighbourhood bakery. What is baked today and what has sold out, a way to reserve a loaf for pick up before ten, and the opening hours. Customers are standing in line, on a phone, in a hurry."
+    },
+    {
+      "id": "airport-to-town",
+      "title": "Getting from the airport to the old town",
+      "text": "Make a page that shows how to get from a made up city's airport to its old town by public transport. Three options with the time, the cost and the changes for each, and a simple drawn route for the one picked. Tired travellers use it on a phone."
+    },
+    {
+      "id": "reading-list",
+      "title": "A reading list for one person",
+      "text": "Make a reading list for one person. They add a book with a title and an author, mark it as wanting, reading or finished, rate the finished ones, and see how many they finished this year. Everything stays in the browser. It should feel like a bookshelf, not a spreadsheet."
+    },
+    {
+      "id": "tides-explainer",
+      "title": "An explainer of how tides work",
+      "text": "Make a page that explains how tides work to a curious twelve year old. One long page with a moon that can be moved around the earth to see the water change, short sentences, and a plain word beside every hard one."
+    },
+    {
+      "id": "picnic-invite",
+      "title": "An invitation for a birthday picnic",
+      "text": "Make an invitation and reply page for a birthday picnic. Where and when with a small map, what to bring, a way to say yes with how many are coming, and who else has said yes so far. Made up guests are fine. It should feel warm and a little silly."
+    }
+  ]
+}

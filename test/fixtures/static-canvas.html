@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Static canvas fixture</title>
+<style>body{margin:0}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const c = document.getElementById('c');
+const dpr = window.devicePixelRatio || 1;
+c.style.width = innerWidth + 'px';
+c.style.height = '200px';
+c.width = innerWidth * dpr;
+c.height = 200 * dpr;
+c.getContext('2d').fillRect(0, 0, c.width, c.height);
+</script>
+</body>
+</html>

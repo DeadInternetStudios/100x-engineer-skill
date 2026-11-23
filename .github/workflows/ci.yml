@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # The fast lane leaves out the tests that drive a real browser. Run `npm test` on a machine with Playwright for those.
+      - run: npm run test:fast
+      - run: node bin/100x.mjs validate --prose
+      - run: node scripts/vendor-companions.mjs --check
+      - run: node scripts/stamp-skills.mjs --check
+      # The README diagrams are drawn by code. A change to the code or the sample run that is not redrawn fails here.
+      - run: node scripts/readme-diagrams.mjs && git diff --exit-code docs/img/diagrams

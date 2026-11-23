@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spill fixture</title>
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, sans-serif; background: #123; color: #123; padding: 16px; }
+  .row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 16px; }
+  /* A score chip that is too narrow for its number. The text is navy on a navy page once it leaves the chip. */
+  .chip { background: #fff; border-radius: 12px; padding: 8px 12px; width: 96px; }
+  .chip b { display: block; font: 800 28px/1 system-ui; white-space: nowrap; }
+  .chip small { display: block; white-space: nowrap; color: #567; }
+  .fits { background: #fff; border-radius: 12px; padding: 8px 12px; width: 220px; }
+  .fits b { font: 800 28px/1 system-ui; white-space: nowrap; }
+  .buy { min-height: 48px; width: 72px; padding: 0; background: #c33; color: #fff; border: 0; border-radius: 10px; white-space: nowrap; overflow: visible; font: 700 16px system-ui; }
+  .wraps { background: #fff; border-radius: 12px; padding: 8px 12px; width: 120px; }
+  /* Visually hidden text for screen readers. A 1px box that clips on purpose. */
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="chip" id="narrow"><b>1.23e45678</b><small>+1.00T coins a second</small></div>
+  <div class="fits" id="roomy"><b>1.23e45</b></div>
+</div>
+<div class="row">
+  <button class="buy" id="dear" type="button">BUY 2.65e48</button>
+  <div class="wraps" id="wrap">A long sentence that wraps inside its card without any trouble at all.</div>
+</div>
+<button type="button" style="min-height:48px"><span class="sr">Time of day, night</span>Moon</button>
+</body>
+</html>

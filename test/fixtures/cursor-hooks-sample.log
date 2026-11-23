@@ -1,0 +1,110 @@
+[2026-11-20T18:26:38.934Z] Hook step requested: subagentStart
+[2026-11-20T18:26:38.955Z] Hook step requested: subagentStart
+[2026-11-20T18:26:38.961Z] Found 1 hook(s) to execute for step: subagentStart
+[2026-11-20T18:26:38.961Z] Executing hook 1/1 from user config
+[2026-11-20T18:26:38.961Z] Running script in directory: /Users/owner/.cursor
+[2026-11-20T18:26:38.961Z] Running hook 1 with timeout 60000ms
+[2026-11-20T18:26:38.965Z] Found 1 hook(s) to execute for step: subagentStart
+[2026-11-20T18:26:38.965Z] Executing hook 1/1 from user config
+[2026-11-20T18:26:38.965Z] Running script in directory: /Users/owner/.cursor
+[2026-11-20T18:26:38.966Z] Running hook 1 with timeout 60000ms
+[2026-11-20T18:26:39.191Z] ERROR: Hook 1 failed with exit code 1
+═══════════════════════════════════════════════════════════════════════════════════════
+subagentStart
+═══════════════════════════════════════════════════════════════════════════════════════
+Command: node "/Users/owner/Library/Application Support/Cursor/User/globalStorage/motif.motif/hooks/motif-hook.mjs" "/Users/owner/Library/Application Support/Cursor/User/globalStorage/motif.motif/hooks/events.jsonl" (230ms) exit code: 1
+
+INPUT:
+{
+  "conversation_id": "00000000-0000-4000-8000-000000000001",
+  "generation_id": "76aa7438-a85c-44fd-9731-e6b50f9d77fb",
+  "model": "composer-2.5-fast",
+  "subagent_id": "toolu_018g6BJU5Mypntp6dVn1FNWM",
+  "subagent_type": "general-purpose",
+  "task": "You are the judge of a code and skill change. Project folder. /Users/owner/projects/demo",
+  "parent_conversation_id": "00000000-0000-4000-8000-000000000001",
+  "tool_call_id": "toolu_018g6BJU5Mypntp6dVn1FNWM",
+  "subagent_model": "composer-2.5-fast",
+  "is_parallel_worker": false,
+  "session_id": "00000000-0000-4000-8000-000000000001",
+  "hook_event_name": "subagentStart",
+  "cursor_version": "3.31.11",
+  "workspace_roots": [
+    "/Users/owner/projects/demo"
+  ],
+  "parent_agent_id": "00000000-0000-4000-8000-000000000001",
+  "user_email": "owner@example.com",
+  "transcript_path": "/Users/owner/.cursor/projects/demo/agent-transcripts/x/x.jsonl"
+}
+
+OUTPUT:
+(empty)
+
+STDERR:
+node:internal/modules/cjs/loader:1607
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/owner/Library/Application Support/Cursor/User/globalStorage/motif.motif/hooks/motif-hook.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1603:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1145:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1169:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1196:12)
+    at Module._load (node:internal/modules/cjs/loader:1370:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:33:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v26.13.1
+
+═══════════════════════════════════════════════════════════════════════════════════════
+[2026-11-20T18:26:39.192Z] All hooks for step subagentStart completed but none returned a valid response
+[2026-11-20T18:26:39.222Z] ERROR: Hook 1 failed with exit code 1
+═══════════════════════════════════════════════════════════════════════════════════════
+subagentStart
+═══════════════════════════════════════════════════════════════════════════════════════
+Command: node "/Users/owner/Library/Application Support/Cursor/User/globalStorage/motif.motif/hooks/motif-hook.mjs" "/Users/owner/Library/Application Support/Cursor/User/globalStorage/motif.motif/hooks/events.jsonl" (257ms) exit code: 1
+
+INPUT:
+{
+  "conversation_id": "00000000-0000-4000-8000-000000000001",
+  "generation_id": "76aa7438-a85c-44fd-9731-e6b50f9d77fb",
+  "model": "composer-2.5-fast",
+  "subagent_id": "94a0443f-cbd2-47fe-8387-2cee8173dd54",
+  "subagent_type": "generalPurpose",
+  "task": "You are the judge of a code and skill change. Project folder. /Users/owner/projects/demo",
+  "parent_conversation_id": "00000000-0000-4000-8000-000000000001",
+  "tool_call_id": "toolu_018g6BJU5Mypntp6dVn1FNWM",
+  "subagent_model": "composer-2.5-fast",
+  "is_parallel_worker": false,
+  "session_id": "00000000-0000-4000-8000-000000000001",
+  "hook_event_name": "subagentStart",
+  "cursor_version": "3.31.11",
+  "workspace_roots": [
+    "/Users/owner/projects/demo"
+  ],
+  "parent_agent_id": "00000000-0000-4000-8000-000000000001",
+  "user_email": "owner@example.com",
+  "transcript_path": "/Users/owner/.cursor/projects/demo/agent-transcripts/x/x.jsonl"
+}
+
+OUTPUT:
+(empty)
+
+STDERR:
+node:internal/modules/cjs/loader:1607
+  throw err;
+  ^
+
+Error: Cannot find module '/Users/owner/Library/Application Support/Cursor/User/globalStorage/motif.motif/hooks/motif-hook.mjs'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1603:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1145:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1169:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1196:12)
+    at Module._load (node:internal/modules/cjs/loader:1370:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:33:47 {

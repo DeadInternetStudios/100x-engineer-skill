@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steps fixture</title>
+<style>body{font:16px system-ui;margin:16px}button{min-height:48px;min-width:48px}#panel{margin-top:16px;padding:12px;border:1px solid #888}</style>
+</head>
+<body>
+<button id="start" type="button">Start</button>
+<div id="panel" hidden>Playing</div>
+<script>
+if (!localStorage.getItem('score')) console.error('no seeded score');
+document.getElementById('start').onclick = () => { document.getElementById('panel').hidden = false; };
+</script>
+</body>
+</html>

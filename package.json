@@ -1,0 +1,48 @@
+{
+  "name": "100x-engineer-skill",
+  "version": "0.1.0",
+  "description": "100x. An agent skill and a small command line tool that turn a brief into a prototype worth keeping: polished three times, tested hard on the one thing that must not break, judged by a second model and shown on a morning page.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "100x": "bin/100x.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "test:fast": "X100_FAST=1 node --test \"test/*.test.mjs\"",
+    "validate": "node bin/100x.mjs validate",
+    "validate:spec": "for d in skills/*/; do npx -y skills-ref validate \"$d\" || exit 1; done",
+    "stamp": "node scripts/stamp-skills.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeadInternetStudios/100x-engineer-skill.git"
+  },
+  "homepage": "https://github.com/DeadInternetStudios/100x-engineer-skill#readme",
+  "bugs": {
+    "url": "https://github.com/DeadInternetStudios/100x-engineer-skill/issues"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "skills",
+    "vendor",
+    "evals",
+    "scripts/install.sh",
+    "companions.json",
+    "NOTICE.md",
+    "UPSTREAM.md"
+  ],
+  "keywords": [
+    "agent-skills",
+    "skills",
+    "cursor",
+    "claude-code",
+    "prototype",
+    "ai-agents"
+  ]
+}

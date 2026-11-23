@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strings page title</title>
+<meta name="description" content="Meta text nobody sees on the page">
+<style>.shout { text-transform: uppercase; } .gone { display: none; } .ghost { visibility: hidden; } .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }</style>
+</head>
+<body>
+<h1 class="shout">Welcome back, friend</h1>
+<p>Press <b>Start</b> to begin, or <a href="#more">read the rules</a> first.</p>
+<p class="gone">Display none text</p>
+<p class="ghost">Hidden visibility text</p>
+<p>First line<br>Second line after a break</p>
+<ul><li>One item</li><li>Another item</li></ul>
+<button type="button" aria-label="Open the settings menu">⚙</button>
+<img alt="A friendly fox" width="40" height="40" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=">
+<input placeholder="Type your name here" aria-label="Your name">
+<input type="submit" value="Send it now">
+<span class="sr">Screen reader only words</span>
+<details><summary>Closed details summary</summary><p>Text inside a closed details</p></details>
+<details open><summary>Open details summary</summary><p>Text inside an open details</p></details>
+<svg width="120" height="30" viewBox="0 0 120 30"><title>Chart title for readers</title><text x="2" y="20">Chart label</text></svg>
+<div id="late"></div>
+<script>
+  document.getElementById('late').textContent = 'Words a script wrote after load';
+  const notShown = 'A string inside the script source';
+</script>
+<noscript>Please turn on scripts</noscript>
+</body>
+</html>
