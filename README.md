@@ -16,7 +16,7 @@
 ![status: beta](docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x is a skill created by a former Cursor engineer that turns prompts into production-ready code.<br>I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
+*100x is a skill built by a former Cursor engineer that transforms prompts into production-ready code through formal verification.<br>I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
 
 Terminal Bench 4.1 scores coming soon 😎
 
