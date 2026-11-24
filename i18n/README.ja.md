@@ -396,7 +396,3 @@ MIT ライセンス。[LICENSE](../LICENSE) を参照してください。
     </picture>
   </a>
 </p>
-
----
-
-<sub>仮面のイラスト： <a target="_blank" href="https://www.vexels.com/png-svg/preview/229802/guy-fawkes-mask-bonfire-night-stroke">www.vexels.com</a></sub>

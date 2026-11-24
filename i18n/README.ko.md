@@ -396,7 +396,3 @@ MIT. [LICENSE](../LICENSE)를 참고하세요.
     </picture>
   </a>
 </p>
-
----
-
-<sub>가면 아트워크: <a target="_blank" href="https://www.vexels.com/png-svg/preview/229802/guy-fawkes-mask-bonfire-night-stroke">www.vexels.com</a></sub>

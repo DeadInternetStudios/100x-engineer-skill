@@ -402,8 +402,4 @@ MIT. راجع [LICENSE](../LICENSE).
   </a>
 </p>
 
----
-
-<sub>رسم القناع: <a target="_blank" href="https://www.vexels.com/png-svg/preview/229802/guy-fawkes-mask-bonfire-night-stroke">www.vexels.com</a></sub>
-
 </div>

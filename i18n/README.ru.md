@@ -399,7 +399,3 @@ MIT. См. [LICENSE](../LICENSE).
     </picture>
   </a>
 </p>
-
----
-
-<sub>Рисунок маски: <a target="_blank" href="https://www.vexels.com/png-svg/preview/229802/guy-fawkes-mask-bonfire-night-stroke">www.vexels.com</a></sub>

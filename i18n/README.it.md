@@ -399,7 +399,3 @@ MIT. Vedi [LICENSE](../LICENSE).
     </picture>
   </a>
 </p>
-
----
-
-<sub>Illustrazione della maschera: <a target="_blank" href="https://www.vexels.com/png-svg/preview/229802/guy-fawkes-mask-bonfire-night-stroke">www.vexels.com</a></sub>
