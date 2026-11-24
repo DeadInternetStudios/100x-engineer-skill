@@ -51,5 +51,7 @@ test('the worked prompts the README links pass the prompt check, as their pages 
 test('the release badge in the README names the version in package.json', () => {
   const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
   const { version } = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
-  assert.match(readme, new RegExp(`img\\.shields\\.io/badge/release-${version.replace(/\./g, '\\.')}-`), `the release badge says ${version}`);
+  assert.ok(readme.includes('docs/img/badges/release.svg'), 'the README shows the release badge');
+  const svg = fs.readFileSync(path.join(ROOT, 'docs/img/badges/release.svg'), 'utf8');
+  assert.ok(svg.includes(`aria-label="release: ${version}"`), `the release badge says ${version}`);
 });
