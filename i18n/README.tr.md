@@ -18,6 +18,8 @@
 
 *100x, Cursor'ın eski bir mühendisinin geliştirdiği ve prompt'ları üretime hazır koda dönüştüren bir skill'dir.<br>Onu her ay üretime 1.000'den fazla PR göndermek için kullanıyorum, geri alma oranım %2'nin altında.*
 
+Terminal Bench 4.1 skorları çok yakında :)
+
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <b>Türkçe</b> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
 </div>

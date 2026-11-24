@@ -18,6 +18,8 @@
 
 *100x is een skill, gemaakt door een voormalige Cursor-engineer, die prompts omzet in productieklare code.<br>Ik gebruik het om elke maand meer dan 1.000 PR's naar productie te brengen, met een rollbackpercentage onder de 2%.*
 
+Terminal Bench 4.1-scores komen binnenkort :)
+
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <b>Nederlands</b></sub>
 
 </div>
