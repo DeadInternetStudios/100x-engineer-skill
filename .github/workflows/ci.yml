@@ -29,7 +29,12 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       # The fast lane leaves out the tests that drive a real browser. Run `npm test` on a machine with Playwright for those.
-      - run: npm run test:fast
+      - run: npm run test:fast 2>&1 | tee test.log; exit ${PIPESTATUS[0]}
+      # Temporary: the failing part of the log as one annotation, which a check run shows without a login.
+      - if: failure()
+        run: |
+          msg=$(grep -A80 "failing tests:" test.log | head -c 30000 | tr -d '\r' | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          echo "::error title=failing tests::$msg"
       - run: node bin/100x.mjs validate --prose
       - run: node scripts/vendor-companions.mjs --check
       - run: node scripts/stamp-skills.mjs --check
