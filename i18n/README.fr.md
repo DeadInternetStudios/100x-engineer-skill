@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x est un skill créé par un ancien ingénieur de Cursor qui transforme des prompts en code prêt pour la production.<br>Je m'en sers pour livrer plus de 1 000 PR en production chaque mois, avec un taux de rollback inférieur à 2 %.*
+*100x est un skill d'un ancien ingénieur de Cursor qui transforme des prompts en code vérifié formellement et prêt pour la production.<br>Je m'en sers pour livrer plus de 1 000 PR en production chaque mois, avec un taux de rollback inférieur à 2 %.*
 
 Les scores Terminal Bench 4.1 arrivent bientôt 😎
 
@@ -34,6 +34,8 @@ Votre agent dit qu'il a terminé. Vous ouvrez le résultat et ça marche *à peu
 
 **100x fait résoudre à votre agent de code les derniers 10 % du développement.**
 
+**Il découpe le travail en petits blocs, vérifie formellement chacun d'eux, puis contrôle que les blocs fonctionnent ensemble.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B de tokens en 30 jours · 1 ingénieur · Des projets sérieux · Plus de 1 000 PR · $250k d'économies de cache">
 </p>
@@ -47,6 +49,57 @@ C'est un skill open source pour Claude Code, Cursor et Codex. Donnez-lui une tâ
 </p>
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
+
+## Vérification formelle, un petit bloc à la fois
+
+Personne ne vérifie formellement une application entière d'un seul bloc. Mais presque tout logiciel bien conçu est fait de petits blocs, et un petit bloc a des choses qu'on peut énoncer exactement et contrôler complètement. 100x les écrit, contrôle chacune, puis contrôle que les blocs fonctionnent ensemble. C'est le comportement par défaut.
+
+### Six questions pour chaque bloc
+
+| Question | Ce qu'on écrit |
+|---|---|
+| État | ce qui peut exister |
+| Transitions | comment cela peut changer |
+| Préconditions | quand une étape est permise |
+| Postconditions | ce qui est vrai après une étape |
+| Invariants | ce qui reste toujours vrai |
+| Vivacité | ce qui doit finir par arriver, et ce que cela suppose |
+
+Le prompt répond aux six en phrases simples. Ensuite, 100x construit un petit modèle qui exécute vos vraies fonctions, et un vérificateur parcourt tous les états que le modèle peut atteindre. Quand quelque chose casse, il affiche la liste la plus courte d'étapes qui y mène.
+
+### Les petits blocs forment un grand système
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Petits blocs vérifiés. Chaque bloc énonce six propriétés et se contrôle seul : partager une addition, commande, remboursement. Les jonctions entre les blocs sont contrôlées. Les vrais blocs s'exécutent ensuite ensemble dans un modèle du système. Le registre marque une preuve comme périmée quand le code en dessous change.">
+</p>
+
+Chaque bloc se contrôle seul, donc un échec pointe vers une petite chose. Les jonctions sont contrôlées aussi : ce qu'un bloc transmet doit respecter les règles du suivant. Puis les vrais blocs s'exécutent ensemble dans un modèle, et le vérificateur parcourt tous les états de l'ensemble. Des blocs contrôlés plus des jonctions contrôlées forment un logiciel auquel on peut se fier. Les blocs ne prouvent pas les jonctions gratuitement, donc 100x contrôle les deux.
+
+### Ça reste vrai
+
+Le registre est `verify/ledger.tsv`, dans votre dépôt, donc il suit chaque branche. Chaque ligne garde un hash du code qu'elle couvre. Changez ce code et la ligne devient périmée tant que personne n'a lu le changement, lancé le contrôle et synchronisé. Chaque propriété doit échouer une fois sur un bug planté avant de compter. `100x finish` refuse une propriété périmée, cassée ou qui n'a jamais échoué. Quand un agent s'apprête à toucher du code qu'aucune règle ne couvre, `100x verify cover` répond `NO RULE`, et cela lance la procédure.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>D'un petit calculateur de pourboire, lancé à la main dans un dépôt de test</sub>
+
+### Ce que « vérifié » veut dire ici
+
+- **Exhaustif** (`exhaustive`) : chaque état du modèle a été visité, donc la propriété tient pour ce modèle et ses bornes
+- **Borné** (`bounded`) : la recherche a atteint une limite et n'a rien trouvé dans ce qu'elle a vu, ce qui n'est pas une preuve, et la vivacité n'est jamais tranchée dans ce cas
+- **Échantillonné** (`sampled`) : des cas choisis ou aléatoires, bons pour trouver des bugs et muets sur le reste
+
+Une réussite couvre le modèle et les vraies fonctions que les contrôles exécutent. La mise en page et les textes n'ont rien à énoncer, ils reçoivent donc une dispense enregistrée avec son motif, et `100x finish` nomme le code que chaque dispense excuse. Pour tout sauter, écrivez `no verification` dans votre message ou lancez `100x config set verify.enabled false`. Le rapport dit alors que rien n'a été vérifié. [Les détails](../docs/verification.md).
 
 ## Pourquoi les agents s'arrêtent à « ça marche presque »
 
@@ -157,6 +210,7 @@ Si vous êtes absent, l'agent note chaque décision qu'il prend et continue à t
 - **La fonctionnalité ou l'app**, et comment l'essayer vous-même
 - **Des captures à de nombreuses tailles d'écran**, vérifiées pour le texte qui déborde, les boutons minuscules, les images floues et les erreurs du navigateur
 - **Une page de rapport** (`.100x/REPORT.html`) et une galerie de tous les runs terminés dans `~/.100x`
+- **Un registre de vérification** dans votre dépôt : les propriétés de chaque bloc, si chacune tient, et le code qu'elle couvre
 - **Un journal des décisions** : chaque choix fait par 100x pendant votre absence, et pourquoi
 - **Le message final** montré plus haut
 
@@ -364,6 +418,7 @@ Donnez-lui une horloge et il continue à travailler par tours jusqu'à la fin du
 |---|---|
 | [Installation en détail](../docs/install.md) | toutes les options d'installation, et tous les fichiers que l'installeur touche |
 | [Utiliser 100x](../docs/using.md) | une nuit d'absence, la page de rapport, le skill d'aide |
+| [Vérification formelle](../docs/verification.md) | les six propriétés, le registre, ce que « vérifié » veut dire, et comment les blocs forment un système |
 | [Pipeline et message final](../docs/pipeline.md) | chaque étape en détail, et ce que vérifie `100x finish` |
 | [Configuration et forfaits](../docs/plans-and-setup.md) | la configuration recommandée de Claude Code, le preset lite, une configuration pour chaque forfait |
 | [Réglages](../docs/settings.md) | toutes les clés de configuration |

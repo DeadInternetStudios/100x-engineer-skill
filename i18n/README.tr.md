@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x, Cursor'ın eski bir mühendisinin geliştirdiği ve prompt'ları üretime hazır koda dönüştüren bir skill'dir.<br>Onu her ay üretime 1.000'den fazla PR göndermek için kullanıyorum, geri alma oranım %2'nin altında.*
+*100x, Cursor'ın eski bir mühendisinin yaptığı ve prompt'ları biçimsel olarak doğrulanmış, üretime hazır koda dönüştüren bir skill'dir.<br>Onu her ay üretime 1.000'den fazla PR göndermek için kullanıyorum, geri alma oranım %2'nin altında.*
 
 Terminal Bench 4.1 skorları çok yakında 😎
 
@@ -34,6 +34,8 @@ Ajanınız işin bittiğini söylüyor. Açıyorsunuz, *bir şekilde* çalışı
 
 **100x, kodlama ajanınıza geliştirmenin son %10'unu bitirtir.**
 
+**İşi küçük bloklara böler, her bloğu biçimsel olarak doğrular, sonra blokların birlikte çalıştığını kontrol eder.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30 günde 136B token · 1 mühendis · Ciddi projeler · 1.000'den fazla PR · $250k önbellek tasarrufu">
 </p>
@@ -47,6 +49,57 @@ Claude Code, Cursor ve Codex için açık kaynaklı bir skill. Ona tek bir iş v
 </p>
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
+
+## Biçimsel doğrulama, her seferinde bir küçük blok
+
+Hiç kimse bütün bir uygulamayı tek parça halinde biçimsel olarak doğrulamaz. Ama iyi tasarlanmış hemen her yazılım küçük bloklardan oluşur ve küçük bir bloğun tam olarak ifade edilebilen, eksiksiz kontrol edilebilen şeyleri vardır. 100x bunları yazar, her birini kontrol eder, sonra blokların birlikte çalıştığını kontrol eder. Bunu varsayılan olarak yapar.
+
+### Her blok için altı soru
+
+| Soru | Ne yazılır |
+|---|---|
+| Durum | neler var olabilir |
+| Geçişler | nasıl değişebilir |
+| Ön koşullar | bir adıma ne zaman izin verilir |
+| Son koşullar | bir adımdan sonra ne doğrudur |
+| Değişmezler | her zaman neyin geçerli olduğu |
+| Canlılık | sonunda ne olmak zorunda ve bu neyi varsayar |
+
+Prompt altısını da düz cümlelerle yanıtlar. Sonra 100x gerçek fonksiyonlarınızı çalıştıran küçük bir model kurar ve bir denetleyici modelin ulaşabileceği her duruma uğrar. Bir şey bozulduğunda, oraya götüren en kısa adım listesini yazdırır.
+
+### Küçük bloklar büyük bir sistem eder
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Doğrulanmış küçük bloklar. Her blok altı özellik belirtir ve tek başına kontrol edilir: hesabı bölmek, sipariş, iade. Bloklar arasındaki bağlantılar kontrol edilir. Ardından gerçek bloklar tek bir sistem modelinde birlikte çalışır. Defter, altındaki kod değiştiğinde bir kanıtı eskimiş diye işaretler.">
+</p>
+
+Her blok tek başına kontrol edilir, bu yüzden bir hata küçük tek bir yeri gösterir. Bağlantılar da kontrol edilir: bir bloğun teslim ettiği şey sonraki bloğun kurallarını karşılamalıdır. Sonra gerçek bloklar tek bir modelde birlikte çalışır ve denetleyici bütünün her durumuna uğrar. Kontrol edilmiş bloklar artı kontrol edilmiş bağlantılar, güvenebileceğiniz bir yazılım eder. Bloklar bağlantıları bedavaya kanıtlamaz, bu yüzden 100x ikisini de kontrol eder.
+
+### Doğru kalır
+
+Defter `verify/ledger.tsv` dosyasıdır, deponuzdadır ve bu yüzden her dalla birlikte gider. Her satır kapsadığı kodun bir özetini (hash) tutar. O kodu değiştirirseniz, biri değişikliği okuyup kontrolü çalıştırana ve eşitleyene kadar satır eskimiş olur. Her özellik sayılmadan önce kasıtlı yerleştirilmiş bir hatada bir kez başarısız olmak zorundadır. `100x finish` eskimiş, bozuk ya da hiç başarısız olmamış bir özelliği reddeder. Bir ajan hiçbir kuralın kapsamadığı koda dokunmak üzereyken `100x verify cover` `NO RULE` yanıtını verir ve bu süreci başlatır.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>Küçük bir bahşiş bölücüden, deneme deposunda elle çalıştırıldı</sub>
+
+### Burada doğrulanmış ne demek
+
+- **Kapsamlı** (`exhaustive`): modelin her durumuna uğrandı, bu yüzden özellik o model ve sınırları için geçerlidir
+- **Sınırlı** (`bounded`): arama bir sınıra çarptı ve gördüğü yerde bir şey bulamadı, bu bir kanıt değildir ve canlılık buna dayanarak asla karara bağlanmaz
+- **Örneklem** (`sampled`): seçilmiş ya da rastgele durumlar, hata bulmakta iyi, gerisi hakkında sessiz
+
+Geçmek, modeli ve kontrollerin çalıştırdığı gerçek fonksiyonları kapsar. Yerleşim ve metinlerin ifade edecek bir şeyi yoktur, bu yüzden gerekçesiyle kayda geçen bir muafiyet alırlar ve `100x finish` her muafiyetin bağışladığı kodu adıyla söyler. Hepsini atlamak için mesajınıza `no verification` yazın ya da `100x config set verify.enabled false` çalıştırın. Rapor o zaman hiçbir şeyin doğrulanmadığını söyler. [Ayrıntılar](../docs/verification.md).
 
 ## Ajanlar neden "neredeyse çalışıyor"da kalıyor
 
@@ -157,6 +210,7 @@ Siz yokken ajan verdiği her kararı yazar ve çalışmaya devam eder. [İş ak�
 - **Özellik ya da uygulama** ve kendiniz nasıl deneyeceğiniz
 - **Birçok ekran boyutunda ekran görüntüleri**; taşan metin, minik düğmeler, bulanık görseller ve tarayıcı hataları için kontrol edilmiş
 - **Bir rapor sayfası** (`.100x/REPORT.html`) ve `~/.100x` içinde bitmiş tüm çalışmaların galerisi
+- Deponuzda **bir doğrulama defteri**: her bloğun özellikleri, her birinin geçerli olup olmadığı ve kapsadığı kod
 - **Bir karar günlüğü**: siz yokken 100x'in yaptığı her seçim ve nedeni
 - **Yukarıda gösterilen son mesaj**
 
@@ -364,6 +418,7 @@ Ona bir süre verin, süre dolana kadar turlar halinde çalışmaya devam eder. 
 |---|---|
 | [Kurulumun tamamı](../docs/install.md) | her kurulum seçeneği ve kurulum programının dokunduğu her dosya |
 | [100x'i kullanmak](../docs/using.md) | bir gece uzakta, rapor sayfası, yardımcı skill |
+| [Biçimsel doğrulama](../docs/verification.md) | altı özellik, defter, doğrulanmış ne demek ve bloklar bir sistemi nasıl oluşturur |
 | [İş akışı ve son mesaj](../docs/pipeline.md) | her adım ayrıntılı olarak ve `100x finish` neleri kontrol eder |
 | [Kurulum ve planlar](../docs/plans-and-setup.md) | önerilen Claude Code kurulumu, lite ön ayarı, her plan için kurulumlar |
 | [Ayarlar](../docs/settings.md) | her yapılandırma anahtarı |

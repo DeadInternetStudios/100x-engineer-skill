@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x ist ein Skill, entwickelt von einem ehemaligen Cursor-Ingenieur, der Prompts in produktionsreifen Code verwandelt.<br>Ich liefere damit jeden Monat über 1.000 PRs in Produktion aus, bei einer Rollback-Quote unter 2 %.*
+*100x ist ein Skill eines ehemaligen Cursor-Ingenieurs, der Prompts in formal verifizierten, produktionsreifen Code verwandelt.<br>Ich liefere damit jeden Monat über 1.000 PRs in Produktion aus, bei einer Rollback-Quote unter 2 %.*
 
 Die Ergebnisse für Terminal Bench 4.1 folgen bald 😎
 
@@ -34,6 +34,8 @@ Dein Agent sagt, er ist fertig. Du machst es auf, und es funktioniert *so halbwe
 
 **100x sorgt dafür, dass dein Coding-Agent auch die letzten 10 % der Entwicklung schafft.**
 
+**Er teilt die Arbeit in kleine Blöcke, verifiziert jeden einzelnen formal und prüft dann, ob die Blöcke zusammenarbeiten.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B Tokens in 30 Tagen · 1 Entwickler · Ernsthafte Projekte · Über 1.000 PRs · $250k Cache-Ersparnis">
 </p>
@@ -47,6 +49,57 @@ Dein Agent sagt, er ist fertig. Du machst es auf, und es funktioniert *so halbwe
 </p>
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
+
+## Formale Verifikation, ein kleiner Block nach dem anderen
+
+Niemand verifiziert eine ganze App auf einmal formal. Aber fast jede gut entworfene Software besteht aus kleinen Blöcken, und ein kleiner Block hat Dinge, die sich genau benennen und vollständig prüfen lassen. 100x schreibt sie auf, prüft jede einzelne und prüft dann, ob die Blöcke zusammenarbeiten. Das passiert standardmäßig.
+
+### Sechs Fragen für jeden Block
+
+| Frage | Was aufgeschrieben wird |
+|---|---|
+| Zustand | was existieren kann |
+| Übergänge | wie er sich ändern kann |
+| Vorbedingungen | wann ein Schritt erlaubt ist |
+| Nachbedingungen | was nach einem Schritt gilt |
+| Invarianten | was immer gilt |
+| Lebendigkeit | was irgendwann passieren muss und was das voraussetzt |
+
+Der Prompt beantwortet alle sechs in einfachen Sätzen. Dann baut 100x ein kleines Modell, das Ihre echten Funktionen ausführt, und ein Prüfer besucht jeden Zustand, den das Modell erreichen kann. Wenn etwas bricht, gibt er die kürzeste Schrittfolge aus, die dorthin führt.
+
+### Kleine Blöcke ergeben ein großes System
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Kleine verifizierte Blöcke. Jeder Block nennt sechs Eigenschaften und wird für sich geprüft: Rechnung teilen, Bestellung, Erstattung. Die Nahtstellen zwischen den Blöcken werden geprüft. Danach laufen die echten Blöcke zusammen in einem Systemmodell. Das Register markiert einen Beweis als veraltet, wenn sich der Code darunter ändert.">
+</p>
+
+Jeder Block wird für sich geprüft, ein Fehler zeigt also auf eine kleine Stelle. Die Nahtstellen werden auch geprüft: Was ein Block übergibt, muss die Regeln des nächsten erfüllen. Dann laufen die echten Blöcke zusammen in einem Modell, und der Prüfer besucht jeden Zustand des Ganzen. Geprüfte Blöcke plus geprüfte Nahtstellen ergeben Software, der Sie vertrauen können. Die Blöcke beweisen die Nahtstellen nicht von allein, deshalb prüft 100x beides.
+
+### Es bleibt wahr
+
+Das Register ist `verify/ledger.tsv`, in Ihrem Repo, und wandert deshalb mit jedem Branch. Jede Zeile hält einen Hash des Codes, den sie abdeckt. Ändern Sie diesen Code, und die Zeile ist veraltet, bis jemand die Änderung liest, die Prüfung ausführt und sie synchronisiert. Jede Eigenschaft muss einmal an einem eingebauten Fehler scheitern, bevor sie zählt. `100x finish` weist eine Eigenschaft ab, die veraltet, kaputt oder nie gescheitert ist. Wenn ein Agent Code anfassen will, den keine Regel abdeckt, antwortet `100x verify cover` mit `NO RULE`, und das startet das Verfahren.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>Von einem kleinen Trinkgeld-Teiler, von Hand in einem Test-Repo ausgeführt</sub>
+
+### Was verifiziert hier bedeutet
+
+- **Erschöpfend** (`exhaustive`): jeder Zustand des Modells wurde besucht, die Eigenschaft gilt also für dieses Modell und seine Grenzen
+- **Begrenzt** (`bounded`): die Suche stieß an eine Grenze und fand im Gesehenen nichts, was kein Beweis ist, und Lebendigkeit wird darauf nie entschieden
+- **Stichprobe** (`sampled`): gewählte oder zufällige Fälle, gut zum Finden von Fehlern und stumm über den Rest
+
+Ein Bestehen deckt das Modell und die echten Funktionen ab, die die Prüfungen ausführen. Layout und Texte haben nichts zu benennen, deshalb bekommen sie eine festgehaltene Ausnahme mit Begründung, und `100x finish` nennt den Code, den jede Ausnahme entschuldigt. Um alles zu überspringen, schreiben Sie `no verification` in Ihre Nachricht oder führen Sie `100x config set verify.enabled false` aus. Der Bericht sagt dann, dass nichts verifiziert wurde. [Die Details](../docs/verification.md).
 
 ## Warum Agenten bei „funktioniert fast“ stehen bleiben
 
@@ -157,6 +210,7 @@ Wenn du weg bist, schreibt der Agent jede Entscheidung auf, die er trifft, und a
 - **Das Feature oder die App** und wie du es selbst ausprobierst
 - **Screenshots in vielen Bildschirmgrößen**, geprüft auf überlaufenden Text, winzige Buttons, unscharfe Bilder und Browserfehler
 - **Eine Berichtsseite** (`.100x/REPORT.html`) und eine Galerie aller fertigen Läufe in `~/.100x`
+- **Ein Verifikationsregister** in Ihrem Repo: die Eigenschaften jedes Blocks, ob jede gilt, und der Code, den sie abdeckt
 - **Ein Entscheidungsprotokoll**: jede Entscheidung, die 100x getroffen hat, während du weg warst, und warum
 - **Die Abschlussnachricht** von oben
 
@@ -364,6 +418,7 @@ Gib ihm eine Zeitvorgabe, und er arbeitet in Runden weiter, bis die Zeit um ist.
 |---|---|
 | [Installation im Detail](../docs/install.md) | alle Installationsoptionen und jede Datei, die der Installer anfasst |
 | [100x benutzen](../docs/using.md) | eine Nacht weg, die Berichtsseite, der Helfer-Skill |
+| [Formale Verifikation](../docs/verification.md) | die sechs Eigenschaften, das Register, was verifiziert bedeutet und wie Blöcke ein System ergeben |
 | [Pipeline und Abschlussnachricht](../docs/pipeline.md) | jeder Schritt im Detail und was `100x finish` prüft |
 | [Setup und Abos](../docs/plans-and-setup.md) | empfohlenes Setup für Claude Code, das Lite-Preset, Setups für jedes Abo |
 | [Einstellungen](../docs/settings.md) | jeder Konfigurationsschlüssel |

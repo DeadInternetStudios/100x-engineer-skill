@@ -16,7 +16,7 @@
 ![状态：测试版](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x 是一位前 Cursor 工程师创建的技能，能把提示词变成可用于生产的代码。<br>我用它每月向生产环境交付 1,000 多个 PR，回滚率低于 2%。*
+*100x 是一位前 Cursor 工程师创建的技能，能把提示词变成经过形式化验证、可用于生产的代码。<br>我用它每月向生产环境交付 1,000 多个 PR，回滚率低于 2%。*
 
 Terminal Bench 4.1 成绩即将公布 😎
 
@@ -34,6 +34,8 @@ Terminal Bench 4.1 成绩即将公布 😎
 
 **100x 让你的编程智能体搞定开发的最后 10%。**
 
+**它把工作拆成小模块，对每个模块做形式化验证，再检查这些模块能否一起工作。**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30 天 136B tokens · 1 名工程师 · 严肃项目 · 超过 1,000 个 PR · 节省 $250k 缓存成本">
 </p>
@@ -47,6 +49,57 @@ Terminal Bench 4.1 成绩即将公布 😎
 </p>
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
+
+## 形式化验证，一次一个小模块
+
+没有人会一次性对整个应用做形式化验证。但几乎所有设计良好的软件都由小模块组成，而小模块有一些可以精确陈述、并能完整检查的东西。100x 会把它们写下来，逐条检查，再检查这些模块能否一起工作。这是默认行为。
+
+### 每个模块的六个问题
+
+| 问题 | 要写下什么 |
+|---|---|
+| 状态 | 可能存在什么 |
+| 转换 | 它能怎样变化 |
+| 前置条件 | 什么时候允许执行某一步 |
+| 后置条件 | 执行某一步之后什么必须成立 |
+| 不变式 | 什么始终成立 |
+| 活性 | 什么最终必须发生，以及它依赖什么假设 |
+
+提示词用平实的句子回答这六个问题。然后 100x 构建一个运行你真实函数的小模型，由检查器遍历模型能到达的每一个状态。出问题时，它会打印出到达问题所需的最短步骤。
+
+### 小模块可以累积成大系统
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="经过验证的小模块。每个模块陈述六条性质并单独检查：拆分账单、订单、退款。模块之间的衔接处也会检查。真实的模块随后在一个系统模型里一起运行。当下面的代码变化时，台账会把证明标记为过期。">
+</p>
+
+每个模块单独检查，所以失败只会指向一个很小的地方。衔接处同样要检查：一个模块交出的东西必须满足下一个模块的规则。然后真实的模块在一个模型里一起运行，检查器遍历整体的每个状态。检查过的模块加上检查过的衔接，合起来就是你可以信任的软件。模块不会白白证明衔接，所以 100x 两者都检查。
+
+### 它会一直保持成立
+
+台账是 `verify/ledger.tsv`，放在你的仓库里，所以会跟着每个分支走。每一行保存它所覆盖代码的哈希值。改动这些代码后，这一行就会过期，直到有人读过改动、运行检查并同步。每条性质必须先在一个故意植入的错误上失败一次，才算数。`100x finish` 会拒绝过期、损坏或从未失败过的性质。当智能体要改动没有任何规则覆盖的代码时，`100x verify cover` 会回答 `NO RULE`，这就启动了流程。
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>来自一个小型小费分账工具，在临时仓库中手动运行</sub>
+
+### 这里的“已验证”是什么意思
+
+- **穷尽**(`exhaustive`)：模型的每个状态都被访问过，所以这条性质在该模型及其范围内成立
+- **有界**(`bounded`)：搜索触到了上限，在已看到的范围内没有发现问题，这不是证明，而且活性绝不会在有界搜索上下结论
+- **抽样**(`sampled`)：挑选或随机的用例，擅长发现错误，对其余部分则无话可说
+
+通过意味着模型和检查所运行的真实函数都没问题。布局和文案没有可陈述的内容，所以它们获得一条带理由的豁免记录，`100x finish` 会列出每条豁免所放过的代码。想跳过全部这些，在需求里写 `no verification`，或运行 `100x config set verify.enabled false`。报告随后会写明没有验证任何东西。[详细说明](../docs/verification.md)。
 
 ## 为什么智能体总停在“差不多能用”
 
@@ -157,6 +210,7 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 - **功能或应用本身**，以及如何亲手试用
 - **多种屏幕尺寸下的截图**，检查文字溢出、按钮过小、图片模糊和浏览器错误
 - **一个报告页面**（`.100x/REPORT.html`），以及 `~/.100x` 里所有已完成运行的图库
+- **验证台账**，放在你的仓库里：每个模块的性质、每条是否成立，以及它覆盖的代码
 - **一份决策日志**：你不在时 100x 做的每个选择，以及原因
 - **最终消息**，就是上面那条
 
@@ -360,6 +414,7 @@ Claude Code 和 Cursor 用 `/` 启动技能。Codex 用 `$`，比如 `$100x-setu
 |---|---|
 | [完整安装说明](../docs/install.md) | 所有安装选项，以及安装程序涉及的每个文件 |
 | [使用 100x](../docs/using.md) | 离开一晚、报告页面、辅助技能 |
+| [形式化验证](../docs/verification.md) | 六条性质、台账、“已验证”的含义，以及模块如何累积成系统 |
 | [流程与最终消息](../docs/pipeline.md) | 每个步骤的完整说明，以及 `100x finish` 检查什么 |
 | [设置与套餐](../docs/plans-and-setup.md) | 推荐的 Claude Code 设置、lite 预设、各套餐的配置 |
 | [配置项](../docs/settings.md) | 所有配置键 |

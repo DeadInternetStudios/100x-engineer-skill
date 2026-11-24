@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x is een skill, gemaakt door een voormalige Cursor-engineer, die prompts omzet in productieklare code.<br>Ik gebruik het om elke maand meer dan 1.000 PR's naar productie te brengen, met een rollbackpercentage onder de 2%.*
+*100x is een skill van een voormalige Cursor-engineer die prompts omzet in formeel geverifieerde, productieklare code.<br>Ik gebruik het om elke maand meer dan 1.000 PR's naar productie te brengen, met een rollbackpercentage onder de 2%.*
 
 Terminal Bench 4.1-scores komen binnenkort 😎
 
@@ -34,6 +34,8 @@ Je agent zegt dat hij klaar is. Je opent het en het werkt *zo'n beetje*. Het zie
 
 **100x zorgt dat je coding agent ook de laatste 10% van de ontwikkeling oplost.**
 
+**Het splitst het werk in kleine blokken, verifieert elk blok formeel en controleert dan of de blokken samenwerken.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B tokens in 30 dagen · 1 engineer · Serieuze projecten · Meer dan 1.000 PR's · $250k cachebesparing">
 </p>
@@ -47,6 +49,57 @@ Het is een open-source skill voor Claude Code, Cursor en Codex. Geef het één t
 </p>
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
+
+## Formele verificatie, één klein blok tegelijk
+
+Niemand verifieert een hele app in één keer formeel. Maar bijna elke goed ontworpen software bestaat uit kleine blokken, en een klein blok heeft dingen die je exact kunt formuleren en volledig kunt controleren. 100x schrijft die op, controleert ze stuk voor stuk en controleert daarna of de blokken samenwerken. Dat gebeurt standaard.
+
+### Zes vragen voor elk blok
+
+| Vraag | Wat je opschrijft |
+|---|---|
+| Toestand | wat er kan bestaan |
+| Overgangen | hoe het kan veranderen |
+| Voorwaarden vooraf | wanneer een stap is toegestaan |
+| Voorwaarden achteraf | wat waar is na een stap |
+| Invarianten | wat altijd geldt |
+| Levendigheid | wat uiteindelijk moet gebeuren, en wat dat veronderstelt |
+
+De prompt beantwoordt alle zes in gewone zinnen. Daarna bouwt 100x een klein model dat je echte functies draait, en een checker bezoekt elke toestand die het model kan bereiken. Als er iets breekt, print hij de kortste lijst stappen die daar komt.
+
+### Kleine blokken vormen een groot systeem
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Kleine geverifieerde blokken. Elk blok formuleert zes eigenschappen en wordt apart gecontroleerd: een rekening splitsen, bestelling, terugbetaling. De naden tussen de blokken worden gecontroleerd. Daarna draaien de echte blokken samen in één systeemmodel. Het register markeert een bewijs als verouderd als de code eronder verandert.">
+</p>
+
+Elk blok wordt apart gecontroleerd, dus een fout wijst naar één klein ding. De naden worden ook gecontroleerd: wat het ene blok overdraagt, moet aan de regels van het volgende voldoen. Daarna draaien de echte blokken samen in één model, en de checker bezoekt elke toestand van het geheel. Gecontroleerde blokken plus gecontroleerde naden vormen software die je kunt vertrouwen. De blokken bewijzen de naden niet gratis, dus 100x controleert allebei.
+
+### Het blijft waar
+
+Het register is `verify/ledger.tsv`, in je repo, en reist dus mee met elke branch. Elke regel bewaart een hash van de code die hij dekt. Verander die code en de regel is verouderd totdat iemand de wijziging leest, de controle draait en hem synchroniseert. Elke eigenschap moet één keer falen op een geplante bug voordat ze meetelt. `100x finish` weigert een eigenschap die verouderd, kapot of nooit gefaald is. Als een agent code wil aanraken die geen enkele regel dekt, antwoordt `100x verify cover` met `NO RULE`, en dat start de procedure.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>Van een kleine fooiverdeler, met de hand gedraaid in een testrepo</sub>
+
+### Wat geverifieerd hier betekent
+
+- **Uitputtend** (`exhaustive`): elke toestand van het model is bezocht, dus de eigenschap geldt voor dat model en zijn grenzen
+- **Begrensd** (`bounded`): de zoektocht liep tegen een limiet aan en vond niets in wat hij zag, wat geen bewijs is, en levendigheid wordt daarop nooit beslist
+- **Steekproef** (`sampled`): gekozen of willekeurige gevallen, goed in het vinden van bugs en stil over de rest
+
+Een geslaagde controle dekt het model en de echte functies die de controles draaien. Opmaak en teksten hebben niets te formuleren, dus krijgen ze een vastgelegde vrijstelling met reden, en `100x finish` noemt de code die elke vrijstelling excuseert. Om dit allemaal over te slaan, schrijf je `no verification` in je bericht of draai je `100x config set verify.enabled false`. Het rapport zegt dan dat er niets is geverifieerd. [De details](../docs/verification.md).
 
 ## Waarom agents blijven hangen bij "werkt bijna"
 
@@ -157,6 +210,7 @@ Ben je weg, dan schrijft de agent elke beslissing op die hij neemt en werkt hij 
 - **De feature of app**, en hoe je die zelf uitprobeert
 - **Screenshots op veel schermformaten**, gecontroleerd op overlopende tekst, piepkleine knoppen, wazige afbeeldingen en browserfouten
 - **Een rapportpagina** (`.100x/REPORT.html`) en een galerij van elke afgeronde run in `~/.100x`
+- **Een verificatieregister** in je repo: de eigenschappen van elk blok, of elk ervan geldt, en de code die het dekt
 - **Een beslislogboek**: elke keuze die 100x maakte terwijl je weg was, en waarom
 - **Het eindbericht** van hierboven
 
@@ -364,6 +418,7 @@ Geef hem een tijd en hij blijft in rondes werken tot de tijd om is. Elke ronde b
 |---|---|
 | [Installeren, volledig](../docs/install.md) | elke installatieoptie, en elk bestand dat de installer aanraakt |
 | [100x gebruiken](../docs/using.md) | een nacht weg, de rapportpagina, de helper-skill |
+| [Formele verificatie](../docs/verification.md) | de zes eigenschappen, het register, wat geverifieerd betekent en hoe blokken een systeem vormen |
 | [Pipeline en eindbericht](../docs/pipeline.md) | elke stap volledig, en wat `100x finish` controleert |
 | [Setup en abonnementen](../docs/plans-and-setup.md) | aanbevolen setup voor Claude Code, de lite-preset, setups per abonnement |
 | [Instellingen](../docs/settings.md) | elke config-sleutel |

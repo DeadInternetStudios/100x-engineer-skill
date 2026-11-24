@@ -16,7 +16,7 @@
 ![상태: 베타](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x는 Cursor의 전직 엔지니어가 만든 스킬로, 프롬프트를 프로덕션에 바로 쓸 수 있는 코드로 바꿔 줍니다.<br>저는 이것으로 매달 1,000개가 넘는 PR을 프로덕션에 배포하고 있으며, 롤백 비율은 2% 미만입니다.*
+*100x는 Cursor의 전직 엔지니어가 만든 스킬로, 프롬프트를 형식 검증을 거친 프로덕션용 코드로 바꿔 줍니다.<br>저는 이것으로 매달 1,000개가 넘는 PR을 프로덕션에 배포하고 있으며, 롤백 비율은 2% 미만입니다.*
 
 Terminal Bench 4.1 점수 곧 공개 😎
 
@@ -34,6 +34,8 @@ Terminal Bench 4.1 점수 곧 공개 😎
 
 **100x는 코딩 에이전트가 개발의 마지막 10%를 해결하게 만듭니다.**
 
+**작업을 작은 블록으로 나누고, 각 블록을 형식 검증한 다음, 블록들이 함께 동작하는지 확인합니다.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30일간 136B 토큰 · 엔지니어 1명 · 본격적인 프로젝트 · PR 1,000개 이상 · 캐시로 $250k 절감">
 </p>
@@ -47,6 +49,57 @@ Claude Code, Cursor, Codex용 오픈소스 스킬입니다. 앱에 기능을 추
 </p>
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
+
+## 형식 검증, 작은 블록 하나씩
+
+앱 전체를 한 번에 형식 검증하는 사람은 없습니다. 하지만 잘 설계된 소프트웨어는 거의 다 작은 블록으로 이루어져 있고, 작은 블록에는 정확히 말로 적고 완전히 확인할 수 있는 것들이 있습니다. 100x는 그것들을 적어 두고, 하나하나 확인한 다음, 블록들이 함께 동작하는지 확인합니다. 기본으로 이렇게 동작합니다.
+
+### 블록마다 던지는 여섯 가지 질문
+
+| 질문 | 적는 내용 |
+|---|---|
+| 상태 | 무엇이 존재할 수 있는가 |
+| 전이 | 어떻게 바뀔 수 있는가 |
+| 사전 조건 | 언제 한 단계가 허용되는가 |
+| 사후 조건 | 한 단계 뒤에 무엇이 참인가 |
+| 불변식 | 항상 성립하는 것은 무엇인가 |
+| 활성 | 결국 무엇이 일어나야 하며, 그것이 무엇을 가정하는가 |
+
+프롬프트가 여섯 가지에 모두 쉬운 문장으로 답합니다. 그다음 100x가 실제 함수를 실행하는 작은 모델을 만들고, 검사기가 모델이 도달할 수 있는 모든 상태를 방문합니다. 무언가 깨지면, 거기에 이르는 가장 짧은 단계 목록을 출력합니다.
+
+### 작은 블록이 모여 큰 시스템이 됩니다
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="검증된 작은 블록. 각 블록은 여섯 가지 속성을 서술하고 따로 검사됩니다: 계산서 나누기, 주문, 환불. 블록 사이의 이음새도 검사됩니다. 그다음 실제 블록들이 하나의 시스템 모델에서 함께 실행됩니다. 아래 코드가 바뀌면 장부는 증명에 오래됨 표시를 합니다.">
+</p>
+
+각 블록은 따로 검사되므로, 실패는 작은 한 곳을 가리킵니다. 이음새도 검사됩니다. 한 블록이 넘기는 것은 다음 블록의 규칙을 만족해야 합니다. 그다음 실제 블록들이 하나의 모델에서 함께 실행되고, 검사기가 전체의 모든 상태를 방문합니다. 검사된 블록에 검사된 이음새를 더하면 믿을 수 있는 소프트웨어가 됩니다. 블록이 이음새까지 공짜로 증명해 주지는 않으므로, 100x는 둘 다 검사합니다.
+
+### 계속 참으로 유지됩니다
+
+장부는 `verify/ledger.tsv`이며 저장소 안에 있어서 모든 브랜치와 함께 움직입니다. 각 행은 그 행이 다루는 코드의 해시를 보관합니다. 그 코드를 바꾸면 누군가 변경을 읽고, 검사를 실행하고, 동기화할 때까지 그 행은 오래된 것이 됩니다. 모든 속성은 인정받기 전에 일부러 심은 버그에서 한 번 실패해야 합니다. `100x finish`는 오래되었거나, 깨졌거나, 한 번도 실패한 적 없는 속성을 거부합니다. 에이전트가 어떤 규칙도 다루지 않는 코드를 건드리려 하면 `100x verify cover`가 `NO RULE`이라고 답하고, 이것이 절차를 시작합니다.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>작은 팁 계산기에서, 테스트용 저장소에서 직접 실행한 결과</sub>
+
+### 여기서 검증됨이 뜻하는 것
+
+- **전수**(`exhaustive`): 모델의 모든 상태를 방문했으므로, 그 속성은 그 모델과 그 범위에서 성립합니다
+- **제한적**(`bounded`): 탐색이 한계에 닿았고 본 범위에서는 아무것도 찾지 못했습니다. 이것은 증명이 아니며, 활성은 이 결과로 판정하지 않습니다
+- **표본**(`sampled`): 고른 사례나 무작위 사례, 버그를 찾는 데는 좋고 나머지에 대해서는 말이 없습니다
+
+통과는 모델과, 검사가 실행하는 실제 함수를 다룹니다. 레이아웃과 문구는 서술할 것이 없으므로 사유가 적힌 면제를 기록하며, `100x finish`는 각 면제가 넘어가는 코드를 이름으로 알려 줍니다. 이 모든 것을 건너뛰려면 메시지에 `no verification`이라고 쓰거나 `100x config set verify.enabled false`를 실행하세요. 그러면 보고서에 아무것도 검증하지 않았다고 적힙니다.[자세한 내용](../docs/verification.md).
 
 ## 에이전트가 “거의 돌아가는” 데서 멈추는 이유
 
@@ -157,6 +210,7 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 - **기능 또는 앱**, 그리고 직접 써 보는 방법
 - **여러 화면 크기의 스크린샷**. 넘치는 글자, 너무 작은 버튼, 흐릿한 이미지, 브라우저 오류를 검사함
 - **보고서 페이지**(`.100x/REPORT.html`)와 `~/.100x`에 있는 완료된 모든 실행의 갤러리
+- 저장소 안의 **검증 장부**: 각 블록의 속성, 각각이 성립하는지, 그리고 그것이 다루는 코드
 - **결정 로그**: 당신이 자리를 비운 동안 100x가 내린 모든 선택과 그 이유
 - 위에서 본 **최종 메시지**
 
@@ -361,6 +415,7 @@ Claude Code와 Cursor에서는 `/`로 스킬을 시작합니다. Codex는 `$`를
 |---|---|
 | [설치 전체 안내](../docs/install.md) | 모든 설치 방법, 설치 프로그램이 건드리는 모든 파일 |
 | [100x 사용하기](../docs/using.md) | 밤새 자리 비우기, 보고서 페이지, 도우미 스킬 |
+| [형식 검증](../docs/verification.md) | 여섯 가지 속성, 장부, 검증됨의 의미, 블록이 시스템이 되는 방식 |
 | [파이프라인과 최종 메시지](../docs/pipeline.md) | 모든 단계 자세히, 그리고 `100x finish`가 검사하는 것 |
 | [설정과 요금제](../docs/plans-and-setup.md) | 권장 Claude Code 설정, lite 프리셋, 요금제별 설정 |
 | [설정 항목](../docs/settings.md) | 모든 설정 키 |
