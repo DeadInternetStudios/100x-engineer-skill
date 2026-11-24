@@ -9,7 +9,7 @@
 
 ### 이제 “거의 돌아가는” 에이전트 코딩은 그만
 
-[![ci](https://badgen.net/github/checks/DeadInternetStudios/100x-engineer-skill/main?label=ci&labelColor=0b0e14&style=flat)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
+[![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
 [![GitHub 스타](https://badgen.net/github/stars/DeadInternetStudios/100x-engineer-skill?label=stars&labelColor=0b0e14&color=262e3d&style=flat)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 [![릴리스: 0.1.0](https://img.shields.io/badge/release-0.1.0-262e3d?style=flat-square&labelColor=0b0e14)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
 [![라이선스: MIT](https://img.shields.io/badge/license-MIT-262e3d?style=flat-square&labelColor=0b0e14)](../LICENSE)
