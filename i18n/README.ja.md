@@ -238,10 +238,24 @@ Claude Code、Cursor または Codex と、Node.js 22 以降が必要です。
 
 **1. ツールとスキルをインストールする**
 
+どちらか1つを選びます:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+`skills` ツールはスキルをコピーするだけなので、`100x` ツールは引き続き npm から入れます。そのあと `100x install` がコピーを見つけ、手を加えずにそのままにします。更新は `npx skills update -g` で行います。
 
 **2. エージェントの中でセットアップする**
 
@@ -267,8 +281,6 @@ Claude Code と Cursor では `/` でスキルを始めます。Codex では `$`
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-すでに skills.sh を使っていますか？ `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` でスキルが追加されます。ステップ 1 のコマンドラインツールは別途必要です。
 
 100x は 2 つの部分でできています。エージェントが読むスキルと、`100x` コマンドラインツールです。ツールは、モデルだけでは確実にこなせないことを受け持ちます。時間を管理し、スクリーンショットを撮り、審査を実行し、証拠をチェックし、レポートを書きます。スクリーンショットには Playwright を使います。入っていなければ `100x browsers` がインストールします。
 

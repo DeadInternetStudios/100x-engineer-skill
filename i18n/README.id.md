@@ -241,10 +241,24 @@ Anda butuh Claude Code, Cursor, atau Codex, dan Node.js 22 atau lebih baru.
 
 **1. Instal tool dan skill-nya**
 
+Pilih salah satu:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+Tool `skills` hanya menyalin skill-nya, jadi tool `100x` tetap datang dari npm. Setelah itu `100x install` melihat salinannya dan tidak mengubahnya. Perbarui dengan `npx skills update -g`.
 
 **2. Atur di dalam agen Anda**
 
@@ -270,8 +284,6 @@ Claude Code dan Cursor menjalankan skill dengan `/`. Codex memakai `$`, seperti 
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-Sudah memakai skills.sh? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` menambahkan skill-nya. Anda tetap butuh tool command line dari langkah 1.
 
 100x terdiri dari dua bagian: skill yang dibaca agen Anda, dan tool command line `100x`. Tool ini mengerjakan hal yang tidak bisa diandalkan dari model sendirian. Ia mengatur waktu, mengambil screenshot, menjalankan juri, memeriksa bukti, dan menulis laporan. Screenshot memakai Playwright. Kalau belum ada, `100x browsers` akan memasangnya.
 

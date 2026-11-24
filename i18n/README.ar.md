@@ -243,10 +243,24 @@ Blueprint وEncore، بمساعدة<br>
 
 **1. ثبّت الأداة والمهارات**
 
+اختر واحدة:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+أداة `skills` تنسخ المهارات فقط، لذلك تأتي أداة `100x` من npm. بعدها يرى `100x install` النسخ ويتركها كما هي. حدّثها بـ `npx skills update -g`.
 
 **2. الإعداد، داخل وكيلك**
 
@@ -272,8 +286,6 @@ npm install -g github:DeadInternetStudios/100x-engineer-skill
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-تستخدم skills.sh أصلًا؟ الأمر `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` يضيف المهارات. لكنك ما زلت تحتاج إلى أداة سطر الأوامر من الخطوة 1.
 
 يتكوّن 100x من جزأين: مهارات يقرؤها وكيلك، وأداة سطر الأوامر `100x`. تقوم الأداة بما لا يستطيع النموذج فعله وحده بشكل موثوق. تضبط الوقت، وتلتقط لقطات الشاشة، وتشغّل الحَكَم، وتتحقق من الإثبات، وتكتب التقرير. تعتمد لقطات الشاشة على Playwright. إن لم يكن مثبّتًا، فإن `100x browsers` يثبّته.
 

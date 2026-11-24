@@ -241,10 +241,24 @@ Blueprint और Encore पर बना एक<br>
 
 **1. टूल और स्किल इंस्टॉल करें**
 
+कोई एक चुनें:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+`skills` टूल सिर्फ़ स्किल कॉपी करता है, इसलिए `100x` टूल अब भी npm से आता है। इसके बाद `100x install` इन कॉपियों को देखता है और उन्हें छेड़ता नहीं। अपडेट के लिए `npx skills update -g` चलाएँ।
 
 **2. अपने एजेंट में सेटअप करें**
 
@@ -270,8 +284,6 @@ Claude Code और Cursor में स्किल `/` से शुरू ह�
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-पहले से skills.sh इस्तेमाल करते हैं? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` स्किल जोड़ देता है। स्टेप 1 वाला कमांड लाइन टूल आपको फिर भी चाहिए।
 
 100x के दो हिस्से हैं: स्किल, जिन्हें आपका एजेंट पढ़ता है, और `100x` कमांड लाइन टूल। टूल वह करता है जो मॉडल अकेले भरोसेमंद ढंग से नहीं कर पाता। वह घड़ी संभालता है, स्क्रीनशॉट लेता है, जज चलाता है, सबूत जाँचता है और रिपोर्ट लिखता है। स्क्रीनशॉट Playwright से लिए जाते हैं। अगर वह नहीं है, तो `100x browsers` उसे इंस्टॉल कर देता है।
 

@@ -241,10 +241,24 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 **1. Установите инструмент и скиллы**
 
+Выберите один способ:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+Инструмент `skills` копирует только скиллы, так что `100x` по-прежнему ставится через npm. Затем `100x install` видит копии и не трогает их. Обновляйте их командой `npx skills update -g`.
 
 **2. Настройте, прямо в агенте**
 
@@ -270,8 +284,6 @@ npm install -g github:DeadInternetStudios/100x-engineer-skill
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-Уже пользуетесь skills.sh? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` добавит скиллы. Инструмент командной строки из шага 1 всё равно нужен.
 
 100x состоит из двух частей: скиллов, которые читает агент, и инструмента командной строки `100x`. Инструмент делает то, что модель сама надёжно сделать не может. Он следит за временем, делает скриншоты, запускает судью, проверяет доказательства и пишет отчёт. Скриншоты делаются через Playwright. Если его нет, `100x browsers` его установит.
 

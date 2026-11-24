@@ -241,10 +241,24 @@ Mac-застосунок на Swift, яким<br>
 
 **1. Встанови інструмент і скіли**
 
+Обери один зі способів:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+Інструмент `skills` копіює лише скіли, тож інструмент `100x` усе одно встановлюється через npm. Потім `100x install` бачить копії й не чіпає їх. Оновлюй їх командою `npx skills update -g`.
 
 **2. Налаштуй, у своєму агенті**
 
@@ -270,8 +284,6 @@ Claude Code і Cursor запускають скіл через `/`. Codex вик
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-Уже користуєшся skills.sh? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` додає скіли. Інструмент командного рядка з кроку 1 однаково потрібен.
 
 100x складається з двох частин: скілів, які читає твій агент, і інструмента командного рядка `100x`. Інструмент робить те, чого модель сама надійно не зробить. Він стежить за часом, робить скриншоти, запускає суддю, перевіряє докази й пише звіт. Скриншоти робляться через Playwright. Якщо його немає, `100x browsers` його встановить.
 

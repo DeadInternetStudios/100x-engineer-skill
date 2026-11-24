@@ -238,10 +238,24 @@ Blueprint และ Encore โดยมี<br>
 
 **1. ติดตั้งเครื่องมือและสกิล**
 
+เลือกวิธีใดวิธีหนึ่ง:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+เครื่องมือ `skills` คัดลอกเฉพาะสกิล ดังนั้นเครื่องมือ `100x` ยังต้องมาจาก npm จากนั้น `100x install` จะเห็นสำเนาและไม่แตะต้อง อัปเดตด้วย `npx skills update -g`
 
 **2. ตั้งค่าในเอเจนต์ของคุณ**
 
@@ -267,8 +281,6 @@ Claude Code และ Cursor เริ่มสกิลด้วย `/` ส่�
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-ใช้ skills.sh อยู่แล้ว? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` จะเพิ่มสกิลให้ แต่คุณยังต้องมีเครื่องมือบรรทัดคำสั่งจากขั้นที่ 1
 
 100x มีสองส่วน: สกิลที่เอเจนต์อ่าน และเครื่องมือบรรทัดคำสั่ง `100x` เครื่องมือนี้ทำสิ่งที่โมเดลทำเองได้ไม่แน่นอน มันจับเวลา ถ่ายภาพหน้าจอ รันผู้ตัดสิน ตรวจหลักฐาน และเขียนรายงาน ภาพหน้าจอใช้ Playwright ถ้ายังไม่มี `100x browsers` จะติดตั้งให้
 

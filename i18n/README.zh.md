@@ -237,10 +237,24 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 **1. 安装工具和技能**
 
+二选一：
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+`skills` 工具只复制技能，所以 `100x` 工具仍然通过 npm 安装。之后 `100x install` 会发现这些副本并保持原样。用 `npx skills update -g` 更新。
 
 **2. 在你的智能体里完成设置**
 
@@ -266,8 +280,6 @@ Claude Code 和 Cursor 用 `/` 启动技能。Codex 用 `$`，比如 `$100x-setu
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-已经在用 skills.sh？`npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` 会添加这些技能。你仍然需要第 1 步里的命令行工具。
 
 100x 由两部分组成：智能体读取的技能，以及 `100x` 命令行工具。这个工具负责模型自己做不可靠的事：计时、截图、运行评审、检查证据、写报告。截图用的是 Playwright。如果没装，`100x browsers` 会帮你装上。
 

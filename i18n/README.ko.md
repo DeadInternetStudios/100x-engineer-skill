@@ -238,10 +238,24 @@ Claude Code, Cursor 또는 Codex와 Node.js 22 이상이 필요합니다.
 
 **1. 도구와 스킬 설치**
 
+둘 중 하나를 고르세요:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+`skills` 도구는 스킬만 복사하므로 `100x` 도구는 여전히 npm으로 설치합니다. 이후 `100x install`이 복사본을 확인하고 그대로 둡니다. 업데이트는 `npx skills update -g`로 합니다.
 
 **2. 에이전트 안에서 설정**
 
@@ -267,8 +281,6 @@ Claude Code와 Cursor에서는 `/`로 스킬을 시작합니다. Codex는 `$`를
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-이미 skills.sh를 쓰고 있나요? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g`로 스킬을 추가합니다. 1단계의 명령줄 도구는 따로 필요합니다.
 
 100x는 두 부분으로 되어 있습니다. 에이전트가 읽는 스킬과 `100x` 명령줄 도구입니다. 이 도구는 모델 혼자서는 확실하게 할 수 없는 일을 맡습니다. 시간을 재고, 스크린샷을 찍고, 심사를 돌리고, 증거를 검사하고, 보고서를 씁니다. 스크린샷에는 Playwright를 씁니다. 없으면 `100x browsers`가 설치합니다.
 

@@ -241,10 +241,24 @@ Ti servono Claude Code, Cursor o Codex, e Node.js 22 o successivo.
 
 **1. Installa lo strumento e le skill**
 
+Scegline una:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+Lo strumento `skills` copia solo le skill, quindi lo strumento `100x` arriva sempre da npm. Poi `100x install` vede le copie e non le tocca. Aggiornale con `npx skills update -g`.
 
 **2. Configuralo, nel tuo agente**
 
@@ -270,8 +284,6 @@ Claude Code e Cursor avviano una skill con `/`. Codex usa `$`, come in `$100x-se
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-Usi già skills.sh? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` aggiunge le skill. Ti serve comunque lo strumento da riga di comando del passo 1.
 
 100x è fatto di due parti: le skill che legge il tuo agente e lo strumento da riga di comando `100x`. Lo strumento fa ciò che un modello non riesce a fare in modo affidabile da solo. Tiene il tempo, fa gli screenshot, avvia il giudice, controlla le prove e scrive il report. Gli screenshot usano Playwright. Se manca, `100x browsers` lo installa.
 

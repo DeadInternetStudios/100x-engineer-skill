@@ -241,10 +241,24 @@ Claude Code, Cursor ya da Codex ve Node.js 22 veya daha yenisi gerekir.
 
 **1. Aracı ve skill'leri kurun**
 
+Birini seçin:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+`skills` aracı yalnızca skill'leri kopyalar, bu yüzden `100x` aracı yine npm'den gelir. Ardından `100x install` kopyaları görür ve onlara dokunmaz. Güncellemek için `npx skills update -g` çalıştırın.
 
 **2. Ajanınızın içinde kurulumu yapın**
 
@@ -270,8 +284,6 @@ Claude Code ve Cursor bir skill'i `/` ile başlatır. Codex `$` kullanır, örne
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-Zaten skills.sh kullanıyor musunuz? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` skill'leri ekler. 1. adımdaki komut satırı aracı yine de gerekir.
 
 100x iki parçadan oluşur: ajanınızın okuduğu skill'ler ve `100x` komut satırı aracı. Araç, bir modelin kendi başına güvenilir şekilde yapamadığı işleri yapar. Süreyi tutar, ekran görüntüsü alır, yargıcı çalıştırır, kanıtları kontrol eder ve raporu yazar. Ekran görüntüleri Playwright ile alınır. Eksikse `100x browsers` onu kurar.
 

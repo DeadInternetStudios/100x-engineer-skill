@@ -241,10 +241,24 @@ Bạn cần Claude Code, Cursor hoặc Codex, và Node.js 22 trở lên.
 
 **1. Cài công cụ và các skill**
 
+Chọn một cách:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+Công cụ `skills` chỉ sao chép các skill, nên công cụ `100x` vẫn được cài từ npm. Sau đó `100x install` thấy các bản sao và không động đến chúng. Cập nhật bằng `npx skills update -g`.
 
 **2. Thiết lập, ngay trong agent của bạn**
 
@@ -270,8 +284,6 @@ Claude Code và Cursor gọi skill bằng `/`. Codex dùng `$`, như `$100x-setu
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-Đã dùng skills.sh rồi? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` sẽ thêm các skill. Bạn vẫn cần công cụ dòng lệnh ở bước 1.
 
 100x gồm hai phần: các skill mà agent đọc, và công cụ dòng lệnh `100x`. Công cụ này làm những việc mà một mô hình tự mình không làm được một cách đáng tin cậy. Nó canh giờ, chụp màn hình, chạy giám khảo, kiểm tra bằng chứng và viết báo cáo. Việc chụp màn hình dùng Playwright. Nếu chưa có, `100x browsers` sẽ cài nó.
 

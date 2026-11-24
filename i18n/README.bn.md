@@ -241,10 +241,24 @@ Blueprint আর Encore-এর ওপর বানানো<br>
 
 **1. টুল আর স্কিলগুলো ইনস্টল করুন**
 
+যেকোনো একটি বেছে নিন:
+
+**npm**
+
 ```bash
 npm install -g github:DeadInternetStudios/100x-engineer-skill
 100x install
 ```
+
+**skills.sh**
+
+```bash
+npm install -g github:DeadInternetStudios/100x-engineer-skill
+npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
+100x install
+```
+
+`skills` টুল শুধু স্কিলগুলো কপি করে, তাই `100x` টুল আসে npm থেকে। এরপর `100x install` কপিগুলো দেখে সেগুলো যেমন আছে তেমন রেখে দেয়। আপডেট করতে `npx skills update -g` চালান।
 
 **2. আপনার এজেন্টে সেটআপ করুন**
 
@@ -270,8 +284,6 @@ Claude Code আর Cursor-এ স্কিল শুরু হয় `/` দি�
 ./scripts/install.sh --dry-run   # preview
 ./scripts/install.sh
 ```
-
-আগে থেকেই skills.sh ব্যবহার করেন? `npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g` স্কিলগুলো যোগ করে দেয়। তবু ধাপ 1-এর কমান্ড লাইন টুলটা লাগবে।
 
 100x-এর দুটো অংশ: আপনার এজেন্ট যে স্কিলগুলো পড়ে, আর `100x` কমান্ড লাইন টুল। মডেল একা যা নির্ভরযোগ্যভাবে করতে পারে না, টুলটা সেটা করে। এটি সময়ের হিসাব রাখে, স্ক্রিনশট নেয়, বিচারক চালায়, প্রমাণ যাচাই করে আর রিপোর্ট লেখে। স্ক্রিনশটের জন্য Playwright লাগে। না থাকলে `100x browsers` সেটা ইনস্টল করে দেয়।
 
