@@ -8,12 +8,21 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+    # Windows is being brought up: its failures show in the log without turning the build red.
+    continue-on-error: ${{ matrix.os == 'windows-latest' }}
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
         node: [22, 24]
+        include:
+          - os: windows-latest
+            node: 22
     steps:
+      - run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
