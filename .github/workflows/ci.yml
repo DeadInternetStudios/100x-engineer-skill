@@ -33,7 +33,7 @@ jobs:
       # Temporary: the failing part of the log as one annotation, which a check run shows without a login.
       - if: failure()
         run: |
-          msg=$(grep -A80 "failing tests:" test.log | head -c 30000 | tr -d '\r' | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
+          msg=$(grep -E -A22 "^ *not ok" test.log | head -c 30000 | tr -d '\r' | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
           echo "::error title=failing tests::$msg"
       - run: node bin/100x.mjs validate --prose
       - run: node scripts/vendor-companions.mjs --check
