@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x — це скіл, натхненний pstack, який перетворює промпти на готове до продакшену, протестоване й перевірене програмне забезпечення. Я використовую його, щоб щомісяця випускати в продакшен понад 1 000 PR, з часткою відкатів нижче 2%.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <b>Українська</b> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 Агент каже, що все готово. Відкриваєш, а воно *ніби* працює. Виглядає завжди нормально, але до релізу ніколи не готове.
 
 **100x допомагає твоєму агенту для кодування довести до кінця останні 10% розробки.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B токенів за 30 днів · 1 інженер · Серйозні проєкти · Понад 1 000 PR · $250k економії на кеші">
+</p>
+
+<p align="center"><b>136B токенів за 30 днів · 1 інженер · Серйозні проєкти · Понад 1 000 PR · $250k економії на кеші</b></p>
 
 Це скіл з відкритим кодом для Claude Code, Cursor і Codex. Дай йому одне завдання, наприклад додати функцію в застосунок або зробити невеликий застосунок з нуля. Він планує роботу, будує, доводить до ладу й тестує те, що важить найбільше. Друга модель ШІ робить рев’ю. Ти отримуєш звіт зі скриншотами, результатами тестів і всім, що ще лишилося відкритим.
 

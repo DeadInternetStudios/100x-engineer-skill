@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x adalah skill yang terinspirasi dari pstack, mengubah prompt menjadi software siap produksi yang sudah diuji dan direview. Saya memakainya untuk merilis lebih dari 1.000 PR ke produksi setiap bulan, dengan tingkat rollback di bawah 2%.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <b>Bahasa Indonesia</b> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 Agen Anda bilang sudah selesai. Anda buka, dan hasilnya *lumayan* jalan. Selalu kelihatan beres, tapi tidak pernah benar-benar siap rilis.
 
 **100x membuat agen coding Anda menuntaskan 10% terakhir pengembangan.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B token dalam 30 hari · 1 engineer · Proyek serius · Lebih dari 1.000 PR · Hemat cache $250k">
+</p>
+
+<p align="center"><b>136B token dalam 30 hari · 1 engineer · Proyek serius · Lebih dari 1.000 PR · Hemat cache $250k</b></p>
 
 Ini skill open source untuk Claude Code, Cursor, dan Codex. Beri satu tugas, misalnya menambahkan fitur ke aplikasi Anda atau membuat aplikasi kecil dari nol. Skill ini merencanakan pekerjaannya, membangunnya, memolesnya, dan menguji bagian yang paling penting. Model AI kedua meninjaunya. Anda mendapat laporan berisi screenshot, hasil tes, dan semua yang masih terbuka.
 

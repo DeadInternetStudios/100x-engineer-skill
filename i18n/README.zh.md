@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![许可证：MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![状态：测试版](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x 是一个受 pstack 启发的技能，能把提示词变成可用于生产、经过测试和评审的软件。我用它每月向生产环境交付 1,000 多个 PR，回滚率低于 2%。**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <b>中文</b> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 你的智能体说做完了。你打开一看，*好像*能用。看起来总是没问题，可就是差那么一点，没法直接上线。
 
 **100x 让你的编程智能体搞定开发的最后 10%。**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30 天 136B tokens · 1 名工程师 · 严肃项目 · 超过 1,000 个 PR · 节省 $250k 缓存成本">
+</p>
+
+<p align="center"><b>30 天 136B tokens · 1 名工程师 · 严肃项目 · 超过 1,000 个 PR · 节省 $250k 缓存成本</b></p>
 
 它是一个开源技能（skill），支持 Claude Code、Cursor 和 Codex。交给它一件事，比如给你的应用加一个功能，或者从零做一个小应用。它会规划、构建、打磨，并测试最关键的部分。再由第二个 AI 模型来审查。最后你会拿到一份报告，里面有截图、测试结果和所有还没解决的问题。
 

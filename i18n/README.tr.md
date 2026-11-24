@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x, pstack'ten ilham alan ve prompt'ları üretime hazır, test edilmiş ve gözden geçirilmiş yazılıma dönüştüren bir skill'dir. Onu her ay üretime 1.000'den fazla PR göndermek için kullanıyorum, geri alma oranım %2'nin altında.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <b>Türkçe</b> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 Ajanınız işin bittiğini söylüyor. Açıyorsunuz, *bir şekilde* çalışıyor. Hep iyi görünüyor ama bir türlü yayına hazır olmuyor.
 
 **100x, kodlama ajanınıza geliştirmenin son %10'unu bitirtir.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30 günde 136B token · 1 mühendis · Ciddi projeler · 1.000'den fazla PR · $250k önbellek tasarrufu">
+</p>
+
+<p align="center"><b>30 günde 136B token · 1 mühendis · Ciddi projeler · 1.000'den fazla PR · $250k önbellek tasarrufu</b></p>
 
 Claude Code, Cursor ve Codex için açık kaynaklı bir skill. Ona tek bir iş verin; uygulamanıza bir özellik eklemek ya da sıfırdan küçük bir uygulama yazmak gibi. İşi planlar, yapar, cilalar ve en önemli kısmı test eder. İkinci bir yapay zekâ modeli işi inceler. Sonunda ekran görüntüleri, test sonuçları ve hâlâ açık kalan her şeyin yer aldığı bir rapor alırsınız.
 

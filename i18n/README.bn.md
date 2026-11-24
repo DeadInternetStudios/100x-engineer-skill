@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x হলো pstack থেকে অনুপ্রাণিত একটি স্কিল, যা প্রম্পটকে প্রোডাকশন-রেডি, টেস্ট করা ও রিভিউ করা সফটওয়্যারে বদলে দেয়। আমি এটি দিয়ে প্রতি মাসে 1,000-এর বেশি PR প্রোডাকশনে পাঠাই, রোলব্যাকের হার 2%-এর নিচে।**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <b>বাংলা</b> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 আপনার এজেন্ট বলে কাজ শেষ। খুলে দেখেন, *মোটামুটি* চলে। দেখতে সবসময় ঠিকঠাক লাগে, কিন্তু শিপ করার মতো পুরোপুরি তৈরি কখনোই হয় না।
 
 **100x আপনার কোডিং এজেন্টকে দিয়ে ডেভেলপমেন্টের শেষ 10% শেষ করায়।**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30 দিনে 136B টোকেন · 1 জন ইঞ্জিনিয়ার · গুরুতর প্রজেক্ট · 1,000-এর বেশি PR · $250k ক্যাশ সাশ্রয়">
+</p>
+
+<p align="center"><b>30 দিনে 136B টোকেন · 1 জন ইঞ্জিনিয়ার · গুরুতর প্রজেক্ট · 1,000-এর বেশি PR · $250k ক্যাশ সাশ্রয়</b></p>
 
 এটি Claude Code, Cursor আর Codex-এর জন্য একটি ওপেন-সোর্স স্কিল। এটিকে একটা কাজ দিন, যেমন আপনার অ্যাপে একটা ফিচার যোগ করা বা শুরু থেকে একটা ছোট অ্যাপ বানানো। এটি কাজের পরিকল্পনা করে, বানায়, ঘষেমেজে ঠিক করে আর সবচেয়ে জরুরি অংশটা টেস্ট করে। একটা দ্বিতীয় AI মডেল সেটা রিভিউ করে। আপনি একটা রিপোর্ট পান, যাতে থাকে স্ক্রিনশট, টেস্টের ফল আর যা কিছু এখনো বাকি।
 

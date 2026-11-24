@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x, pstack से प्रेरित एक स्किल है जो प्रॉम्प्ट को प्रोडक्शन-रेडी, टेस्ट किया हुआ और रिव्यू किया हुआ सॉफ़्टवेयर बना देती है। मेरे यहाँ इसके ज़रिए हर महीने 1,000 से ज़्यादा PR प्रोडक्शन में जाते हैं, और रोलबैक रेट 2% से कम रहता है।**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <b>हिन्दी</b> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 आपका एजेंट कहता है कि काम हो गया। आप खोलकर देखते हैं, तो वह *कुछ-कुछ* चलता है। देखने में हमेशा ठीक लगता है, पर शिप करने लायक कभी पूरा नहीं होता।
 
 **100x आपके कोडिंग एजेंट से डेवलपमेंट का आख़िरी 10% पूरा करवाता है।**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30 दिनों में 136B टोकन · 1 इंजीनियर · गंभीर प्रोजेक्ट · 1,000 से ज़्यादा PR · $250k की कैश बचत">
+</p>
+
+<p align="center"><b>30 दिनों में 136B टोकन · 1 इंजीनियर · गंभीर प्रोजेक्ट · 1,000 से ज़्यादा PR · $250k की कैश बचत</b></p>
 
 यह Claude Code, Cursor और Codex के लिए एक ओपन-सोर्स स्किल है। इसे एक काम दें, जैसे आपके ऐप में कोई फ़ीचर जोड़ना या शुरू से एक छोटा ऐप बनाना। यह काम की योजना बनाता है, उसे बनाता है, निखारता है और सबसे ज़रूरी हिस्से को टेस्ट करता है। एक दूसरा AI मॉडल उसकी समीक्षा करता है। आपको एक रिपोर्ट मिलती है, जिसमें स्क्रीनशॉट, टेस्ट के नतीजे और जो कुछ अभी बाकी है, सब होता है।
 

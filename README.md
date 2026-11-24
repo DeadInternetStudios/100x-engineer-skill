@@ -15,6 +15,9 @@
 [![node: ≥ 22](docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](docs/img/badges/license.svg)](LICENSE)
 ![status: beta](docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x is a skill inspired by pstack that turns prompts into production-ready, tested and reviewed software. I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.**
 
 <sub><b>English</b> · <a href="i18n/README.es.md">Español</a> · <a href="i18n/README.zh.md">中文</a> · <a href="i18n/README.pt.md">Português</a> · <a href="i18n/README.ru.md">Русский</a> · <a href="i18n/README.ja.md">日本語</a> · <a href="i18n/README.fr.md">Français</a> · <a href="i18n/README.de.md">Deutsch</a> · <a href="i18n/README.ar.md">العربية</a> · <a href="i18n/README.hi.md">हिन्दी</a> · <a href="i18n/README.ko.md">한국어</a> · <a href="i18n/README.id.md">Bahasa Indonesia</a> · <a href="i18n/README.tr.md">Türkçe</a> · <a href="i18n/README.vi.md">Tiếng Việt</a> · <a href="i18n/README.bn.md">বাংলা</a> · <a href="i18n/README.it.md">Italiano</a> · <a href="i18n/README.pl.md">Polski</a> · <a href="i18n/README.th.md">ไทย</a> · <a href="i18n/README.uk.md">Українська</a> · <a href="i18n/README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 Your agent says it's done. You open it and it *kinda* works. It always looks fine, but it's never quite ready to ship.
 
 **100x makes your coding agent solve the last 10% of development.**
+
+<p align="center">
+  <img src="docs/img/proof/tokens-30-days.jpg" width="420" alt="Daily token use from 23 Oct to 20 Nov: 136B tokens in 30 days, 1.6K local agents, 0 cloud agents">
+</p>
+
+<p align="center"><b>136B tokens in 30 days · 1 engineer · Serious projects · Over 1,000 PRs · $250k cache savings</b></p>
 
 It is an open-source skill for Claude Code, Cursor and Codex. Give it one job, like adding a feature to your app or building a small app from scratch. It plans the work, builds it, polishes it and tests the part that matters most. A second AI model reviews it. You get a report with screenshots, test results and anything still open.
 

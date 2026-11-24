@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x is een skill, geïnspireerd door pstack, die prompts omzet in productieklare, geteste en gereviewde software. Ik gebruik het om elke maand meer dan 1.000 PR's naar productie te brengen, met een rollbackpercentage onder de 2%.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <b>Nederlands</b></sub>
 
@@ -29,6 +32,12 @@
 Je agent zegt dat hij klaar is. Je opent het en het werkt *zo'n beetje*. Het ziet er altijd goed uit, maar het is nooit helemaal klaar om te shippen.
 
 **100x zorgt dat je coding agent ook de laatste 10% van de ontwikkeling oplost.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B tokens in 30 dagen · 1 engineer · Serieuze projecten · Meer dan 1.000 PR's · $250k cachebesparing">
+</p>
+
+<p align="center"><b>136B tokens in 30 dagen · 1 engineer · Serieuze projecten · Meer dan 1.000 PR's · $250k cachebesparing</b></p>
 
 Het is een open-source skill voor Claude Code, Cursor en Codex. Geef het één taak, zoals een feature toevoegen aan je app of een kleine app vanaf nul bouwen. Het plant het werk, bouwt het, werkt het af en test het onderdeel dat het meest telt. Een tweede AI-model reviewt het. Je krijgt een rapport met screenshots, testresultaten en alles wat nog openstaat.
 

@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x est un skill inspiré de pstack qui transforme des prompts en logiciel prêt pour la production, testé et relu. Je m'en sers pour livrer plus de 1 000 PR en production chaque mois, avec un taux de rollback inférieur à 2 %.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <b>Français</b> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 Votre agent dit qu'il a terminé. Vous ouvrez le résultat et ça marche *à peu près*. Tout a l'air correct, mais ce n'est jamais vraiment prêt à livrer.
 
 **100x fait résoudre à votre agent de code les derniers 10 % du développement.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B de tokens en 30 jours · 1 ingénieur · Des projets sérieux · Plus de 1 000 PR · $250k d'économies de cache">
+</p>
+
+<p align="center"><b>136B de tokens en 30 jours · 1 ingénieur · Des projets sérieux · Plus de 1 000 PR · $250k d'économies de cache</b></p>
 
 C'est un skill open source pour Claude Code, Cursor et Codex. Donnez-lui une tâche, comme ajouter une fonctionnalité à votre app ou créer une petite app de zéro. Il planifie le travail, le réalise, le peaufine et teste la partie qui compte le plus. Un second modèle d'IA le relit. Vous recevez un rapport avec des captures d'écran, les résultats des tests et tout ce qui reste en suspens.
 

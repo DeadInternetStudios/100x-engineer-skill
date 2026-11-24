@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![status: beta](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x é uma skill inspirada no pstack que transforma prompts em software pronto para produção, testado e revisado. Eu uso para enviar mais de 1.000 PRs para produção todo mês, com uma taxa de rollback abaixo de 2%.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <b>Português</b> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 Seu agente diz que terminou. Você abre e funciona *mais ou menos*. Sempre parece estar tudo certo, mas nunca está bem pronto para publicar.
 
 **O 100x faz seu agente de programação resolver os últimos 10% do desenvolvimento.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B de tokens em 30 dias · 1 engenheiro · Projetos sérios · Mais de 1.000 PRs · $250k de economia em cache">
+</p>
+
+<p align="center"><b>136B de tokens em 30 dias · 1 engenheiro · Projetos sérios · Mais de 1.000 PRs · $250k de economia em cache</b></p>
 
 É uma skill de código aberto para Claude Code, Cursor e Codex. Dê a ele um trabalho, como adicionar uma funcionalidade ao seu app ou criar um app pequeno do zero. Ele planeja o trabalho, constrói, dá o acabamento e testa a parte que mais importa. Um segundo modelo de IA revisa tudo. Você recebe um relatório com capturas de tela, resultados dos testes e o que ainda estiver em aberto.
 

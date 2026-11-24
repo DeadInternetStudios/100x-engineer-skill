@@ -15,6 +15,9 @@
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![라이선스: MIT](../docs/img/badges/license.svg)](../LICENSE)
 ![상태: 베타](../docs/img/badges/status.svg)
+[![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+
+**100x는 pstack에서 영감을 받은 스킬로, 프롬프트를 프로덕션에 바로 쓸 수 있고 테스트와 리뷰를 거친 소프트웨어로 바꿔 줍니다. 저는 이것으로 매달 1,000개가 넘는 PR을 프로덕션에 배포하고 있으며, 롤백 비율은 2% 미만입니다.**
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <b>한국어</b> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
@@ -29,6 +32,12 @@
 에이전트가 다 됐다고 합니다. 열어 보면 *대충* 돌아갑니다. 겉보기엔 늘 괜찮은데, 바로 출시할 수 있는 상태는 아닙니다.
 
 **100x는 코딩 에이전트가 개발의 마지막 10%를 해결하게 만듭니다.**
+
+<p align="center">
+  <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="30일간 136B 토큰 · 엔지니어 1명 · 본격적인 프로젝트 · PR 1,000개 이상 · 캐시로 $250k 절감">
+</p>
+
+<p align="center"><b>30일간 136B 토큰 · 엔지니어 1명 · 본격적인 프로젝트 · PR 1,000개 이상 · 캐시로 $250k 절감</b></p>
 
 Claude Code, Cursor, Codex용 오픈소스 스킬입니다. 앱에 기능을 추가하거나 작은 앱을 처음부터 만드는 것처럼 일을 하나 맡기세요. 작업을 계획하고, 만들고, 다듬고, 가장 중요한 부분을 테스트합니다. 그다음 두 번째 AI 모델이 검토합니다. 마지막에는 스크린샷, 테스트 결과, 아직 남은 문제가 담긴 보고서를 받습니다.
 
