@@ -71,7 +71,6 @@ Make the 100x CLI and its tests work on native Windows (not only WSL). The owner
 - Square corners (border-radius 0) on everything visual.
 - Do not add OS or Windows talk to the README without asking. This is for the code and for `docs/`.
 - Before every push: `npm test` exits 0 (gate the push on the exit code), `node bin/100x.mjs validate --prose`, and `README_PUBLISH=1 node --test test/readme-links.test.mjs`.
-- Never push the old local branches (`public`, `main`, `100x/readme-rework`). Push `launch` or a branch off it to `origin main`.
 - Commit messages end with the attribution line from the session's system reminder.
 
 ## Last step on the owner's machine
