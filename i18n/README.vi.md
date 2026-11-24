@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x là một skill do một cựu kỹ sư Cursor tạo ra, biến prompt thành code sẵn sàng cho production.<br>Tôi dùng nó để đưa hơn 1.000 PR lên production mỗi tháng, với tỷ lệ rollback dưới 2%.*
+*100x là một skill của một cựu kỹ sư Cursor, biến prompt thành code sẵn sàng cho production và đã được xác minh hình thức.<br>Tôi dùng nó để đưa hơn 1.000 PR lên production mỗi tháng, với tỷ lệ rollback dưới 2%.*
 
 Điểm Terminal Bench 4.1 sắp ra mắt 😎
 
@@ -34,6 +34,8 @@ Agent của bạn báo đã xong. Bạn mở ra thì nó *cũng tạm* chạy đ
 
 **100x giúp agent lập trình của bạn giải quyết nốt 10% cuối cùng của quá trình phát triển.**
 
+**Nó chia việc thành các khối nhỏ, xác minh hình thức từng khối, rồi kiểm tra các khối có chạy cùng nhau được không.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B token trong 30 ngày · 1 kỹ sư · Dự án nghiêm túc · Hơn 1.000 PR · Tiết kiệm $250k nhờ cache">
 </p>
@@ -48,6 +50,57 @@ Agent của bạn báo đã xong. Bạn mở ra thì nó *cũng tạm* chạy đ
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
 
+## Xác minh hình thức, từng khối nhỏ một
+
+Không ai xác minh hình thức cả một ứng dụng trong một lần. Nhưng gần như mọi phần mềm được thiết kế tốt đều được ghép từ các khối nhỏ, và một khối nhỏ có những điều có thể phát biểu chính xác và kiểm tra trọn vẹn. 100x viết chúng ra, kiểm tra từng điều, rồi kiểm tra các khối có chạy cùng nhau được không. Việc này diễn ra mặc định.
+
+### Sáu câu hỏi cho mỗi khối
+
+| Câu hỏi | Điều được viết ra |
+|---|---|
+| Trạng thái | cái gì có thể tồn tại |
+| Chuyển đổi | nó có thể thay đổi thế nào |
+| Điều kiện trước | khi nào một bước được phép |
+| Điều kiện sau | điều gì đúng sau một bước |
+| Bất biến | điều gì luôn đúng |
+| Tính sống | điều gì rốt cuộc phải xảy ra, và nó giả định gì |
+
+Prompt trả lời cả sáu bằng những câu đơn giản. Sau đó 100x dựng một mô hình nhỏ chạy các hàm thật của bạn, và một bộ kiểm tra ghé qua mọi trạng thái mà mô hình có thể đạt tới. Khi có gì đó hỏng, nó in ra danh sách bước ngắn nhất dẫn tới đó.
+
+### Các khối nhỏ cộng lại thành hệ thống lớn
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Các khối nhỏ đã xác minh. Mỗi khối phát biểu sáu thuộc tính và được kiểm tra riêng: chia hóa đơn, đơn hàng, hoàn tiền. Các mối nối giữa các khối cũng được kiểm tra. Rồi các khối thật chạy cùng nhau trong một mô hình hệ thống. Sổ cái đánh dấu một chứng minh là đã cũ khi code bên dưới thay đổi.">
+</p>
+
+Mỗi khối được kiểm tra riêng, nên một lỗi chỉ ra một chỗ nhỏ. Các mối nối cũng được kiểm tra: thứ một khối đưa ra phải đáp ứng quy tắc của khối kế tiếp. Rồi các khối thật chạy cùng nhau trong một mô hình, và bộ kiểm tra ghé qua mọi trạng thái của toàn bộ. Khối đã kiểm tra cộng với mối nối đã kiểm tra thành phần mềm bạn có thể tin. Các khối không tự chứng minh mối nối miễn phí, nên 100x kiểm tra cả hai.
+
+### Nó luôn đúng
+
+Sổ cái là `verify/ledger.tsv`, nằm trong repo của bạn, nên đi theo mọi nhánh. Mỗi dòng giữ một hash của code nó bao phủ. Đổi code đó thì dòng này thành cũ cho tới khi ai đó đọc thay đổi, chạy kiểm tra và đồng bộ lại. Mỗi thuộc tính phải thất bại một lần trên một lỗi cài sẵn trước khi được tính. `100x finish` từ chối thuộc tính đã cũ, bị hỏng hoặc chưa từng thất bại. Khi một agent sắp động vào code mà không quy tắc nào bao phủ, `100x verify cover` trả lời `NO RULE`, và điều đó bắt đầu quy trình.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>Từ một công cụ chia tiền tip nhỏ, chạy bằng tay trong repo thử nghiệm</sub>
+
+### Ở đây đã xác minh nghĩa là gì
+
+- **Toàn diện** (`exhaustive`): mọi trạng thái của mô hình đã được ghé qua, nên thuộc tính đúng với mô hình đó và các giới hạn của nó
+- **Có giới hạn** (`bounded`): việc tìm kiếm chạm giới hạn và không thấy gì trong phần đã xem, đó không phải chứng minh, và tính sống không bao giờ được kết luận từ đó
+- **Lấy mẫu** (`sampled`): các ca được chọn hoặc ngẫu nhiên, giỏi tìm lỗi và im lặng về phần còn lại
+
+Đạt bao phủ mô hình và các hàm thật mà các lần kiểm tra chạy. Bố cục và văn bản không có gì để phát biểu, nên chúng nhận một miễn trừ được ghi lại kèm lý do, và `100x finish` nêu tên code mà mỗi miễn trừ bỏ qua. Để bỏ qua tất cả, hãy viết `no verification` trong tin nhắn hoặc chạy `100x config set verify.enabled false`. Khi đó báo cáo sẽ nói rằng không có gì được xác minh. [Chi tiết](../docs/verification.md).
+
 ## Vì sao agent dừng lại ở mức "gần chạy được"
 
 Có ba chỗ hay hỏng, và 100x có cách xử lý cho từng chỗ. Mọi ví dụ dưới đây đều dùng cùng một yêu cầu:
@@ -59,7 +112,7 @@ Có ba chỗ hay hỏng, và 100x có cách xử lý cho từng chỗ. Mọi ví
 Yêu cầu chỉ có một dòng. Trước khi xây bất cứ thứ gì, 100x viết ra cái prompt mà bạn sẽ tự viết nếu có dư một tiếng. Prompt đặt ra mục tiêu, các quy tắc, phần rủi ro nhất và cách kiểm tra từng yêu cầu. Ở đây nó phát hiện cái bẫy từ sớm: một đợt chia tách cổ phiếu trông như khoản lỗ nếu biểu đồ không điều chỉnh cho nó.
 
 <p align="center">
-  <img src="../docs/img/diagrams/prompt-step.svg" width="720" alt="Bạn gõ &quot;Cho tôi so sánh bất kỳ cổ phiếu nào với S&amp;P 500 trong ứng dụng nghiên cứu chứng khoán của tôi&quot;, và 100x viết trước một prompt đầy đủ khoảng 880 từ. Một đoạn trích. Mục tiêu: cả hai đường đều bắt đầu ở 0% vào ngày chung đầu tiên. Quy tắc: phần trăm thay đổi tính từ một điểm xuất phát chung, không phải giá. Rủi ro: chia tách cổ phiếu hiện ra như một khoản lỗ giả. Yêu cầu: 9, trong đó có hai test phải fail trước. Test khó: chia tách hai đổi một cho thấy thay đổi 0%. Không được: vẽ giá thô trên cùng một trục. Khoảnh khắc: gõ một mã cổ phiếu, cả hai đường đều bắt đầu ở 0%. Giám khảo: đếm tay qua đợt chia tách có khớp không?">
+  <img src="../docs/img/diagrams/prompt-step.svg" width="720" alt="Bạn gõ &quot;Cho tôi so sánh bất kỳ cổ phiếu nào với S&amp;P 500 trong ứng dụng nghiên cứu chứng khoán của tôi&quot;, và 100x viết trước một prompt đầy đủ khoảng 1000 từ. Một đoạn trích. Mục tiêu: cả hai đường đều bắt đầu ở 0% vào ngày chung đầu tiên. Quy tắc: phần trăm thay đổi tính từ một điểm xuất phát chung, không phải giá. Rủi ro: chia tách cổ phiếu hiện ra như một khoản lỗ giả. Yêu cầu: 9, trong đó có hai test phải fail trước. Test khó: chia tách hai đổi một cho thấy thay đổi 0%. Không được: vẽ giá thô trên cùng một trục. Khoảnh khắc: gõ một mã cổ phiếu, cả hai đường đều bắt đầu ở 0%. Giám khảo: đếm tay qua đợt chia tách có khớp không?">
 </p>
 
 <p align="center"><a href="../docs/examples/stock-comparison-prompt.md">Đọc toàn bộ prompt</a></p>
@@ -157,6 +210,7 @@ Nếu bạn vắng mặt, agent ghi lại từng quyết định nó đưa ra v�
 - **Tính năng hoặc ứng dụng**, cùng cách tự dùng thử
 - **Ảnh chụp màn hình ở nhiều kích thước màn hình**, đã kiểm tra chữ tràn, nút quá nhỏ, ảnh mờ và lỗi trình duyệt
 - **Một trang báo cáo** (`.100x/REPORT.html`) và bộ sưu tập mọi lần chạy đã xong trong `~/.100x`
+- **Một sổ cái xác minh** trong repo của bạn: thuộc tính của từng khối, từng cái có đúng không, và code nó bao phủ
 - **Nhật ký quyết định**: mọi lựa chọn 100x đưa ra khi bạn vắng mặt, và lý do
 - **Thông điệp cuối** như ở trên
 
@@ -364,6 +418,7 @@ Cho nó một khoảng thời gian, nó sẽ làm theo từng vòng cho đến k
 |---|---|
 | [Cài đặt đầy đủ](../docs/install.md) | mọi tùy chọn cài đặt, và mọi file trình cài đặt đụng tới |
 | [Dùng 100x](../docs/using.md) | một đêm vắng nhà, trang báo cáo, skill trợ giúp |
+| [Xác minh hình thức](../docs/verification.md) | sáu thuộc tính, sổ cái, đã xác minh nghĩa là gì, và các khối cộng lại thành hệ thống ra sao |
 | [Quy trình và thông điệp cuối](../docs/pipeline.md) | từng bước đầy đủ, và những gì `100x finish` kiểm tra |
 | [Thiết lập và các gói](../docs/plans-and-setup.md) | thiết lập Claude Code khuyên dùng, preset lite, thiết lập cho từng gói |
 | [Cài đặt](../docs/settings.md) | mọi khóa cấu hình |

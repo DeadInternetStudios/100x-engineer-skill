@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x è una skill creata da un ex ingegnere di Cursor che trasforma i prompt in codice pronto per la produzione.<br>Lo uso per portare in produzione oltre 1.000 PR ogni mese, con un tasso di rollback sotto il 2%.*
+*100x è una skill di un ex ingegnere di Cursor che trasforma i prompt in codice pronto per la produzione e verificato formalmente.<br>Lo uso per portare in produzione oltre 1.000 PR ogni mese, con un tasso di rollback sotto il 2%.*
 
 I punteggi di Terminal Bench 4.1 arrivano presto 😎
 
@@ -34,6 +34,8 @@ Il tuo agente dice di aver finito. Lo apri e *più o meno* funziona. Sembra semp
 
 **100x fa risolvere al tuo coding agent l'ultimo 10% dello sviluppo.**
 
+**Divide il lavoro in piccoli blocchi, verifica formalmente ciascuno e controlla che i blocchi funzionino insieme.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B di token in 30 giorni · 1 ingegnere · Progetti seri · Oltre 1.000 PR · $250k di risparmio sulla cache">
 </p>
@@ -48,6 +50,57 @@ Il tuo agente dice di aver finito. Lo apri e *più o meno* funziona. Sembra semp
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
 
+## Verifica formale, un piccolo blocco alla volta
+
+Nessuno verifica formalmente un'app intera in un colpo solo. Ma quasi ogni software ben progettato è fatto di piccoli blocchi, e un piccolo blocco ha cose che si possono enunciare con precisione e controllare per intero. 100x le scrive, controlla ciascuna e poi controlla che i blocchi funzionino insieme. Lo fa per impostazione predefinita.
+
+### Sei domande per ogni blocco
+
+| Domanda | Cosa si scrive |
+|---|---|
+| Stato | cosa può esistere |
+| Transizioni | come può cambiare |
+| Precondizioni | quando un passo è consentito |
+| Postcondizioni | cosa è vero dopo un passo |
+| Invarianti | cosa vale sempre |
+| Vivacità | cosa deve prima o poi accadere, e cosa presuppone |
+
+Il prompt risponde a tutte e sei con frasi semplici. Poi 100x costruisce un piccolo modello che esegue le tue funzioni reali, e un verificatore visita ogni stato che il modello può raggiungere. Quando qualcosa si rompe, stampa la lista più breve di passi che porta lì.
+
+### I piccoli blocchi formano un grande sistema
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Piccoli blocchi verificati. Ogni blocco enuncia sei proprietà e viene controllato da solo: dividere un conto, ordine, rimborso. Le giunzioni tra i blocchi vengono controllate. Poi i blocchi reali girano insieme in un modello del sistema. Il registro segna una dimostrazione come scaduta quando cambia il codice sotto di essa.">
+</p>
+
+Ogni blocco viene controllato da solo, quindi un errore punta a una cosa piccola. Anche le giunzioni vengono controllate: ciò che un blocco consegna deve rispettare le regole del successivo. Poi i blocchi reali girano insieme in un modello, e il verificatore visita ogni stato dell'insieme. Blocchi controllati più giunzioni controllate formano un software di cui ti puoi fidare. I blocchi non dimostrano le giunzioni gratis, quindi 100x controlla entrambi.
+
+### Resta vero
+
+Il registro è `verify/ledger.tsv`, nel tuo repo, quindi viaggia con ogni branch. Ogni riga conserva un hash del codice che copre. Cambia quel codice e la riga diventa scaduta finché qualcuno non legge la modifica, esegue il controllo e la sincronizza. Ogni proprietà deve fallire una volta su un bug piantato prima di contare. `100x finish` rifiuta una proprietà scaduta, rotta o che non ha mai fallito. Quando un agente sta per toccare codice che nessuna regola copre, `100x verify cover` risponde `NO RULE`, e questo avvia la procedura.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>Da un piccolo divisore di mance, eseguito a mano in un repo di prova</sub>
+
+### Cosa significa verificato qui
+
+- **Esaustivo** (`exhaustive`): ogni stato del modello è stato visitato, quindi la proprietà vale per quel modello e i suoi limiti
+- **Limitato** (`bounded`): la ricerca ha toccato un limite e non ha trovato nulla in ciò che ha visto, il che non è una dimostrazione, e la vivacità non viene mai decisa su questa base
+- **Campionato** (`sampled`): casi scelti o casuali, bravi a trovare bug e muti sul resto
+
+Un esito positivo copre il modello e le funzioni reali che i controlli eseguono. Layout e testi non hanno nulla da enunciare, quindi ricevono un'esenzione registrata con il motivo, e `100x finish` nomina il codice che ogni esenzione scusa. Per saltare tutto, scrivi `no verification` nel messaggio o esegui `100x config set verify.enabled false`. Il report dice allora che nulla è stato verificato. [I dettagli](../docs/verification.md).
+
 ## Perché gli agenti si fermano a "quasi funziona"
 
 Tre cose vanno storte, e 100x ha una risposta per ognuna. Tutti gli esempi qui sotto usano la stessa richiesta:
@@ -59,7 +112,7 @@ Tre cose vanno storte, e 100x ha una risposta per ognuna. Tutti gli esempi qui s
 La richiesta è una riga. Prima di costruire qualsiasi cosa, 100x scrive il prompt che avresti scritto tu con un'ora libera. Fissa l'obiettivo, le regole, la parte più rischiosa e come verificare ogni requisito. Qui individua subito la trappola: un frazionamento azionario sembra una perdita se il grafico non ne tiene conto.
 
 <p align="center">
-  <img src="../docs/img/diagrams/prompt-step.svg" width="720" alt="Scrivi &quot;Fammi confrontare qualsiasi titolo con l'S&P 500 nella mia app di analisi di borsa&quot;, e 100x prima scrive un prompt completo di circa 880 parole. Un estratto. Obiettivo: le due linee partono da 0% il primo giorno in comune. Regola: variazione percentuale da un inizio comune, non prezzi. Rischio: un frazionamento appare come una falsa perdita. Requisiti: 9, due dei quali test che devono prima fallire. Test difficile: un frazionamento due per uno mostra una variazione dello 0%. Da non fare: disegnare prezzi grezzi su un asse comune. Momento: scrivi un ticker e le due linee partono da 0%. Giudice: un conto fatto a mano attraverso un frazionamento torna?">
+  <img src="../docs/img/diagrams/prompt-step.svg" width="720" alt="Scrivi &quot;Fammi confrontare qualsiasi titolo con l'S&P 500 nella mia app di analisi di borsa&quot;, e 100x prima scrive un prompt completo di circa 1000 parole. Un estratto. Obiettivo: le due linee partono da 0% il primo giorno in comune. Regola: variazione percentuale da un inizio comune, non prezzi. Rischio: un frazionamento appare come una falsa perdita. Requisiti: 9, due dei quali test che devono prima fallire. Test difficile: un frazionamento due per uno mostra una variazione dello 0%. Da non fare: disegnare prezzi grezzi su un asse comune. Momento: scrivi un ticker e le due linee partono da 0%. Giudice: un conto fatto a mano attraverso un frazionamento torna?">
 </p>
 
 <p align="center"><a href="../docs/examples/stock-comparison-prompt.md">Leggi il prompt completo</a></p>
@@ -157,6 +210,7 @@ Se non ci sei, l'agente annota ogni decisione che prende e continua a lavorare. 
 - **La funzione o l'app**, e come provarla tu stesso
 - **Screenshot a molte dimensioni di schermo**, controllati per testo che esce dai bordi, pulsanti minuscoli, immagini sfocate ed errori del browser
 - **Una pagina di report** (`.100x/REPORT.html`) e una galleria di tutti i run finiti in `~/.100x`
+- **Un registro di verifica** nel tuo repo: le proprietà di ogni blocco, se ciascuna vale, e il codice che copre
 - **Un registro delle decisioni**: ogni scelta che 100x ha fatto mentre eri via, e perché
 - **Il messaggio finale** mostrato sopra
 
@@ -364,6 +418,7 @@ Dagli un orario e continua a lavorare a round finché il tempo non scade. Ogni r
 |---|---|
 | [Installazione completa](../docs/install.md) | tutte le opzioni di installazione e tutti i file che l'installer tocca |
 | [Usare 100x](../docs/using.md) | una notte fuori, la pagina del report, la skill di aiuto |
+| [Verifica formale](../docs/verification.md) | le sei proprietà, il registro, cosa significa verificato e come i blocchi formano un sistema |
 | [Pipeline e messaggio finale](../docs/pipeline.md) | ogni passo nel dettaglio, e cosa controlla `100x finish` |
 | [Configurazione e piani](../docs/plans-and-setup.md) | la configurazione consigliata di Claude Code, il preset lite, configurazioni per ogni piano |
 | [Impostazioni](../docs/settings.md) | tutte le chiavi di configurazione |

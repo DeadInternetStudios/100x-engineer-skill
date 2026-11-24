@@ -288,6 +288,26 @@ function overnight() {
   return frame(s.y + 92, 'An overnight run', 'You type: /100x-overnight a farming game, for 8 hours. After the first full run, 100x works in rounds until the clock ends: fresh eyes, break it, hard test, then more. Each round ends with a fresh second model checking it, keeps the change if it helped and rolls it back if not. Finish refuses until the clock is over, then the report.', b);
 }
 
+// 7. Small verified blocks that add up to a system. Each block states six properties and is checked alone, the seams between blocks are checked,
+// the real blocks then run together in one model, and the ledger marks a proof stale when the code under it changes.
+function verifiedBlocks() {
+  const bold = 'font-weight="700"';
+  const ROWS = [
+    { name: 'BLOCK · SPLIT A BILL', text: 'Every cent lands in exactly one share' },
+    { name: 'BLOCK · ORDER', text: 'Only a paid order ships' },
+    { name: 'BLOCK · REFUND', text: 'Never more than was paid' },
+    { name: 'SEAMS', text: 'What one block gives, the next accepts' },
+    { name: 'SYSTEM MODEL', text: 'The real blocks run together' },
+    { name: 'LEDGER', text: 'Change the code, the proof goes stale' },
+  ];
+  let b = mono(PAD, 46, 'SIX PROPERTIES PER BLOCK', 20, C.muted, bold + ' letter-spacing=".06em"') + sans(PAD, 84, 'state, steps, rules, results, always, eventually', 25, C.text);
+  b += `<path d="M${PAD} 110H${W - PAD}" stroke="${C.edge}" stroke-width="1.5"/>`;
+  const s = stacked(ROWS, 134, { flow: true });
+  b += s.b;
+  b += sans(PAD, s.y + 30, 'Each block is checked on its own', 23, C.text) + sans(PAD, s.y + 64, 'Then all of them are checked together', 23, C.text);
+  return frame(s.y + 92, 'Small verified blocks', 'Each small block states six properties: state, steps, rules, results, what always holds and what must eventually happen. Each block is checked on its own. The seams between blocks are checked. The real blocks then run together in one system model. The ledger marks a proof stale when the code under it changes.', b);
+}
+
 // 6. The final message of the made-up stock run, wrapped so it reads on a phone. It is narrower than the others, 560 wide, so its
 // type stays large when a phone shrinks it. The text comes from chatSummary, word for word.
 function finalMessage() {
@@ -313,5 +333,5 @@ function finalMessage() {
 
 fs.mkdirSync(OUT, { recursive: true });
 for (const f of fs.readdirSync(OUT)) if (f.endsWith('.svg')) fs.rmSync(path.join(OUT, f));
-for (const [name, fn] of Object.entries({ 'by-hand-app': () => journey(APP), 'by-hand-feature': () => journey(FEATURE), pipeline, 'review-catch': reviewCatch, 'final-message': finalMessage, 'prompt-step': promptStep, overnight })) fs.writeFileSync(path.join(OUT, `${name}.svg`), fn());
+for (const [name, fn] of Object.entries({ 'by-hand-app': () => journey(APP), 'by-hand-feature': () => journey(FEATURE), pipeline, 'review-catch': reviewCatch, 'final-message': finalMessage, 'prompt-step': promptStep, overnight, 'verified-blocks': verifiedBlocks })) fs.writeFileSync(path.join(OUT, `${name}.svg`), fn());
 console.log('drew the diagrams in ' + path.relative(process.cwd(), OUT));

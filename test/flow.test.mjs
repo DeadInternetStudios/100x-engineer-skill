@@ -18,6 +18,8 @@ test('the whole agent sequence works on a fixture project, from init to the morn
   fs.copyFileSync(path.join(ROOT, 'test', 'fixtures', 'clean.html'), path.join(box.project, 'index.html'));
 
   ok(run('init', '--no-git'), 'init');
+  // Property checks are on by default, so a run records a waiver for a page that has no logic to state.
+  ok(run('verify', 'waive', 'index.html', '--why', 'a static test page with nothing to state'), 'waive');
   ok(run('config', 'set', 'polish.passes', '0', '--global'), 'no polish passes');
   ok(run('log', 'start', 'Read the brief as a glow toy', 'No one answers at night, so take the reasonable reading', 'brief text', 'ok'), 'log');
   assert.equal(run('prompt', 'check').code, 1, 'the template is not a prompt yet');
@@ -125,6 +127,7 @@ test('a run goes from init through shots and finish into the morning gallery', {
   const run = (...args) => cli(args, { cwd: box.project, env: box.env });
   fs.copyFileSync(path.join(ROOT, 'test', 'fixtures', 'clean.html'), path.join(box.project, 'index.html'));
   run('init', '--no-git');
+  run('verify', 'waive', 'index.html', '--why', 'a static test page with nothing to state');
   run('config', 'set', 'polish.passes', '0', '--global');
   fs.writeFileSync(path.join(box.project, '.100x', 'project.md'), PROMPT_MD);
   const shot = run('shots', 'index.html', '--label', 'final', '--viewports', '390x844@3', '--no-checks');

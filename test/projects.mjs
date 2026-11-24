@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { cli, write } from './helpers.mjs';
 import { PROMPT_MARKER } from '../lib/prompt.mjs';
+import { writeLedger } from '../lib/verify.mjs';
 import { sealFile } from '../lib/seal.mjs';
 import { gradientPng } from './png.mjs';
 
@@ -85,6 +86,11 @@ none: no outside files are needed
 ## Must not break
 The glow stays on after a reload, and the total never goes down.
 
+## Properties
+- State: the glow is on or off, and the total is a whole number of cents.
+- Transitions: tap turns the glow on, reload keeps it, reset turns it off.
+- Invariants: the total never goes down.
+
 ## Moment
 The first tap lights the whole screen.
 
@@ -137,8 +143,10 @@ export const TRIAGE = `F1 accept. fixed in a1b2c3d, the row wraps at 320px
 F2 reject. intentional, the hint is decorative and the real label passes AA at 4.6:1
 `;
 
-export function makeProject(box, { run = runJson(), projectMd = PROJECT_MD, root = box.project, findings = FINDINGS, triage = TRIAGE, matrix = {}, checkFiles = { 'screen-sizes': CHECK_OUTPUT }, hero = PNG, judge = true, rounds = 1, sealed = true, loops = true, reviewRow = true, polished = Number.isInteger(run.polishPasses) ? run.polishPasses : 3, prompted = false } = {}) {
+export function makeProject(box, { run = runJson(), projectMd = PROJECT_MD, root = box.project, findings = FINDINGS, triage = TRIAGE, matrix = {}, checkFiles = { 'screen-sizes': CHECK_OUTPUT }, hero = PNG, judge = true, rounds = 1, sealed = true, loops = true, reviewRow = true, polished = Number.isInteger(run.polishPasses) ? run.polishPasses : 3, prompted = false, ledger = true } = {}) {
   cli(['init', '--no-git'], { cwd: root, env: box.env });
+  // Property checks are on by default, so a finishable run has a ledger. The fixture has nothing to state, and says so in a waiver.
+  if (ledger) writeLedger(root, [{ id: 'waived-fixture', kind: 'waived', property: 'the fixture has no logic to state', covers: 'fixture', covers_hash: '', status: 'waived' }]);
   // The run command the fixture names has to be one this folder can start.
   const manifest = path.join(root, 'package.json');
   if (/^(?:\w+=\S+\s+)*(?:npm|pnpm|yarn|bun)\s/.test(run.runCmd ?? '') && !fs.existsSync(manifest)) fs.writeFileSync(manifest, JSON.stringify({ scripts: { dev: 'vite', start: 'node server.js' } }));

@@ -159,3 +159,87 @@ test('the asset check passes a clean folder and names empty, corrupt, oversized,
   assert.equal(node([path.join(TEMPLATES, 'asset-check.mjs')]).status, 2);
   box.cleanup();
 });
+
+// ---- property checker ----
+const CHECKER = path.join(TEMPLATES, 'property-checker.mjs');
+const mutate = (box, from, to, name = 'mutant.mjs') => {
+  const source = fs.readFileSync(CHECKER, 'utf8');
+  assert.ok(source.includes(from), 'the mutation target exists in the template: ' + from);
+  const file = path.join(box.dir, name);
+  fs.writeFileSync(file, source.replace(from, () => to));
+  return file;
+};
+const failing = (result) => result.stdout.split('\n').filter((line) => line.startsWith('FAIL')).map((line) => line.split('.')[0].replace(/^FAIL {2}/, ''));
+
+test('the property checker proves the example workflow exhaustively, and says what it proved', () => {
+  const ok = node([CHECKER]);
+  assert.equal(ok.status, 0, ok.stdout);
+  assert.match(ok.stdout, /Exhaustive\. Every reachable state was visited/);
+  const json = JSON.parse(node([CHECKER, '--json']).stdout);
+  assert.equal(json.exhaustive, true);
+  assert.deepEqual(json.checks.map((c) => c.name), ['inv:money-in-bounds', 'inv:shipped-means-paid', 'inv:refund-only-after-cancel', 'guard:pay', 'post:pay', 'guard:ship', 'post:ship', 'guard:deliver', 'post:deliver', 'guard:cancel', 'post:cancel', 'guard:refund', 'post:refund', 'pure', 'deadlock', 'coverage', 'live:every-started-order-settles', 'live:a-cancelled-order-is-refunded']);
+  assert.ok(json.checks.every((c) => c.ok && c.level === 'exhaustive'));
+  assert.ok(json.assumptions.length >= 3);
+});
+
+test('the property checker goes red on a missing guard, naming the property and the steps', () => {
+  const box = sandbox();
+  const red = node([mutate(box, "  if (state.paid + amount > state.total) throw new Error('the payment is more than what is owed');\n", '')]);
+  assert.equal(red.status, 1);
+  const names = failing(red);
+  assert.ok(names.includes('guard:pay'), red.stdout);
+  assert.ok(names.includes('inv:money-in-bounds'), red.stdout);
+  assert.match(red.stdout, /FAIL {2}guard:pay\. the model forbids pay\(\d\) but the implementation accepted it/);
+  assert.match(red.stdout, /Steps: .*pay\(\d\)/);
+  box.cleanup();
+});
+
+test('the property checker catches a postcondition that does not hold and a step that changes its input', () => {
+  const box = sandbox();
+  const post = node([mutate(box, 'return { ...state, refunded: state.paid };', 'return { ...state, refunded: state.paid + 1 };')]);
+  assert.ok(failing(post).includes('post:refund'), post.stdout);
+  const impure = node([mutate(box, "  return { ...state, status: 'shipped' };", "  state.status = 'shipped';\n  return state;", 'impure.mjs')]);
+  assert.ok(failing(impure).includes('pure'), impure.stdout);
+  box.cleanup();
+});
+
+test('the property checker finds a deadlock and a state the run can never leave', () => {
+  const box = sandbox();
+  const deadlock = node([mutate(box, "const settled = (s) => s.status === 'delivered' ||", "const settled = (s) => false ||")]);
+  assert.ok(failing(deadlock).includes('deadlock'), deadlock.stdout);
+  assert.match(deadlock.stdout, /FAIL {2}deadlock\. no step is possible and the model does not call this a stopping point/);
+  const stuck = node([mutate(box, "return { ...state, status: 'delivered' };", "return { ...state, status: 'shipped' };", 'stuck.mjs')]);
+  const names = failing(stuck);
+  assert.ok(names.includes('live:every-started-order-settles'), stuck.stdout);
+  assert.match(stuck.stdout, /can stay away from to forever\. It gets stuck at/);
+  box.cleanup();
+});
+
+test('the property checker decides liveness under fairness, and a loop that could be left only fails without it', () => {
+  const box = sandbox();
+  // A retry step that goes back to open. With strong fairness the way out is eventually taken, so settling still holds.
+  const retry = "      name: 'retry',\n      pre: (s) => s.status === 'paid',\n      apply: (s) => { if (s.status !== 'paid') throw new Error('only a paid order is retried'); return { ...s, status: 'open', paid: 1 }; },\n      post: () => true,\n    },\n    {\n      name: 'ship',";
+  const withRetry = mutate(box, "      name: 'ship',", retry, 'retry.mjs');
+  const strong = node([withRetry]);
+  assert.equal(strong.status, 0, strong.stdout);
+  const source = fs.readFileSync(withRetry, 'utf8').replace("{ name: 'every-started-order-settles', from:", "{ name: 'every-started-order-settles', fairness: 'none', from:");
+  const noFairness = path.join(box.dir, 'nofair.mjs');
+  fs.writeFileSync(noFairness, source);
+  const weak = node([noFairness]);
+  assert.ok(failing(weak).includes('live:every-started-order-settles'), weak.stdout);
+  box.cleanup();
+});
+
+test('the property checker never calls a bounded search a proof, and never decides liveness on one', () => {
+  const bounded = node([CHECKER], { MAX_STATES: '6' });
+  assert.equal(bounded.status, 1);
+  assert.match(bounded.stdout, /BOUNDED\. The exploration stopped/);
+  assert.match(bounded.stdout, /FAIL {2}live:every-started-order-settles\. not decided/);
+  assert.match(bounded.stdout, /pass {2}inv:money-in-bounds\. \d+ states checked, bounded/);
+  const box = sandbox();
+  const vacuous = node([mutate(box, "from: (s) => s.paid > 0 || s.status !== 'open'", 'from: (s) => s.paid > 99')]);
+  assert.match(vacuous.stdout, /FAIL {2}live:every-started-order-settles\. vacuous/);
+  const unused = node([mutate(box, "pre: (s) => s.status === 'shipped',\n      apply: deliver,", "pre: (s) => false,\n      apply: deliver,", 'unused.mjs')]);
+  assert.match(unused.stdout, /FAIL {2}coverage\. these steps were never possible in any reachable state: deliver/);
+  box.cleanup();
+});

@@ -16,7 +16,7 @@
 ![status: beta](docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x is a skill created by a former Cursor engineer that turns prompts into production-ready code.<br>I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
+*100x is a skill by a former Cursor engineer that turns prompts into formally verified, production-ready code.<br>I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
 
 Terminal Bench 4.1 scores coming soon 😎
 
@@ -34,6 +34,8 @@ Your agent says it's done. You open it and it *kinda* works. It always looks fin
 
 **100x makes your coding agent solve the last 10% of development.**
 
+**It splits the work into small blocks, formally verifies each one, then checks that the blocks work together.**
+
 <p align="center">
   <img src="docs/img/proof/tokens-30-days.jpg" width="420" alt="Daily token use from 23 Oct to 20 Nov: 136B tokens in 30 days, 1.6K local agents, 0 cloud agents">
 </p>
@@ -48,6 +50,57 @@ It is an open-source skill for Claude Code, Cursor and Codex. Give it one job, l
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
 
+## Formal verification, one small block at a time
+
+Nobody formally verifies a whole app in one piece. But almost any well-designed software is made of small blocks, and a small block has things you can state exactly and check completely. 100x writes those down, checks every one, then checks that the blocks work together. It does this by default.
+
+### Six questions for every block
+
+| Ask | What you write down |
+|---|---|
+| State | what can exist |
+| Transitions | how it can change |
+| Preconditions | when a step is allowed |
+| Postconditions | what is true after a step |
+| Invariants | what always holds |
+| Liveness | what must eventually happen, and what that assumes |
+
+The prompt answers all six in plain sentences. Then 100x builds a small model that runs your real functions, and a checker visits every state the model can reach. When something breaks, it prints the shortest list of steps that gets there.
+
+### Small blocks add up to a big system
+
+<p align="center">
+  <img src="docs/img/diagrams/verified-blocks.svg" width="520" alt="Small verified blocks. Each block states six properties and is checked on its own: split a bill, order, refund. The seams between blocks are checked. The real blocks then run together in one system model. The ledger marks a proof stale when the code under it changes.">
+</p>
+
+Each block is checked on its own, so a failure points at one small thing. The seams are checked too: what one block hands over has to meet the next block's rules. Then the real blocks run together in one model, and the checker visits every state of the whole. Checked blocks plus checked seams add up to software you can trust. The blocks do not prove the seams for free, so 100x checks both.
+
+### It stays true
+
+The ledger is `verify/ledger.tsv`, in your repo, so it travels with every branch. Each row keeps a hash of the code it covers. Change that code and the row goes stale until someone reads the change, runs the check and syncs it. Every property has to fail once on a planted bug before it counts. `100x finish` refuses a property that is stale, broken or never failed. When an agent is about to touch code that no rule covers, `100x verify cover` answers `NO RULE`, and that starts the procedure.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>From a small tip splitter, run by hand in a scratch repo</sub>
+
+### What verified means here
+
+- **Exhaustive**: every state of the model was visited, so the property holds for that model and its bounds
+- **Bounded**: the search hit a limit and found nothing in what it saw, which is not a proof, and liveness is never decided on it
+- **Sampled**: chosen or random cases, good at finding bugs and silent about the rest
+
+A pass covers the model and the real functions the checks run. Layout and copy have nothing to state, so they get a recorded waiver with a reason, and `100x finish` names the code each waiver excuses. To skip all of it, say `no verification` in the brief or run `100x config set verify.enabled false`. The report then says nothing was verified. [The details](docs/verification.md).
+
 ## Why agents stop at "almost works"
 
 Three things go wrong, and 100x has an answer for each. Every example below uses the same request:
@@ -59,7 +112,7 @@ Three things go wrong, and 100x has an answer for each. Every example below uses
 The request is one line. Before it builds anything, 100x writes the prompt you would have written with an hour to spare. It sets the goal, the rules, the riskiest part, and how to check each ask. Here it spots the trap early: a stock split looks like a loss unless the chart adjusts for it.
 
 <p align="center">
-  <img src="docs/img/diagrams/prompt-step.svg" width="720" alt="You type &quot;Let me compare any stock with the S&P 500 in my stock market research app&quot;, and 100x first writes a full prompt of about 880 words. An excerpt. Goal: both lines start at 0% on the first shared day. Rule: percent change from a shared start, not prices. Risk: a stock split shows up as a fake loss. Asks: 9, two of them tests that must fail first. Hard test: a two-for-one split shows 0% change. Do not: draw raw prices on a shared axis. Moment: type a ticker, both lines start at 0%. Judge: does a hand count across a split match?">
+  <img src="docs/img/diagrams/prompt-step.svg" width="720" alt="You type &quot;Let me compare any stock with the S&P 500 in my stock market research app&quot;, and 100x first writes a full prompt of about 1000 words. An excerpt. Goal: both lines start at 0% on the first shared day. Rule: percent change from a shared start, not prices. Risk: a stock split shows up as a fake loss. Asks: 9, two of them tests that must fail first. Hard test: a two-for-one split shows 0% change. Do not: draw raw prices on a shared axis. Moment: type a ticker, both lines start at 0%. Judge: does a hand count across a split match?">
 </p>
 
 <p align="center"><a href="docs/examples/stock-comparison-prompt.md">Read the whole prompt</a></p>
@@ -157,6 +210,7 @@ If you're away, the agent writes down each decision it makes and keeps working. 
 - **The feature or app**, and how to try it yourself
 - **Screenshots at many screen sizes**, checked for spilled text, tiny buttons, blurry images and browser errors
 - **A report page** (`.100x/REPORT.html`) and a gallery of every finished run in `~/.100x`
+- **A verification ledger** in your repo: the properties of each block, whether each one holds, and the code it covers
 - **A decision log**: every choice 100x made while you were away, and why
 - **The final message** shown above
 
@@ -364,6 +418,7 @@ Give it a clock and it keeps working in rounds until the time is up. Each round 
 |---|---|
 | [Install, in full](docs/install.md) | every install option, and every file the installer touches |
 | [Using 100x](docs/using.md) | a night away, the report page, the helper skill |
+| [Formal verification](docs/verification.md) | the six properties, the ledger, what verified means, and how blocks add up to a system |
 | [Pipeline and final message](docs/pipeline.md) | every step in full, and what `100x finish` checks |
 | [Setup and plans](docs/plans-and-setup.md) | recommended Claude Code setup, the lite preset, setups for each plan |
 | [Settings](docs/settings.md) | every config key |

@@ -1,6 +1,6 @@
 # What 100x does with a very bad prompt
 
-The prompt was four words: `make me a budget app`. Below is the whole prompt 100x writes from it, saved as `.100x/project.md`. It was written by following the 100x skill and it passes `100x prompt check` ("12 written, 1 marked none, 9 asks"). Back to the [README](../../README.md).
+The prompt was four words: `make me a budget app`. Below is the whole prompt 100x writes from it, saved as `.100x/project.md`. It was written by following the 100x skill and it passes `100x prompt check` ("13 written, 1 marked none, 9 asks"). Back to the [README](../../README.md).
 
 Each part changes something the builder does. The rules say what to trade off. The asks carry a proof for each claim the stages cannot see for themselves. The hard test and the judge questions are the ones the second model presses on.
 
@@ -57,6 +57,14 @@ none: no outside files are needed, because the tests run on fixed amounts and a 
 
 ## Must not break
 Kind numbers. The money left equals the limit minus the sum of the purchases, to the cent, after any mix of adds, edits, deletes and reloads.
+
+## Properties
+- State: the limit in cents, a list of purchases each with a whole number of cents, and the money left.
+- Transitions: add, edit and delete a purchase, change the limit, reload.
+- Preconditions: an amount is a whole number of cents above zero. A delete needs a purchase that exists.
+- Postconditions: after any step, money left equals the limit minus the sum of the purchases.
+- Invariants: money left is an integer, and a reload gives the same state.
+- Liveness: every add, edit and delete shows its new total, under a browser that keeps its storage.
 
 ## Moment
 You type 4.35 and Enter, and the money left for Food ticks down while the coffee slides into the list.

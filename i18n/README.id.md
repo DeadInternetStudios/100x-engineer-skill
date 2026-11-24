@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x adalah skill buatan mantan engineer Cursor, mengubah prompt menjadi kode siap produksi.<br>Saya memakainya untuk merilis lebih dari 1.000 PR ke produksi setiap bulan, dengan tingkat rollback di bawah 2%.*
+*100x adalah skill dari mantan engineer Cursor yang mengubah prompt menjadi kode siap produksi yang diverifikasi secara formal.<br>Saya memakainya untuk merilis lebih dari 1.000 PR ke produksi setiap bulan, dengan tingkat rollback di bawah 2%.*
 
 Skor Terminal Bench 4.1 segera hadir 😎
 
@@ -34,6 +34,8 @@ Agen Anda bilang sudah selesai. Anda buka, dan hasilnya *lumayan* jalan. Selalu 
 
 **100x membuat agen coding Anda menuntaskan 10% terakhir pengembangan.**
 
+**Ia memecah pekerjaan menjadi blok-blok kecil, memverifikasi tiap blok secara formal, lalu memeriksa bahwa blok-blok itu bekerja bersama.**
+
 <p align="center">
   <img src="../docs/img/proof/tokens-30-days.jpg" width="420" alt="136B token dalam 30 hari · 1 engineer · Proyek serius · Lebih dari 1.000 PR · Hemat cache $250k">
 </p>
@@ -48,6 +50,57 @@ Ini skill open source untuk Claude Code, Cursor, dan Codex. Beri satu tugas, mis
 
 <!-- Benchmark headline goes here: one line and one picture, the same agent with and without 100x, with a link to the method. -->
 
+## Verifikasi formal, satu blok kecil sekali jalan
+
+Tidak ada yang memverifikasi satu aplikasi utuh secara formal sekaligus. Tapi hampir semua perangkat lunak yang dirancang baik terdiri dari blok-blok kecil, dan blok kecil punya hal-hal yang bisa dinyatakan dengan tepat dan diperiksa tuntas. 100x menuliskannya, memeriksa tiap satu, lalu memeriksa bahwa blok-blok itu bekerja bersama. Ini berjalan secara bawaan.
+
+### Enam pertanyaan untuk setiap blok
+
+| Pertanyaan | Apa yang dituliskan |
+|---|---|
+| Status | apa yang bisa ada |
+| Transisi | bagaimana ia bisa berubah |
+| Prasyarat | kapan sebuah langkah diizinkan |
+| Pascasyarat | apa yang benar setelah sebuah langkah |
+| Invarian | apa yang selalu berlaku |
+| Liveness | apa yang pada akhirnya harus terjadi, dan apa yang diandaikannya |
+
+Prompt menjawab keenamnya dengan kalimat biasa. Lalu 100x membangun model kecil yang menjalankan fungsi asli Anda, dan sebuah pemeriksa mengunjungi setiap status yang bisa dicapai model. Saat sesuatu rusak, ia mencetak daftar langkah terpendek yang sampai ke sana.
+
+### Blok kecil menyusun sistem besar
+
+<p align="center">
+  <img src="../docs/img/diagrams/verified-blocks.svg" width="520" alt="Blok kecil yang terverifikasi. Tiap blok menyatakan enam properti dan diperiksa sendiri: membagi tagihan, pesanan, pengembalian dana. Sambungan antarblok diperiksa. Setelah itu blok-blok asli berjalan bersama dalam satu model sistem. Buku catatan menandai sebuah bukti sebagai usang saat kode di bawahnya berubah.">
+</p>
+
+Tiap blok diperiksa sendiri, jadi kegagalan menunjuk ke satu hal kecil. Sambungan juga diperiksa: apa yang diserahkan satu blok harus memenuhi aturan blok berikutnya. Lalu blok-blok asli berjalan bersama dalam satu model, dan pemeriksa mengunjungi setiap status dari keseluruhannya. Blok yang diperiksa ditambah sambungan yang diperiksa menjadi perangkat lunak yang bisa Anda percaya. Blok tidak membuktikan sambungan secara gratis, jadi 100x memeriksa keduanya.
+
+### Tetap benar
+
+Buku catatannya adalah `verify/ledger.tsv`, di repo Anda, sehingga ikut berpindah ke setiap branch. Tiap baris menyimpan hash dari kode yang dicakupnya. Ubah kode itu dan baris menjadi usang sampai seseorang membaca perubahannya, menjalankan pemeriksaan, dan menyinkronkannya. Setiap properti harus gagal sekali pada bug yang sengaja ditanam sebelum dihitung. `100x finish` menolak properti yang usang, rusak, atau tidak pernah gagal. Saat agen hendak menyentuh kode yang tidak dicakup aturan mana pun, `100x verify cover` menjawab `NO RULE`, dan itu memulai prosedurnya.
+
+```text
+$ 100x verify run
+pass  split-keeps-every-cent. invariant, exhaustive, exit 0
+
+# someone swaps Math.floor for Math.round in the split
+$ 100x verify status
+stale   split-keeps-every-cent  the covered code changed after the last sync
+
+$ 100x verify run
+FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), set-people(2), compute
+```
+
+<sub>Dari pembagi tip kecil, dijalankan manual di repo percobaan</sub>
+
+### Arti terverifikasi di sini
+
+- **Menyeluruh** (`exhaustive`): setiap status model dikunjungi, jadi properti itu berlaku untuk model tersebut dan batasnya
+- **Terbatas** (`bounded`): pencarian menyentuh batas dan tidak menemukan apa pun pada yang dilihatnya, yang bukan bukti, dan liveness tidak pernah diputuskan dari situ
+- **Sampel** (`sampled`): kasus pilihan atau acak, bagus untuk menemukan bug dan diam soal sisanya
+
+Lulus mencakup model dan fungsi asli yang dijalankan pemeriksaan. Tata letak dan teks tidak punya apa pun untuk dinyatakan, jadi keduanya mendapat pengecualian tercatat beserta alasannya, dan `100x finish` menyebut kode yang dimaafkan tiap pengecualian. Untuk melewati semuanya, tulis `no verification` di pesan Anda atau jalankan `100x config set verify.enabled false`. Laporan lalu menyatakan bahwa tidak ada yang diverifikasi. [Rinciannya](../docs/verification.md).
+
 ## Kenapa agen berhenti di "hampir jalan"
 
 Ada tiga hal yang salah, dan 100x punya jawaban untuk masing-masing. Semua contoh di bawah memakai permintaan yang sama:
@@ -59,7 +112,7 @@ Ada tiga hal yang salah, dan 100x punya jawaban untuk masing-masing. Semua conto
 Permintaannya cuma satu baris. Sebelum membangun apa pun, 100x menulis prompt yang akan Anda tulis sendiri kalau punya waktu luang satu jam. Isinya tujuan, aturan, bagian paling berisiko, dan cara memeriksa tiap permintaan. Di sini ia menemukan jebakannya sejak awal: stock split terlihat seperti rugi kalau grafiknya tidak menyesuaikan.
 
 <p align="center">
-  <img src="../docs/img/diagrams/prompt-step.svg" width="720" alt="Anda mengetik &quot;Aku mau bisa membandingkan saham apa saja dengan S&amp;P 500 di aplikasi riset pasar sahamku&quot;, dan 100x lebih dulu menulis prompt lengkap sekitar 880 kata. Cuplikannya. Tujuan: kedua garis mulai dari 0% pada hari pertama yang sama. Aturan: persentase perubahan dari titik awal yang sama, bukan harga. Risiko: stock split muncul sebagai rugi palsu. Permintaan: 9, dua di antaranya tes yang harus gagal dulu. Tes sulit: split dua banding satu menunjukkan perubahan 0%. Jangan: menggambar harga mentah di sumbu yang sama. Momen: ketik ticker, kedua garis mulai dari 0%. Juri: apakah hitungan manual melewati split cocok?">
+  <img src="../docs/img/diagrams/prompt-step.svg" width="720" alt="Anda mengetik &quot;Aku mau bisa membandingkan saham apa saja dengan S&amp;P 500 di aplikasi riset pasar sahamku&quot;, dan 100x lebih dulu menulis prompt lengkap sekitar 1000 kata. Cuplikannya. Tujuan: kedua garis mulai dari 0% pada hari pertama yang sama. Aturan: persentase perubahan dari titik awal yang sama, bukan harga. Risiko: stock split muncul sebagai rugi palsu. Permintaan: 9, dua di antaranya tes yang harus gagal dulu. Tes sulit: split dua banding satu menunjukkan perubahan 0%. Jangan: menggambar harga mentah di sumbu yang sama. Momen: ketik ticker, kedua garis mulai dari 0%. Juri: apakah hitungan manual melewati split cocok?">
 </p>
 
 <p align="center"><a href="../docs/examples/stock-comparison-prompt.md">Baca prompt lengkapnya</a></p>
@@ -157,6 +210,7 @@ Kalau Anda sedang pergi, agen mencatat setiap keputusan yang diambilnya dan teru
 - **Fitur atau aplikasinya**, dan cara mencobanya sendiri
 - **Screenshot di banyak ukuran layar**, diperiksa dari teks yang meluber, tombol yang terlalu kecil, gambar buram, dan error browser
 - **Halaman laporan** (`.100x/REPORT.html`) dan galeri semua run yang selesai di `~/.100x`
+- **Buku catatan verifikasi** di repo Anda: properti tiap blok, apakah masing-masing berlaku, dan kode yang dicakupnya
 - **Log keputusan**: setiap pilihan yang dibuat 100x saat Anda pergi, beserta alasannya
 - **Pesan akhir** yang ditunjukkan di atas
 
@@ -364,6 +418,7 @@ Beri ia waktu, dan ia akan terus bekerja dalam ronde sampai waktunya habis. Seti
 |---|---|
 | [Instalasi lengkap](../docs/install.md) | semua opsi instalasi, dan semua file yang disentuh installer |
 | [Memakai 100x](../docs/using.md) | semalam ditinggal, halaman laporan, skill pembantu |
+| [Verifikasi formal](../docs/verification.md) | enam properti, buku catatan, arti terverifikasi, dan bagaimana blok menyusun sistem |
 | [Pipeline dan pesan akhir](../docs/pipeline.md) | setiap langkah secara lengkap, dan apa yang diperiksa `100x finish` |
 | [Pengaturan dan paket](../docs/plans-and-setup.md) | setup Claude Code yang disarankan, preset lite, setup untuk tiap paket |
 | [Pengaturan](../docs/settings.md) | semua kunci konfigurasi |

@@ -54,7 +54,7 @@ test('check names every section that is still the template, and exits 1', () => 
   assert.equal(result.code, 1);
   const report = JSON.parse(result.out);
   assert.equal(report.style, 'prompt');
-  assert.deepEqual(report.problems.map((problem) => problem.section), ['Brief', 'Goal', 'Read first', 'Rules', 'Riskiest unknown', 'Asks', 'Scope', 'Test material', 'Do not', 'Assumptions', 'Must not break', 'Moment', 'Judge focus']);
+  assert.deepEqual(report.problems.map((problem) => problem.section), ['Brief', 'Goal', 'Read first', 'Rules', 'Riskiest unknown', 'Asks', 'Scope', 'Test material', 'Do not', 'Assumptions', 'Must not break', 'Properties', 'Moment', 'Judge focus']);
   const text = run(box, 'prompt', 'check');
   assert.match(text.out, /## Rules in project\.md is still the template's hint\. Write it\./);
   assert.match(text.out, /## Read first in project\.md is still the template's hint\. Write it, or put "none: <reason>" under it\./);
@@ -69,7 +69,7 @@ test('a finished prompt passes, in any line ending, and the report counts it', (
     assert.deepEqual(result.problems, []);
     assert.equal(result.asks, 3, 'the asks that count, with CRLF too, and not the dropped one');
     assert.deepEqual(result.none, [{ name: 'Test material', reason: 'no outside files are needed' }]);
-    assert.match(run(box, 'prompt', 'check').out, /^prompt ok\. 12 written, 1 marked none, 3 asks/);
+    assert.match(run(box, 'prompt', 'check').out, /^prompt ok\. 13 written, 1 marked none, 3 asks/);
     box.cleanup();
   }
 });
@@ -507,6 +507,8 @@ test('the phrases the lint looks for are the phrases in the router\'s number tab
   }
   const phrases = rows.flatMap((cell) => [...cell.matchAll(/`([^`]+)`/g)].map((hit) => hit[1]));
   assert.deepEqual(phrases, ['3 versions', 'for 10 hours', 'for 2 days', 'until 6am', '5 rounds of judging', 'max 5 subagents']);
+  assert.ok(lines.join('\n').includes('`no verification`'), 'the router names the phrase that switches property checks off');
+  assert.equal(triggerHits('Keep it small, no verification please.')[0]?.word, 'verification');
   for (const phrase of phrases) assert.ok(triggerHits(phrase).length > 0, `"${phrase}" is in the router's table and the lint does not know it`);
   const modeWords = 'a status page for my shop, an overnight oats app, a mockup tool, wrap up the resume builder, report cards, explain this page, morning habits, continue reading, judge a contest, setup guide, an adhd planner, a quick fast rapid prototype mvp';
   assert.deepEqual(triggerHits(modeWords), [], 'a word that names a mode is a plain word in a brief');
