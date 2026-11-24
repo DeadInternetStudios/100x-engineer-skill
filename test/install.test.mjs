@@ -3,7 +3,10 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { cli, ROOT, sandbox, write } from './helpers.mjs';
+import { runProgram } from '../lib/proc.mjs';
+import { BASH, cli, noFileLinks, ROOT, sandbox, symlink, write } from './helpers.mjs';
+
+const WINDOWS = process.platform === 'win32';
 
 // Every skill folder of this repository: 100x and each of its modes. The install has to link all of them, or a mode is not there to call.
 const SKILLS = fs.readdirSync(path.join(ROOT, 'skills'), { withFileTypes: true }).filter((d) => d.isDirectory() && fs.existsSync(path.join(ROOT, 'skills', d.name, 'SKILL.md'))).map((d) => d.name).sort();
@@ -62,11 +65,17 @@ test('a fresh install links every skill, the CLI and the PATH entry, and the lin
   const result = install(box);
   assert.equal(result.code, 0, result.out + result.err);
   for (const name of SKILLS) assert.equal(fs.realpathSync(path.join(where.skills, name)), fs.realpathSync(path.join(ROOT, 'skills', name)));
-  assert.equal(fs.realpathSync(path.join(where.bin, '100x')), fs.realpathSync(path.join(ROOT, 'bin', '100x.mjs')));
+  // Windows runs a program by its file name, so the CLI is a pair of launchers there, 100x.cmd and a script named 100x for Git Bash.
+  if (WINDOWS) {
+    for (const dir of [where.bin, path.join(where.global, 'bin')]) {
+      assert.match(fs.readFileSync(path.join(dir, '100x.cmd'), 'utf8'), /^@echo off\r\nnode ".*bin\\100x\.mjs" %\*\r\n$/);
+      assert.match(fs.readFileSync(path.join(dir, '100x'), 'utf8'), /^#!\/bin\/sh\nexec node ".*\/bin\/100x\.mjs" "\$@"\n$/);
+    }
+  } else assert.equal(fs.realpathSync(path.join(where.bin, '100x')), fs.realpathSync(path.join(ROOT, 'bin', '100x.mjs')));
   assert.equal(fs.readFileSync(path.join(where.global, 'repo'), 'utf8').trim(), fs.realpathSync.native(ROOT));
   assert.equal(fs.readFileSync(path.join(where.global, 'config.json'), 'utf8').trim(), '{}');
   assert.match(fs.readFileSync(path.join(where.global, 'profile.md'), 'utf8'), /Stage 0 reads it/);
-  const version = spawnSync(path.join(where.bin, '100x'), ['version'], { encoding: 'utf8', env: { ...process.env, ...box.env } });
+  const version = runProgram(path.join(where.bin, WINDOWS ? '100x.cmd' : '100x'), ['version'], { encoding: 'utf8', env: { ...process.env, ...box.env } });
   assert.equal(version.status, 0, version.stderr);
   assert.ok(version.stdout.trim().startsWith(JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version), 'the linked CLI prints the package number first, then the commit it is at');
   box.cleanup();
@@ -125,7 +134,8 @@ test('a real folder in the way is never replaced, even with --force, and the res
   assert.equal(result.code, 1);
   assert.match(result.out, /blocked/);
   assert.equal(fs.readFileSync(path.join(where.skills, '100x', 'notes.txt'), 'utf8'), 'mine');
-  assert.ok(fs.lstatSync(path.join(where.global, 'bin', '100x')).isSymbolicLink());
+  if (WINDOWS) assert.ok(fs.existsSync(path.join(where.global, 'bin', '100x.cmd')));
+  else assert.ok(fs.lstatSync(path.join(where.global, 'bin', '100x')).isSymbolicLink());
   box.cleanup();
 });
 
@@ -135,7 +145,7 @@ test('a link that points elsewhere is a conflict until --force, and uninstall re
   const other = path.join(box.dir, 'other-setup');
   write(path.join(other, 'SKILL.md'), 'other');
   fs.mkdirSync(where.skills, { recursive: true });
-  fs.symlinkSync(other, path.join(where.skills, '100x'));
+  symlink(other, path.join(where.skills, '100x'));
 
   const refused = install(box);
   assert.equal(refused.code, 1);
@@ -225,7 +235,7 @@ test('a link to your own copy of unslop-text is kept, never recorded, and --forc
   const where = layout(box);
   const mine = fakeCheckout(box, 'unslop-text');
   fs.mkdirSync(where.skills, { recursive: true });
-  fs.symlinkSync(path.join(mine, 'skills', 'unslop-text'), path.join(where.skills, 'unslop-text'));
+  symlink(path.join(mine, 'skills', 'unslop-text'), path.join(where.skills, 'unslop-text'));
   const kept = cli(['install'], { env: box.env });
   assert.equal(kept.code, 0, kept.out + kept.err);
   assert.match(kept.out, /kept\s+.*unslop-text\s+points to .* a copy of unslop-text you chose/);
@@ -247,7 +257,7 @@ test('an install from before unslop-design left 100x loses the link to the remov
   // What an older 100x left behind: a link to vendor/unslop-design, which replaced the one the owner had made, recorded in install.json.
   const gone = path.join(ROOT, 'vendor', 'unslop-design');
   const link = path.join(where.skills, 'unslop-design');
-  fs.symlinkSync(gone, link);
+  symlink(gone, link);
   const manifestFile = path.join(where.global, 'install.json');
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   manifest.links.push({ path: link, target: gone, replaced: own });
@@ -268,7 +278,7 @@ test('an old install record that lists the removed link twice is cleaned up once
   assert.equal(cli(['install'], { env: box.env }).code, 0);
   const gone = path.join(ROOT, 'vendor', 'unslop-design');
   const link = path.join(where.skills, 'unslop-design');
-  fs.symlinkSync(gone, link);
+  symlink(gone, link);
   const manifestFile = path.join(where.global, 'install.json');
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   manifest.links.push({ path: link, target: gone }, { path: link, target: gone });
@@ -288,7 +298,7 @@ test('an old install record that lists the removed link twice gives the owner li
     assert.equal(cli(['install'], { env: box.env }).code, 0);
     const gone = path.join(ROOT, 'vendor', 'unslop-design');
     const link = path.join(where.skills, 'unslop-design');
-    fs.symlinkSync(gone, link);
+    symlink(gone, link);
     const manifestFile = path.join(where.global, 'install.json');
     const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
     const plain = { path: link, target: gone };
@@ -315,23 +325,23 @@ test('--no-bin skips the PATH entry and prints a hint when the folder is not on 
 test('scripts/install.sh forwards to the CLI, including --help and --dry-run', () => {
   const box = sandbox();
   const script = path.join(ROOT, 'scripts', 'install.sh');
-  const help = spawnSync('bash', [script, '--help'], { encoding: 'utf8', env: { ...process.env, ...box.env } });
+  const help = spawnSync(BASH, [script.replaceAll('\\', '/'), '--help'], { encoding: 'utf8', env: { ...process.env, ...box.env } });
   assert.equal(help.status, 0, help.stderr);
   assert.match(help.stdout, /--uninstall/);
-  const dry = spawnSync('bash', [script, '--no-unslop', '--dry-run'], { encoding: 'utf8', env: { ...process.env, ...box.env } });
+  const dry = spawnSync(BASH, [script.replaceAll('\\', '/'), '--no-unslop', '--dry-run'], { encoding: 'utf8', env: { ...process.env, ...box.env } });
   assert.equal(dry.status, 0, dry.stderr);
   assert.match(dry.stdout, /Dry run/);
   assert.deepEqual(entries(box.home), []);
   box.cleanup();
 });
 
-test('a symlink planted where install writes a small file is left alone, and so is what it points at', () => {
+test('a symlink planted where install writes a small file is left alone, and so is what it points at', { skip: noFileLinks }, () => {
   const box = sandbox();
   const where = layout(box);
   const precious = path.join(box.dir, 'precious.txt');
   fs.writeFileSync(precious, 'PRECIOUS DO NOT OVERWRITE\n');
   fs.mkdirSync(where.global, { recursive: true });
-  fs.symlinkSync(precious, path.join(where.global, 'repo'));
+  symlink(precious, path.join(where.global, 'repo'));
   const result = cli(['install', '--no-unslop', '--json'], { env: box.env });
   assert.equal(result.code, 0, result.out + result.err);
   assert.equal(fs.readFileSync(precious, 'utf8'), 'PRECIOUS DO NOT OVERWRITE\n');
@@ -342,13 +352,13 @@ test('a symlink planted where install writes a small file is left alone, and so 
   box.cleanup();
 });
 
-test('an install record that is a symlink stops the install before anything changes', () => {
+test('an install record that is a symlink stops the install before anything changes', { skip: noFileLinks }, () => {
   const box = sandbox();
   const where = layout(box);
   const precious = path.join(box.dir, 'precious.json');
   fs.writeFileSync(precious, '{"mine":true}\n');
   fs.mkdirSync(where.global, { recursive: true });
-  fs.symlinkSync(precious, path.join(where.global, 'install.json'));
+  symlink(precious, path.join(where.global, 'install.json'));
   const result = cli(['install', '--no-unslop'], { env: box.env });
   assert.equal(result.code, 1);
   assert.match(result.out + result.err, /install\.json.*is a symlink/);
@@ -381,9 +391,9 @@ test('install takes out a link whose skill was renamed away, and leaves other li
   install(box);
   const stale = path.join(where.skills, '100x-old-name');
   const gone = path.join(ROOT, 'skills', '100x-old-name');
-  fs.symlinkSync(gone, stale);
+  symlink(gone, stale);
   const kept = path.join(where.skills, 'kept-link');
-  fs.symlinkSync(path.join(ROOT, 'skills', '100x'), kept);
+  symlink(path.join(ROOT, 'skills', '100x'), kept);
   const manifestFile = path.join(where.global, 'install.json');
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   manifest.links.push({ path: stale, target: gone }, { path: kept, target: path.join(ROOT, 'skills', '100x') });
@@ -402,9 +412,9 @@ test('install takes out a link whose skill was renamed away, and leaves other li
   install(box);
   const stale = path.join(where.skills, '100x-old-name');
   const gone = path.join(ROOT, 'skills', '100x-old-name');
-  fs.symlinkSync(gone, stale);
+  symlink(gone, stale);
   const kept = path.join(where.skills, 'kept-link');
-  fs.symlinkSync(path.join(ROOT, 'skills', '100x'), kept);
+  symlink(path.join(ROOT, 'skills', '100x'), kept);
   const manifestFile = path.join(where.global, 'install.json');
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   manifest.links.push({ path: stale, target: gone }, { path: kept, target: path.join(ROOT, 'skills', '100x') });

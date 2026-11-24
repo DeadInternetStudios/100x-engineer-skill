@@ -6,7 +6,7 @@ import test from 'node:test';
 import { pathToFileURL } from 'node:url';
 import { freePort, listening, startServer } from '../lib/morning-server.mjs';
 import { resolvePlaywright } from '../lib/playwright.mjs';
-import { browserSkip as skip, cli, sandbox } from './helpers.mjs';
+import { browserSkip as skip, cli, noFileLinks, sandbox, symlink } from './helpers.mjs';
 import { gradientPng } from './png.mjs';
 import { FINDINGS, makeProject, PNG, runJson } from './projects.mjs';
 
@@ -834,8 +834,10 @@ test('the gallery server checks token, host and header, and serves only the run 
     assert.deepEqual(hero.body, PNG);
     fs.writeFileSync(path.join(root, 'secret.txt'), 'nope');
     assert.ok([403, 404].includes((await request(base, `file/${id}/..%2Fsecret.txt`)).status), 'no path traversal out of .100x');
-    fs.symlinkSync(path.join(root, 'secret.txt'), path.join(root, '.100x', 'link.txt'));
-    assert.equal((await request(base, `file/${id}/link.txt`)).status, 403, 'no symlink escape');
+    if (!noFileLinks) {
+      symlink(path.join(root, 'secret.txt'), path.join(root, '.100x', 'link.txt'));
+      assert.equal((await request(base, `file/${id}/link.txt`)).status, 403, 'no symlink escape');
+    }
   } finally {
     await gallery.close();
     process.env.X100_HOME = previous ?? '';

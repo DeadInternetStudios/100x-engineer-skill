@@ -33,6 +33,16 @@ npm install -g github:DeadInternetStudios/100x-engineer-skill
 
 The first line puts the tool on your PATH, with the skills inside the package. The second does what the installer above does, from there. `npm update -g` replaces the package, so run `100x install` again after it.
 
+### On Windows
+
+The same ways work in PowerShell, cmd and Git Bash. Three things differ.
+
+- **A POSIX shell.** The commands you set for a judge or a prototype, such as `review.command`, are written for `sh` with `$VARIABLES`. 100x runs them with the `sh.exe` that Git for Windows installs. It looks on PATH and in the usual Git folders, and `X100_SH` names another one. Claude Code needs Git for Windows too, so you probably have it already.
+- **Links.** Windows lets only an administrator, or a machine in Developer Mode, make a symlink. The installer tries one and, when Windows refuses, makes a junction for each skill folder, which the agent apps read the same way. The `100x` program is two small launchers that run `node` on this checkout, `100x.cmd` for cmd and PowerShell and `100x` for Git Bash. The installer says which kind it made. `100x doctor` counts all three as installed, and `--uninstall` removes them. `X100_NO_SYMLINK=1` asks for the junction and launcher path even where symlinks work.
+- **Folders.** The launchers go to `%USERPROFILE%\.local\bin`, which is not on PATH until you add it in Windows Settings (search for "environment variables"). `npm install -g` puts `100x` on PATH by itself. Playwright keeps its browsers in `%LOCALAPPDATA%\ms-playwright`.
+
+A `git pull` in this repo updates the install, because the junctions and launchers point at this checkout.
+
 ### With skills.sh
 
 [skills.sh](https://skills.sh) is a directory of skills and a command line tool, `skills`, that copies them into the apps you use. There is nothing to submit: a repo is listed once people install it with that tool.

@@ -5,9 +5,14 @@ import os from 'node:os';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { markRun } from '../lib/eval/blind.mjs';
+import { runProgram } from '../lib/proc.mjs';
 import { ARMS, bakeoff, folder, judge, keyOf, makeReceipt, ON, OFF, ORDERS, page, recordModels, sees, split } from './bakeoff-helpers.mjs';
 import { browserSkip, cli, ROOT, sandbox, write } from './helpers.mjs';
+
+// A path as the commands and the agent text write it, with / on every system.
+const fwd = (p) => p.replaceAll('\\', '/');
 
 const score = (box, dir) => cli(['eval', 'bakeoff', 'score', dir, '--json'], { cwd: box.project, env: box.env });
 // Every score in this file also checks the exit code: 2 when the verdict was withheld, 0 when one was printed, whatever it said.
@@ -34,9 +39,9 @@ test('init makes a task per brief and arm that differ only in the method note, a
   assert.doesNotMatch(off, /## Method/, 'the control arm has no method paragraph, and its folder is called arm-1');
   assert.match(off, /Use no skill from your list of installed skills, and open no SKILL\.md file except one that a Method section below names\./);
   assert.match(on, /Use no skill from your list of installed skills, and open no SKILL\.md file except one that a Method section below names\./, 'both arms are told the same thing about skills');
-  assert.match(off, /\/arms\/a\/arm-1\./);
-  assert.match(on, /\/arms\/a\/arm-2\./);
-  const strip = (text) => text.replace(/\n## Method[\s\S]*$/, '').replace(/\/arms\/a\/arm-[12]\./, '/arms/a/ARM.');
+  assert.match(fwd(off), /\/arms\/a\/arm-1\./);
+  assert.match(fwd(on), /\/arms\/a\/arm-2\./);
+  const strip = (text) => fwd(text).replace(/\n## Method[\s\S]*$/, '').replace(/\/arms\/a\/arm-[12]\./, '/arms/a/ARM.');
   assert.equal(strip(on), strip(off), 'the same brief, the same minutes, the same deliverable');
   assert.match(off, /You have 20 minutes/);
   assert.ok(fs.existsSync(folder(dir, 'b', ON)));
@@ -152,7 +157,7 @@ test('pairs refuses while an arm folder has no index.html and names it', () => {
   fs.rmSync(path.join(folder(dir, briefs[1].id, ON), 'index.html'));
   const refused = cli(['eval', 'bakeoff', 'pairs', dir, '--no-capture'], { cwd: box.project, env: box.env });
   assert.equal(refused.code, 1);
-  assert.match(refused.err, /have no index\.html yet:\n.*brief-2\/arm-2\/index\.html/);
+  assert.match(fwd(refused.err), /have no index\.html yet:\n.*brief-2\/arm-2\/index\.html/);
   box.cleanup();
 });
 
@@ -408,7 +413,7 @@ test('status says what is built, what is judged and the next step', () => {
   fs.rmSync(path.join(folder(dir, briefs[0].id, OFF), 'index.html'));
   const status = () => cli(['eval', 'bakeoff', 'status', dir], { cwd: box.project, env: box.env }).out;
   assert.match(status(), new RegExp(`brief-1/${OFF} +no index\\.html in arms/brief-1/arm-1`));
-  const d = dir.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const d = fwd(dir).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   assert.match(status(), new RegExp(`Next: start brief-1/${OFF}\\. Run these in order\\. \`100x helper models\` lists the model id, level and size to fill in\\.\\n {2}100x eval bakeoff mark ${d} brief-1/${OFF} start\\n {2}100x helper run --model <model id> --effort <level> --context <size> --task-file ${d}/tasks/brief-1--${OFF}\\.md --cwd ${d}/arms/brief-1/arm-1 --minutes 20 --receipt ${d}/helper-receipts/brief-1--${OFF}\\.json --json\\n {2}100x eval bakeoff mark ${d} brief-1/${OFF} stop --receipt ${d}/helper-receipts/brief-1--${OFF}\\.json\\n`), 'the next step is three commands that run as they stand, with only the model left to fill in');
   cli(['eval', 'bakeoff', 'mark', dir, `brief-1/${OFF}`, 'start', '--model', 'm'], { cwd: box.project, env: box.env });
   assert.match(status(), new RegExp(`brief-1/${OFF} +no index\\.html in arms/brief-1/arm-1, running`));
@@ -430,7 +435,7 @@ test('a run that left no page stays in the count: pairs refuses until --blank-mi
   const pairs = (...flags) => cli(['eval', 'bakeoff', 'pairs', dir, '--no-capture', ...flags], { cwd: box.project, env: box.env });
   const refused = pairs();
   assert.equal(refused.code, 1);
-  assert.match(refused.err, /have no index\.html yet:\n.*brief-1\/arm-1\/index\.html/);
+  assert.match(fwd(refused.err), /have no index\.html yet:\n.*brief-1\/arm-1\/index\.html/);
   assert.match(refused.err, /a run that is over and left no page failed, and it stays in the count/i);
   assert.match(refused.err, /--blank-missing/);
   assert.ok(!fs.existsSync(path.join(dir, 'key.json')), 'a refusal seals nothing');
@@ -493,7 +498,7 @@ test('status says which finished runs left no page and what to do about them', (
   }
   const out = cli(['eval', 'bakeoff', 'status', dir], { cwd: box.project, env: box.env }).out;
   assert.match(out, /brief-1\/skill-off ended with no index\.html\. That is a failed run and it stays in the count\./);
-  assert.match(out, new RegExp(`Next: 100x eval bakeoff pairs ${dir.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} --blank-missing\\.`));
+  assert.match(out, new RegExp(`Next: 100x eval bakeoff pairs ${fwd(dir).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} --blank-missing\\.`));
   box.cleanup();
 });
 
@@ -673,16 +678,17 @@ test('--pin copies the skill into the bake-off folder with a clean home and a co
   const pinned = path.join(dir, 'pinned');
   assert.ok(fs.existsSync(path.join(pinned, 'skills', '100x-mockup', 'SKILL.md')));
   assert.deepEqual(fs.readdirSync(path.join(pinned, 'home')), [], 'a clean home');
-  const ran = spawnSync(path.join(pinned, '100x'), ['doctor'], { encoding: 'utf8', env: { ...process.env, HOME: box.env.HOME, X100_HOME: '/nonexistent-home' }, cwd: box.project });
-  const quoted = pinned.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  assert.match(ran.stdout, new RegExp(`home +${quoted}/home`), 'the command uses the clean home whatever the caller has set');
+  const ran = runProgram(path.join(pinned, process.platform === 'win32' ? '100x.cmd' : '100x'), ['doctor'], { encoding: 'utf8', env: { ...process.env, HOME: box.env.HOME, X100_HOME: '/nonexistent-home' }, cwd: box.project });
+  const escape = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const quoted = escape(fwd(pinned));
+  assert.match(ran.stdout, new RegExp(`home +${escape(path.join(pinned, 'home'))}`), 'the command uses the clean home whatever the caller has set');
   const on = fs.readFileSync(path.join(dir, 'tasks', `lighthouse-idle--${ON}.md`), 'utf8');
   const off = fs.readFileSync(path.join(dir, 'tasks', `lighthouse-idle--${OFF}.md`), 'utf8');
   assert.match(on, new RegExp(`## Method\\nFollow the skill in ${quoted}/skills/100x-mockup/SKILL\\.md\\. Its 100x command is ${quoted}/100x`));
   assert.doesNotMatch(off, /pinned|100x-mockup|## Method/);
   assert.match(made.out, /The skill is pinned in .*pinned/);
   if (config.pinned.snapshot) assert.match(made.out, /from commit [0-9a-f]{12}/);
-  assert.match(made.out, /Protocol: .*evals\/PROTOCOL\.md\. Read it before the first arm starts\./);
+  assert.match(made.out, /Protocol: .*evals[\\/]PROTOCOL\.md\. Read it before the first arm starts\./);
   box.cleanup();
 });
 
@@ -702,7 +708,7 @@ test('the run order is a seeded shuffle of every brief and arm, the same for the
   assert.deepEqual(a.config.order, b.config.order, 'the same seed, the same order');
   assert.notDeepEqual(a.config.order, c.config.order);
   assert.match(a.result.out, /Run the arms one at a time in this order: /);
-  const protocolText = fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'evals', 'PROTOCOL.md'));
+  const protocolText = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'evals', 'PROTOCOL.md'));
   assert.equal(a.config.protocol, crypto.createHash('sha256').update(protocolText).digest('hex'), 'init records the hash of the protocol text it ran under');
   assert.match(make('d', '--first', '0').result.err, /--first takes a whole number from 1 to 20\. Got "0"\./);
   assert.match(make('e', '--first', '99').result.err, /from 1 to 20\. Got "99"\./);
@@ -711,7 +717,7 @@ test('the run order is a seeded shuffle of every brief and arm, the same for the
 });
 
 test('evals/briefs.json holds 20 briefs with the three pilot briefs first, and none names a skill', () => {
-  const file = JSON.parse(fs.readFileSync(path.join(path.dirname(new URL(import.meta.url).pathname), '..', 'evals', 'briefs.json'), 'utf8'));
+  const file = JSON.parse(fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'evals', 'briefs.json'), 'utf8'));
   assert.equal(file.briefs.length, 20);
   assert.deepEqual(file.briefs.slice(0, 3).map((b) => b.id), ['lighthouse-idle', 'coffee-dashboard', 'dog-walking-lisbon']);
   assert.equal(new Set(file.briefs.map((b) => b.id)).size, 20);

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { newerCommits } from '../lib/commands/upstream.mjs';
-import { cli, sandbox } from './helpers.mjs';
+import { cli, fakeBin, sandbox } from './helpers.mjs';
 
 const PINNED = 'bf0c7cd80abdbf7fe47b634978a7d1b4071f71a7';
 
@@ -21,8 +21,7 @@ test('when the pinned commit is not in the list everything is reported as maybe 
 });
 
 function fakeGh(box, body, code = 0) {
-  const file = path.join(box.dir, 'fake-gh');
-  fs.writeFileSync(file, `#!/bin/sh\n${code ? `echo "gh: network down" >&2\nexit ${code}` : `printf '%s' '${body}'`}\n`, { mode: 0o755 });
+  const file = fakeBin(path.join(box.dir, 'fake-gh-bin'), 'fake-gh', code ? `process.stderr.write('gh: network down\\n'); process.exit(${code});` : `process.stdout.write(${JSON.stringify(body)});`);
   return { ...box.env, X100_GH: file };
 }
 

@@ -8,7 +8,7 @@ import { COMPATIBILITY, readStamp, stampProblems, stampText } from '../lib/skill
 import { skillHash } from '../lib/skill-hash.mjs';
 import { parseSkillFrontmatter, specFindings } from '../lib/skill-spec.mjs';
 import { validateRepo } from '../lib/validate.mjs';
-import { cli, ROOT, sandbox, write } from './helpers.mjs';
+import { cli, ROOT, sandbox, symlink, write } from './helpers.mjs';
 
 const skill = (front, body = '# Demo\n\nRun `100x doctor`.\n') => `---\nname: 100x-demo\ndescription: "Use when testing the spec rules."\n${front}---\n${body}`;
 const rulesOf = (text, extra = {}) => {
@@ -149,7 +149,7 @@ test('a symlink that loops back to a folder above it is left out of the hash ins
   const skill = path.join(box.dir, 'looping');
   write(path.join(skill, 'SKILL.md'), '---\nname: looping\ndescription: Use for a loop. Do it.\n---\nBody.\n');
   const plain = skillHash(skill);
-  fs.symlinkSync('.', path.join(skill, 'self'));
+  symlink('.', path.join(skill, 'self'));
   assert.equal(skillHash(skill), plain, 'the loop adds no file');
   const tabbed = parseSkillFrontmatter('---\nname: a\ndescription: Use it.\nmetadata:\n\tauthor: "me"\n---\n');
   assert.ok(tabbed.problems.some((problem) => /tab characters must not be used in indentation/.test(problem)), tabbed.problems.join('; '));

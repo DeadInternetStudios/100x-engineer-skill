@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { cli, ROOT, sandbox, write } from './helpers.mjs';
+import { cli, ROOT, sandbox, SH, write } from './helpers.mjs';
 import { makeProject } from './projects.mjs';
 
 const DOC = fs.readFileSync(path.join(ROOT, 'skills', '100x', 'references', 'apps.md'), 'utf8');
@@ -23,7 +23,7 @@ function stubApps(box) {
   return { bin, args: () => fs.readFileSync(record, 'utf8').split('\0').slice(0, -1) };
 }
 
-const run = (command, env, bin) => spawnSync('sh', ['-c', command], { env: { ...process.env, PATH: `${bin}${path.delimiter}${process.env.PATH}`, ...env }, encoding: 'utf8' });
+const run = (command, env, bin) => spawnSync(SH, ['-c', command], { env: { ...process.env, PATH: `${bin}${path.delimiter}${process.env.PATH}`, ...env }, encoding: 'utf8' });
 
 test('the documented apps are the ones the test knows about', () => {
   assert.deepEqual(Object.keys(TEMPLATES).sort(), ['claude', 'codex', 'cursor', 'gemini', 'opencode']);

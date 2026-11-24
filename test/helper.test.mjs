@@ -6,7 +6,7 @@ import test from 'node:test';
 import { spawnSync } from 'node:child_process';
 import { readReceipt, receiptBacks, receiptParams, receiptState } from '../lib/receipt.mjs';
 import { sealFile, sealState } from '../lib/seal.mjs';
-import { BIN, cli, ROOT, sandbox, write } from './helpers.mjs';
+import { BIN, cli, ROOT, sandbox, SH, write } from './helpers.mjs';
 
 // A stand-in for @cursor/sdk. It keeps a catalog like the account's own, can be logged out, can report another model than the one
 // asked for, can fail, and can hang until it is cancelled. Every call it gets is written to a file the test reads back.
@@ -369,7 +369,7 @@ test('the command line in apps.md runs as written with the variables 100x review
   const bin = path.join(box.dir, 'bin');
   write(path.join(bin, '100x'), `#!/bin/sh\nexec ${JSON.stringify(process.execPath)} ${JSON.stringify(BIN)} "$@"\n`);
   fs.chmodSync(path.join(bin, '100x'), 0o755);
-  const run = (extra) => spawnSync('sh', ['-c', line], { cwd: box.project, encoding: 'utf8', env: { ...process.env, ...env, PATH: `${bin}${path.delimiter}${process.env.PATH}`, X100_TASK: 'Judge it. Write findings.md.', ...extra } });
+  const run = (extra) => spawnSync(SH, ['-c', line], { cwd: box.project, encoding: 'utf8', env: { ...process.env, ...env, PATH: `${bin}${path.delimiter}${process.env.PATH}`, X100_TASK: 'Judge it. Write findings.md.', ...extra } });
   const result = run({ X100_MODEL: 'muse-wonder-1.0', X100_EFFORT: 'max', X100_OPT_CONTEXTWINDOW: '300k' });
   assert.equal(result.status, 0, result.stderr + result.stdout);
   assert.match(result.stdout, /^working\nhelper finished\./);

@@ -6,7 +6,7 @@ import test from 'node:test';
 import { buildPairs, causeOf, leakPatterns, markRun, scanForLeaks } from '../lib/eval/blind.mjs';
 import { ARMS, bakeoff, folder, judge, keyOf, makeReceipt, ON, OFF, ORDERS, recordModels, sealedOf, sees, split } from './bakeoff-helpers.mjs';
 import { sign, signingKey } from '../lib/seal.mjs';
-import { cli, sandbox, write } from './helpers.mjs';
+import { cli, noFileLinks, sandbox, symlink, write } from './helpers.mjs';
 
 const run = (box, ...args) => cli(['eval', 'bakeoff', ...args], { cwd: box.project, env: box.env });
 // The exit code is part of what every score here returns: 2 when the verdict was withheld, 0 when one was printed.
@@ -79,12 +79,14 @@ test('the leak scan reads what a file holds, so a name in a file with no extensi
   assert.deepEqual(scan('shot.png', Buffer.concat([Buffer.from([0x89, 0x50, 0x4e, 0x47, 0]), Buffer.from('skill-on')])), ['the binary file holds "skill-on"'], 'a longer name is still found in a picture');
   fs.rmSync(probe, { recursive: true, force: true });
 
-  fs.symlinkSync(path.join(box.dir, 'briefs.json'), path.join(arm, 'link'));
-  const linked = attempt();
-  assert.equal(linked.code, 1);
-  assert.match(linked.err, /The scan could not read 1 file a judge would be given:\n  arms\/\S+\/arm-\d\/link +it is a symbolic link.*\(in 2 judge folders\)/, 'one link in the arm folder, copied into both judge folders of its pair');
-  assert.match(linked.err, /link {2}it is a symbolic link/);
-  fs.rmSync(path.join(arm, 'link'));
+  if (!noFileLinks) {
+    symlink(path.join(box.dir, 'briefs.json'), path.join(arm, 'link'));
+    const linked = attempt();
+    assert.equal(linked.code, 1);
+    assert.match(linked.err, /The scan could not read 1 file a judge would be given:\n  arms\/\S+\/arm-\d\/link +it is a symbolic link.*\(in 2 judge folders\)/, 'one link in the arm folder, copied into both judge folders of its pair');
+    assert.match(linked.err, /link {2}it is a symbolic link/);
+    fs.rmSync(path.join(arm, 'link'));
+  }
   assert.ok(!fs.existsSync(path.join(dir, 'key.json')), 'no refusal seals anything');
 
   const clean = attempt();

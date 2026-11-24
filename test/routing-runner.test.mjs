@@ -57,7 +57,7 @@ test('each message goes to the helper once with the model, effort and context as
   for (const [id, skill] of Object.entries(answers)) assert.equal(skill, firstListed(dir, id), `${id} got the answer to its own message`);
   const calls = fs.readFileSync(path.join(home, 'calls.log'), 'utf8').trim().split('\n');
   assert.equal(calls.length, 3);
-  for (const call of calls) assert.match(call, / some-model high 200k \/.*route-empty-/, 'the helper ran in a folder that holds nothing');
+  for (const call of calls) assert.match(call, / some-model high 200k (?:\/|[A-Za-z]:\\).*route-empty-/, 'the helper ran in a folder that holds nothing');
   const meta = JSON.parse(fs.readFileSync(path.join(dir, 'answers-meta.json'), 'utf8'));
   assert.equal(meta.model, 'some-model');
   assert.equal(meta.tokens, 300);
