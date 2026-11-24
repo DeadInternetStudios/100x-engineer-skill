@@ -1,2 +1,4 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Text is LF in every checkout, on Windows too. Pinned copies in vendor/ are hashed byte for byte, and the tests compare text with \n.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf

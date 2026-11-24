@@ -26,7 +26,7 @@ export function sandbox() {
     dir,
     home,
     project,
-    env: { HOME: home, X100_HOME: path.join(home, '.100x'), X100_SKILLS_DIR: path.join(home, '.agents', 'skills'), PLAYWRIGHT_BROWSERS_PATH: REAL_BROWSER_CACHE, ...(PLAYWRIGHT_BASE ? { X100_PLAYWRIGHT_FROM: PLAYWRIGHT_BASE } : {}) },
+    env: { HOME: home, USERPROFILE: home, X100_HOME: path.join(home, '.100x'), X100_SKILLS_DIR: path.join(home, '.agents', 'skills'), PLAYWRIGHT_BROWSERS_PATH: REAL_BROWSER_CACHE, ...(PLAYWRIGHT_BASE ? { X100_PLAYWRIGHT_FROM: PLAYWRIGHT_BASE } : {}) },
     cleanup: () => fs.rmSync(dir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }),
   };
 }
