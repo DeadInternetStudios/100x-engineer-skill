@@ -111,7 +111,7 @@ test('the skills of this repo carry the stamp, fit the spec, and say what they n
   const slug = /github\.com\/([^/]+\/[^/.]+)/.exec(pkg.repository.url)[1];
   const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
   assert.ok(readme.includes(`npx skills add ${slug}`), 'the README install line names the repository package.json names');
-  assert.ok(readme.includes(`img.shields.io/github/stars/${slug}`), 'the stars badge names it too');
+  assert.ok(readme.includes(`badgen.net/github/stars/${slug}`), 'the stars badge names it too');
 });
 
 test('the content hash is the one the skills CLI writes as skillFolderHash to ~/.agents/.skill-lock.json (computedHash in a project skills-lock.json), for text with CRLF, binary files and a path with accents', () => {

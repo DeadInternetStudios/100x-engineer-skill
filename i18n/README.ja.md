@@ -9,8 +9,8 @@
 
 ### もう「ほぼ動く」で終わらせない AI コーディング
 
-[![ci](https://img.shields.io/github/actions/workflow/status/DeadInternetStudios/100x-engineer-skill/ci.yml?branch=main&style=flat-square&label=ci&labelColor=0b0e14)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
-[![GitHub スター](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=flat-square&label=stars&labelColor=0b0e14&color=262e3d)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
+[![ci](https://badgen.net/github/checks/DeadInternetStudios/100x-engineer-skill/main?label=ci&labelColor=0b0e14&style=flat)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
+[![GitHub スター](https://badgen.net/github/stars/DeadInternetStudios/100x-engineer-skill?label=stars&labelColor=0b0e14&color=262e3d&style=flat)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 [![リリース: 0.1.0](https://img.shields.io/badge/release-0.1.0-262e3d?style=flat-square&labelColor=0b0e14)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
 [![ライセンス: MIT](https://img.shields.io/badge/license-MIT-262e3d?style=flat-square&labelColor=0b0e14)](../LICENSE)
 ![ステータス: ベータ](https://img.shields.io/badge/status-beta-ffb000?style=flat-square&labelColor=0b0e14)
