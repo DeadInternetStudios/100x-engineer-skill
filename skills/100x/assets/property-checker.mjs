@@ -299,13 +299,12 @@ function checkLiveness(property) {
       if (closed && members.every((v) => !goal[v])) for (const v of members) seeds.add(v);
     });
   } else {
-    const { comp, comps } = components((v) => !goal[v]);
+    const { comps } = components((v) => !goal[v]);
     comps.forEach((members) => {
       const loops = members.length > 1 || out[members[0]].some(([, w]) => w === members[0]);
       if (loops) for (const v of members) seeds.add(v);
     });
     states.forEach((_, v) => { if (!goal[v] && out[v].length === 0) seeds.add(v); });
-    void comp;
   }
   // Every state that can reach a seed without passing through to.
   const doomed = new Set(seeds);

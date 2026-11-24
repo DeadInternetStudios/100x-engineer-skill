@@ -10,6 +10,7 @@ Back to the [README](../README.md).
 |---|---|
 | `init` | Scaffold `.100x/` in a project, keep it out of git, detect the stack. |
 | `prompt` | Check the prompt in `project.md`, or print it as one text to paste into another chat. |
+| `verify` | Keep the verified properties of the code in a ledger in the project (`verify/ledger.tsv`, tracked by git), run their checks, and say which rule covers a piece of code. |
 | `ref` | Print one of the suite's shared references by name, such as `100x ref apps`. A skill installed on its own reads them this way. |
 | `install` | Link the skills and bootstrap `~/.100x`, or undo it. |
 | `config` | Show or change settings. `config preset lite` or `medium` moves three settings for a smaller plan, `config preset standard` takes them back. |

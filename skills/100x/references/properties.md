@@ -58,6 +58,7 @@ The ledger (`verify/ledger.tsv`, tracked by git) and the log (`verify/history.ts
 - **The promise changed on purpose.** `100x verify amend <id> --evidence "<commit, test or doc>" --property "<new sentence>"`. The old wording and the evidence go to the log, and the row is unchecked until it runs again. A property is never edited in place to get green.
 - **No longer applies.** `100x verify retire <id> --why "<reason>"`.
 - A green run does not move the hash. Only `sync` does, and it needs a green run and a written note.
+- `100x verify run` runs the `command` of each row, as `npm test` runs a script of package.json. It prints the command first. Read the ledger of a project you did not write before you run it. `status`, `cover` and `gaps` run nothing, and neither does `100x finish`.
 
 ## Report it
 

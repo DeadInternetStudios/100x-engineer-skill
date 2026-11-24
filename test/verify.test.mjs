@@ -27,7 +27,8 @@ test('a property is unchecked until it runs, unproven until it has failed once, 
 
   const run = verify(box, 'run');
   assert.equal(run.code, 0, run.out);
-  assert.match(run.out, /^pass {2}order-money\. invariant, exhaustive, exit 0/);
+  assert.match(run.out, /^pass {2}order-money\. invariant, exhaustive, exit 0/m);
+  assert.match(run.out, /^\$ node verify\/check\.mjs/m, 'the command that runs is printed first');
   const unproven = verify(box, 'status');
   assert.match(unproven.out, /^unproven +order-money.*no failing run in verify\/red\/order-money\.txt/);
   assert.equal(unproven.code, 1);
@@ -83,7 +84,7 @@ test('a failing check is broken, and an exhaustive claim is refused when the che
   verify(box, 'amend', 'order-money', '--evidence', 'the model is too big for a full search, commit abc1234', '--level', 'bounded');
   const honest = verify(box, 'run');
   assert.equal(honest.code, 0, honest.out);
-  assert.match(honest.out, /^pass {2}order-money\. invariant, bounded, exit 0/);
+  assert.match(honest.out, /^pass {2}order-money\. invariant, bounded, exit 0/m);
   assert.match(verify(box, 'status').out, /^holds +order-money +invariant, bounded/);
   box.cleanup();
 });
@@ -116,7 +117,7 @@ test('code with no rule starts the procedure, and a waiver or a property ends th
   const cover = verify(box, 'cover', 'src/rules.mjs');
   assert.equal(cover.code, 2);
   assert.match(cover.out, /^NO RULE {2}src\/rules\.mjs/m);
-  assert.match(cover.out, /No rule covers this code, so start the verification procedure: read skills\/100x\/references\/properties\.md/);
+  assert.match(cover.out, /No rule covers this code, so start the verification procedure: run `100x ref properties` and follow it/);
 
   const gaps = verify(box, 'gaps');
   assert.equal(gaps.code, 1);
@@ -161,7 +162,6 @@ test('the planner asks for Properties by default, and the owner can turn that of
   assert.notEqual(without, PROMPT_MD);
   const box = sandbox();
   makeProject(box, { projectMd: without, prompted: true, ledger: false });
-  const env = { ...process.env, ...box.env };
   const keep = Object.fromEntries(Object.keys(box.env).map((key) => [key, process.env[key]]));
   Object.assign(process.env, box.env);
   try {
@@ -180,9 +180,37 @@ test('the planner asks for Properties by default, and the owner can turn that of
     assert.deepEqual(checkPrompt(box.project).problems, []);
   } finally {
     for (const [key, value] of Object.entries(keep)) { if (value === undefined) delete process.env[key]; else process.env[key] = value; }
-    void env;
     box.cleanup();
   }
+});
+
+test('code that was committed on main with no rule is a gap, so a project built by committing as it goes is not let through', () => {
+  const { box, add } = project();
+  sh(box.project, 'git init -q -b main && git config user.email t@t && git config user.name t');
+  write(path.join(box.project, 'src', 'rules.mjs'), 'export const fee = (c) => Math.floor(c * 0.03);\n');
+  sh(box.project, 'git add -A && git commit -qm all');
+  const whole = verify(box, 'gaps');
+  assert.equal(whole.code, 1, whole.out);
+  assert.match(whole.out, /NO RULE {2}src\/rules\.mjs/);
+  assert.match(checkLedger(box.project, { required: 'properties' }).errors.join('\n'), /no rule and no waiver in the project: .*src\/rules\.mjs/);
+  assert.equal(verify(box, 'gaps', '--base', 'main').out.includes('src/rules.mjs'), false, 'with --base the diff against that branch decides, and main against itself is empty');
+  box.cleanup();
+});
+
+test('a waiver is named in the report with the code it excuses, two paths never share an id, and a link loop is not walked', () => {
+  const { box } = project();
+  write(path.join(box.project, 'src', 'a-b.mjs'), 'export const a = 1;\n');
+  write(path.join(box.project, 'src', 'a', 'b.mjs'), 'export const b = 2;\n');
+  assert.equal(verify(box, 'waive', 'src/a-b.mjs', 'src/a', '--why', 'constants, nothing to state').code, 0);
+  const ids = readLedger(box.project).map((row) => row.id);
+  assert.equal(new Set(ids).size, ids.length, ids.join());
+  assert.equal(ids.length, 2);
+  const warning = checkLedger(box.project, { required: 'any' }).warnings.join('\n');
+  assert.match(warning, /2 code files are waived, so no property was written for them: src\/a-b\.mjs, src\/a\/b\.mjs\. Say so in the report/);
+  fs.symlinkSync('..', path.join(box.project, 'src', 'a', 'loop'));
+  const hashed = hashCovers(box.project, ['src']);
+  assert.equal(hashed.files, 2, 'the link is not followed');
+  box.cleanup();
 });
 
 test('the pre-flight tells the owner what will be checked, inside its twelve lines', () => {
