@@ -16,7 +16,7 @@
 ![status: beta](docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x is a skill inspired by pstack that turns prompts into production-ready, tested and reviewed software. I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
+*100x is a skill inspired by pstack that turns prompts into production-ready, tested and reviewed software.<br>I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
 
 <sub><b>English</b> · <a href="i18n/README.es.md">Español</a> · <a href="i18n/README.zh.md">中文</a> · <a href="i18n/README.pt.md">Português</a> · <a href="i18n/README.ru.md">Русский</a> · <a href="i18n/README.ja.md">日本語</a> · <a href="i18n/README.fr.md">Français</a> · <a href="i18n/README.de.md">Deutsch</a> · <a href="i18n/README.ar.md">العربية</a> · <a href="i18n/README.hi.md">हिन्दी</a> · <a href="i18n/README.ko.md">한국어</a> · <a href="i18n/README.id.md">Bahasa Indonesia</a> · <a href="i18n/README.tr.md">Türkçe</a> · <a href="i18n/README.vi.md">Tiếng Việt</a> · <a href="i18n/README.bn.md">বাংলা</a> · <a href="i18n/README.it.md">Italiano</a> · <a href="i18n/README.pl.md">Polski</a> · <a href="i18n/README.th.md">ไทย</a> · <a href="i18n/README.uk.md">Українська</a> · <a href="i18n/README.nl.md">Nederlands</a></sub>
 
