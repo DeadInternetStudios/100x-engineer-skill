@@ -6,7 +6,7 @@ Recommended Claude Code setup, the lite preset and the standard setups for each 
 
 This is the author's own setup, and none of it is needed to run 100x. It does not change your model, reasoning effort or sign-in, and it enables no paid API service. Paste the prompt below into Claude Code and let it work through the steps. It checks before it changes anything and tells you what failed.
 
-What it sets up: [TokenEconomizer](https://github.com/microsoft/TokenEconomizer) with tool pruning on propose-only, `playwright-cli` for end-to-end tests instead of the Playwright MCP, a global `~/.claude/CLAUDE.md` of working preferences, and the experimental Code Mode. Code Mode turns off Claude in Chrome and computer use while it is on, and works in the terminal `claude` only. Both TokenEconomizer and Code Mode are young, so read what each step does before you accept it.
+What it sets up: [TokenEconomizer](https://github.com/microsoft/TokenEconomizer) with tool pruning on propose-only, [RTK](https://github.com/rtk-ai/rtk) to shrink command output before the agent reads it, `playwright-cli` for end-to-end tests instead of the Playwright MCP, a global `~/.claude/CLAUDE.md` of working preferences, and the experimental Code Mode. Code Mode turns off Claude in Chrome and computer use while it is on, and works in the terminal `claude` only. RTK never blocks a command and passes its exit code through, and its hook sees every shell command Claude Code runs. TokenEconomizer and Code Mode are young, so read what each step does before you accept it.
 
 ```text
 Set up my Claude Code environment. Do each step in order, check before changing anything, and report what you did and anything that failed. Do not change my model, reasoning effort, or auth method. Do not enable paid API services.
@@ -24,7 +24,13 @@ Set up my Claude Code environment. Do each step in order, check before changing 
    npm install -g @playwright/cli@latest
    playwright-cli install --skills -g
 
-4. Create or merge ~/.claude/CLAUDE.md. If it exists, merge without duplicating and show me the diff. Content:
+4. RTK (https://github.com/rtk-ai/rtk), which compresses the output of test runs, diffs, logs and builds before the agent reads it:
+   - Check first: run `rtk gain`. Another project named "rtk" exists on crates.io, so only the savings dashboard means this is the right one. "command not found" or anything else means it is not installed or is the wrong one.
+   - If it is not installed, use the way that fits my machine: `brew install rtk` on macOS or Linux with Homebrew, `winget install rtk-ai.rtk` on Windows, or the install script from the README of that repository on other systems. Show me the script before you run it, and tell me where it puts the binary.
+   - Register the Claude Code hook: run `rtk init -g --dry-run` if that flag exists, show me what it would change, then run `rtk init -g`. It edits ~/.claude/settings.json and may add an RTK.md next to ~/.claude/CLAUDE.md, so back up settings.json first.
+   - Tell me to restart Claude Code, and that `rtk gain` shows what was saved. If a result ever looks cut off or empty, tell me to re-run that command as `rtk bypass <cmd>`.
+
+5. Create or merge ~/.claude/CLAUDE.md. If it exists, merge without duplicating, keep any `@RTK.md` line step 4 added, and show me the diff. Content:
 
 # Communication policy
 - Keep routine progress messages and final summaries concise.
@@ -70,13 +76,13 @@ Set up my Claude Code environment. Do each step in order, check before changing 
 - Never disable debugging or verification capabilities.
 - If an optimization could lower accuracy, leave it off and explain the trade-off.
 
-5. Code Mode (experimental, terminal `claude` only; not the Desktop app):
+6. Code Mode (experimental, terminal `claude` only; not the Desktop app):
    - Run `claude update` and make sure it is on the latest version.
    - Add "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1" under "env" in ~/.claude/settings.json. Use jq to merge, back up the file first, and keep my other settings.
    - Warn me it disables Claude in Chrome and computer use while on.
    - Check `claude auth status`. If loggedIn is false, tell me to run `claude auth login` myself; do not attempt to sign in for me.
 
-6. Finish with a short summary: what was installed or changed, what failed, and the manual steps left for me (trust the folder, /tokeneconomizer:status, refresh-catalog, claude auth login, confirm "Yes, turn on Code Mode").
+7. Finish with a short summary: what was installed or changed, what failed, and the manual steps left for me (trust the folder, restart Claude Code for RTK, /tokeneconomizer:status, refresh-catalog, claude auth login, confirm "Yes, turn on Code Mode").
 ```
 
 ## On a small plan
