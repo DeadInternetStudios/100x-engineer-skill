@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
-import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { commandNames, commandUsages } from '../lib/commands/index.mjs';
+import { runProgram } from '../lib/proc.mjs';
 import { COMPATIBILITY, readStamp, stampProblems, stampText } from '../lib/skill-meta.mjs';
 import { skillHash } from '../lib/skill-hash.mjs';
 import { parseSkillFrontmatter, specFindings } from '../lib/skill-spec.mjs';
 import { validateRepo } from '../lib/validate.mjs';
-import { cli, ROOT, sandbox, write } from './helpers.mjs';
+import { cli, ROOT, sandbox, symlink, write } from './helpers.mjs';
 
 const skill = (front, body = '# Demo\n\nRun `100x doctor`.\n') => `---\nname: 100x-demo\ndescription: "Use when testing the spec rules."\n${front}---\n${body}`;
 const rulesOf = (text, extra = {}) => {
@@ -149,7 +149,7 @@ test('a symlink that loops back to a folder above it is left out of the hash ins
   const skill = path.join(box.dir, 'looping');
   write(path.join(skill, 'SKILL.md'), '---\nname: looping\ndescription: Use for a loop. Do it.\n---\nBody.\n');
   const plain = skillHash(skill);
-  fs.symlinkSync('.', path.join(skill, 'self'));
+  symlink('.', path.join(skill, 'self'));
   assert.equal(skillHash(skill), plain, 'the loop adds no file');
   const tabbed = parseSkillFrontmatter('---\nname: a\ndescription: Use it.\nmetadata:\n\tauthor: "me"\n---\n');
   assert.ok(tabbed.problems.some((problem) => /tab characters must not be used in indentation/.test(problem)), tabbed.problems.join('; '));
@@ -161,7 +161,7 @@ test('a symlink that loops back to a folder above it is left out of the hash ins
 test('every skill passes the specification\'s own validator, skills-ref', { skip: process.env.X100_FAST ? 'the fast lane leaves out the network check' : false }, (t) => {
   const skillsRoot = path.join(ROOT, 'skills');
   for (const name of fs.readdirSync(skillsRoot).sort()) {
-    const run = spawnSync('npx', ['-y', 'skills-ref', 'validate', path.join(skillsRoot, name)], { encoding: 'utf8', timeout: 120000 });
+    const run = runProgram('npx', ['-y', 'skills-ref', 'validate', path.join(skillsRoot, name)], { encoding: 'utf8', timeout: 120000 });
     const out = `${run.stdout}${run.stderr}`;
     if (run.status !== 0 && /ENOTFOUND|EAI_AGAIN|ETIMEDOUT|ECONNREFUSED|network/i.test(out)) return t.skip('skills-ref could not be fetched, the network is down');
     assert.equal(run.status, 0, `${name}: ${out}`);

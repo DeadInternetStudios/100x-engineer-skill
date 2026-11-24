@@ -25,7 +25,7 @@ const until = async (check, ms = 4000) => {
 
 test('--stop never signals a process that only happens to own the pid in server.json', async () => {
   const box = sandbox();
-  const bystander = spawn('sleep', ['60'], { stdio: 'ignore' });
+  const bystander = spawn(process.execPath, ['-e', 'setTimeout(() => {}, 60000)'], { stdio: 'ignore' });
   try {
     const dir = path.join(box.env.X100_HOME, 'morning');
     fs.mkdirSync(dir, { recursive: true });

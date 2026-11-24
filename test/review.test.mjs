@@ -264,13 +264,13 @@ test('a loop judge gets its own brutal task and findings file, and refuses witho
   const parsed = JSON.parse(call.out);
   assert.equal(parsed.via, 'harness');
   assert.equal(parsed.deadlineMinutes, 20);
-  assert.match(parsed.findings, /loops\/pass-1\/judge\.md$/);
+  assert.match(parsed.findings, /loops[\\/]pass-1[\\/]judge\.md$/);
   assert.match(parsed.delegateTask.task, /Be brutal/);
   assert.match(parsed.delegateTask.task, /Drifting: yes/);
   assert.match(parsed.delegateTask.task, /Judged by: looking/);
   assert.match(parsed.delegateTask.task, /Never judge a screen from its code/);
   assert.match(parsed.delegateTask.task, /single full-size screenshots/);
-  assert.match(parsed.delegateTask.task, /loops\/pass-1\/ask\.md/);
+  assert.match(parsed.delegateTask.task, /loops[\\/]pass-1[\\/]ask\.md/);
   box.cleanup();
 });
 

@@ -4,6 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import { chromiumBuilds, resolvePlaywright } from '../lib/playwright.mjs';
 import { cli, sandbox } from './helpers.mjs';
+import { fakeBin } from './helpers.mjs';
 
 test('browsers --check reports missing when nothing provides Playwright', () => {
   const box = sandbox();
@@ -24,21 +25,22 @@ test('browsers --check reports available when Playwright resolves', { skip: reso
 // A stand-in npm that writes a stand-in playwright, which prints a progress line for each 5 percent like the real one does.
 function fakeInstallers(box, { exit = 0 } = {}) {
   const bin = path.join(box.dir, 'fake-bin');
-  fs.mkdirSync(bin, { recursive: true });
-  fs.writeFileSync(path.join(bin, 'npm'), `#!/bin/sh
-prefix=""
-while [ $# -gt 0 ]; do if [ "$1" = "--prefix" ]; then prefix="$2"; fi; shift; done
-mkdir -p "$prefix/node_modules/.bin"
-cat > "$prefix/node_modules/.bin/playwright" <<'INNER'
-#!/bin/sh
-i=0
-while [ $i -lt 20 ]; do echo "|progress| $((i * 5))% of 160 MiB"; i=$((i + 1)); done
-echo "disk is full" >&2
-exit ${exit}
-INNER
-chmod +x "$prefix/node_modules/.bin/playwright"
+  // The stand-in npm writes the stand-in playwright, with a launcher for each shell, as the real one writes .bin entries.
+  const playwright = `let i = 0;
+while (i < 20) { console.log(\`|progress| \${i * 5}% of 160 MiB\`); i += 1; }
+console.error('disk is full');
+process.exit(${exit});
+`;
+  fakeBin(bin, 'npm', `import fs from 'node:fs';
+import path from 'node:path';
+const args = process.argv.slice(2);
+const prefix = args[args.indexOf('--prefix') + 1];
+const dir = path.join(prefix, 'node_modules', '.bin');
+fs.mkdirSync(dir, { recursive: true });
+fs.writeFileSync(path.join(dir, 'playwright.mjs'), ${JSON.stringify(playwright)});
+fs.writeFileSync(path.join(dir, 'playwright'), '#!/bin/sh\\nexec ' + JSON.stringify(process.execPath) + ' "$(dirname "$0")/playwright.mjs" "$@"\\n', { mode: 0o755 });
+fs.writeFileSync(path.join(dir, 'playwright.cmd'), '@echo off\\r\\n"' + process.execPath + '" "%~dp0playwright.mjs" %*\\r\\n');
 `);
-  fs.chmodSync(path.join(bin, 'npm'), 0o755);
   return { ...box.env, X100_PLAYWRIGHT_FROM: '', PATH: `${bin}${path.delimiter}${process.env.PATH}` };
 }
 

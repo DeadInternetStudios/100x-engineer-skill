@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
-import { cli, sandbox, write } from './helpers.mjs';
+import { cli, sandbox, symlink, write } from './helpers.mjs';
 
 test('init scaffolds, creates a repository, hides .100x from git and detects the stack', () => {
   const box = sandbox();
@@ -35,7 +35,7 @@ test('the project file has a place for the pre-flight the skill says to save', (
 test('the global folder is never taken for a project, even when the home folder is reached through a symlink', () => {
   const box = sandbox();
   const link = path.join(box.dir, 'home-link');
-  fs.symlinkSync(box.home, link);
+  symlink(box.home, link);
   fs.mkdirSync(path.join(box.home, '.100x'), { recursive: true });
   const env = { ...box.env, HOME: link, X100_HOME: path.join(link, '.100x') };
   for (const [args, refusal] of [[['log', 'start', 'x', 'y'], /No \.100x folder found here/], [['status'], /No run in this folder/]]) {

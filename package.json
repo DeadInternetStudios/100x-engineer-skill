@@ -15,7 +15,7 @@
     "test": "node --test \"test/*.test.mjs\"",
     "test:fast": "node scripts/test-fast.mjs",
     "validate": "node bin/100x.mjs validate",
-    "validate:spec": "for d in skills/*/; do npx -y skills-ref validate \"$d\" || exit 1; done",
+    "validate:spec": "node scripts/validate-spec.mjs",
     "stamp": "node scripts/stamp-skills.mjs"
   },
   "repository": {

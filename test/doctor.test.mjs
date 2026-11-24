@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { helperCheck, judgeCheck, windowCheck, windowChecks } from '../lib/doctor.mjs';
-import { cli, ROOT, sandbox, write } from './helpers.mjs';
+import { cli, ROOT, sandbox, symlink, write } from './helpers.mjs';
 
 test('doctor on an empty machine fails on the missing home and says how to fix it', () => {
   const box = sandbox();
@@ -55,7 +55,7 @@ test('doctor warns when the linked companion skill is a different build than the
   fs.mkdirSync(skills, { recursive: true });
   const checkout = path.join(box.dir, 'checkout', 'unslop-text');
   fs.cpSync(path.join(ROOT, 'vendor', 'unslop-text'), checkout, { recursive: true });
-  fs.symlinkSync(checkout, path.join(skills, 'unslop-text'));
+  symlink(checkout, path.join(skills, 'unslop-text'));
   const check = () => JSON.parse(cli(['doctor', '--json'], { cwd: box.project, env: box.env }).out).find((c) => c.name === 'skill unslop-text');
   const same = check();
   assert.equal(same.status, 'ok');
@@ -76,10 +76,10 @@ test('doctor warns about a link an older install made to a skill this repo dropp
   const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
   const gone = path.join(ROOT, 'vendor', 'dropped-companion');
   const link = path.join(skills, 'dropped-companion');
-  fs.symlinkSync(gone, link);
+  symlink(gone, link);
   // Not stale: the owner's own link, to a folder outside this repo that is missing. It is not 100x's to judge.
   const theirs = path.join(skills, 'my-own-skill');
-  fs.symlinkSync(path.join(box.dir, 'nowhere'), theirs);
+  symlink(path.join(box.dir, 'nowhere'), theirs);
   manifest.links.push({ path: link, target: gone }, { path: theirs, target: path.join(box.dir, 'nowhere') });
   fs.writeFileSync(manifestFile, JSON.stringify(manifest));
   const check = () => JSON.parse(cli(['doctor', '--json'], { cwd: box.project, env: box.env }).out).find((c) => c.name === 'old links');

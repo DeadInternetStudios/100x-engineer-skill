@@ -7,9 +7,21 @@ import { presentChecks } from '../lib/doctor.mjs';
 import { markRun } from '../lib/eval/blind.mjs';
 import { ASK, routingReport, scoreRouting, WRONG_SHOWN } from '../lib/eval/routing.mjs';
 import { controlWords } from '../lib/eval/tally.mjs';
-import { duration, plural, wrap } from '../lib/eval/words.mjs';
+import { duration, plural, shellPath, wrap } from '../lib/eval/words.mjs';
 import { bakeoff, folder, judge, ON, ORDERS, OFF, recordModels, sees } from './bakeoff-helpers.mjs';
 import { cli, ROOT, sandbox } from './helpers.mjs';
+
+// A path as the commands write it, with / on every system.
+const fwd = (p) => p.replaceAll('\\', '/');
+
+test('a path in a command is quoted when a shell would split or expand it, and not when it would not', () => {
+  assert.equal(shellPath('/work/bake-off/arms'), '/work/bake-off/arms');
+  assert.equal(shellPath('/work/with space/arms'), "'/work/with space/arms'");
+  assert.equal(shellPath("/work/it's"), "'/work/it'\\''s'");
+  assert.equal(shellPath('/Users/RUNNER~1/bake'), '/Users/RUNNER~1/bake', 'a short Windows folder name needs no quotes');
+  assert.equal(shellPath('~/bake'), "'~/bake'", 'a path that starts with ~ would be expanded by sh');
+  if (process.platform === 'win32') assert.equal(shellPath('C:\\Users\\me\\bake'), 'C:/Users/me/bake', 'on Windows the path is written with slashes');
+});
 
 // What a person sees in the terminal and in the help. The numbers are tested elsewhere. These tests read the words.
 const ev = (box, ...args) => cli(['eval', ...args], { cwd: box.project, env: box.env });
@@ -27,7 +39,7 @@ test('score prints a screen for a person, not the report file: counts, a verdict
   assert.match(ahead.out, /\nVerdict: skill-on is ahead\. 6 decisive pairs, exact two-sided sign test p = 0\.03125\.\n/);
   assert.match(ahead.out, /\nControls: the judge passed both\.\n/);
   assert.match(ahead.out, /\nMedian time: skill-off 10 min, skill-on 10 min\.\n/);
-  assert.match(ahead.out, new RegExp(`\\nThe whole report, with the interval, the models and the limits: ${path.join(dir, 'report.md').replaceAll('.', '\\.')}\\n`));
+  assert.match(ahead.out, new RegExp(`\\nThe whole report, with the interval, the models and the limits: ${path.join(dir, 'report.md').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\n`));
   assert.doesNotMatch(ahead.out, /^\||^#|\*\*/m, 'no markdown source on a terminal');
   assert.ok(widest(ahead.out, dir) <= 110, `no line wider than a terminal can show, got ${widest(ahead.out, dir)}`);
   assert.match(fs.readFileSync(path.join(dir, 'report.md'), 'utf8'), /\| pair \| brief \| result \|/, 'the file keeps the table');
@@ -234,7 +246,7 @@ test('status prints the next step as commands that run as they stand, lists ever
   const block = waiting.slice(waiting.indexOf('Waiting:'), waiting.indexOf('For pair-'));
   for (let n = 1; n <= 4; n += 1) for (const order of ORDERS) assert.equal(block.split(`pair-0${n}-${order}`).length, 2, `pair-0${n}-${order} is listed once`);
   assert.ok(!/ and \d+ more/.test(block), 'a list that says "and 12 more" cannot be copied');
-  assert.match(waiting, new RegExp(`\\nFor pair-0\\d-o\\d, then for each of the others:\\n {2}100x helper run --model <model id> --effort <level> --context <size> --cwd ${built.dir.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/judge/pair-0\\d-o\\d --minutes 30 --receipt \\S+/helper-receipts/pair-0\\d-o\\d\\.json --json --task "Open this folder and follow ask\\.md in it\\."\\n {2}100x eval bakeoff mark \\S+ judge/pair-0\\d-o\\d stop --receipt \\S+\\.json\\n?$`), 'the judge command is whole');
+  assert.match(waiting, new RegExp(`\\nFor pair-0\\d-o\\d, then for each of the others:\\n {2}100x helper run --model <model id> --effort <level> --context <size> --cwd ${fwd(built.dir).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}/judge/pair-0\\d-o\\d --minutes 30 --receipt \\S+/helper-receipts/pair-0\\d-o\\d\\.json --json --task "Open this folder and follow ask\\.md in it\\."\\n {2}100x eval bakeoff mark \\S+ judge/pair-0\\d-o\\d stop --receipt \\S+\\.json\\n?$`), 'the judge command is whole');
 
   const spaced = path.join(box.dir, 'with space');
   const odd = bakeoff(box, { n: 1, pairs: false, where: spaced });

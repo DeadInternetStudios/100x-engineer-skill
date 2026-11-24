@@ -52,7 +52,7 @@ test('registry list reads like the gallery, the date and the verdict first, and 
   assert.equal(finish(box).code, 0);
   const [entry] = JSON.parse(cli(['registry', 'list', '--json'], { env: box.env }).out);
   const line = cli(['registry', 'list'], { env: box.env }).out.trim();
-  assert.match(line, /^[A-Z][a-z]{2} \d{1,2}, \d{1,2}:\d{2} [AP]M +ship +Glow +\//, line);
+  assert.match(line, /^[A-Z][a-z]{2} \d{1,2}, \d{1,2}:\d{2} [AP]M +ship +Glow +(?:\/|[A-Za-z]:\\)/, line);
   assert.ok(line.endsWith(`  ${entry.id}`), 'the id is the last column');
   assert.doesNotMatch(line, /\d{4}-\d{2}-\d{2}T/, 'no ISO timestamp');
   assert.equal(cli(['registry', 'remove', line.split(/\s+/).at(-1)], { env: box.env }).out.trim(), 'removed 1 run');

@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import test from 'node:test';
+import { killTree } from '../lib/proc.mjs';
 import { cli, sandbox, write } from './helpers.mjs';
 import { makeProject } from './projects.mjs';
 
@@ -103,7 +104,7 @@ test('a pid that another process reused is not the judge, is not reported as run
   makeProject(box);
   withCommand(box, 'sleep 60');
   // An unrelated process in a group of its own stands for whatever took the pid after a reboot.
-  const other = spawn('sleep', ['60'], { detached: true, stdio: 'ignore' });
+  const other = spawn(process.execPath, ['-e', 'setTimeout(() => {}, 60000)'], { detached: true, stdio: 'ignore' });
   other.unref();
   try {
     const dir = path.join(box.project, '.100x', 'review');
@@ -114,11 +115,7 @@ test('a pid that another process reused is not the judge, is not reported as run
     json(box, ['review-run', '--stop', '--json']);
     process.kill(other.pid, 0);
   } finally {
-    try {
-      process.kill(-other.pid, 'SIGTERM');
-    } catch {
-      // gone
-    }
+    killTree(other.pid);
     box.cleanup();
   }
 });
@@ -156,7 +153,7 @@ test('a loop judge by command writes into the loop folder, not the stage 6 findi
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'ask.md'), 'Pass 2. Craft.\n');
   const started = json(box, ['review-run', '--loop', 'pass-2', '--json']);
-  assert.match(started.findings, /loops\/pass-2\/judge\.md$/);
+  assert.match(started.findings, /loops[\\/]pass-2[\\/]judge\.md$/);
   const text = await until(() => (fs.existsSync(started.findings) ? fs.readFileSync(started.findings, 'utf8') : null), 'the loop judge findings', 99000);
   assert.match(text, /judge-x/);
   assert.equal(fs.existsSync(path.join(box.project, '.100x', 'review', 'findings.md')), true, 'makeProject stage 6 fixture is untouched in content');

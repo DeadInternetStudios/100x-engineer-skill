@@ -417,8 +417,10 @@ test('show leaves the asks as they were written, except for the box and the clos
 
 test('show says where the other chat works, adds the owner\'s words on request, and writes a file', () => {
   const box = promptBox(examples[1]);
+  // The folder is written as the system writes it: /work/dead-exports on macOS and Linux, C:\work\dead-exports on Windows.
+  const folder = path.resolve(box.project, '/work/dead-exports');
   const where = run(box, 'prompt', 'show', '--where', '/work/dead-exports', '--with-brief');
-  assert.match(where.out, /\nWHERE\nWork in \/work\/dead-exports\. Commit locally and often\./, 'nothing about this folder or its git state');
+  assert.ok(where.out.includes(`\nWHERE\nWork in ${folder}. Commit locally and often.`), 'nothing about this folder or its git state');
   assert.match(where.out, /\nTHE OWNER'S WORDS\na cli that finds dead exports/);
   const file = path.join(box.dir, 'out', 'prompt.txt');
   const wrote = run(box, 'prompt', 'show', '--out', file);
@@ -488,7 +490,7 @@ test('show lists the number phrases that would change a run after the skill name
 test('show lists a number phrase in the WHERE line it wrote, and no mode word', () => {
   const box = promptBox(FULL);
   const { out, err } = run(box, 'prompt', 'show', '--where', '/work/mockup-overnight-3 versions');
-  const line = out.split('\n').findIndex((one) => one.startsWith('Work in /work/mockup-overnight-3 versions')) + 1;
+  const line = out.split('\n').findIndex((one) => one.startsWith(`Work in ${path.resolve(box.project, '/work/mockup-overnight-3 versions')}`)) + 1;
   assert.match(err, new RegExp(`Line ${line} has "3 versions"\\.`));
   assert.doesNotMatch(err, /has "(mockup|overnight)"/);
   box.cleanup();
@@ -630,8 +632,10 @@ test('prompt says what to do when there is no project.md, the word is wrong, or 
 
 test('the export is built once, so what the in-process reader says is what the command prints', () => {
   const box = promptBox(FULL);
-  const { text, notes } = renderPrompt(box.project, { where: '/work/x' });
-  assert.equal(text, run(box, 'prompt', 'show', '--where', '/work/x').out);
+  // The same folder for both, whatever drive the test itself runs on.
+  const where = path.resolve(box.project, '/work/x');
+  const { text, notes } = renderPrompt(box.project, { where });
+  assert.equal(text, run(box, 'prompt', 'show', '--where', where).out);
   assert.deepEqual(notes, []);
   box.cleanup();
 });

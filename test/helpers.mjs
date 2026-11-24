@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { makeLink } from '../lib/links.mjs';
+import { findSh } from '../lib/proc.mjs';
 import { browserCacheDir, resolvePlaywright } from '../lib/playwright.mjs';
 
 const REAL_BROWSER_CACHE = browserCacheDir();
@@ -26,7 +28,7 @@ export function sandbox() {
     dir,
     home,
     project,
-    env: { HOME: home, X100_HOME: path.join(home, '.100x'), X100_SKILLS_DIR: path.join(home, '.agents', 'skills'), PLAYWRIGHT_BROWSERS_PATH: REAL_BROWSER_CACHE, ...(PLAYWRIGHT_BASE ? { X100_PLAYWRIGHT_FROM: PLAYWRIGHT_BASE } : {}) },
+    env: { HOME: home, USERPROFILE: home, X100_HOME: path.join(home, '.100x'), X100_SKILLS_DIR: path.join(home, '.agents', 'skills'), PLAYWRIGHT_BROWSERS_PATH: REAL_BROWSER_CACHE, ...(PLAYWRIGHT_BASE ? { X100_PLAYWRIGHT_FROM: PLAYWRIGHT_BASE } : {}) },
     cleanup: () => fs.rmSync(dir, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }),
   };
 }
@@ -39,6 +41,43 @@ const inherited = () => Object.fromEntries(Object.entries(process.env).filter(([
 export function cli(args, { cwd = ROOT, env = {} } = {}) {
   const result = spawnSync(process.execPath, [BIN, ...args], { cwd, env: { ...inherited(), ...env }, encoding: 'utf8' });
   return { code: result.status, out: result.stdout, err: result.stderr };
+}
+
+// A link to a folder, or to a folder that is gone. Where symlinks are not allowed (Windows without Developer Mode) it is a junction.
+export const symlink = (target, linkPath) => makeLink(target, linkPath);
+
+// A link to a file has no such fallback, so a test that needs one carries this as its skip reason.
+export const noFileLinks = (() => {
+  if (process.env.X100_NO_SYMLINK) return 'X100_NO_SYMLINK is set, so no symlink is made';
+  const dir = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), '100x-link-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'a'), '');
+    fs.symlinkSync(path.join(dir, 'a'), path.join(dir, 'b'), 'file');
+    return false;
+  } catch (error) {
+    return error.code === 'EPERM' ? 'a link to a file needs Developer Mode or an administrator on Windows' : false;
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+})();
+
+// The POSIX shell the commands in the docs are written for. Windows has one when Git for Windows is installed.
+export const SH = findSh();
+// bash.exe sits beside sh.exe in Git for Windows. A bare "bash" on Windows can be the one that starts WSL.
+export const BASH = process.platform === 'win32' ? (SH ? path.join(path.dirname(SH), 'bash.exe') : 'bash') : 'bash';
+
+// A stand-in program that runs by its name from a PATH folder: a node script, and the launchers that start it. Returns the path that starts it
+// on this system, a .cmd on Windows (where the same folder also gets a script for sh, which looks a program up without an extension).
+export function fakeBin(dir, name, source) {
+  fs.mkdirSync(dir, { recursive: true });
+  const script = path.join(dir, `${name}.mjs`);
+  fs.writeFileSync(script, source);
+  const sh = path.join(dir, name);
+  fs.writeFileSync(sh, `#!/bin/sh\nexec ${JSON.stringify(process.execPath)} ${JSON.stringify(script)} "$@"\n`, { mode: 0o755 });
+  if (process.platform !== 'win32') return sh;
+  const cmd = path.join(dir, `${name}.cmd`);
+  fs.writeFileSync(cmd, `@echo off\r\n"${process.execPath}" "${script}" %*\r\n`);
+  return cmd;
 }
 
 export function write(file, text) {

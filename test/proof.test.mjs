@@ -3,12 +3,14 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { targetIsOurs } from '../lib/project.mjs';
-import { cli, sandbox } from './helpers.mjs';
+import { cli, noFileLinks, sandbox, symlink } from './helpers.mjs';
 import { blankPng, encodePng } from './png.mjs';
 import { CHECK_OUTPUT, makeProject, matrixJson, PROJECT_MD, runJson, seal } from './projects.mjs';
 
+// A file that exists and is not in any project, as /etc/hosts is on Linux and macOS.
+const OUTSIDE = fileURLToPath(import.meta.url);
 const finish = (box, ...args) => cli(['finish', ...args], { cwd: box.project, env: box.env });
 const check = (kind, status, summary) => ({ kind, status, summary });
 
@@ -32,7 +34,7 @@ function refused(name, setup, pattern) {
 }
 
 refused('a hero that is not an image', { hero: Buffer.from('not a png at all\n'.repeat(4)) }, /hero .* is not a PNG, JPEG, WebP or GIF image/);
-refused('a hero outside the project folder', { run: runJson({ hero: '/etc/hosts' }) }, /hero \/etc\/hosts is outside the project folder/);
+refused('a hero outside the project folder', { run: runJson({ hero: OUTSIDE }) }, new RegExp(`hero ${OUTSIDE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} is outside the project folder`));
 refused('a blank hero, the sign the page was not up', { hero: blankPng() }, /looks blank/);
 refused('a hero that is only a few pixels', { hero: encodePng(8, 8, () => [0, 0, 0, 255]) }, /is only 8 by 8 pixels/);
 refused('a project with no resolution matrix and no reason', { matrix: false }, /no resolution matrix\. Run `100x shots/);
@@ -47,7 +49,7 @@ test('screens of a page on this machine or this network count as the project\'s 
   fs.rmSync(root, { recursive: true, force: true });
 });
 
-refused('a screen run of a file outside the project', { matrix: { target: 'file:///etc/hosts' } }, /the final matrix looked at file:\/\/\/etc\/hosts, which is not this project/);
+refused('a screen run of a file outside the project', { matrix: { target: pathToFileURL(OUTSIDE).href } }, new RegExp(`the final matrix looked at ${pathToFileURL(OUTSIDE).href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}, which is not this project`));
 refused('a ship with broken findings in the final matrix', { matrix: { broken: 3 } }, /verdict is ship but the final matrix has 3 broken findings/);
 refused('a closed ask whose evidence points at nothing', { projectMd: PROJECT_MD.replace('(evidence: shots/final)', '(evidence: wherever)') }, /ask "a thing that glows \(evidence: wherever\)" has evidence that points at nothing a reader can check\. Name a commit, a file, a command in backticks or a number/);
 refused('a closed ask with no evidence', { projectMd: PROJECT_MD.replace(' (evidence: shots/final)', '') }, /ask "a thing that glows" is closed without evidence/);
@@ -110,10 +112,10 @@ refused('three checks, because an app has one or two', {
 refused('the same check listed twice', { run: runJson({ mustNotBreak: [check('numbers', 'pass', '12 of 12 cases'), check('numbers', 'pass', '12 of 12 cases')] }), checkFiles: { numbers: CHECK_OUTPUT } }, /The must-not-break check "numbers" is listed twice/);
 refused('a must-not-break check kind that is not one word', { run: runJson({ mustNotBreak: check('Money Math!', 'pass', '12 of 12 cases') }) }, /kind must be one lowercase word/);
 
-test('a hero that is a link out of the project is followed and refused', () => {
+test('a hero that is a link out of the project is followed and refused', { skip: noFileLinks }, () => {
   const box = sandbox();
   makeProject(box, { run: runJson({ hero: '.100x/shots/final/link.png' }) });
-  fs.symlinkSync('/etc/hosts', path.join(box.project, '.100x', 'shots', 'final', 'link.png'));
+  symlink(OUTSIDE, path.join(box.project, '.100x', 'shots', 'final', 'link.png'));
   const result = finish(box);
   assert.equal(result.code, 1);
   assert.match(result.err, /is outside the project folder/);

@@ -62,7 +62,9 @@ export function pageStamp() {
     .replace(/<span>Finished [^<]*<\/span>/g, '')
     .replace(/<p class="meta">Built [^<]*<\/p>/, '')
     .split(pathToFileURL(dir).href).join('FIXTURE')
-    .split(dir).join('FIXTURE'));
+    .split(dir).join('FIXTURE')
+    // On Windows the folder is written with backslashes below that point, and the stamp was made where they are slashes.
+    .replace(/FIXTURE[^\s"'<>&]*/g, (path) => path.replaceAll('\\', '/')));
 }
 
 export const pictureStamp = () => sha(fs.readFileSync(PICTURE));

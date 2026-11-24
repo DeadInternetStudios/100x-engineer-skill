@@ -8,8 +8,6 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    # Windows is being brought up: its failures show in the log without turning the build red.
-    continue-on-error: ${{ matrix.os == 'windows-latest' }}
     timeout-minutes: 25
     defaults:
       run:
