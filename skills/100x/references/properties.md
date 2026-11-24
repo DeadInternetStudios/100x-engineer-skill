@@ -40,6 +40,15 @@ Code with nothing to state, such as layout, copy and glue, gets `100x verify wai
 6. **Record it.** `100x verify add <id> --kind <kind> --property "<sentence>" --covers <paths> --command "<cmd>" --level <level>`, then `100x verify run <id>`. One row per property. Copy the checker into the project (for example `verify/check.mjs`) so the command is cheap and the ledger lives with the code. Add `| tee .100x/must-not-break/properties.txt` to the run when this is the must-not-break check.
 7. **Read findings as findings.** When the current code breaks a property, say it as the shortest list of steps in the code's own words and the harm in one sentence. Do not weaken the property, the model or the bound to get green, and do not change product code to hide it. A fix is a separate change.
 
+## Blocks and the system
+
+A big program is not verified in one piece. Cut it into small blocks, each with a contract: what it needs and what it guarantees. Each block gets its own properties, its own ledger row and its own failing run. With two or more blocks, also do these:
+
+1. **Check the seams.** Where block A hands a value to block B, A's guarantee has to meet B's precondition. In the system model that is B's `pre`, and the `guard` lines fail when the real code disagrees.
+2. **Write a system model.** One checker model whose steps call the real functions of several blocks, in the order the product uses them. Add the properties that only exist across blocks, such as "money in equals money out". The checker visits every state of the whole.
+3. **Give the system its own row.** One more ledger row, kind by what it states, `covers` every block the model calls, so a change to any block makes it stale.
+4. **State the assumptions.** What the system model leaves out, such as concurrent callers, the clock or the network, goes in its `assumptions`. Checked blocks plus checked seams are not proof of behavior the model never contained.
+
 ## What a pass means
 
 - `exhaustive`. Every reachable state of the model was visited. The property holds for this model, these parameter values and this size. The model is a claim about the software, so a pass covers the model, plus the real functions the guard and post checks ran.
