@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "node --test \"test/*.test.mjs\"",
-    "test:fast": "X100_FAST=1 node --test \"test/*.test.mjs\"",
+    "test:fast": "node scripts/test-fast.mjs",
     "validate": "node bin/100x.mjs validate",
     "validate:spec": "for d in skills/*/; do npx -y skills-ref validate \"$d\" || exit 1; done",
     "stamp": "node scripts/stamp-skills.mjs"

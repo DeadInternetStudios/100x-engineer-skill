@@ -18,7 +18,7 @@
 
 *100x는 Cursor의 전직 엔지니어가 만든 스킬로, 프롬프트를 프로덕션에 바로 쓸 수 있는 코드로 바꿔 줍니다.<br>저는 이것으로 매달 1,000개가 넘는 PR을 프로덕션에 배포하고 있으며, 롤백 비율은 2% 미만입니다.*
 
-Terminal Bench 4.1 점수 곧 공개 :)
+Terminal Bench 4.1 점수 곧 공개 😎
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <b>한국어</b> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
