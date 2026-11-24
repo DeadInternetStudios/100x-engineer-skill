@@ -159,44 +159,44 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## منتجات حقيقية بُنيت باستخدام 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: مثل Bloomberg Terminal لكن للناس العاديين. سهم Tesla يُتداول بأعلى من قيمته العادلة بنسبة 25%، معروضًا مقابل تاريخه وأقرب نظرائه وكل الشركات." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: مثل Bloomberg Terminal لكن للناس العاديين. سهم Tesla يُتداول بأعلى من قيمته العادلة بنسبة 25%، معروضًا مقابل تاريخه وأقرب نظرائه وكل الشركات." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 أداة لفرز الأسهم، بُنيت<br>
 بمساعدة 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: ذيليات القفز، بالأدلة. صفحات للأنواع، وبطاقات للعناية، ولعبة خاملة، ومستكشف تشريح ثلاثي الأبعاد." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: ذيليات القفز، بالأدلة. صفحات للأنواع، وبطاقات للعناية، ولعبة خاملة، ومستكشف تشريح ثلاثي الأبعاد." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 موسوعة عن ذيليات القفز،<br>
 بُنيت بالكامل باستخدام 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: شبكة من فقاعات بفن البكسل تعزف الموسيقى حين تُفقأ، مع قائمة مقاطع ومؤثرات ومازج صوت." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: شبكة من فقاعات بفن البكسل تعزف الموسيقى حين تُفقأ، مع قائمة مقاطع ومؤثرات ومازج صوت." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 تطبيق موسيقى بفن البكسل،<br>
 بُني بالكامل باستخدام 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: رسم بياني حي لسعر XAU/USD مع الأحداث القادمة، ولوحة لمساءلة صفقة." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: رسم بياني حي لسعر XAU/USD مع الأحداث القادمة، ولوحة لمساءلة صفقة." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 تطبيق لتداول الذهب، بُني<br>
 بالكامل باستخدام 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: توقيع مرسوم فوق صورة بضربات قلم مرقّمة، مع قائمة صور على اليسار والضربات على اليمين." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: توقيع مرسوم فوق صورة بضربات قلم مرقّمة، مع قائمة صور على اليسار والضربات على اليمين." width="380"><br>
 <b>Phantom</b><br>
 تطبيق Mac بلغة Swift يستخدمه<br>
 خبراء الأدلة الجنائية لتحليل<br>
 خط اليد، بُني بمساعدة<br>
 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: جدول سلسلة خيارات لعقود الشراء والبيع حسب سعر التنفيذ، بجانب رسم للربح والخسارة." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: جدول سلسلة خيارات لعقود الشراء والبيع حسب سعر التنفيذ، بجانب رسم للربح والخسارة." width="380"><br>
 <b>OptionsFlow</b><br>
 أداة لسلسلة الخيارات لحظيًا<br>
 بـ React تستخدمها شركات التداول<br>
@@ -204,15 +204,15 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: شاشة رئيسية داكنة فيها قائمة تطبيقات في الأعلى، وعنصر واحد يحتاج إلى انتباه، ورسم لشبكة، ومربعات للحوادث والأجهزة والالتزامات والتشغيلات." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: شاشة رئيسية داكنة فيها قائمة تطبيقات في الأعلى، وعنصر واحد يحتاج إلى انتباه، ورسم لشبكة، ومربعات للحوادث والأجهزة والالتزامات والتشغيلات." width="380"><br>
 <b>Skynet</b><br>
 أداة لإدارة المشاريع مبنية على<br>
 Blueprint وEncore، بمساعدة<br>
 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: ست خطوات من وصف بجملة واحدة إلى صورة، ثم نموذج ثلاثي الأبعاد، ثم هيكل عظمي مكسوّ، ثم حركات، ثم الشخصية داخل لعبة." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: ست خطوات من وصف بجملة واحدة إلى صورة، ثم نموذج ثلاثي الأبعاد، ثم هيكل عظمي مكسوّ، ثم حركات، ثم الشخصية داخل لعبة." width="380"><br>
 <b>Boneworks</b><br>
 خط إنتاج من النص إلى 3D يصمم<br>
 الشخصيات ويكسوها ويركّب هياكلها ويحرّكها،<br>
@@ -369,6 +369,15 @@ npm install -g github:DeadInternetStudios/100x-engineer-skill
 راجع [NOTICE.md](../NOTICE.md) و[UPSTREAM.md](../UPSTREAM.md).
 
 MIT. راجع [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

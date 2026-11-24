@@ -157,44 +157,44 @@ Setiap run mendapat satu verdict: **Siap rilis**, **Lumayan**, atau **Perlu diga
 
 ## Produk nyata yang dibuat dengan 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: seperti Bloomberg Terminal, tapi untuk orang biasa. Tesla diperdagangkan 25% di atas nilai wajarnya, dibandingkan dengan riwayatnya sendiri, pesaing terdekatnya, dan semua perusahaan." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: seperti Bloomberg Terminal, tapi untuk orang biasa. Tesla diperdagangkan 25% di atas nilai wajarnya, dibandingkan dengan riwayatnya sendiri, pesaing terdekatnya, dan semua perusahaan." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Stock screener, dibuat<br>
 dengan bantuan 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: springtail, lengkap dengan buktinya. Halaman spesies, kartu perawatan, game idle, dan penjelajah anatomi 3D." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: springtail, lengkap dengan buktinya. Halaman spesies, kartu perawatan, game idle, dan penjelajah anatomi 3D." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Wiki tentang springtail, dibuat<br>
 sepenuhnya dengan 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: deretan gelembung pixel art yang memainkan musik saat dipecahkan, dengan daftar lagu, efek, dan mixer." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: deretan gelembung pixel art yang memainkan musik saat dipecahkan, dengan daftar lagu, efek, dan mixer." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Aplikasi musik pixel art,<br>
 dibuat sepenuhnya dengan 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: grafik harga XAU/USD langsung dengan agenda peristiwa mendatang, dan panel untuk menantang sebuah trade." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: grafik harga XAU/USD langsung dengan agenda peristiwa mendatang, dan panel untuk menantang sebuah trade." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Aplikasi trading emas, dibuat<br>
 sepenuhnya dengan 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: tanda tangan dengan goresan pena bernomor yang dijiplak di atas foto, dengan daftar gambar di kiri dan goresannya di kanan." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: tanda tangan dengan goresan pena bernomor yang dijiplak di atas foto, dengan daftar gambar di kiri dan goresannya di kanan." width="380"><br>
 <b>Phantom</b><br>
 Aplikasi Mac berbasis Swift yang<br>
 dipakai ahli forensik untuk<br>
 menganalisis tulisan tangan, dibuat<br>
 dengan bantuan 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: tabel option chain berisi call dan put per strike di samping grafik untung rugi." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: tabel option chain berisi call dan put per strike di samping grafik untung rugi." width="380"><br>
 <b>OptionsFlow</b><br>
 Alat option chain real-time di<br>
 React yang dipakai firma kuant,<br>
@@ -202,15 +202,15 @@ dibuat dengan bantuan 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: layar beranda gelap dengan daftar aplikasi di bagian atas, satu item yang perlu perhatian, grafik jaringan, dan petak untuk insiden, mesin, komitmen, dan run." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: layar beranda gelap dengan daftar aplikasi di bagian atas, satu item yang perlu perhatian, grafik jaringan, dan petak untuk insiden, mesin, komitmen, dan run." width="380"><br>
 <b>Skynet</b><br>
 Alat manajemen proyek di atas<br>
 Blueprint dan Encore, dibuat<br>
 dengan bantuan 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: enam langkah dari brief satu kalimat ke gambar, model 3D, kerangka berkulit, animasi, dan karakter di dalam game." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: enam langkah dari brief satu kalimat ke gambar, model 3D, kerangka berkulit, animasi, dan karakter di dalam game." width="380"><br>
 <b>Boneworks</b><br>
 Pipeline text-to-3D yang memodelkan,<br>
 memberi skin, me-rig, dan menganimasikan<br>
@@ -367,6 +367,15 @@ Laporan bug, perbaikan, dan ide sangat diterima. Perbaikan kecil bisa langsung j
 Lihat [NOTICE.md](../NOTICE.md) dan [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Lihat [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

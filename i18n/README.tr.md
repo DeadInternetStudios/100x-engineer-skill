@@ -157,44 +157,44 @@ Her çalışma tek bir karar alır: **Yayına hazır**, **İyi** ya da **Gelişt
 
 ## 100x ile yapılmış gerçek ürünler
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: Bloomberg Terminal gibi ama sıradan insanlar için. Tesla adil değerinin %25 üzerinde işlem görüyor; kendi geçmişi, en yakın rakipleri ve tüm şirketlerle karşılaştırmalı." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: Bloomberg Terminal gibi ama sıradan insanlar için. Tesla adil değerinin %25 üzerinde işlem görüyor; kendi geçmişi, en yakın rakipleri ve tüm şirketlerle karşılaştırmalı." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 100x desteğiyle yapılmış<br>
 bir hisse tarama aracı
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: kanıtlarıyla kollembolalar. Tür sayfaları, bakım kartları, bir idle oyun ve 3D anatomi gezgini." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: kanıtlarıyla kollembolalar. Tür sayfaları, bakım kartları, bir idle oyun ve 3D anatomi gezgini." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Tamamen 100x ile yapılmış<br>
 bir kollembola wikisi
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: patlatıldığında müzik çalan piksel sanatı baloncuklardan bir ızgara; parça listesi, efektler ve mikser ile." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: patlatıldığında müzik çalan piksel sanatı baloncuklardan bir ızgara; parça listesi, efektler ve mikser ile." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Tamamen 100x ile yapılmış,<br>
 piksel sanatlı bir müzik uygulaması
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: yaklaşan olaylarla birlikte canlı bir XAU/USD fiyat grafiği ve bir işlemi sorgulamak için bir panel." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: yaklaşan olaylarla birlikte canlı bir XAU/USD fiyat grafiği ve bir işlemi sorgulamak için bir panel." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Tamamen 100x ile yapılmış<br>
 bir altın alım satım uygulaması
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: bir fotoğrafın üzerine çizilmiş, kalem darbeleri numaralandırılmış bir imza; solda görsel listesi, sağda kalem darbeleri." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: bir fotoğrafın üzerine çizilmiş, kalem darbeleri numaralandırılmış bir imza; solda görsel listesi, sağda kalem darbeleri." width="380"><br>
 <b>Phantom</b><br>
 Adli uzmanların el yazısı<br>
 incelemek için kullandığı,<br>
 100x desteğiyle yapılmış<br>
 bir Swift Mac uygulaması
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: kullanım fiyatına göre call ve put opsiyonlarını gösteren bir opsiyon zinciri tablosu ve yanında bir kâr-zarar grafiği." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: kullanım fiyatına göre call ve put opsiyonlarını gösteren bir opsiyon zinciri tablosu ve yanında bir kâr-zarar grafiği." width="380"><br>
 <b>OptionsFlow</b><br>
 Kantitatif firmaların kullandığı,<br>
 React ile gerçek zamanlı opsiyon zinciri<br>
@@ -202,15 +202,15 @@ aracı, 100x desteğiyle yapıldı
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: üstte uygulama listesi, dikkat bekleyen bir öğe, bir ağ grafiği ve olaylar, makineler, taahhütler ve çalışmalar için kutucuklar bulunan karanlık bir ana ekran." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: üstte uygulama listesi, dikkat bekleyen bir öğe, bir ağ grafiği ve olaylar, makineler, taahhütler ve çalışmalar için kutucuklar bulunan karanlık bir ana ekran." width="380"><br>
 <b>Skynet</b><br>
 Blueprint ve Encore üzerine kurulu,<br>
 100x desteğiyle yapılmış bir<br>
 proje yönetim aracı
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: tek cümlelik bir brifften görsele, 3D modele, deri giydirilmiş iskelete, animasyonlara ve oyundaki karaktere uzanan altı adım." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: tek cümlelik bir brifften görsele, 3D modele, deri giydirilmiş iskelete, animasyonlara ve oyundaki karaktere uzanan altı adım." width="380"><br>
 <b>Boneworks</b><br>
 Karakterleri modelleyen, kaplayan,<br>
 rig'leyen ve canlandıran bir text-to-3D<br>
@@ -367,6 +367,15 @@ Hata raporları, düzeltmeler ve fikirler memnuniyetle karşılanır. Küçük d
 Bkz. [NOTICE.md](../NOTICE.md) ve [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Bkz. [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

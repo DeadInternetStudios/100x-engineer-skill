@@ -157,56 +157,56 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## 100x で作られた実際のプロダクト
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow：普通の人のための Bloomberg Terminal のようなもの。Tesla は適正価値より 25% 高く取引されており、自社の過去、最も近い競合、全企業と比べて表示されている。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow：普通の人のための Bloomberg Terminal のようなもの。Tesla は適正価値より 25% 高く取引されており、自社の過去、最も近い競合、全企業と比べて表示されている。" width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 株式スクリーナー。<br>
 100x の支援で構築
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki：根拠つきのトビムシ情報。種のページ、飼育カード、放置ゲーム、3D 解剖エクスプローラー。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki：根拠つきのトビムシ情報。種のページ、飼育カード、放置ゲーム、3D 解剖エクスプローラー。" width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 トビムシの Wiki。<br>
 すべて 100x で構築
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap：つぶすと音楽が鳴るピクセルアートの泡のグリッド。トラックリスト、エフェクト、ミキサーつき。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap：つぶすと音楽が鳴るピクセルアートの泡のグリッド。トラックリスト、エフェクト、ミキサーつき。" width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 ピクセルアートの音楽アプリ。<br>
 すべて 100x で構築
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk：XAU/USD のリアルタイム価格チャートと今後のイベント、トレードに異議を唱えるためのパネル。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk：XAU/USD のリアルタイム価格チャートと今後のイベント、トレードに異議を唱えるためのパネル。" width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 金取引アプリ。<br>
 すべて 100x で構築
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom：写真の上に番号つきのペンの筆跡をなぞった署名。左に画像の一覧、右に筆跡。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom：写真の上に番号つきのペンの筆跡をなぞった署名。左に画像の一覧、右に筆跡。" width="380"><br>
 <b>Phantom</b><br>
 法科学の専門家が筆跡の<br>
 分析に使う Swift の Mac アプリ。<br>
 100x の支援で構築
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow：権利行使価格ごとのコールとプットのオプションチェーン表と、その隣の損益チャート。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow：権利行使価格ごとのコールとプットのオプションチェーン表と、その隣の損益チャート。" width="380"><br>
 <b>OptionsFlow</b><br>
 クオンツ企業が使う React 製の<br>
 リアルタイムのオプションチェーンツール。<br>
 100x の支援で構築
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet：暗いホーム画面。上部にアプリの一覧、対応が必要な項目が 1 つ、ネットワークグラフ、インシデント・マシン・コミットメント・実行のタイル。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet：暗いホーム画面。上部にアプリの一覧、対応が必要な項目が 1 つ、ネットワークグラフ、インシデント・マシン・コミットメント・実行のタイル。" width="380"><br>
 <b>Skynet</b><br>
 Blueprint と Encore で作った<br>
 プロジェクト管理ツール。<br>
 100x の支援で構築
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks：1 文の依頼から、画像、3D モデル、スキンつきのスケルトン、アニメーション、ゲーム内のキャラクターまでの 6 ステップ。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks：1 文の依頼から、画像、3D モデル、スキンつきのスケルトン、アニメーション、ゲーム内のキャラクターまでの 6 ステップ。" width="380"><br>
 <b>Boneworks</b><br>
 キャラクターのモデリング、スキニング、<br>
 リギング、アニメーションを行う<br>
@@ -364,6 +364,15 @@ Claude Code と Cursor では `/` でスキルを始めます。Codex では `$`
 [NOTICE.md](../NOTICE.md) と [UPSTREAM.md](../UPSTREAM.md) を参照してください。
 
 MIT ライセンス。[LICENSE](../LICENSE) を参照してください。
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

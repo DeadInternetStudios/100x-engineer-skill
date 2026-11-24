@@ -157,56 +157,56 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## 用 100x 做出的真实产品
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow：像 Bloomberg 终端，但面向普通人。特斯拉的交易价格比其合理价值高 25%，并与它自己的历史、最接近的同行以及所有公司做对比。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow：像 Bloomberg 终端，但面向普通人。特斯拉的交易价格比其合理价值高 25%，并与它自己的历史、最接近的同行以及所有公司做对比。" width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 股票筛选器，<br>
 借助 100x 构建
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki：关于跳虫，有据可查。物种页面、饲养卡片、一个放置类游戏和一个 3D 解剖浏览器。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki：关于跳虫，有据可查。物种页面、饲养卡片、一个放置类游戏和一个 3D 解剖浏览器。" width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 跳虫百科，<br>
 完全用 100x 构建
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap：一格格像素风泡泡，戳破时会放音乐，带曲目列表、音效和混音器。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap：一格格像素风泡泡，戳破时会放音乐，带曲目列表、音效和混音器。" width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 像素风音乐应用，<br>
 完全用 100x 构建
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk：XAU/USD 实时价格图表，附即将发生的事件，以及一个用来质疑交易的面板。" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk：XAU/USD 实时价格图表，附即将发生的事件，以及一个用来质疑交易的面板。" width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 黄金交易应用，<br>
 完全用 100x 构建
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom：照片上的一个签名，叠着编号的笔画轨迹，左边是图片列表，右边是笔画。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom：照片上的一个签名，叠着编号的笔画轨迹，左边是图片列表，右边是笔画。" width="380"><br>
 <b>Phantom</b><br>
 法证专家用来分析<br>
 笔迹的 Swift Mac 应用，<br>
 借助 100x 构建
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow：按行权价排列看涨和看跌期权的期权链表格，旁边是盈亏图。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow：按行权价排列看涨和看跌期权的期权链表格，旁边是盈亏图。" width="380"><br>
 <b>OptionsFlow</b><br>
 量化公司在用的 React<br>
 实时期权链工具，<br>
 借助 100x 构建
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet：深色主页，顶部是一排应用，有一项待处理事项、一张网络图，以及事件、机器、承诺和运行的磁贴。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet：深色主页，顶部是一排应用，有一项待处理事项、一张网络图，以及事件、机器、承诺和运行的磁贴。" width="380"><br>
 <b>Skynet</b><br>
 基于 Blueprint 和 Encore<br>
 的项目管理工具，<br>
 借助 100x 构建
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks：从一句话需求到图片、3D 模型、带蒙皮的骨架、动画，再到游戏里的角色，共六步。" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks：从一句话需求到图片、3D 模型、带蒙皮的骨架、动画，再到游戏里的角色，共六步。" width="380"><br>
 <b>Boneworks</b><br>
 文字转 3D 流水线，为角色<br>
 建模、蒙皮、绑定骨骼和制作动画，<br>
@@ -363,6 +363,15 @@ Claude Code 和 Cursor 用 `/` 启动技能。Codex 用 `$`，比如 `$100x-setu
 参见 [NOTICE.md](../NOTICE.md) 和 [UPSTREAM.md](../UPSTREAM.md)。
 
 MIT 许可。参见 [LICENSE](../LICENSE)。
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

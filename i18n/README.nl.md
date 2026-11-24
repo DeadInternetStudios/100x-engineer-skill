@@ -157,44 +157,44 @@ Elke run krijgt één oordeel: **Klaar om te shippen**, **Prima** of **Moet bete
 
 ## Echte producten gebouwd met 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: zoals Bloomberg Terminal, maar voor gewone mensen. Tesla noteert 25% boven zijn reële waarde, afgezet tegen zijn eigen geschiedenis, zijn naaste concurrenten en alle bedrijven." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: zoals Bloomberg Terminal, maar voor gewone mensen. Tesla noteert 25% boven zijn reële waarde, afgezet tegen zijn eigen geschiedenis, zijn naaste concurrenten en alle bedrijven." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Een aandelenscreener, gebouwd<br>
 met hulp van 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: springstaarten, met bewijs. Soortpagina’s, verzorgingskaarten, een idle game en een 3D-anatomieverkenner." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: springstaarten, met bewijs. Soortpagina’s, verzorgingskaarten, een idle game en een 3D-anatomieverkenner." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Een wiki over springstaarten,<br>
 volledig gebouwd met 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: een raster van pixelart-bubbels die muziek spelen als je ze laat knappen, met een tracklijst, effecten en een mixer." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: een raster van pixelart-bubbels die muziek spelen als je ze laat knappen, met een tracklijst, effecten en een mixer." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Een muziekapp in pixelart,<br>
 volledig gebouwd met 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: een live koersgrafiek van XAU/USD met komende gebeurtenissen, en een paneel om een trade kritisch te laten toetsen." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: een live koersgrafiek van XAU/USD met komende gebeurtenissen, en een paneel om een trade kritisch te laten toetsen." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Een app voor goudhandel,<br>
 volledig gebouwd met 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: een handtekening met genummerde penstreken over een foto, met links een lijst met afbeeldingen en rechts de streken." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: een handtekening met genummerde penstreken over een foto, met links een lijst met afbeeldingen en rechts de streken." width="380"><br>
 <b>Phantom</b><br>
 Een Mac-app in Swift waarmee<br>
 forensisch experts handschrift<br>
 analyseren, gebouwd met hulp<br>
 van 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: een optieketen met calls en puts per strike naast een grafiek van winst en verlies." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: een optieketen met calls en puts per strike naast een grafiek van winst en verlies." width="380"><br>
 <b>OptionsFlow</b><br>
 Een realtime tool voor optieketens in<br>
 React, gebruikt door quant-firma’s,<br>
@@ -202,15 +202,15 @@ gebouwd met hulp van 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: een donker startscherm met bovenaan een lijst apps, één item dat aandacht nodig heeft, een netwerkgrafiek en tegels voor incidenten, machines, toezeggingen en runs." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: een donker startscherm met bovenaan een lijst apps, één item dat aandacht nodig heeft, een netwerkgrafiek en tegels voor incidenten, machines, toezeggingen en runs." width="380"><br>
 <b>Skynet</b><br>
 Een tool voor projectmanagement op<br>
 basis van Blueprint en Encore, gebouwd<br>
 met hulp van 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: zes stappen van een briefing van één zin naar een afbeelding, een 3D-model, een skelet met huid, animaties en het personage in een game." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: zes stappen van een briefing van één zin naar een afbeelding, een 3D-model, een skelet met huid, animaties en het personage in een game." width="380"><br>
 <b>Boneworks</b><br>
 Een tekst-naar-3D-pipeline die personages<br>
 modelleert, skint, rigt en animeert,<br>
@@ -367,6 +367,15 @@ Bugmeldingen, fixes en ideeën zijn welkom. Kleine fixes kunnen direct als pull 
 Zie [NOTICE.md](../NOTICE.md) en [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Zie [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

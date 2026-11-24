@@ -157,57 +157,57 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## ผลงานจริงที่สร้างด้วย 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: เหมือน Bloomberg Terminal แต่สำหรับคนทั่วไป หุ้น Tesla ซื้อขายสูงกว่ามูลค่าที่เหมาะสม 25% แสดงเทียบกับประวัติของตัวเอง คู่แข่งที่ใกล้ที่สุด และทุกบริษัท" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: เหมือน Bloomberg Terminal แต่สำหรับคนทั่วไป หุ้น Tesla ซื้อขายสูงกว่ามูลค่าที่เหมาะสม 25% แสดงเทียบกับประวัติของตัวเอง คู่แข่งที่ใกล้ที่สุด และทุกบริษัท" width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 เครื่องมือคัดกรองหุ้น<br>
 สร้างโดยมี 100x ช่วย
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: เรื่องของแมลงหางดีด พร้อมหลักฐาน หน้าข้อมูลสายพันธุ์ การ์ดวิธีเลี้ยง เกมแนว idle และตัวสำรวจกายวิภาคแบบ 3D" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: เรื่องของแมลงหางดีด พร้อมหลักฐาน หน้าข้อมูลสายพันธุ์ การ์ดวิธีเลี้ยง เกมแนว idle และตัวสำรวจกายวิภาคแบบ 3D" width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 วิกิแมลงหางดีด<br>
 สร้างด้วย 100x ทั้งหมด
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: ตารางฟองพิกเซลอาร์ตที่เล่นเพลงเมื่อกดให้แตก พร้อมรายการเพลง เอฟเฟกต์ และมิกเซอร์" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: ตารางฟองพิกเซลอาร์ตที่เล่นเพลงเมื่อกดให้แตก พร้อมรายการเพลง เอฟเฟกต์ และมิกเซอร์" width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 แอปดนตรีพิกเซลอาร์ต<br>
 สร้างด้วย 100x ทั้งหมด
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: กราฟราคา XAU/USD แบบเรียลไทม์ พร้อมเหตุการณ์ที่กำลังจะมาถึง และแผงสำหรับโต้แย้งการเทรด" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: กราฟราคา XAU/USD แบบเรียลไทม์ พร้อมเหตุการณ์ที่กำลังจะมาถึง และแผงสำหรับโต้แย้งการเทรด" width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 แอปเทรดทองคำ<br>
 สร้างด้วย 100x ทั้งหมด
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: ลายเซ็นที่มีเส้นปากกาลำดับหมายเลขลากทับบนรูปถ่าย มีรายการรูปทางซ้ายและเส้นทางขวา" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: ลายเซ็นที่มีเส้นปากกาลำดับหมายเลขลากทับบนรูปถ่าย มีรายการรูปทางซ้ายและเส้นทางขวา" width="380"><br>
 <b>Phantom</b><br>
 แอป Mac ที่เขียนด้วย Swift<br>
 ซึ่งผู้เชี่ยวชาญนิติวิทยาศาสตร์<br>
 ใช้วิเคราะห์ลายมือ สร้างโดย<br>
 มี 100x ช่วย
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: ตาราง option chain ของคอลและพุตตามราคาใช้สิทธิ อยู่ข้างกราฟกำไรขาดทุน" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: ตาราง option chain ของคอลและพุตตามราคาใช้สิทธิ อยู่ข้างกราฟกำไรขาดทุน" width="380"><br>
 <b>OptionsFlow</b><br>
 เครื่องมือ option chain แบบเรียลไทม์<br>
 เขียนด้วย React ที่บริษัทควอนต์ใช้<br>
 สร้างโดยมี 100x ช่วย
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: หน้าหลักโทนมืด มีรายการแอปเรียงด้านบน รายการหนึ่งที่ต้องจัดการ กราฟเครือข่าย และไทล์สำหรับเหตุขัดข้อง เครื่อง ข้อผูกมัด และการรัน" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: หน้าหลักโทนมืด มีรายการแอปเรียงด้านบน รายการหนึ่งที่ต้องจัดการ กราฟเครือข่าย และไทล์สำหรับเหตุขัดข้อง เครื่อง ข้อผูกมัด และการรัน" width="380"><br>
 <b>Skynet</b><br>
 เครื่องมือจัดการโปรเจกต์ที่สร้างบน<br>
 Blueprint และ Encore โดยมี<br>
 100x ช่วย
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: หกขั้นตอนจากบรีฟประโยคเดียว ไปสู่รูปภาพ โมเดล 3D โครงกระดูกพร้อมสกิน แอนิเมชัน และตัวละครในเกม" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: หกขั้นตอนจากบรีฟประโยคเดียว ไปสู่รูปภาพ โมเดล 3D โครงกระดูกพร้อมสกิน แอนิเมชัน และตัวละครในเกม" width="380"><br>
 <b>Boneworks</b><br>
 ไปป์ไลน์ข้อความเป็น 3D ที่ขึ้นโมเดล<br>
 ทำสกิน ริก และแอนิเมชันให้ตัวละคร<br>
@@ -364,6 +364,15 @@ Claude Code และ Cursor เริ่มสกิลด้วย `/` ส่�
 ดู [NOTICE.md](../NOTICE.md) และ [UPSTREAM.md](../UPSTREAM.md)
 
 MIT ดู [LICENSE](../LICENSE)
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

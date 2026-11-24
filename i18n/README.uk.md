@@ -157,43 +157,43 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## Реальні продукти, створені за допомогою 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: як Bloomberg Terminal, але для звичайних людей. Tesla торгується на 25% вище за свою справедливу вартість, у порівнянні з власною історією, найближчими конкурентами і всіма компаніями." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: як Bloomberg Terminal, але для звичайних людей. Tesla торгується на 25% вище за свою справедливу вартість, у порівнянні з власною історією, найближчими конкурентами і всіма компаніями." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Скринер акцій, створений<br>
 за допомогою 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: ногохвістки, з доказами. Сторінки видів, картки догляду, idle-гра і 3D-оглядач анатомії." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: ногохвістки, з доказами. Сторінки видів, картки догляду, idle-гра і 3D-оглядач анатомії." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Вікі про ногохвісток,<br>
 повністю створена в 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: сітка піксельних бульбашок, які грають музику, коли їх лопаєш, зі списком треків, ефектами й мікшером." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: сітка піксельних бульбашок, які грають музику, коли їх лопаєш, зі списком треків, ефектами й мікшером." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Музичний застосунок у піксель-арті,<br>
 повністю створений у 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: живий графік ціни XAU/USD з найближчими подіями й панеллю, де угоду можна поставити під сумнів." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: живий графік ціни XAU/USD з найближчими подіями й панеллю, де угоду можна поставити під сумнів." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Застосунок для торгівлі золотом,<br>
 повністю створений у 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: підпис із пронумерованими штрихами пера поверх фото, зі списком зображень ліворуч і штрихами праворуч." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: підпис із пронумерованими штрихами пера поверх фото, зі списком зображень ліворуч і штрихами праворуч." width="380"><br>
 <b>Phantom</b><br>
 Mac-застосунок на Swift, яким<br>
 криміналісти аналізують почерк,<br>
 створений за допомогою 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: таблиця опціонного ланцюга з колами й путами за страйками поруч із графіком прибутку та збитку." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: таблиця опціонного ланцюга з колами й путами за страйками поруч із графіком прибутку та збитку." width="380"><br>
 <b>OptionsFlow</b><br>
 Інструмент для опціонного ланцюга<br>
 в реальному часі на React, яким<br>
@@ -202,15 +202,15 @@ Mac-застосунок на Swift, яким<br>
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: темний головний екран зі списком застосунків угорі, одним пунктом, що потребує уваги, графом мережі та плитками інцидентів, машин, зобов’язань і запусків." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: темний головний екран зі списком застосунків угорі, одним пунктом, що потребує уваги, графом мережі та плитками інцидентів, машин, зобов’язань і запусків." width="380"><br>
 <b>Skynet</b><br>
 Інструмент для керування проєктами<br>
 на основі Blueprint і Encore, створений<br>
 за допомогою 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: шість кроків від брифу з одного речення до картинки, 3D-моделі, скелета зі шкірою, анімацій і персонажа в грі." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: шість кроків від брифу з одного речення до картинки, 3D-моделі, скелета зі шкірою, анімацій і персонажа в грі." width="380"><br>
 <b>Boneworks</b><br>
 Пайплайн text-to-3D, який моделює,<br>
 скінить, рігить і анімує персонажів,<br>
@@ -367,6 +367,15 @@ Claude Code і Cursor запускають скіл через `/`. Codex вик
 Див. [NOTICE.md](../NOTICE.md) і [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Див. [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

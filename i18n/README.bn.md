@@ -157,44 +157,44 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## 100x দিয়ে বানানো আসল প্রোডাক্ট
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: Bloomberg Terminal-এর মতো, তবে সাধারণ মানুষের জন্য। Tesla তার ন্যায্য মূল্যের 25% ওপরে ট্রেড করছে, যা দেখানো হয়েছে তার নিজের ইতিহাস, সবচেয়ে কাছের প্রতিদ্বন্দ্বী আর সব কোম্পানির পাশে।" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: Bloomberg Terminal-এর মতো, তবে সাধারণ মানুষের জন্য। Tesla তার ন্যায্য মূল্যের 25% ওপরে ট্রেড করছে, যা দেখানো হয়েছে তার নিজের ইতিহাস, সবচেয়ে কাছের প্রতিদ্বন্দ্বী আর সব কোম্পানির পাশে।" width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 একটা স্টক স্ক্রিনার, 100x-এর<br>
 সাহায্যে বানানো
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: স্প্রিংটেল, প্রমাণসহ। প্রজাতির পেজ, যত্নের কার্ড, একটা আইডল গেম আর একটা 3D অ্যানাটমি এক্সপ্লোরার।" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: স্প্রিংটেল, প্রমাণসহ। প্রজাতির পেজ, যত্নের কার্ড, একটা আইডল গেম আর একটা 3D অ্যানাটমি এক্সপ্লোরার।" width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 স্প্রিংটেল নিয়ে একটা উইকি,<br>
 পুরোটাই 100x দিয়ে বানানো
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: পিক্সেল আর্টের বুদবুদের একটা গ্রিড, ফাটালে গান বাজে, সঙ্গে ট্র্যাক লিস্ট, ইফেক্ট আর একটা মিক্সার।" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: পিক্সেল আর্টের বুদবুদের একটা গ্রিড, ফাটালে গান বাজে, সঙ্গে ট্র্যাক লিস্ট, ইফেক্ট আর একটা মিক্সার।" width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 একটা পিক্সেল আর্ট মিউজিক অ্যাপ,<br>
 পুরোটাই 100x দিয়ে বানানো
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: XAU/USD-এর লাইভ দামের চার্ট, সঙ্গে আসন্ন ইভেন্ট, আর একটা ট্রেডকে চ্যালেঞ্জ করার প্যানেল।" width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: XAU/USD-এর লাইভ দামের চার্ট, সঙ্গে আসন্ন ইভেন্ট, আর একটা ট্রেডকে চ্যালেঞ্জ করার প্যানেল।" width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 সোনা ট্রেডিংয়ের একটা অ্যাপ,<br>
 পুরোটাই 100x দিয়ে বানানো
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: একটা ছবির ওপর আঁকা স্বাক্ষর, কলমের টানগুলোয় নম্বর দেওয়া, বাঁয়ে ছবির তালিকা আর ডানে টানগুলো।" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: একটা ছবির ওপর আঁকা স্বাক্ষর, কলমের টানগুলোয় নম্বর দেওয়া, বাঁয়ে ছবির তালিকা আর ডানে টানগুলো।" width="380"><br>
 <b>Phantom</b><br>
 Swift-এ লেখা একটা Mac অ্যাপ, যা দিয়ে<br>
 ফরেনসিক বিশেষজ্ঞরা হাতের লেখা<br>
 বিশ্লেষণ করেন, 100x-এর<br>
 সাহায্যে বানানো
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: স্ট্রাইক অনুযায়ী কল আর পুটের অপশন চেইন টেবিল, পাশে লাভ-ক্ষতির চার্ট।" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: স্ট্রাইক অনুযায়ী কল আর পুটের অপশন চেইন টেবিল, পাশে লাভ-ক্ষতির চার্ট।" width="380"><br>
 <b>OptionsFlow</b><br>
 React-এ বানানো রিয়েল-টাইম অপশন<br>
 চেইন টুল, যা কোয়ান্ট ফার্মগুলো ব্যবহার<br>
@@ -202,15 +202,15 @@ React-এ বানানো রিয়েল-টাইম অপশন<br>
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: একটা গাঢ় রঙের হোম স্ক্রিন, ওপরে অ্যাপের তালিকা, মনোযোগ দরকার এমন একটা আইটেম, একটা নেটওয়ার্ক গ্রাফ, আর ইনসিডেন্ট, মেশিন, কমিটমেন্ট ও রানের টাইল।" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: একটা গাঢ় রঙের হোম স্ক্রিন, ওপরে অ্যাপের তালিকা, মনোযোগ দরকার এমন একটা আইটেম, একটা নেটওয়ার্ক গ্রাফ, আর ইনসিডেন্ট, মেশিন, কমিটমেন্ট ও রানের টাইল।" width="380"><br>
 <b>Skynet</b><br>
 Blueprint আর Encore-এর ওপর বানানো<br>
 একটা প্রজেক্ট ম্যানেজমেন্ট টুল, 100x-এর<br>
 সাহায্যে
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: এক বাক্যের ব্রিফ থেকে ছবি, 3D মডেল, স্কিনসহ কঙ্কাল, অ্যানিমেশন আর গেমের ভেতরে চরিত্র পর্যন্ত ছয়টা ধাপ।" width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: এক বাক্যের ব্রিফ থেকে ছবি, 3D মডেল, স্কিনসহ কঙ্কাল, অ্যানিমেশন আর গেমের ভেতরে চরিত্র পর্যন্ত ছয়টা ধাপ।" width="380"><br>
 <b>Boneworks</b><br>
 টেক্সট থেকে 3D পাইপলাইন, যা চরিত্রকে<br>
 মডেল, স্কিন, রিগ আর অ্যানিমেট করে,<br>
@@ -367,6 +367,15 @@ Claude Code আর Cursor-এ স্কিল শুরু হয় `/` দি�
 দেখুন [NOTICE.md](../NOTICE.md) আর [UPSTREAM.md](../UPSTREAM.md)।
 
 MIT। দেখুন [LICENSE](../LICENSE)।
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

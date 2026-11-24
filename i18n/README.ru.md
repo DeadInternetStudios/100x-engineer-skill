@@ -157,44 +157,44 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## Реальные продукты, сделанные с 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: как Bloomberg Terminal, только для обычных людей. Tesla торгуется на 25% выше справедливой стоимости, на фоне собственной истории, ближайших конкурентов и всех компаний." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: как Bloomberg Terminal, только для обычных людей. Tesla торгуется на 25% выше справедливой стоимости, на фоне собственной истории, ближайших конкурентов и всех компаний." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Скринер акций, сделанный<br>
 с помощью 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: ногохвостки, с доказательствами. Страницы видов, карточки по уходу, idle-игра и 3D-атлас анатомии." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: ногохвостки, с доказательствами. Страницы видов, карточки по уходу, idle-игра и 3D-атлас анатомии." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Вики о ногохвостках, целиком<br>
 сделанная на 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: сетка пиксельных пузырьков, которые играют музыку, когда их лопаешь, со списком треков, эффектами и микшером." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: сетка пиксельных пузырьков, которые играют музыку, когда их лопаешь, со списком треков, эффектами и микшером." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Музыкальное приложение в пиксель-арте,<br>
 целиком сделанное на 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: живой график цены XAU/USD с ближайшими событиями и панелью, где можно оспорить сделку." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: живой график цены XAU/USD с ближайшими событиями и панелью, где можно оспорить сделку." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Приложение для торговли золотом,<br>
 целиком сделанное на 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: подпись с пронумерованными штрихами пера поверх фотографии, слева список снимков, справа штрихи." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: подпись с пронумерованными штрихами пера поверх фотографии, слева список снимков, справа штрихи." width="380"><br>
 <b>Phantom</b><br>
 Приложение для Mac на Swift,<br>
 которым эксперты-криминалисты<br>
 анализируют почерк, сделанное<br>
 с помощью 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: таблица опционной цепочки с коллами и путами по страйкам рядом с графиком прибыли и убытков." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: таблица опционной цепочки с коллами и путами по страйкам рядом с графиком прибыли и убытков." width="380"><br>
 <b>OptionsFlow</b><br>
 Опционная цепочка в реальном<br>
 времени на React для квант-фирм,<br>
@@ -202,15 +202,15 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: тёмный главный экран со списком приложений сверху, одним пунктом, который требует внимания, графом сети и плитками инцидентов, машин, обязательств и запусков." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: тёмный главный экран со списком приложений сверху, одним пунктом, который требует внимания, графом сети и плитками инцидентов, машин, обязательств и запусков." width="380"><br>
 <b>Skynet</b><br>
 Инструмент управления проектами<br>
 на Blueprint и Encore, сделанный<br>
 с помощью 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: шесть шагов от задания в одно предложение до картинки, 3D-модели, скелета со скином, анимаций и персонажа в игре." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: шесть шагов от задания в одно предложение до картинки, 3D-модели, скелета со скином, анимаций и персонажа в игре." width="380"><br>
 <b>Boneworks</b><br>
 Пайплайн text-to-3D, который моделирует,<br>
 скинит, ригает и анимирует персонажей,<br>
@@ -367,6 +367,15 @@ npm install -g github:DeadInternetStudios/100x-engineer-skill
 См. [NOTICE.md](../NOTICE.md) и [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. См. [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

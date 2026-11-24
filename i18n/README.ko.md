@@ -157,56 +157,56 @@ Next likely asks: Count dividends in the comparison; Show the gap for several st
 
 ## 100x로 만든 실제 제품
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: 보통 사람을 위한 Bloomberg Terminal 같은 서비스. Tesla가 적정 가치보다 25% 높게 거래되고 있으며, 자체 과거 기록, 가장 가까운 경쟁사, 모든 기업과 비교해 보여 준다." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: 보통 사람을 위한 Bloomberg Terminal 같은 서비스. Tesla가 적정 가치보다 25% 높게 거래되고 있으며, 자체 과거 기록, 가장 가까운 경쟁사, 모든 기업과 비교해 보여 준다." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 주식 스크리너,<br>
 100x의 도움으로 제작
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: 근거를 갖춘 톡토기 정보. 종 페이지, 사육 카드, 방치형 게임, 3D 해부 탐색기." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: 근거를 갖춘 톡토기 정보. 종 페이지, 사육 카드, 방치형 게임, 3D 해부 탐색기." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 톡토기 위키,<br>
 전부 100x로 제작
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: 터뜨리면 음악이 나오는 픽셀 아트 뽁뽁이 격자. 트랙 목록, 이펙트, 믹서가 있다." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: 터뜨리면 음악이 나오는 픽셀 아트 뽁뽁이 격자. 트랙 목록, 이펙트, 믹서가 있다." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 픽셀 아트 음악 앱,<br>
 전부 100x로 제작
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: 실시간 XAU/USD 가격 차트와 예정된 이벤트, 그리고 거래에 반론을 제기하는 패널." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: 실시간 XAU/USD 가격 차트와 예정된 이벤트, 그리고 거래에 반론을 제기하는 패널." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 금 트레이딩 앱,<br>
 전부 100x로 제작
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: 사진 위에 번호가 매겨진 펜 획을 따라 그린 서명. 왼쪽에는 사진 목록, 오른쪽에는 획 목록." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: 사진 위에 번호가 매겨진 펜 획을 따라 그린 서명. 왼쪽에는 사진 목록, 오른쪽에는 획 목록." width="380"><br>
 <b>Phantom</b><br>
 법과학 전문가가 필적 분석에<br>
 쓰는 Swift Mac 앱,<br>
 100x의 도움으로 제작
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: 행사가별 콜과 풋을 보여 주는 옵션 체인 표와 그 옆의 손익 차트." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: 행사가별 콜과 풋을 보여 주는 옵션 체인 표와 그 옆의 손익 차트." width="380"><br>
 <b>OptionsFlow</b><br>
 퀀트 회사들이 쓰는 React 기반<br>
 실시간 옵션 체인 도구,<br>
 100x의 도움으로 제작
 </td></tr></table>
 <br clear="all">
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: 어두운 홈 화면. 위쪽에 앱 목록, 처리가 필요한 항목 하나, 네트워크 그래프, 그리고 인시던트·머신·약속·실행 타일." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: 어두운 홈 화면. 위쪽에 앱 목록, 처리가 필요한 항목 하나, 네트워크 그래프, 그리고 인시던트·머신·약속·실행 타일." width="380"><br>
 <b>Skynet</b><br>
 Blueprint와 Encore 기반의<br>
 프로젝트 관리 도구,<br>
 100x의 도움으로 제작
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: 한 문장짜리 요청에서 그림, 3D 모델, 스킨을 입힌 뼈대, 애니메이션, 게임 속 캐릭터까지 이어지는 여섯 단계." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: 한 문장짜리 요청에서 그림, 3D 모델, 스킨을 입힌 뼈대, 애니메이션, 게임 속 캐릭터까지 이어지는 여섯 단계." width="380"><br>
 <b>Boneworks</b><br>
 캐릭터를 모델링하고 스킨을 입히고<br>
 리깅하고 애니메이션까지 하는<br>
@@ -364,6 +364,15 @@ Claude Code와 Cursor에서는 `/`로 스킬을 시작합니다. Codex는 `$`를
 [NOTICE.md](../NOTICE.md)와 [UPSTREAM.md](../UPSTREAM.md)를 참고하세요.
 
 MIT. [LICENSE](../LICENSE)를 참고하세요.
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

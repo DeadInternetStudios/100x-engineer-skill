@@ -157,44 +157,44 @@ Chaque run reçoit un verdict : **Prêt à livrer**, **Correct** ou **À retrava
 
 ## De vrais produits faits avec 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow : comme Bloomberg Terminal, mais pour les gens normaux. Tesla s'échange 25 % au-dessus de sa juste valeur, comparée à son propre historique, à ses concurrents les plus proches et à toutes les entreprises." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow : comme Bloomberg Terminal, mais pour les gens normaux. Tesla s'échange 25 % au-dessus de sa juste valeur, comparée à son propre historique, à ses concurrents les plus proches et à toutes les entreprises." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Un screener d'actions, fait<br>
 avec l'aide de 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki : les collemboles, preuves à l'appui. Des pages d'espèces, des fiches d'élevage, un jeu idle et un explorateur d'anatomie en 3D." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki : les collemboles, preuves à l'appui. Des pages d'espèces, des fiches d'élevage, un jeu idle et un explorateur d'anatomie en 3D." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Un wiki sur les collemboles, fait<br>
 entièrement avec 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap : une grille de bulles en pixel art qui jouent de la musique quand on les éclate, avec une liste de morceaux, des effets et une table de mixage." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap : une grille de bulles en pixel art qui jouent de la musique quand on les éclate, avec une liste de morceaux, des effets et une table de mixage." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Une app musicale en pixel art,<br>
 faite entièrement avec 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk : un graphique en direct du cours XAU/USD avec les événements à venir, et un panneau pour challenger un trade." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk : un graphique en direct du cours XAU/USD avec les événements à venir, et un panneau pour challenger un trade." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Une app de trading de l'or, faite<br>
 entièrement avec 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom : une signature dont les traits de stylo numérotés sont tracés sur une photo, avec une liste d'images à gauche et les traits à droite." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom : une signature dont les traits de stylo numérotés sont tracés sur une photo, avec une liste d'images à gauche et les traits à droite." width="380"><br>
 <b>Phantom</b><br>
 Une app Mac en Swift que des experts<br>
 en écritures utilisent pour analyser<br>
 l'écriture manuscrite, faite avec<br>
 l'aide de 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow : un tableau de chaîne d'options avec les calls et les puts par strike, à côté d'un graphique de profits et pertes." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow : un tableau de chaîne d'options avec les calls et les puts par strike, à côté d'un graphique de profits et pertes." width="380"><br>
 <b>OptionsFlow</b><br>
 Un outil de chaîne d'options en<br>
 temps réel en React utilisé par des<br>
@@ -202,15 +202,15 @@ sociétés quant, fait avec l'aide de 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet : un écran d'accueil sombre avec une liste d'apps en haut, un élément qui demande de l'attention, un graphe réseau et des tuiles pour les incidents, les machines, les engagements et les runs." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet : un écran d'accueil sombre avec une liste d'apps en haut, un élément qui demande de l'attention, un graphe réseau et des tuiles pour les incidents, les machines, les engagements et les runs." width="380"><br>
 <b>Skynet</b><br>
 Un outil de gestion de projet construit<br>
 sur Blueprint et Encore, avec l'aide<br>
 de 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks : six étapes qui mènent d'un brief d'une phrase à une image, un modèle 3D, un squelette avec sa peau, des animations et le personnage dans un jeu." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks : six étapes qui mènent d'un brief d'une phrase à une image, un modèle 3D, un squelette avec sa peau, des animations et le personnage dans un jeu." width="380"><br>
 <b>Boneworks</b><br>
 Un pipeline texte vers 3D qui modélise,<br>
 habille, rigge et anime des personnages,<br>
@@ -367,6 +367,15 @@ Les rapports de bugs, les corrections et les idées sont les bienvenus. Les peti
 Voir [NOTICE.md](../NOTICE.md) et [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Voir [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

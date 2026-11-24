@@ -157,44 +157,44 @@ Each run gets one verdict: **Ready to ship**, **Fine** or **Needs work**. When s
 
 ## Real-life products built with 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: Like Bloomberg Terminal but for normal people. Tesla trades 25% above its fair value, shown against its own history, its closest peers and every company." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: Like Bloomberg Terminal but for normal people. Tesla trades 25% above its fair value, shown against its own history, its closest peers and every company." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 A stock screener, built<br>
 with 100x assistance
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: Springtails, with the evidence. Species pages, care cards, an idle game and a 3D anatomy explorer." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: Springtails, with the evidence. Species pages, care cards, an idle game and a 3D anatomy explorer." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 A springtail wiki, built<br>
 entirely with 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: a grid of pixel art bubbles that play music when popped, with a track list, effects and a mixer." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: a grid of pixel art bubbles that play music when popped, with a track list, effects and a mixer." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 A pixel art music app,<br>
 built entirely with 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: a live XAU/USD price chart with upcoming events, and a panel to challenge a trade." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: a live XAU/USD price chart with upcoming events, and a panel to challenge a trade." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 A gold trading app, built<br>
 entirely with 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="docs/img/built/shot-phantom.jpg" alt="Phantom: a signature with numbered pen strokes traced over a photo, with a list of pictures on the left and the strokes on the right." width="400"><br>
+<table align="left"><tr><td>
+<img src="docs/img/built/shot-phantom.jpg" alt="Phantom: a signature with numbered pen strokes traced over a photo, with a list of pictures on the left and the strokes on the right." width="380"><br>
 <b>Phantom</b><br>
 A Swift Mac app that forensic<br>
 experts use to analyze<br>
 handwriting, built with 100x<br>
 assistance
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: an option chain table of calls and puts by strike next to a profit and loss chart." width="400"><br>
+<table align="left"><tr><td>
+<img src="docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: an option chain table of calls and puts by strike next to a profit and loss chart." width="380"><br>
 <b>OptionsFlow</b><br>
 A real-time option chain tool in<br>
 React used by quant firms, built<br>
@@ -202,15 +202,15 @@ with 100x assistance
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="docs/img/built/shot-skynet.jpg" alt="Skynet: a dark home screen with a list of apps along the top, one item that needs attention, a network graph, and tiles for incidents, machines, commitments and runs." width="400"><br>
+<table align="left"><tr><td>
+<img src="docs/img/built/shot-skynet.jpg" alt="Skynet: a dark home screen with a list of apps along the top, one item that needs attention, a network graph, and tiles for incidents, machines, commitments and runs." width="380"><br>
 <b>Skynet</b><br>
 A project management tool built on<br>
 Blueprint and Encore, with 100x<br>
 assistance
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="docs/img/built/shot-boneworks.jpg" alt="Boneworks: six steps from a one-sentence brief to a picture, a 3D model, a skeleton with skin, animations and the character in a game." width="400"><br>
+<table align="left"><tr><td>
+<img src="docs/img/built/shot-boneworks.jpg" alt="Boneworks: six steps from a one-sentence brief to a picture, a 3D model, a skeleton with skin, animations and the character in a game." width="380"><br>
 <b>Boneworks</b><br>
 A text-to-3D pipeline that models,<br>
 skins, rigs and animates characters,<br>
@@ -367,6 +367,15 @@ Bug reports, fixes and ideas are welcome. Small fixes can go straight to a pull 
 See [NOTICE.md](NOTICE.md) and [UPSTREAM.md](UPSTREAM.md).
 
 MIT. See [LICENSE](LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

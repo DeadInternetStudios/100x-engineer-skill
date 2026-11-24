@@ -157,44 +157,44 @@ Mỗi lần chạy nhận một kết luận: **Sẵn sàng phát hành**, **Ổ
 
 ## Sản phẩm thực tế làm bằng 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: giống Bloomberg Terminal nhưng dành cho người bình thường. Tesla đang giao dịch cao hơn 25% so với giá trị hợp lý, đặt cạnh lịch sử của chính nó, các đối thủ gần nhất và mọi công ty." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: giống Bloomberg Terminal nhưng dành cho người bình thường. Tesla đang giao dịch cao hơn 25% so với giá trị hợp lý, đặt cạnh lịch sử của chính nó, các đối thủ gần nhất và mọi công ty." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Công cụ lọc cổ phiếu, làm<br>
 với sự hỗ trợ của 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: bọ đuôi bật, kèm bằng chứng. Trang loài, thẻ chăm sóc, một game idle và công cụ khám phá giải phẫu 3D." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: bọ đuôi bật, kèm bằng chứng. Trang loài, thẻ chăm sóc, một game idle và công cụ khám phá giải phẫu 3D." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Wiki về bọ đuôi bật, làm<br>
 hoàn toàn bằng 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: một lưới bong bóng pixel art phát nhạc khi bị bóp vỡ, có danh sách bài, hiệu ứng và bộ trộn âm." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: một lưới bong bóng pixel art phát nhạc khi bị bóp vỡ, có danh sách bài, hiệu ứng và bộ trộn âm." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Ứng dụng âm nhạc pixel art,<br>
 làm hoàn toàn bằng 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: biểu đồ giá XAU/USD trực tiếp kèm các sự kiện sắp tới, và một bảng để phản biện một lệnh giao dịch." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: biểu đồ giá XAU/USD trực tiếp kèm các sự kiện sắp tới, và một bảng để phản biện một lệnh giao dịch." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Ứng dụng giao dịch vàng, làm<br>
 hoàn toàn bằng 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: một chữ ký với các nét bút được đánh số, vẽ lại trên một bức ảnh, danh sách ảnh ở bên trái và các nét bút ở bên phải." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: một chữ ký với các nét bút được đánh số, vẽ lại trên một bức ảnh, danh sách ảnh ở bên trái và các nét bút ở bên phải." width="380"><br>
 <b>Phantom</b><br>
 Ứng dụng Mac viết bằng Swift<br>
 mà chuyên gia pháp y dùng để<br>
 phân tích chữ viết tay, làm với<br>
 sự hỗ trợ của 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: bảng chuỗi quyền chọn gồm call và put theo giá thực hiện, đặt cạnh biểu đồ lãi lỗ." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: bảng chuỗi quyền chọn gồm call và put theo giá thực hiện, đặt cạnh biểu đồ lãi lỗ." width="380"><br>
 <b>OptionsFlow</b><br>
 Công cụ chuỗi quyền chọn thời gian<br>
 thực bằng React mà các quỹ định lượng<br>
@@ -202,15 +202,15 @@ dùng, làm với sự hỗ trợ của 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: màn hình chính tối với danh sách ứng dụng dọc phía trên, một mục cần chú ý, một biểu đồ mạng, và các ô cho sự cố, máy, cam kết và lần chạy." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: màn hình chính tối với danh sách ứng dụng dọc phía trên, một mục cần chú ý, một biểu đồ mạng, và các ô cho sự cố, máy, cam kết và lần chạy." width="380"><br>
 <b>Skynet</b><br>
 Công cụ quản lý dự án xây trên<br>
 Blueprint và Encore, làm với<br>
 sự hỗ trợ của 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: sáu bước từ một bản mô tả một câu đến hình ảnh, mô hình 3D, bộ xương có da, hoạt ảnh và nhân vật trong game." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: sáu bước từ một bản mô tả một câu đến hình ảnh, mô hình 3D, bộ xương có da, hoạt ảnh và nhân vật trong game." width="380"><br>
 <b>Boneworks</b><br>
 Pipeline text-to-3D dựng mô hình,<br>
 skin, rig và làm hoạt ảnh nhân vật,<br>
@@ -367,6 +367,15 @@ Chúng tôi hoan nghênh báo lỗi, bản sửa và ý tưởng. Bản sửa nh
 Xem [NOTICE.md](../NOTICE.md) và [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Xem [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 

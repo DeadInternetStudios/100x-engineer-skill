@@ -157,44 +157,44 @@ Każdy przebieg dostaje jeden werdykt: **Gotowe do wydania**, **W porządku** al
 
 ## Prawdziwe produkty zbudowane z 100x
 
-<table align="left" width="48%"><tr><td>
-<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: jak Bloomberg Terminal, tylko dla zwykłych ludzi. Tesla jest notowana 25% powyżej wartości godziwej, na tle własnej historii, najbliższych konkurentów i wszystkich spółek." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://dollarflow.com/"><img src="../docs/img/built/shot-dollarflow.jpg" alt="DollarFlow: jak Bloomberg Terminal, tylko dla zwykłych ludzi. Tesla jest notowana 25% powyżej wartości godziwej, na tle własnej historii, najbliższych konkurentów i wszystkich spółek." width="380"></a><br>
 <a href="https://dollarflow.com/"><b>DollarFlow</b></a><br>
 Skaner akcji zbudowany<br>
 z pomocą 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: skoczogonki, z dowodami. Strony gatunków, karty hodowlane, gra idle i trójwymiarowy eksplorator anatomii." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://springtails.wiki/"><img src="../docs/img/built/shot-springtails.jpg" alt="Springtails Wiki: skoczogonki, z dowodami. Strony gatunków, karty hodowlane, gra idle i trójwymiarowy eksplorator anatomii." width="380"></a><br>
 <a href="https://springtails.wiki/"><b>Springtails Wiki</b></a><br>
 Wiki o skoczogonkach,<br>
 zbudowana w całości z 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: siatka bąbelków w pixel arcie, które po pęknięciu grają muzykę, z listą utworów, efektami i mikserem." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://bubblewrapapp.com/"><img src="../docs/img/built/shot-bubblewrap.jpg" alt="BubbleWrap: siatka bąbelków w pixel arcie, które po pęknięciu grają muzykę, z listą utworów, efektami i mikserem." width="380"></a><br>
 <a href="https://bubblewrapapp.com/"><b>BubbleWrap</b></a><br>
 Aplikacja muzyczna w pixel arcie,<br>
 zbudowana w całości z 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: wykres ceny XAU/USD na żywo z nadchodzącymi wydarzeniami i panelem do podważenia pomysłu na transakcję." width="400"></a><br>
+<table align="left"><tr><td>
+<a href="https://goldtraderdesk.com/"><img src="../docs/img/built/shot-goldtraderdesk.jpg" alt="Gold Trader Desk: wykres ceny XAU/USD na żywo z nadchodzącymi wydarzeniami i panelem do podważenia pomysłu na transakcję." width="380"></a><br>
 <a href="https://goldtraderdesk.com/"><b>Gold Trader Desk</b></a><br>
 Aplikacja do handlu złotem,<br>
 zbudowana w całości z 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: podpis z ponumerowanymi pociągnięciami pióra nałożony na zdjęcie, z listą obrazów po lewej i pociągnięciami po prawej." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-phantom.jpg" alt="Phantom: podpis z ponumerowanymi pociągnięciami pióra nałożony na zdjęcie, z listą obrazów po lewej i pociągnięciami po prawej." width="380"><br>
 <b>Phantom</b><br>
 Aplikacja na Maca w Swifcie,<br>
 której biegli używają do analizy<br>
 pisma ręcznego, zbudowana<br>
 z pomocą 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: tabela łańcucha opcji z callami i putami według ceny wykonania obok wykresu zysków i strat." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-optionsflow.jpg" alt="OptionsFlow: tabela łańcucha opcji z callami i putami według ceny wykonania obok wykresu zysków i strat." width="380"><br>
 <b>OptionsFlow</b><br>
 Narzędzie do łańcucha opcji w czasie<br>
 rzeczywistym w React, używane przez firmy<br>
@@ -202,15 +202,15 @@ quantowe, zbudowane z pomocą 100x
 </td></tr></table>
 <br clear="all">
 
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: ciemny ekran główny z listą aplikacji u góry, jedną pozycją wymagającą uwagi, wykresem sieci i kafelkami incydentów, maszyn, zobowiązań i przebiegów." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-skynet.jpg" alt="Skynet: ciemny ekran główny z listą aplikacji u góry, jedną pozycją wymagającą uwagi, wykresem sieci i kafelkami incydentów, maszyn, zobowiązań i przebiegów." width="380"><br>
 <b>Skynet</b><br>
 Narzędzie do zarządzania projektami<br>
 oparte na Blueprint i Encore, zbudowane<br>
 z pomocą 100x
 </td></tr></table>
-<table align="left" width="48%"><tr><td>
-<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: sześć kroków od briefu w jednym zdaniu do obrazka, modelu 3D, szkieletu ze skórą, animacji i postaci w grze." width="400"><br>
+<table align="left"><tr><td>
+<img src="../docs/img/built/shot-boneworks.jpg" alt="Boneworks: sześć kroków od briefu w jednym zdaniu do obrazka, modelu 3D, szkieletu ze skórą, animacji i postaci w grze." width="380"><br>
 <b>Boneworks</b><br>
 Pipeline tekst-do-3D, który modeluje,<br>
 skinuje, riguje i animuje postacie,<br>
@@ -367,6 +367,15 @@ Zgłoszenia błędów, poprawki i pomysły są mile widziane. Małe poprawki mog
 Zobacz [NOTICE.md](../NOTICE.md) i [UPSTREAM.md](../UPSTREAM.md).
 
 MIT. Zobacz [LICENSE](../LICENSE).
+
+<p align="center">
+  <a href="https://star-history.com/#DeadInternetStudios/100x-engineer-skill&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date&theme=dark">
+      <img src="https://api.star-history.com/svg?repos=deadinternetstudios/100x-engineer-skill&type=Date" width="600" alt="Star history">
+    </picture>
+  </a>
+</p>
 
 ---
 
