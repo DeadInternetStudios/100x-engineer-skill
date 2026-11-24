@@ -185,6 +185,15 @@ test('the planner asks for Properties by default, and the owner can turn that of
   }
 });
 
+test('the pre-flight tells the owner what will be checked, inside its twelve lines', () => {
+  const open = fs.readFileSync(path.join(ROOT, 'skills', '100x', 'references', 'open.md'), 'utf8');
+  const router = fs.readFileSync(path.join(ROOT, 'skills', '100x', 'SKILL.md'), 'utf8');
+  assert.match(open, /That is seven lines\. The must-not-break line also says what will be checked/);
+  assert.match(open, /verify\/ledger\.tsv.*by stage 5/);
+  assert.match(open, /property checks off, nothing verified/);
+  assert.match(router, /seven fixed lines \(goal, asks, moment, riskiest unknown, the one thing that must not break with its properties,/);
+});
+
 test('finish asks for a ledger row by default, accepts a waiver with its reason, and asks for nothing when checks are off', async () => {
   const { makeProject } = await import('./projects.mjs');
   const box = sandbox();
