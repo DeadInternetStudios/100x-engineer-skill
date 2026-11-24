@@ -16,7 +16,7 @@
 ![状态：测试版](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x 是一个受 pstack 启发的技能，能把提示词变成可用于生产、经过测试和评审的软件。<br>我用它每月向生产环境交付 1,000 多个 PR，回滚率低于 2%。*
+*100x 是一个受前 Cursor 工程师启发的技能，能把提示词变成可用于生产的代码。<br>我用它每月向生产环境交付 1,000 多个 PR，回滚率低于 2%。*
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <b>中文</b> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
