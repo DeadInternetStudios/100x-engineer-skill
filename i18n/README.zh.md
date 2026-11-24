@@ -10,7 +10,6 @@
 ### 告别“差不多能用”的 AI 编程
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
-[![GitHub 星标](https://badgen.net/github/stars/DeadInternetStudios/100x-engineer-skill?label=stars&labelColor=555&color=ffb000&style=flat)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 [![版本：0.1.0](../docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![许可证：MIT](../docs/img/badges/license.svg)](../LICENSE)

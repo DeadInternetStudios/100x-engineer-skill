@@ -10,7 +10,6 @@
 ### एजेंटिक कोडिंग में अब "लगभग चलता है" नहीं
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
-[![GitHub stars](https://badgen.net/github/stars/DeadInternetStudios/100x-engineer-skill?label=stars&labelColor=555&color=ffb000&style=flat)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 [![release: 0.1.0](../docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
 [![node: ≥ 22](../docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](../docs/img/badges/license.svg)](../LICENSE)
