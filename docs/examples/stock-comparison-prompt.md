@@ -1,6 +1,6 @@
 # What 100x writes from a one-line request
 
-The request was one line: `Let me compare any stock with the S&P 500 in my stock market research app` Below is the prompt 100x writes from it before it builds anything, saved as `.100x/project.md`. It is an illustrated example for a research app we made up, and it passes `100x prompt check` ("13 written, 0 marked none, 9 asks"). Back to the [README](../../README.md).
+The request was one line: `Let me compare any stock with the S&P 500 in my stock market research app` Below is the prompt 100x writes from it before it builds anything, saved as `.100x/project.md`. It is an illustrated example for a research app we made up, and it passes `100x prompt check` ("14 written, 0 marked none, 9 asks"). Back to the [README](../../README.md).
 
 Each part changes what the builder does. The rules settle the trade-offs. The asks end in something you can open or run, and two of them are tests that must first be shown to fail. The judge questions are what the second model presses on.
 
@@ -56,6 +56,14 @@ In: one chart screen inside the existing research app, its data adjustment and i
 
 ## Must not break
 Percent change across a split and from a shared start day. Kind: numbers.
+
+## Properties
+- State: for each ticker, a list of dated closes and the splits with their dates and ratios.
+- Transitions: pick a start day, add or remove a ticker, change the range.
+- Preconditions: a percent change needs a close on the start day for every ticker shown.
+- Postconditions: every line starts at 0 percent on the shared start day, and a split changes no percent.
+- Invariants: adjusting for a split twice gives the same series as once, and a longer range never changes an earlier percent.
+- Liveness: a chart is drawn or a named reason is shown for every ticker and range, under a data source that answers.
 
 ## Moment
 Type a ticker and both lines start at 0% on the same day, so the gap is the whole story.

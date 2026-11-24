@@ -14,13 +14,14 @@ Write one sentence under `## Must not break` in `.100x/project.md`. "If X is wro
 |---|---|---|---|
 | `screen-sizes` | apps you touch, games, dashboards, anything with a canvas | `100x shots --matrix all-rotate --resize-test` on every important screen state | 0 broken, every weak line fixed or explained, and you looked at `contact-sheet.png` |
 | `numbers` | money, prices, scores, tax, units, contracts | tests on functions that only use their inputs: rules that must always hold, plus cases with a known right answer | all pass, and the check goes red when you put a bug in on purpose |
+| `properties` | anything with real logic: workflows, permissions, state machines, parsers, protocols, money flows | the six properties (state, transitions, preconditions, postconditions, invariants, liveness) pulled out of the code and checked exhaustively on a small model that runs the project's own functions, kept in `verify/ledger.tsv` | every property holds, each failed on a seeded defect, each row says its level (`exhaustive`, `bounded` or `sampled`) |
 | `game-economy` | idle and incremental games | the economy simulator, plus late game saves through `--init-script` | all checks pass and the table of times between buys rises like a curve |
 | `fresh-data` | anything that shows fetched or saved data | the fresh-data check on each source, plus the empty, error and offline screens | fresh data passes, old data fails with a clear message |
 | `assets` | art, sound or models are the product | `assets/asset-check.mjs`, then look at every asset where it is used | the script passes and the set looks like one person made it |
 | `text` | apps with lots of words, marketing, docs | `100x shots` per state, `100x text lint` on its `texts.txt`, then read the strings as a stranger | lint clean and nothing vague left |
 | `main-flow` | nothing above fits | the main flow from start to end with `100x shots --steps`, console clean | the flow finishes at phone and desktop sizes |
 
-More detail for each kind is in [kinds.md](kinds.md). How to run the screen shots is in [shots.md](shots.md).
+More detail for each kind is in [kinds.md](kinds.md). The `properties` kind and the verification ledger are in [properties.md](properties.md), which also says when to start that procedure outside this stage: any time `100x verify cover <file>` finds no rule. How to run the screen shots is in [shots.md](shots.md).
 
 ## Step 2. Write the check as code
 
@@ -30,6 +31,7 @@ More detail for each kind is in [kinds.md](kinds.md). How to run the screen shot
   - `assets/economy-simulator.mjs` and `assets/seed-localstorage.js` for `game-economy`.
   - `assets/fresh-data-check.mjs` for `fresh-data`.
   - `assets/asset-check.mjs` for `assets`.
+  - `assets/property-checker.mjs` for `properties`, recorded with `100x verify add` as [properties.md](properties.md) says.
 - When the rules sit inside screen code, pull them out first into functions that only use their inputs. That is the most useful change in this stage. It makes the rules testable at all.
 - Run the check and save what it prints to `.100x/must-not-break/<kind>.txt`. One way is to end the command with `| tee .100x/must-not-break/<kind>.txt`. A `screen-sizes` check rests on its `all-rotate` run of the prototype, which `100x shots` writes and signs. It needs no output file, and typed words do not count for it.
 - That file holds the passing run and nothing else. Keep the failing run from Step 3 in `.100x/must-not-break/<kind>-red.txt`. `100x finish` refuses a pass when that file still has a line that starts with `FAIL`.

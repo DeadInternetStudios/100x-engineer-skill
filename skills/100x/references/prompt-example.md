@@ -57,6 +57,14 @@ none: no outside files are needed, because the tests run on a fixed clock
 ## Must not break
 Kind game-economy, then screen-sizes. Away earnings equal the same time of play, capped at 8 hours, and never go negative or drop after a reload.
 
+## Properties
+- State: coins, owned counts per upgrade, last seen time and prestige points, all finite numbers.
+- Transitions: tap, buy one upgrade, tick for a number of seconds, go away and return, prestige reset.
+- Preconditions: a buy needs coins at or above the price. Prestige needs at least one earned point.
+- Postconditions: a buy lowers coins by exactly the price. Returning pays what the same seconds of play would have paid.
+- Invariants: coins never go negative or past 1e300, and owned counts never drop except by prestige.
+- Liveness: from any save the player can buy again within the stall limit, under a player who taps three times a second.
+
 ## Moment
 The lamp lights, the beam sweeps across the water, and a small ship turns toward it.
 
@@ -122,6 +130,14 @@ Three of the owner's TypeScript repos, found with `ls ~/Documents/GitHub/*/tscon
 
 ## Must not break
 Never call a used export dead. If it does, the owner deletes working code and stops trusting the tool. Kind main-flow, with the planted case and the control as the check, and the real input run for the count of wrong findings.
+
+## Properties
+- State: the set of exports found, the references found and the report lines.
+- Transitions: scan a file, resolve one import, classify one export.
+- Preconditions: classify runs only after every file of the scan was read.
+- Postconditions: every reported export has no reference in the scanned files.
+- Invariants: an export with any reference is never reported dead, and the same input gives the same report.
+- Liveness: a scan ends within the size cap on any folder, under a disk that answers every read.
 
 ## Moment
 The first run on a repo the owner knows well: the list is short and every line is right.

@@ -44,6 +44,17 @@ Idle and incremental games live or die on how fast things come.
 
 Done means all simulator checks pass and the late game screenshots have no broken findings. Show the check can fail with `TAPS=0` (dead start) or a growth rate of 2 (stall).
 
+## properties
+
+Anything with logic that can be stated: a workflow, a permission rule, a state machine, a parser, a protocol, a money flow.
+
+1. Find the well defined part and pull it into functions that only use their inputs.
+2. Write the six properties in plain sentences with the repo's names: state, transitions, preconditions, postconditions, invariants and liveness under named assumptions. [properties.md](properties.md) has the table and the procedure.
+3. Start from `assets/property-checker.mjs`. Replace the implementation block with imports of the project's own functions and the model block with the properties. The checker visits every reachable state and prints `pass` or `FAIL` for each invariant, each step's guard and postcondition, deadlock, coverage and each liveness line, with the shortest steps to a failure.
+4. Record each property with `100x verify add`, with a failing run on a seeded defect in `verify/red/<id>.txt`, then `100x verify run`.
+
+Done means every property holds at the level the ledger names, `100x verify status` shows no stale, broken or unproven row, and the output says whether the search was exhaustive. Show the check can fail: remove a guard, change a limit, or make one step loop, and watch a named property go red. `FAIL guard:pay` means the code and the spec disagree about when a step is allowed. `FAIL live:...` gives the steps into the state the run never leaves.
+
 ## fresh-data
 
 Apps that show fetched or cached data.

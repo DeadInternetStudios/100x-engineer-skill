@@ -58,6 +58,7 @@ Say "max effort" or "high effort". Never say `reasoning_effort` or `effort=max`.
 | `watchdog.mode` `schedule` | a timer that nudges a stalled overnight build every N minutes |
 | `watchdog.mode` `off` | no nudges |
 | `review.enabled` false | no judge, every project says so |
+| `verify.enabled` false | no property checks, every project says nothing was verified |
 | `review.grind` true | judging goes on after the usual rounds until a judge says it is ready to ship |
 | `review.timeoutMinutes` N | the judge gets N minutes |
 

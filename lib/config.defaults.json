@@ -17,6 +17,7 @@
   "quick": { "provider": null, "model": null, "options": {} },
   "overnight": { "provider": null, "model": null, "options": {} },
   "core": { "enabled": true },
+  "verify": { "enabled": true },
   "polish": { "passes": 3, "dudPasses": 1 },
   "depth": { "predictedFollowups": true, "max": 5 },
   "variants": { "count": 1, "parallel": false },
