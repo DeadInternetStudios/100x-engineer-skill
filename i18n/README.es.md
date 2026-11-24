@@ -7,7 +7,7 @@
 
 # 100× ENGINEER SKILL
 
-### SE ACABÓ EL CÓDIGO CON AGENTES QUE "CASI FUNCIONA"
+### Se acabó el código con agentes que "casi funciona"
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
 [![release: 0.1.0](../docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)

@@ -7,7 +7,7 @@
 
 # 100× ENGINEER SKILL
 
-### ХВАТИТ АГЕНТНОГО КОДА, КОТОРЫЙ «ПОЧТИ РАБОТАЕТ»
+### Хватит агентного кода, который «почти работает»
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
 [![release: 0.1.0](../docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)

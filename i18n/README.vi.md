@@ -7,7 +7,7 @@
 
 # 100× ENGINEER SKILL
 
-### KHÔNG CÒN LẬP TRÌNH VỚI AGENT KIỂU "GẦN CHẠY ĐƯỢC"
+### Không còn lập trình với agent kiểu "gần chạy được"
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
 [![release: 0.1.0](../docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)

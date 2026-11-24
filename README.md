@@ -7,7 +7,7 @@
 
 # 100× ENGINEER SKILL
 
-### NO MORE "ALMOST WORKS" AGENTIC CODING
+### No more "almost works" agentic coding
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
 [![release: 0.1.0](docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
