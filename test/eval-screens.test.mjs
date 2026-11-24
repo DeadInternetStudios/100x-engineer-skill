@@ -7,12 +7,21 @@ import { presentChecks } from '../lib/doctor.mjs';
 import { markRun } from '../lib/eval/blind.mjs';
 import { ASK, routingReport, scoreRouting, WRONG_SHOWN } from '../lib/eval/routing.mjs';
 import { controlWords } from '../lib/eval/tally.mjs';
-import { duration, plural, wrap } from '../lib/eval/words.mjs';
+import { duration, plural, shellPath, wrap } from '../lib/eval/words.mjs';
 import { bakeoff, folder, judge, ON, ORDERS, OFF, recordModels, sees } from './bakeoff-helpers.mjs';
 import { cli, ROOT, sandbox } from './helpers.mjs';
 
 // A path as the commands write it, with / on every system.
 const fwd = (p) => p.replaceAll('\\', '/');
+
+test('a path in a command is quoted when a shell would split or expand it, and not when it would not', () => {
+  assert.equal(shellPath('/work/bake-off/arms'), '/work/bake-off/arms');
+  assert.equal(shellPath('/work/with space/arms'), "'/work/with space/arms'");
+  assert.equal(shellPath("/work/it's"), "'/work/it'\\''s'");
+  assert.equal(shellPath('/Users/RUNNER~1/bake'), '/Users/RUNNER~1/bake', 'a short Windows folder name needs no quotes');
+  assert.equal(shellPath('~/bake'), "'~/bake'", 'a path that starts with ~ would be expanded by sh');
+  if (process.platform === 'win32') assert.equal(shellPath('C:\\Users\\me\\bake'), 'C:/Users/me/bake', 'on Windows the path is written with slashes');
+});
 
 // What a person sees in the terminal and in the help. The numbers are tested elsewhere. These tests read the words.
 const ev = (box, ...args) => cli(['eval', ...args], { cwd: box.project, env: box.env });

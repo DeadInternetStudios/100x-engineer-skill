@@ -33,8 +33,9 @@ jobs:
       # Temporary: the failing part of the log as one annotation, which a check run shows without a login.
       - if: failure()
         run: |
-          msg=$(grep -E -A22 "^ *not ok" test.log | head -c 30000 | tr -d '\r' | sed 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
-          echo "::error title=failing tests::$msg"
+          tr -d '\r' < test.log | sed 's/%/%25/g' | awk '/^ *not ok/ { if (msg) print msg; msg = $0; n = 0; next } msg && n < 16 { msg = msg "%0A" $0; n++ } END { if (msg) print msg }' > failures.txt
+          wc -l failures.txt
+          head -10 failures.txt | while IFS= read -r line; do echo "::error title=failing test::${line:0:3000}"; done
       - run: node bin/100x.mjs validate --prose
       - run: node scripts/vendor-companions.mjs --check
       - run: node scripts/stamp-skills.mjs --check
