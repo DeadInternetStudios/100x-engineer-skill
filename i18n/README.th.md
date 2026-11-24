@@ -16,7 +16,7 @@
 ![สถานะ: เบต้า](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x คือสกิลที่ได้แรงบันดาลใจจากอดีตวิศวกรของ Cursor ช่วยเปลี่ยนพรอมต์ให้เป็นโค้ดที่พร้อมใช้งานจริง<br>ใช้ส่ง PR ขึ้นโปรดักชันมากกว่า 1,000 รายการทุกเดือน โดยมีอัตรา rollback ต่ำกว่า 2%*
+*100x คือสกิลที่สร้างโดยอดีตวิศวกรของ Cursor ช่วยเปลี่ยนพรอมต์ให้เป็นโค้ดที่พร้อมใช้งานจริง<br>ใช้ส่ง PR ขึ้นโปรดักชันมากกว่า 1,000 รายการทุกเดือน โดยมีอัตรา rollback ต่ำกว่า 2%*
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <b>ไทย</b> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 

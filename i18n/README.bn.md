@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x হলো Cursor-এর একজন প্রাক্তন ইঞ্জিনিয়ারের কাছ থেকে অনুপ্রাণিত একটি স্কিল, যা প্রম্পটকে প্রোডাকশন-রেডি কোডে বদলে দেয়।<br>আমি এটি দিয়ে প্রতি মাসে 1,000-এর বেশি PR প্রোডাকশনে পাঠাই, রোলব্যাকের হার 2%-এর নিচে।*
+*100x হলো Cursor-এর একজন প্রাক্তন ইঞ্জিনিয়ারের তৈরি একটি স্কিল, যা প্রম্পটকে প্রোডাকশন-রেডি কোডে বদলে দেয়।<br>আমি এটি দিয়ে প্রতি মাসে 1,000-এর বেশি PR প্রোডাকশনে পাঠাই, রোলব্যাকের হার 2%-এর নিচে।*
 
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <b>বাংলা</b> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 

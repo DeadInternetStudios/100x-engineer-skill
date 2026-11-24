@@ -16,7 +16,7 @@
 ![status: beta](../docs/img/badges/status.svg)
 [![Stars](https://img.shields.io/github/stars/DeadInternetStudios/100x-engineer-skill?style=social)](https://github.com/DeadInternetStudios/100x-engineer-skill/stargazers)
 
-*100x es una skill inspirada en un exingeniero de Cursor que convierte prompts en código listo para producción.<br>Yo la uso para llevar más de 1.000 PRs a producción cada mes, con una tasa de rollback inferior al 2%.*
+*100x es una skill creada por un exingeniero de Cursor que convierte prompts en código listo para producción.<br>Yo la uso para llevar más de 1.000 PRs a producción cada mes, con una tasa de rollback inferior al 2%.*
 
 <sub><a href="../README.md">English</a> · <b>Español</b> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <a href="README.ja.md">日本語</a> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
