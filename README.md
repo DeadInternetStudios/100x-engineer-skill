@@ -59,7 +59,7 @@ Three things go wrong, and 100x has an answer for each. Every example below uses
 The request is one line. Before it builds anything, 100x writes the prompt you would have written with an hour to spare. It sets the goal, the rules, the riskiest part, and how to check each ask. Here it spots the trap early: a stock split looks like a loss unless the chart adjusts for it.
 
 <p align="center">
-  <img src="docs/img/diagrams/prompt-step.svg" width="720" alt="You type &quot;Let me compare any stock with the S&P 500 in my stock market research app&quot;, and 100x first writes a full prompt of about 880 words. An excerpt. Goal: both lines start at 0% on the first shared day. Rule: percent change from a shared start, not prices. Risk: a stock split shows up as a fake loss. Asks: 9, two of them tests that must fail first. Hard test: a two-for-one split shows 0% change. Do not: draw raw prices on a shared axis. Moment: type a ticker, both lines start at 0%. Judge: does a hand count across a split match?">
+  <img src="docs/img/diagrams/prompt-step.svg" width="720" alt="You type &quot;Let me compare any stock with the S&P 500 in my stock market research app&quot;, and 100x first writes a full prompt of about 1000 words. An excerpt. Goal: both lines start at 0% on the first shared day. Rule: percent change from a shared start, not prices. Risk: a stock split shows up as a fake loss. Asks: 9, two of them tests that must fail first. Hard test: a two-for-one split shows 0% change. Do not: draw raw prices on a shared axis. Moment: type a ticker, both lines start at 0%. Judge: does a hand count across a split match?">
 </p>
 
 <p align="center"><a href="docs/examples/stock-comparison-prompt.md">Read the whole prompt</a></p>
