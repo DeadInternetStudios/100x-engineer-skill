@@ -364,6 +364,7 @@ O 100x é um conjunto de skills, chamadas modos. Digite o nome de um modo para u
 | `/100x-mockup` | Construir | Uma primeira olhada rápida em cerca de 15 minutos. Só o momento principal funciona. Sem revisão, e ele avisa (UNREVIEWED). |
 | `/100x-overnight` | Construir | Para quando você vai sair. Roda uma ideia ou várias, por um tempo definido, e dá um empurrão no agente se ele travar. |
 | `/100x-wrapup` | Construir | Para prazos. Faz o caminho principal funcionar e esconde o resto. |
+| `/100x-solo` | Construir | A execução inteira num só chat, sem subagentes, sem ajudantes e sem um segundo modelo. Ele julga o próprio trabalho por escrito, de outro ponto de vista, e o relatório diz que mais ninguém olhou. |
 | `/100x-judge` | Revisar | Revisa algo que já foi construído. Não constrói nada novo. |
 | `/100x-grind` | Revisar | Revisar, corrigir e revisar de novo até um juiz dizer que está pronto para publicar. Para se três revisões seguidas não acharem nada melhor, em 15 rodadas ou quando o tempo acabar. |
 | `/100x-status` | Uma execução | Em que ponto a execução está, em seis linhas ou menos. |

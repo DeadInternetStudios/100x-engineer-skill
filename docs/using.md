@@ -7,12 +7,15 @@ More on a normal run, a night away and the report page. Back to the [README](../
 ```text
 /100x an idle game about running a lighthouse. phone first.
 /100x-mockup a tip splitter with big buttons
+/100x-solo a habit tracker with streaks
 /100x-overnight 3 versions of a farming game, for 8 hours, max 3 subagents
 /100x-report
 /100x-status
 ```
 
 A normal run takes hours, not minutes. Every polish pass and every round of judging is another model at work, and that is where the time goes. `/100x-mockup` is the fast way: about fifteen minutes, and no judge looks at it. `100x helper run` writes each helper's tokens to `.100x/helpers.jsonl`, and `100x status` adds them up and says when a helper reported none. A helper started another way is not counted. The caps are time (`for 10 hours`), polish passes (`polish.passes`), parallel helpers (`max 3 subagents`) and, when you set it, tokens (`budget.tokens`). Past those, the limit is your app's own, so set it before a long run.
+
+For a run where nobody else may touch the work, call `/100x-solo`. It is the same pipeline in one chat: no subagents, no helpers, no second model. Every look another model would give, the model in this chat gives its own work instead, in writing and from another chair. It writes down what could be wrong before it checks, names the command or screenshot that shows each one, and looks again when it finds nothing. `100x finish` refuses a solo run with a missing challenge, a round or loop without its list, or any helper in the log. It is weaker than a second model, because a model cannot see all of its own blind spots, so the report and the card say "solo run, no other model looked". `100x solo check` lists what a run still owes.
 
 For a night, call `/100x-overnight`. One brief runs unattended in this thread. Several briefs run as children, at most as many at once as `max N subagents` allows, 1 by default. The rest queue.
 

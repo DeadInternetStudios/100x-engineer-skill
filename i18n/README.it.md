@@ -364,6 +364,7 @@ L'installer crea solo collegamenti (link simbolici), qualche piccolo file e le r
 | `/100x-mockup` | Costruire | Una prima occhiata veloce in circa 15 minuti. Funziona solo il momento chiave. Nessuna revisione, e lo dice (UNREVIEWED). |
 | `/100x-overnight` | Costruire | Per quando te ne vai. Lavora su una o più idee, per un tempo stabilito, e dà una spinta all'agente se si blocca. |
 | `/100x-wrapup` | Costruire | Per le scadenze. Fa funzionare il percorso principale e nasconde il resto. |
+| `/100x-solo` | Costruire | L'intero lavoro in una sola chat, senza sotto-agenti, senza aiutanti e senza un secondo modello. Giudica il proprio lavoro per iscritto, da un altro punto di vista, e il rapporto dice che nessun altro ha guardato. |
 | `/100x-judge` | Revisionare | Revisiona qualcosa di già costruito. Non costruisce niente di nuovo. |
 | `/100x-grind` | Revisionare | Revisiona, corregge e revisiona ancora finché un giudice non dice che è pronto da rilasciare. Si ferma se tre revisioni di fila non trovano niente di meglio, a 15 round o quando finisce il tempo. |
 | `/100x-status` | Un run | A che punto è il run, in sei righe o meno. |

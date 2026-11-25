@@ -48,7 +48,7 @@ Set each fact with `100x run`, never by editing the file.
 - `hero` is the screenshot that sells the moment. A phone portrait of the signature moment is usually right. Pick it from the final shots and look at it.
 - `tryFirst` is two to four steps that reach the moment fast, written for someone who has never seen it.
 - An unreviewed run uses `100x run set review '{"status":"unreviewed","note":"<reason>"}'`. Reviewed counts come from the triage files, so leave them out.
-- A mockup also sets `100x run set mode mockup`. Then `100x finish` accepts UNREVIEWED without a judge attempt and needs no must-not-break check. No other run sets `mode`.
+- A mockup also sets `100x run set mode mockup`. Then `100x finish` accepts UNREVIEWED without a judge attempt and needs no must-not-break check. A solo run sets `100x run set mode solo` and no other mode. `100x finish` then checks the challenge files in `.100x/solo` (`100x solo check` runs the same check), the suspicions in every round and loop file, that no helper or judge command started, and marks the review as a self-review. `review.model` is the model of this chat. No other run sets `mode`.
 - `ship` is optional. `100x run set ship '{"preview":"https://...","note":""}'`.
 
 ## 3. Close

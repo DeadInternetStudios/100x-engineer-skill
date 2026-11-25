@@ -364,6 +364,7 @@ De installer maakt alleen snelkoppelingen (symbolische links), een paar kleine b
 | `/100x-mockup` | Bouwen | Een snelle eerste indruk in ongeveer 15 minuten. Alleen het belangrijkste moment werkt. Geen review, en dat staat er ook bij (UNREVIEWED). |
 | `/100x-overnight` | Bouwen | Voor als je weggaat. Werkt één of meer ideeën uit, een vaste tijd lang, en geeft de agent een duwtje als hij vastloopt. |
 | `/100x-wrapup` | Bouwen | Voor deadlines. Zorgt dat het hoofdpad werkt en verbergt de rest. |
+| `/100x-solo` | Bouwen | De hele run in één chat, zonder subagenten, zonder helpers en zonder tweede model. Het beoordeelt zijn eigen werk schriftelijk en vanuit een andere hoek, en het rapport zegt dat niemand anders heeft gekeken. |
 | `/100x-judge` | Review | Reviewt iets dat al gebouwd is. Bouwt niets nieuws. |
 | `/100x-grind` | Review | Reviewen, fixen en opnieuw reviewen tot een beoordelaar zegt dat het klaar is om te shippen. Stopt als drie reviews op rij niets beters vinden, na 15 rondes, of als de tijd op is. |
 | `/100x-status` | Een run | Waar de run staat, in hooguit zes regels. |

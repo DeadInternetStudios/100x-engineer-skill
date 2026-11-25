@@ -364,6 +364,7 @@ Der Installer legt nur Verknüpfungen (symbolische Links), ein paar kleine Datei
 | `/100x-mockup` | Bauen | Ein schneller erster Eindruck in etwa 15 Minuten. Nur der entscheidende Moment funktioniert. Keine Prüfung, und das steht auch dran (UNREVIEWED). |
 | `/100x-overnight` | Bauen | Für wenn du gehst. Bearbeitet eine Idee oder mehrere über eine feste Zeit und stupst den Agenten an, wenn er hängt. |
 | `/100x-wrapup` | Bauen | Für Deadlines. Bringt den Hauptpfad zum Laufen und versteckt den Rest. |
+| `/100x-solo` | Bauen | Der ganze Lauf in einem Chat, ohne Subagenten, ohne Helfer und ohne zweites Modell. Es beurteilt seine eigene Arbeit schriftlich und aus einer anderen Perspektive, und der Bericht sagt, dass niemand sonst hingeschaut hat. |
 | `/100x-judge` | Prüfen | Prüft etwas, das schon gebaut ist. Baut nichts Neues. |
 | `/100x-grind` | Prüfen | Prüfen, beheben, wieder prüfen, bis ein Prüfer sagt, dass es bereit zum Ausliefern ist. Hört auf, wenn drei Prüfungen in Folge nichts Besseres finden, nach 15 Runden oder wenn die Zeit abläuft. |
 | `/100x-status` | Ein Lauf | Wo der Lauf steht, in höchstens sechs Zeilen. |

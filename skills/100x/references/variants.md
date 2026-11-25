@@ -14,4 +14,6 @@ Done when each variant has finished, or ended in a stated needs-work verdict, an
 
 ## Parallel children
 
+A solo run never uses them: its variants run one after the other, each folder its own solo run (`100x ref solo`).
+
 With `variants.parallel` set to `true`, a variant may run as a child through your app's subagent tool (in Cursor `100x helper run`) with role `implementation` and isolation `shared`. The target is what `100x config target overnight` prints, and an empty one means the child uses the thread's model, except where `helper.only` is set, where it is the locked selection. The task names the sibling folder, the brief and the direction, and says to use the 100x skill unattended and to start no subagents. This path is opt in and has not been run end to end. Prefer the sequential order unless the owner asked for parallel.

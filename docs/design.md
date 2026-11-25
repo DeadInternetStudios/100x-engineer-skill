@@ -26,7 +26,7 @@ The MVP is done when all eight hold, each checked against the real artifact.
 ## Shape
 
 - One CLI at `~/.100x/bin/100x` does the mechanical work (config, logs, screenshots, briefs, gallery, watchdog checks).
-- One skill, `100x`, is the router and the pipeline. Each other mode is a skill of its own next to it: `100x-mockup`, `100x-wrapup`, `100x-overnight`, `100x-report`, `100x-setup`, `100x-continue`, `100x-judge`, `100x-grind`, `100x-status`, `100x-adhd`, `100x-bakeoff`. The owner picks a mode by calling it, and no word in a brief picks one. The two helpers every run shares, must-not-break and the watchdog, are in `skills/100x/references/`, and the runnable test templates are in `skills/100x/assets/`. (The first build had one skill and read trigger words, and a brief that mentioned a status page could start the wrong mode. See `docs/decisions.tsv`.)
+- One skill, `100x`, is the router and the pipeline. Each other mode is a skill of its own next to it: `100x-mockup`, `100x-wrapup`, `100x-overnight`, `100x-report`, `100x-setup`, `100x-continue`, `100x-judge`, `100x-grind`, `100x-solo`, `100x-status`, `100x-adhd`, `100x-bakeoff`. The owner picks a mode by calling it, and no word in a brief picks one. The two helpers every run shares, must-not-break and the watchdog, are in `skills/100x/references/`, and the runnable test templates are in `skills/100x/assets/`. (The first build had one skill and read trigger words, and a brief that mentioned a status page could start the wrong mode. See `docs/decisions.tsv`.)
 - Every skill is a folder that stands alone and follows the Agent Skills specification (agentskills.io). `npx skills add --skill <name>` installs one skill by itself, so a skill never names a file outside its own folder: it names another skill by its name, and prints a shared guide with `100x ref <name>`. `name`, `description`, `license`, `compatibility` and `metadata` are the only front matter. The license, compatibility and metadata come from `package.json` through `node scripts/stamp-skills.mjs`, and `100x validate` checks all of it.
 - One companion skill, `unslop-text`, lives in its own repository. A pinned copy ships in `vendor/` (see `companions.json`), the install links it, and `100x text` runs it. No submodules.
 - State lives in files. Global in `~/.100x`, per project in `<project>/.100x`.
@@ -71,7 +71,7 @@ Decisions columns. `ts phase decision why evidence result`, tab separated, appen
 
 ## CLI
 
-`100x init|install|config|clock|log|status|run|shots|port|prompt|ref|verify|brief|review-call|review-run|review-verify|helper|triage|eval|report|finish|registry|morning|night|watchdog|upstream|browsers|text|doctor|validate`. Run `100x help` for flags.
+`100x init|install|config|clock|log|status|run|shots|port|prompt|ref|verify|brief|review-call|review-run|review-verify|helper|solo|triage|eval|report|finish|registry|morning|night|watchdog|upstream|browsers|text|doctor|validate`. Run `100x help` for flags.
 
 ## Guardrails
 

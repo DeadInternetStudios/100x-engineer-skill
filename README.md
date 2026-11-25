@@ -364,6 +364,7 @@ The installer only makes shortcuts (symbolic links), a few small files and their
 | `/100x-mockup` | Build | A fast first look in about 15 minutes. Only the key moment works. No review, and it says so (UNREVIEWED). |
 | `/100x-overnight` | Build | For when you're leaving. Runs one idea or several, for a set time, and nudges the agent if it stalls. |
 | `/100x-wrapup` | Build | For deadlines. Makes the main path work and hides the rest. |
+| `/100x-solo` | Build | The whole run in one chat, with no subagents, no helpers and no second model. It judges its own work in writing, from another chair, and the report says nobody else looked. |
 | `/100x-judge` | Review | Reviews something already built. Builds nothing new. |
 | `/100x-grind` | Review | Review, fix, review again until a judge says ready to ship. Stops if three reviews in a row find nothing better, at 15 rounds, or when time runs out. |
 | `/100x-status` | A run | Where the run is, in six lines or fewer. |

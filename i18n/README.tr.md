@@ -364,6 +364,7 @@ Kurulum programı yalnızca kısayollar (sembolik bağlantılar), birkaç küç�
 | `/100x-mockup` | Yapım | Yaklaşık 15 dakikada hızlı bir ilk bakış. Yalnızca kilit an çalışır. İnceleme yok ve bunu söyler (UNREVIEWED). |
 | `/100x-overnight` | Yapım | Çıkarken kullanmak için. Bir ya da birkaç fikri belirli bir süre boyunca çalıştırır ve ajan takılırsa dürter. |
 | `/100x-wrapup` | Yapım | Teslim tarihleri için. Ana yolu çalışır hale getirir, gerisini gizler. |
+| `/100x-solo` | Yapım | Tüm çalıştırma tek sohbette, alt ajan yok, yardımcı yok, ikinci model yok. Kendi işini yazılı olarak ve başka bir bakış açısından değerlendirir, rapor da başka kimsenin bakmadığını söyler. |
 | `/100x-judge` | İnceleme | Zaten yapılmış bir şeyi inceler. Yeni bir şey yapmaz. |
 | `/100x-grind` | İnceleme | Bir yargıç yayına hazır diyene kadar incele, düzelt, yeniden incele. Üst üste üç inceleme daha iyi bir şey bulamazsa, 15 turda ya da süre dolunca durur. |
 | `/100x-status` | Çalışma | Çalışmanın nerede olduğu, en fazla altı satırda. |
