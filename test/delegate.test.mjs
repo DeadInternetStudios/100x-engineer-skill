@@ -102,7 +102,7 @@ test('the SDK line never prints a 1m window, and the JSON carries it next to the
   box.cleanup();
 });
 
-test('review-call, review-run and night next refuse a target outside the lock or on 1m, and review-run spawns nothing', () => {
+test('review-call, review-run and night next refuse a target outside the lock or on 1m, and review-run spawns nothing', async () => {
   const box = sandbox();
   makeProject(box);
   const run = (...args) => cli(args, { cwd: box.project, env: box.env });
@@ -153,6 +153,10 @@ test('review-call, review-run and night next refuse a target outside the lock or
   assert.equal(run('config', 'set', 'review.command', JSON.stringify(plain), '--global').code, 0);
   // and the locked selection starts the judge
   assert.equal(run('review-run').code, 0);
+  // the judge runs on its own after the call returns: let it finish before its folder is deleted from under it
+  const end = Date.now() + 15000;
+  while (JSON.parse(run('review-run', '--status', '--json').out).state === 'running' && Date.now() < end) await new Promise((resolve) => setTimeout(resolve, 100));
+  assert.equal(fs.existsSync(spawned), true, 'the locked selection started the judge');
   box.cleanup();
 });
 
