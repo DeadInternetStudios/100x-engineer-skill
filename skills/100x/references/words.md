@@ -17,6 +17,8 @@ The owner reads what you write. A setting name, a setting value or an internal s
 | judge round | the judge looks, you fix, a fresh judge looks again. The first look is the code, then the UI and UX, the last asks if it is ready to ship |
 | grind | the judge looks, you fix, and a fresh judge looks again, for as long as it takes until one says it is ready to ship |
 | adhd | a short back and forth, a few lines and one question at a time |
+| solo | the whole run done by the model in this chat alone, with no helpers and no second model. It checks its own work in writing at every step, and says nobody else looked |
+| challenge | the model in this chat attacks its own work from another chair, writes down what could be wrong, tests each one, and fixes what broke |
 | loop judge | in every round of work a different model looks, is brutal, and says if the work is drifting into a bad idea. The builder has to answer it before going on |
 | round | one pass of testing or polish with one question, such as "what breaks with an empty list?" |
 

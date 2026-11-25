@@ -27,6 +27,7 @@ Back to the [README](../README.md).
 | `review-verify` | Say which model the app really ran for a helper, from the app's own log, and exit 1 when it is not the model you asked for. |
 | `helper` | Start a helper (a judge, a bake-off arm, a child) on a Cursor model through the Cursor SDK, the only way a helper starts in Cursor. `helper models` lists the account's models with their parameters, `helper login` signs this machine in, and `helper run` prints the model asked for and the model the SDK reports, exit 3 when they differ. |
 | `eval` | Two evals from plain files. `eval triggers` stages and scores a routing test: does a model that reads only the skill names and descriptions pick the right skill. `eval bakeoff` runs a blind skill-off against skill-on comparison and says "ahead" only when an exact sign test and a control check allow it. `eval bakeoff score` and `gallery` exit 2 when they withhold the verdict, so a shell chain stops. |
+| `solo` | For a `100x-solo` run: write the challenge file of a stage from its template, and check that every challenge the run owes passes. Starts no model. |
 | `triage` | Check that every finding has a decision and a reason. A passing triage closes the judge round. |
 | `report` | Rebuild the report from the run facts. |
 | `finish` | Validate and close a run, write the report, register it. |

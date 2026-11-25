@@ -33,6 +33,8 @@ Done when every brief has a finished run or a stated block, the watchdog is dele
 
 ## What the children do
 
+A child is another model, so a child never runs solo. An owner who wants no helpers calls `100x-solo` with a length of work instead, as one brief in one chat.
+
 Each child runs the `100x` pipeline on its own folder, with the wake time as its deadline. At 20 percent of the time left it stops the remaining stages and runs the `100x-wrapup` skill, so every prototype ends working rather than half built. A child for a `--mockup` brief calls `100x-mockup` instead, with its own 15 minute clock, no judge and no wrap up. A retried mockup starts its mockup again, because a mockup never updates `STATE.md`, so there is nothing to resume from. `100x night next` writes all of this into the child's task.
 
 ## Safe while nobody watches

@@ -123,6 +123,14 @@
     {"id": "tune-109", "set": "tune", "text": "write an a/b test plan for the signup button", "expect": null, "near": "100x-bakeoff"},
     {"id": "tune-110", "set": "tune", "text": "benchmark my api endpoints against the old version", "expect": null, "near": "100x-bakeoff"},
     {"id": "tune-111", "set": "tune", "text": "compare these two charts and tell me which one is clearer", "expect": null, "near": "100x-bakeoff"},
+    {"id": "tune-112", "set": "tune", "text": "/100x-solo a habit tracker with streaks", "expect": "100x-solo"},
+    {"id": "tune-113", "set": "tune", "text": "build me a tiny idle game about running a lighthouse, but do all of it yourself in this chat. no subagents, no second model", "expect": "100x-solo"},
+    {"id": "tune-114", "set": "tune", "text": "run the whole 100x pipeline solo, never delegate anything", "expect": "100x-solo"},
+    {"id": "tune-115", "set": "tune", "text": "I want no helpers on this one. you build it and you do every review yourself", "expect": "100x-solo"},
+    {"id": "tune-116", "set": "tune", "text": "have a different model look at what you built, I want a fresh pair of eyes", "expect": "100x-judge", "near": "100x-solo"},
+    {"id": "tune-117", "set": "tune", "text": "run the overnight build with one child for each of these three ideas", "expect": "100x-overnight", "near": "100x-solo"},
+    {"id": "tune-118", "set": "tune", "text": "100x a solo piano practice app", "expect": "100x", "near": "100x-solo"},
+    {"id": "tune-119", "set": "tune", "text": "keep judging and fixing with a fresh judge each round until one says ship it", "expect": "100x-grind", "near": "100x-solo"},
     {"id": "hold-001", "set": "holdout", "text": "build this idea into a polished, tested prototype with a report", "expect": "100x", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
     {"id": "hold-002", "set": "holdout", "text": "turn my concept into a full build with review and a final report", "expect": "100x", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
     {"id": "hold-003", "set": "holdout", "text": "I need the normal full build with testing and a report", "expect": "100x", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
@@ -195,6 +203,11 @@
     {"id": "hold-070", "set": "holdout", "text": "run a bakeoff between 100x and non-100x on the same brief and have a blind judge compare each pair", "expect": "100x-bakeoff", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
     {"id": "hold-071", "set": "holdout", "text": "test if 100x makes better prototypes than the same agent without it, same briefs, blind judge comparison", "expect": "100x-bakeoff", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
     {"id": "hold-072", "set": "holdout", "text": "show me what finished prototypes we have, ranked in a gallery", "expect": "100x-report", "near": "100x-bakeoff", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
-    {"id": "hold-073", "set": "holdout", "text": "give me a quick mockup of the idea, just the wow moment working, no judges", "expect": "100x-mockup", "near": "100x-bakeoff", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."}
+    {"id": "hold-073", "set": "holdout", "text": "give me a quick mockup of the idea, just the wow moment working, no judges", "expect": "100x-mockup", "near": "100x-bakeoff", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
+    {"id": "hold-074", "set": "holdout", "text": "just build the whole dashboard for me, prototype to polish, and have it reviewed internally. i want a single model doing everything, no subagents or second model.", "expect": "100x-solo", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
+    {"id": "hold-075", "set": "holdout", "text": "can you make a complete prototype from this brief, with tests and polish, all by one model with no helpers?", "expect": "100x-solo", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
+    {"id": "hold-076", "set": "holdout", "text": "build it end to end yourself, no subagents, no second reviewer. just one model handling the build and reviews.", "expect": "100x-solo", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
+    {"id": "hold-077", "set": "holdout", "text": "build a quick mockup of this idea in about 15 minutes, no judges needed", "expect": "100x-mockup", "near": "100x-solo", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."},
+    {"id": "hold-078", "set": "holdout", "text": "i need the main path working and the rest hidden because the deadline is close", "expect": "100x-wrapup", "near": "100x-solo", "writer": "muse-glimmer:latest, a local model run through ollama. It saw one line of purpose per skill and no description."}
   ]
 }

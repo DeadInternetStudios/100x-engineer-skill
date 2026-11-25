@@ -19,7 +19,7 @@ Done when `100x triage` said Green light and `100x finish` accepted the run. Or 
 
 ## Steps
 
-1. Read the message and `100x status`.
+1. Read the message and `100x status`. A solo run (`run.json` says mode solo) cannot grind, because the green light has to come from a fresh judge and this model cannot be one. Say so in one line and stop.
    - A brief: this is a normal build with the grind on. Follow the `100x` skill from Stage 0. Its step 6 turns the grind on once the folder exists.
    - No brief and a run in this folder: grind it. A run still before stage 6 goes through the `100x-continue` skill first. A run that already finished is ground anyway and finished again at the end, which replaces its report and its row.
    - No brief and no run: one line asking for the brief. Create nothing.

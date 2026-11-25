@@ -18,7 +18,7 @@ One lens, 45 to 90 minutes.
 2. Measure before. A screenshot, a test run or a number.
 3. Change one kind of thing.
 4. Measure after. Better, so commit and `git tag -f 100x/best`. The same or worse, so go back to `100x/best` and log "tried, no gain".
-5. Judge. Every round gets a fresh judge, brutal, before the next round starts. N is the number of `round` rows so far, plus one. Write `.100x/loops/round-N/ask.md` (the lens, the moment, the Rules, Scope and Do not lines from `.100x/project.md` when it has them, how to run it and the main flow when it has a screen, the before and after numbers or screenshots, what changed), run `100x review-call --loop round-N`, wait the way `references/apps.md` says, read `judge.md`. Fix blockers and majors now, answer every finding in `answers.md`. `Drifting: yes` sends you back to `100x/best` first.
+5. Judge. Every round gets a fresh judge, brutal, before the next round starts (in a solo run, the written loop challenge of `100x ref solo`). N is the number of `round` rows so far, plus one. Write `.100x/loops/round-N/ask.md` (the lens, the moment, the Rules, Scope and Do not lines from `.100x/project.md` when it has them, how to run it and the main flow when it has a screen, the before and after numbers or screenshots, what changed), run `100x review-call --loop round-N`, wait the way `references/apps.md` says, read `judge.md`. Fix blockers and majors now, answer every finding in `answers.md`. `Drifting: yes` sends you back to `100x/best` first.
 6. `100x log round "<lens>" "<what changed, or why nothing>" "<before and after>"`. Update `STATE.md` `Next:` with the next lens.
 
 A lens that finds nothing is logged with what was checked, then the next lens starts. Finding nothing is never a reason to stop.
