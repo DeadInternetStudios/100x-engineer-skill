@@ -364,6 +364,7 @@ Instalator tworzy tylko skróty (dowiązania symboliczne), kilka małych plików
 | `/100x-mockup` | Budowa | Szybki pierwszy podgląd w około 15 minut. Działa tylko kluczowy moment. Bez przeglądu i mówi o tym wprost (UNREVIEWED). |
 | `/100x-overnight` | Budowa | Na czas, gdy wychodzisz. Realizuje jeden pomysł lub kilka przez ustalony czas i szturcha agenta, gdy utknie. |
 | `/100x-wrapup` | Budowa | Na deadline. Sprawia, że główna ścieżka działa, a resztę ukrywa. |
+| `/100x-solo` | Budowa | Cały przebieg w jednym czacie, bez podagentów, bez pomocników i bez drugiego modelu. Ocenia własną pracę na piśmie, z innego punktu widzenia, a raport mówi, że nikt inny nie patrzył. |
 | `/100x-judge` | Przegląd | Przegląda coś, co już jest zbudowane. Nie buduje niczego nowego. |
 | `/100x-grind` | Przegląd | Przegląd, poprawki i kolejny przegląd, aż sędzia uzna, że jest gotowe do wydania. Kończy, gdy trzy przeglądy z rzędu nie znajdą niczego lepszego, po 15 rundach albo gdy skończy się czas. |
 | `/100x-status` | Przebieg | Gdzie jest przebieg, w najwyżej sześciu linijkach. |

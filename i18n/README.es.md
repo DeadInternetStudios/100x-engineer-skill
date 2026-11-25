@@ -364,6 +364,7 @@ El instalador solo crea accesos directos (enlaces simbólicos), unos pocos archi
 | `/100x-mockup` | Construir | Un primer vistazo rápido en unos 15 minutos. Solo funciona el momento clave. Sin revisión, y lo dice (UNREVIEWED). |
 | `/100x-overnight` | Construir | Para cuando te vas. Ejecuta una idea o varias durante un tiempo fijo, y le da un empujón al agente si se atasca. |
 | `/100x-wrapup` | Construir | Para fechas límite. Hace que funcione el camino principal y oculta el resto. |
+| `/100x-solo` | Construir | Todo el proceso en un solo chat, sin subagentes, sin ayudantes y sin un segundo modelo. Juzga su propio trabajo por escrito y desde otro punto de vista, y el informe dice que nadie más lo miró. |
 | `/100x-judge` | Revisar | Revisa algo ya construido. No construye nada nuevo. |
 | `/100x-grind` | Revisar | Revisar, corregir y volver a revisar hasta que un juez diga que está listo para publicar. Para si tres revisiones seguidas no encuentran nada mejor, a las 15 rondas o cuando se acaba el tiempo. |
 | `/100x-status` | Una ejecución | En qué punto está la ejecución, en seis líneas o menos. |

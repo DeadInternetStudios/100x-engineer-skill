@@ -364,6 +364,7 @@ Installer hanya membuat shortcut (symbolic link), beberapa file kecil, dan folde
 | `/100x-mockup` | Bangun | Lihat sekilas dengan cepat, sekitar 15 menit. Hanya momen kuncinya yang jalan. Tanpa tinjauan, dan ia mengatakannya (UNREVIEWED). |
 | `/100x-overnight` | Bangun | Untuk saat Anda pergi. Menjalankan satu ide atau beberapa, selama waktu yang ditentukan, dan menyenggol agen kalau macet. |
 | `/100x-wrapup` | Bangun | Untuk tenggat. Membuat jalur utama berfungsi dan menyembunyikan sisanya. |
+| `/100x-solo` | Bangun | Seluruh proses dalam satu chat, tanpa subagen, tanpa pembantu, dan tanpa model kedua. Ia menilai pekerjaannya sendiri secara tertulis dari sudut pandang lain, dan laporannya menyebutkan bahwa tidak ada yang lain yang melihat. |
 | `/100x-judge` | Tinjauan | Meninjau sesuatu yang sudah dibangun. Tidak membangun hal baru. |
 | `/100x-grind` | Tinjauan | Tinjau, perbaiki, tinjau lagi sampai juri bilang siap rilis. Berhenti kalau tiga tinjauan berturut-turut tidak menemukan yang lebih baik, di ronde ke-15, atau saat waktunya habis. |
 | `/100x-status` | Sebuah run | Posisi run saat ini, dalam enam baris atau kurang. |

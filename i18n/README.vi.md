@@ -364,6 +364,7 @@ Trình cài đặt chỉ tạo shortcut (liên kết tượng trưng), vài file
 | `/100x-mockup` | Xây dựng | Bản xem thử nhanh trong khoảng 15 phút. Chỉ khoảnh khắc then chốt là chạy được. Không review, và nó nói rõ điều đó (UNREVIEWED). |
 | `/100x-overnight` | Xây dựng | Cho lúc bạn sắp đi. Chạy một hoặc nhiều ý tưởng trong khoảng thời gian định sẵn, và nhắc agent nếu nó bị kẹt. |
 | `/100x-wrapup` | Xây dựng | Cho lúc sát hạn chót. Làm cho luồng chính chạy được và ẩn phần còn lại. |
+| `/100x-solo` | Xây dựng | Toàn bộ lần chạy trong một cuộc trò chuyện, không có tác tử phụ, không có người phụ và không có mô hình thứ hai. Nó tự đánh giá công việc của mình bằng văn bản, từ một góc nhìn khác, và báo cáo ghi rõ rằng không ai khác đã xem. |
 | `/100x-judge` | Review | Review thứ đã làm xong. Không làm gì mới. |
 | `/100x-grind` | Review | Review, sửa, review lại cho đến khi giám khảo nói sẵn sàng phát hành. Dừng nếu ba lần review liên tiếp không tìm ra gì tốt hơn, khi tới 15 vòng, hoặc khi hết giờ. |
 | `/100x-status` | Lần chạy | Lần chạy đang ở đâu, trong không quá sáu dòng. |

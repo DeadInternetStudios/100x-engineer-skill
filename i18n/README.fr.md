@@ -364,6 +364,7 @@ L'installeur ne crée que des raccourcis (liens symboliques), quelques petits fi
 | `/100x-mockup` | Construire | Un premier aperçu rapide en 15 minutes environ. Seul le moment clé fonctionne. Pas de relecture, et il le dit (UNREVIEWED). |
 | `/100x-overnight` | Construire | Pour quand vous partez. Lance une idée ou plusieurs, pendant une durée fixée, et relance l'agent s'il se bloque. |
 | `/100x-wrapup` | Construire | Pour les échéances. Fait marcher le parcours principal et masque le reste. |
+| `/100x-solo` | Construire | Toute l'exécution dans un seul chat, sans sous-agents, sans assistants et sans second modèle. Il juge son propre travail par écrit, depuis un autre point de vue, et le rapport dit que personne d'autre n'a regardé. |
 | `/100x-judge` | Relire | Relit quelque chose de déjà construit. Ne construit rien de nouveau. |
 | `/100x-grind` | Relire | Relire, corriger, relire encore jusqu'à ce qu'un juge dise que c'est prêt à livrer. S'arrête si trois relectures d'affilée ne trouvent rien de mieux, à 15 tours, ou quand le temps est écoulé. |
 | `/100x-status` | Un run | Où en est le run, en six lignes ou moins. |
