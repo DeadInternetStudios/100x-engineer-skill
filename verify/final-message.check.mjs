@@ -333,7 +333,9 @@ const model = {
     {
       name: 'no-memory-between-calls',
       holds: (s) => {
-        try { chatSummary({ ...entryOf(s), title: 'Another run', path: '/tmp/another-run', moment: 'Something else happens', tryFirst: ['One', 'Two'], url: 'http://localhost:9999' }); } catch { /* named elsewhere */ }
+        let other = '';
+        try { other = chatSummary({ ...entryOf(s), title: 'Another run', path: '/tmp/another-run', moment: 'Something else happens', tryFirst: ['One', 'Two'], url: 'http://localhost:9999' }); } catch { /* named elsewhere */ }
+        if (other && !(other.startsWith('Another run:') && other.includes('/tmp/another-run/.100x/REPORT.html') && other.includes('Something else happens'))) return 'a call after an earlier run showed pieces of the earlier run';
         return buildOf(s) === summaryOf(s) || 'a call for another run left something behind in this one';
       },
     },
