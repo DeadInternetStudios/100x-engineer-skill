@@ -72,14 +72,15 @@ function entryOf(s) {
 }
 
 const CRASH = 'THE MESSAGE COULD NOT BE BUILT: ';
+// A message that cannot be built is a finding about that state, so it is named and not a stack trace.
+const buildOf = (s) => {
+  try { return chatSummary(entryOf(s)); } catch (error) { return `${CRASH}${error.message}`; }
+};
 const cache = new Map();
 const keyOf = (s) => JSON.stringify(s);
 const summaryOf = (s) => {
   const key = keyOf(s);
-  if (!cache.has(key)) {
-    // A message that cannot be built is a finding about that state, so it is named and not a stack trace.
-    try { cache.set(key, chatSummary(entryOf(s))); } catch (error) { cache.set(key, `${CRASH}${error.message}`); }
-  }
+  if (!cache.has(key)) cache.set(key, buildOf(s));
   return cache.get(key);
 };
 
@@ -303,7 +304,7 @@ const model = {
     },
     {
       name: 'same-run-same-message',
-      holds: (s) => chatSummary(entryOf(s)) === chatSummary(entryOf(s)) || 'two calls gave two messages',
+      holds: (s) => buildOf(s) === buildOf(s) || 'two calls gave two messages',
     },
   ],
   liveness: [],
