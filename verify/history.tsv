@@ -5,3 +5,8 @@ ts	id	event	commit	hash	note	result
 2026-11-26T23:27:25Z	msg-postcondition	add	280f77d	801f0d2d2f9ce326	After one piece of a run changes, every line of the message that is not about that piece reads exactly as it did	unchecked
 2026-11-26T23:27:29Z	msg-invariants	add	280f77d	801f0d2d2f9ce326	In every mix the verdict is alone on line 1 and the reason is line 2, the pitch is left to the report, every label appears once when its data exists and not otherwise, steps and reasons take one line each, the blocks come in order with one blank line between them, no fact is lost, no line ends in a space and the same run gives the same message	unchecked
 2026-11-26T23:27:33Z	msg-liveness	add	280f77d	801f0d2d2f9ce326	From every state of the model there is a next change or the state is a named stop, so the search ends having seen every mix (no deadlock). No fairness is assumed	unchecked
+2026-11-26T23:41:41Z	msg-whitespace	add	24cf6f6	0356e778bfdb56c4	A line break or a run of spaces inside a value adds no line to the message and changes no word of it	unchecked
+2026-11-26T23:41:45Z	msg-no-mutation	add	24cf6f6	0356e778bfdb56c4	Building the message leaves the run it was given exactly as it was	unchecked
+2026-11-26T23:41:49Z	msg-key-order	add	24cf6f6	0356e778bfdb56c4	The same run with its keys in another order gives the same message	unchecked
+2026-11-26T23:41:52Z	msg-no-memory	add	24cf6f6	0356e778bfdb56c4	A message built after another run's message shows only its own run: nothing is left behind between calls	unchecked
+2026-11-26T23:41:55Z	msg-bounds	add	24cf6f6	0356e778bfdb56c4	A list of next asks or of reasons longer than three shows three and says how many more are in the report, and a list of three or fewer says nothing about more	unchecked
