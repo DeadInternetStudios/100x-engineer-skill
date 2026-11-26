@@ -1,0 +1,21 @@
+Model the final message, every mix of optional data. 4036 states, 55884 transitions, deepest path 9.
+Exhaustive. Every reachable state was visited, so a pass is a proof for this model and these bounds.
+  assumes one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, review or none, 4 round outcomes, 0, 1 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2 or 5 next asks, 1 or 3 steps, a url or none)
+  assumes the verdict and the judge are each tried with every other piece at its start value, because only line 1 reads the verdict and only one line reads the judge
+  assumes the text of each value is fixed: a longer title, reason or step is not tried here, because finish refuses them above a length before the message is built
+  assumes only the layout of the message is checked here. The words of each line are the words the report and the tests already pin
+pass  inv:every-mix-builds-a-message. 4036 states checked, exhaustive
+pass  inv:verdict-alone-on-line-one. 4036 states checked, exhaustive
+pass  inv:the-pitch-is-left-to-the-report. 4036 states checked, exhaustive
+pass  inv:every-label-once-when-its-data-exists. 4036 states checked, exhaustive
+pass  inv:steps-one-per-line. 4036 states checked, exhaustive
+pass  inv:reasons-one-per-line. 4036 states checked, exhaustive
+pass  inv:blocks-in-order-with-one-blank-line-between. 4036 states checked, exhaustive
+FAIL  inv:every-fact-is-kept. the message lost ["Screen sizes: 0 broken, 1 weak, 15 sizes and 148 elements checked"] (and 723 more).
+pass  inv:clean-lines. 4036 states checked, exhaustive
+pass  inv:same-run-same-message. 4036 states checked, exhaustive
+pass  guard:set. 133188 enabled and refused cases agree with the implementation, exhaustive
+FAIL  post:set. changing rounds also changed what Screen sizes says: "Screen sizes: 30 broken, 1 weak, 15 sizes and 148 elements checked" became "Screen sizes: 0 broken, 1 weak, 15 sizes and 148 elements checked" (and 1727 more). Steps: set(["rounds","none"]).
+pass  pure. no apply changed its input
+pass  deadlock. every state has a step or is a stopping point, exhaustive
+pass  coverage. every step was possible somewhere, 1 of 1
