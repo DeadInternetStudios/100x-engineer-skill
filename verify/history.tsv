@@ -10,3 +10,19 @@ ts	id	event	commit	hash	note	result
 2026-11-26T23:41:49Z	msg-key-order	add	24cf6f6	0356e778bfdb56c4	The same run with its keys in another order gives the same message	unchecked
 2026-11-26T23:41:52Z	msg-no-memory	add	24cf6f6	0356e778bfdb56c4	A message built after another run's message shows only its own run: nothing is left behind between calls	unchecked
 2026-11-26T23:41:55Z	msg-bounds	add	24cf6f6	0356e778bfdb56c4	A list of next asks or of reasons longer than three shows three and says how many more are in the report, and a list of three or fewer says nothing about more	unchecked
+2026-11-26T23:47:54Z	msg-precondition	run	4f7bdec	839f7a366924f4d9	exit 0, 71.7 s	holds
+2026-11-26T23:49:05Z	msg-state	run	4f7bdec	0356e778bfdb56c4	exit 0, 27.9 s	holds
+2026-11-26T23:49:33Z	msg-transition	run	4f7bdec	0356e778bfdb56c4	exit 0, 24.2 s	holds
+2026-11-26T23:49:58Z	msg-postcondition	run	4f7bdec	0356e778bfdb56c4	exit 0, 21.4 s	holds
+2026-11-26T23:50:19Z	msg-invariants	run	4f7bdec	0356e778bfdb56c4	exit 0, 10.7 s	holds
+2026-11-26T23:50:30Z	msg-liveness	run	4f7bdec	0356e778bfdb56c4	exit 0, 10.1 s	holds
+2026-11-26T23:50:40Z	msg-whitespace	run	4f7bdec	0356e778bfdb56c4	exit 0, 14.2 s	holds
+2026-11-26T23:50:54Z	msg-no-mutation	run	4f7bdec	0356e778bfdb56c4	exit 0, 14.7 s	holds
+2026-11-26T23:51:08Z	msg-key-order	run	4f7bdec	0356e778bfdb56c4	exit 0, 15.8 s	holds
+2026-11-26T23:51:24Z	msg-no-memory	run	4f7bdec	0356e778bfdb56c4	exit 0, 18.7 s	holds
+2026-11-26T23:51:43Z	msg-bounds	run	4f7bdec	0356e778bfdb56c4	exit 0, 22.5 s	holds
+2026-11-26T23:54:18Z	msg-state	sync	4f7bdec	0356e778bfdb56c4	Read the change since the last sync: the checker gained line-break values, key order, calls in a row and lists of three, and chatSummary now flattens line breaks inside a value. Ran the check on that code and it passed, exhaustive, exit 0 (verify run, this pass).	holds
+2026-11-26T23:54:19Z	msg-transition	sync	4f7bdec	0356e778bfdb56c4	Read the change since the last sync: the checker gained line-break values, key order, calls in a row and lists of three, and chatSummary now flattens line breaks inside a value. Ran the check on that code and it passed, exhaustive, exit 0 (verify run, this pass).	holds
+2026-11-26T23:54:20Z	msg-postcondition	sync	4f7bdec	0356e778bfdb56c4	Read the change since the last sync: the checker gained line-break values, key order, calls in a row and lists of three, and chatSummary now flattens line breaks inside a value. Ran the check on that code and it passed, exhaustive, exit 0 (verify run, this pass).	holds
+2026-11-26T23:54:21Z	msg-invariants	sync	4f7bdec	0356e778bfdb56c4	Read the change since the last sync: the checker gained line-break values, key order, calls in a row and lists of three, and chatSummary now flattens line breaks inside a value. Ran the check on that code and it passed, exhaustive, exit 0 (verify run, this pass).	holds
+2026-11-26T23:54:23Z	msg-liveness	sync	4f7bdec	0356e778bfdb56c4	Read the change since the last sync: the checker gained line-break values, key order, calls in a row and lists of three, and chatSummary now flattens line breaks inside a value. Ran the check on that code and it passed, exhaustive, exit 0 (verify run, this pass).	holds
