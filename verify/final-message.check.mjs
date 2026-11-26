@@ -6,13 +6,13 @@
 //   node verify/final-message.check.mjs [--json]
 //
 // The six properties, in this file.
-//   state          the shape of a run as the message sees it: a verdict, a review, rounds, reasons, checks, screen sizes, asks, work, next asks, steps, a url.
-//   transitions    one piece of data changes at a time. The model tries every value of every piece.
-//   preconditions  a run with no review has no rounds, and only a judge that said no has reasons.
+//   state          the shape of a run as the message sees it: a verdict, a judge, a review, rounds, reasons, checks, screen sizes, asks, work, next asks, steps, a url.
+//   transitions    one piece of data changes at a time, and the message that is built from the new run shows the change.
+//   preconditions  a run with no review has no rounds, and only a judge that said no has reasons. The message is never asked for such a run.
 //   postconditions after a change, every part of the message that is not about the changed piece reads exactly as before.
 //   invariants     what the message always holds, in every mix: the verdict alone on line 1, the reason on line 2, every label once when its
 //                  data exists and not at all when it does not, the blocks in order, no stray blank lines, nothing missing, the same text twice.
-//   liveness       none that needs an assumption. The message is built by a function that returns for every state in the model.
+//   liveness       none that needs an assumption. The message is built by a function that returns for every state in the model, and every state has a next step or is a stop.
 import { chatSummary } from '../lib/report.mjs';
 
 const env = (name, fallback) => (process.env[name] === undefined ? fallback : Number(process.env[name]));
@@ -185,6 +185,7 @@ const model = {
       pre: (s, [field, value]) => valid({ ...s, [field]: value }) && s[field] !== value && allowed(s, field),
       apply: setField,
       post: (before, after, [field]) => {
+        if (summaryOf(before) === summaryOf(after)) return `changing ${field} to ${value} changed nothing in the message`;
         const a = parse(summaryOf(before));
         const b = parse(summaryOf(after));
         for (const label of ORDER) {
