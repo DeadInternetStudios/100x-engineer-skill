@@ -71,11 +71,15 @@ function entryOf(s) {
   };
 }
 
+const CRASH = 'THE MESSAGE COULD NOT BE BUILT: ';
 const cache = new Map();
 const keyOf = (s) => JSON.stringify(s);
 const summaryOf = (s) => {
   const key = keyOf(s);
-  if (!cache.has(key)) cache.set(key, chatSummary(entryOf(s)));
+  if (!cache.has(key)) {
+    // A message that cannot be built is a finding about that state, so it is named and not a stack trace.
+    try { cache.set(key, chatSummary(entryOf(s))); } catch (error) { cache.set(key, `${CRASH}${error.message}`); }
+  }
   return cache.get(key);
 };
 
@@ -184,7 +188,7 @@ const model = {
       params: () => Object.entries(VALUES).flatMap(([field, values]) => values.map((value) => [field, value])),
       pre: (s, [field, value]) => valid({ ...s, [field]: value }) && s[field] !== value && allowed(s, field),
       apply: setField,
-      post: (before, after, [field]) => {
+      post: (before, after, [field, value]) => {
         if (summaryOf(before) === summaryOf(after)) return `changing ${field} to ${value} changed nothing in the message`;
         const a = parse(summaryOf(before));
         const b = parse(summaryOf(after));
@@ -199,6 +203,10 @@ const model = {
     },
   ],
   invariants: [
+    {
+      name: 'every-mix-builds-a-message',
+      holds: (s) => !summaryOf(s).startsWith(CRASH) || summaryOf(s),
+    },
     {
       name: 'verdict-alone-on-line-one',
       holds: (s) => {
