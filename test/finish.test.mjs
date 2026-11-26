@@ -119,7 +119,7 @@ test('a judge that is the model that built the run is named in the warning, the 
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
   assert.match(done.out, /warn\s+the judge \(muse-wonder-1\.0\) is the same model as the builder in your settings/);
-  assert.match(done.out, /Review \(muse-wonder-1\.0, the same model that built it\):/);
+  assert.match(done.out, /Review \(muse-wonder-1\.0\): [^\n]*\nJudged by: the same model that built it\n/);
   assert.match(fs.readFileSync(path.join(box.project, '.100x', 'REPORT.md'), 'utf8'), /Review \(muse-wonder-1\.0, the same model that built it\)/);
   const page = cli(['morning', '--all'], { env: box.env });
   assert.equal(page.code, 0, page.err + page.out);

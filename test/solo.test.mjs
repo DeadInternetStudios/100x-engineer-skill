@@ -303,7 +303,7 @@ test('finish closes a solo run whose challenges, rounds and loops hold up, and t
   assert.equal(entry.review.sameAsBuilder, true, 'the judge is the builder by definition, whatever the settings say');
   const report = fs.readFileSync(dot(box, 'REPORT.md'), 'utf8');
   assert.match(report, /claude-sonnet-5-5, the same model that built it\. A solo run, so no other model looked/);
-  assert.match(done.out, /Review \(claude-sonnet-5-5, the same model that built it\. A solo run, so no other model looked\)/);
+  assert.match(done.out, /Review \(claude-sonnet-5-5\): [^\n]*\nJudged by: the same model that built it\. A solo run, so no other model looked\n/);
   const trust = trustLine(entry);
   assert.equal(trust.tone, 'warn', 'the card is not painted as a run a judge cleared');
   assert.match(trust.text, /A solo run: the model that built it judged it and no other model looked/);

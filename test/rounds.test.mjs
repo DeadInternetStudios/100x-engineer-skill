@@ -119,7 +119,7 @@ test('finish waits for the planned rounds, and a clock with no room for another 
   const warned = run(box, 'finish');
   assert.equal(warned.code, 0, warned.err + warned.out);
   assert.match(warned.out, /warn\s+the judge held 1 of 3 rounds\. The clock had no room for round 2/);
-  assert.match(warned.out, /Judge rounds: 1 of 3 done, .*\nLooked at: the code and how it behaves,/);
+  assert.match(warned.out, /Judge rounds: 1 of 3 done, .*\nLooked at: the code and how it behaves\n/);
   box.cleanup();
 });
 

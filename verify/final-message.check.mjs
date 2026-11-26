@@ -55,6 +55,8 @@ function entryOf(s) {
       ? {
           status: 'reviewed',
           model: 'model-x',
+          sameAsBuilder: s.judge !== 'other',
+          solo: s.judge === 'solo',
           flags: 3,
           fixed: 2,
           rounds: s.rounds === 'none' ? undefined : { held: 2, planned: 3, lenses: ['the code and how it behaves'], lastReady: LAST_READY[s.rounds], why: s.rounds === 'notready' && s.reasons ? REASONS.slice(0, s.reasons) : undefined },
@@ -87,7 +89,7 @@ function parse(text) {
     if (index === 0) label = 'headline';
     else if (index === 1) label = 'why';
     else if (/^\d+\) /.test(line) || /^and \d+ more in the report$/.test(line)) { /* stays with the label above */ } else {
-      const found = line.match(/^(Look first|Why not ready to ship|The moment|Run|Try first|Must not break|Review|Judge rounds|Looked at|Screen sizes|Asks|Work|Report|Next likely asks)\b/);
+      const found = line.match(/^(Look first|Why not ready to ship|The moment|Run|Try first|Must not break|Review|Judged by|Judge rounds|Looked at|Screen sizes|Asks|Work|Report|Next likely asks)\b/);
       label = found ? found[1] : `unknown:${line}`;
     }
     owner.push(label);
@@ -96,7 +98,7 @@ function parse(text) {
 }
 const linesOf = (text, wanted) => { const { lines, owner } = parse(text); return lines.filter((_, i) => owner[i] === wanted); };
 const countOf = (text, wanted) => { const { lines, owner } = parse(text); return lines.filter((line, i) => owner[i] === wanted && !/^\d+\) /.test(line) && !/^and \d+ more/.test(line) && line !== '').length; };
-const ORDER = ['headline', 'why', 'Look first', 'Why not ready to ship', 'The moment', 'Run', 'Try first', 'Must not break', 'Review', 'Judge rounds', 'Looked at', 'Screen sizes', 'Asks', 'Work', 'Report', 'Next likely asks'];
+const ORDER = ['headline', 'why', 'Look first', 'Why not ready to ship', 'The moment', 'Run', 'Try first', 'Must not break', 'Review', 'Judged by', 'Judge rounds', 'Looked at', 'Screen sizes', 'Asks', 'Work', 'Report', 'Next likely asks'];
 
 // What the data says should be there, written from the data and not from the code.
 const wanted = (s) => {
@@ -111,6 +113,7 @@ const wanted = (s) => {
     'Try first': 1,
     'Must not break': s.checks,
     Review: 1,
+    'Judged by': reviewed && s.judge !== 'other' ? 1 : 0,
     'Judge rounds': reviewed && s.rounds !== 'none' ? 1 : 0,
     'Looked at': reviewed && s.rounds !== 'none' ? 1 : 0,
     'Screen sizes': 1,
@@ -125,6 +128,7 @@ const wanted = (s) => {
 // A run is these fields. A review that is not there has no rounds, and only a judge that said no has reasons.
 const VALUES = {
   verdict: ['ship', 'fine', 'dud'],
+  judge: ['other', 'same', 'solo'],
   review: ['reviewed', 'unreviewed'],
   rounds: ['none', 'ready', 'notready', 'silent'],
   reasons: [0, 1, 4],
@@ -137,19 +141,22 @@ const VALUES = {
   url: [0, 1],
 };
 const valid = (s) => (s.review === 'reviewed' || s.rounds === 'none') && (s.rounds === 'notready' || s.reasons === 0);
-// The verdict only fills the first line, and nothing else reads it. It is tried with every other piece at its start value, which keeps the model at a few thousand states.
+// The verdict fills the first line and the judge adds one line, and nothing else reads either. Each is tried with every other piece at its start value, which keeps the model at a few thousand states.
+const ISOLATED = ['verdict', 'judge'];
 const START = { review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 };
 const atStart = (s) => Object.entries(START).every(([field, value]) => s[field] === value);
+const allowed = (s, field) => (ISOLATED.includes(field) ? atStart(s) && ISOLATED.filter((other) => other !== field).every((other) => s[other] === VALUES[other][0]) : ISOLATED.every((other) => s[other] === VALUES[other][0]));
 const setField = (state, [field, value]) => {
   const next = { ...state, [field]: value };
   if (!valid(next)) throw new Error(`${field} = ${value} is not a run the message can be asked about`);
-  if (field === 'verdict' ? !atStart(state) : state.verdict !== 'ship') throw new Error('the verdict is tried on its own, and the other pieces on a run that is ready to ship');
+  if (!allowed(state, field)) throw new Error('the verdict and the judge are tried on their own, and the other pieces on a run that is ready to ship and judged by another model');
   return next;
 };
 // The parts of the message each field may change. Everything else has to read as it did.
 const FAMILY = {
   verdict: ['headline'],
-  review: ['Review', 'Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
+  judge: ['Judged by'],
+  review: ['Review', 'Judged by', 'Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
   rounds: ['Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
   reasons: ['Why not ready to ship'],
   checks: ['Must not break', 'Look first'],
@@ -165,17 +172,17 @@ const model = {
   name: 'the final message, every mix of optional data',
   assumptions: [
     'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, review or none, 4 round outcomes, 0, 1 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2 or 5 next asks, 1 or 3 steps, a url or none)',
-    'the verdict is tried with every other piece at its start value, because only line 1 reads it',
+    'the verdict and the judge are each tried with every other piece at its start value, because only line 1 reads the verdict and only one line reads the judge',
     'the text of each value is fixed: a longer title, reason or step is not tried here, because finish refuses them above a length before the message is built',
     'only the layout of the message is checked here. The words of each line are the words the report and the tests already pin',
   ],
-  init: () => ({ verdict: 'ship', review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 }),
+  init: () => ({ verdict: 'ship', judge: 'other', review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 }),
   terminal: () => true,
   actions: [
     {
       name: 'set',
       params: () => Object.entries(VALUES).flatMap(([field, values]) => values.map((value) => [field, value])),
-      pre: (s, [field, value]) => valid({ ...s, [field]: value }) && s[field] !== value && (field === 'verdict' ? atStart(s) : s.verdict === 'ship'),
+      pre: (s, [field, value]) => valid({ ...s, [field]: value }) && s[field] !== value && allowed(s, field),
       apply: setField,
       post: (before, after, [field]) => {
         const a = parse(summaryOf(before));
@@ -264,6 +271,7 @@ const model = {
           must.push('Judge rounds: 2 of 3 done', 'Looked at: the code and how it behaves');
           must.push({ ready: 'the last word was ready to ship', notready: 'the last word was NOT ready to ship', silent: 'with no last word from the judge' }[s.rounds]);
         }
+        if (s.review === 'reviewed' && s.judge !== 'other') must.push(s.judge === 'solo' ? 'Judged by: the same model that built it. A solo run, so no other model looked' : 'Judged by: the same model that built it');
         if (s.asks) must.push('Asks: 2 of 3 closed');
         if (s.work) must.push('Work: 2 h of 3 h asked for, 4 rounds');
         if (s.matrix === 'skipped') must.push('Screen sizes: skipped, a command line tool has no screen');
