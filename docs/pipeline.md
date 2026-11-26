@@ -7,16 +7,24 @@ What each stage does, what `100x finish` proves, and the final message. Back to 
 `100x finish` prints this, and the agent sends it as its last message. It is short on purpose, and the report has the rest. The run here is made up, and the code printed the message.
 
 ```text
-Ledgerline: A cash flow forecast for a small business that shows how many months of runway are left. Verdict: ready to ship. The numbers add up to the cent and the first screen answers the question the owner came with. The second day is thin.
+Ledgerline: ready to ship.
+The numbers add up to the cent and the first screen answers the question the owner came with. The second day is thin.
+
 The moment: Move a late invoice and the whole forecast redraws, with the low point marked
 Run: npm run dev, then open http://localhost:5173
-Try first: 1) Open the sample business and read the months of runway 2) Move a late invoice back two weeks and watch the low point 3) Add a one-off expense of 12000
+Try first:
+1) Open the sample business and read the months of runway
+2) Move a late invoice back two weeks and watch the low point
+3) Add a one-off expense of 12000
+
 Must not break: numbers passed (The balance after 24 months matches a hand-worked ledger to the cent on 5000 random invoice sets, 0 failing)
 Review (claude-opus-5-5): 14 flagged, 11 fixed, 2 rejected, 1 deferred
-Judge rounds: 5 of 5 done, on the code and how it behaves, the UI and UX and whether it is ready to ship, and the last word was ready to ship
+Judge rounds: 5 of 5 done, and the last word was ready to ship
+Looked at: the code and how it behaves, the UI and UX and whether it is ready to ship
 Screen sizes: 0 broken, 3 weak, 15 sizes and 212 elements checked
 Asks: 6 of 6 closed
 Work: 10 h of 10 h asked for, 14 rounds
+
 Report: file:///Users/you/projects/ledgerline/.100x/REPORT.html
 Next likely asks: Import invoices from a CSV file; Show a best case and a worst case
 ```

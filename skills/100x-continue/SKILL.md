@@ -15,6 +15,8 @@ Pick up the unfinished run in this folder. Nothing new is planned and nothing is
 
 Done when the run is back at work from its last true state, or you told the owner in one line why there is nothing to pick up.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Run `100x status`. Read `.100x/STATE.md`, `.100x/project.md` (the asks, the moment, the modifiers, and its rules and do-nots when it has them), the last ten rows of `.100x/decisions.tsv` and `git log --oneline -10`.

@@ -9,12 +9,18 @@ import { pageStamp, pictureStamp, readStamp } from '../scripts/readme-stamp.mjs'
 import { ROOT, sandbox } from './helpers.mjs';
 
 import { SAMPLE } from '../scripts/readme-sample.mjs';
+import { COPIES, shown } from '../scripts/readme-message.mjs';
 
 test('the final message in the README is the one the code prints', () => {
   const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
   const block = readme.split('### 3. The summary comes from memory')[1]?.match(/```text\n([\s\S]*?)\n```/)?.[1];
   assert.ok(block, 'README has a text block under "3. The summary comes from memory"');
   assert.equal(block, chatSummary(SAMPLE));
+});
+
+test('every copy of the final message, in the README, its 19 translations and docs/pipeline.md, is the one the code prints', () => {
+  assert.ok(COPIES.length >= 21, 'the README, the 19 translations and the pipeline page');
+  for (const copy of COPIES) assert.equal(shown(copy), chatSummary(copy.run), `${copy.file} shows an old message. Run node scripts/readme-message.mjs`);
 });
 
 test('the picture of the final message says exactly what the code prints', () => {

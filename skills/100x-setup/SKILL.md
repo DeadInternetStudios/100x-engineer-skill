@@ -17,7 +17,7 @@ Done when `100x config validate` is clean and the reply shows the jobs as saved,
 
 ## Voice
 
-Shortest possible. One idea per line, no paragraphs, no preamble. Use the phrases in `100x ref words`. Never show a config key, a setting value or a model id to the owner. Show a model by the name the owner used or the app's list gives, like "Sonnet" or "Opus". Say "judge", not "reviewer". Say "this chat", never "thread". A job with no model of its own shows the model in this chat by name, like "Overnight: Sonnet, same as this chat". Say "max", "extra high" or "high" for effort. Keys and ids appear only in the commands you run.
+Shortest possible. One idea per line, no paragraphs, no preamble. Use the phrases in `100x ref words`. Never show a config key, a setting value or a model id to the owner. Show a model by the name the owner used or the app's list gives, like "Sonnet" or "Opus". Say "judge", not "reviewer". Say "this chat", never "thread". A job with no model of its own shows the model in this chat by name, like "Overnight: Sonnet, same as this chat". Say "max", "extra high" or "high" for effort. Keys and ids appear only in the commands you run. The whole voice is in `100x ref voice`.
 
 ## Steps
 

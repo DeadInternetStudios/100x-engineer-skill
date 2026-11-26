@@ -12,7 +12,8 @@ test('finish closes a valid run, writes the report and registers it once', () =>
   makeProject(box);
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Glow: A thing that glows\. Verdict: ready to ship\./);
+  assert.match(done.out, /^Glow: ready to ship\.\n[^\n]+\n/, 'the verdict is alone on line 1, and the reason follows on line 2');
+  assert.doesNotMatch(done.out, /A thing that glows/, 'the pitch is on the report page, and the chat message leaves it there');
   assert.match(done.out, /\nIt is on the report page with every finished run\. Call `100x-report` to open that page\.\n?$/);
   assert.doesNotMatch(done.out, /100x morning/, 'the owner does not say morning, so the message never tells them to');
   assert.match(done.out, /Asks: 2 of 2 closed\n/);
@@ -36,7 +37,7 @@ test('a run.json from before the verdict and moment words changed still finishes
   makeProject(box, { run: legacy });
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Glow: A thing that glows\. Verdict: ready to ship\./);
+  assert.match(done.out, /^Glow: ready to ship\.\n/);
   assert.match(done.out, /\nThe moment: The first tap lights the whole screen\n/);
   const run = JSON.parse(fs.readFileSync(path.join(box.project, '.100x', 'run.json'), 'utf8'));
   assert.equal(run.verdict, 'ship');

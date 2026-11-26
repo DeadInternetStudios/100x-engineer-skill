@@ -23,6 +23,10 @@ To make it work for a set time, say so: "work for 10 hours", "work for 2 days", 
 
 When you come back, call `/100x-report`. The agent prints the ranking and opens the report page. Each run gets a line on what it is, and a run the judge held back lists the judge's reasons, with what became of each. Runs that have begun and not finished are listed under the ranking, with where each stands and the line that picks it up, and one nobody has touched for 90 minutes is marked idle. A page opened from a file cannot start anything, so there a card copies the command that runs its prototype. The page the agent serves has a Run button. It starts a prototype's dev server, opens it, and has a Stop button. A command line tool has no address to open, so its card still copies the command and says so. If an older gallery server is still running, the same command restarts it so you get the new page, and says what to stop first when a prototype is running in it. If something else already answers at a prototype's address, the card says it did not start the run and opens nothing, and a link opens that address anyway for when you know it is the one. A run whose record is damaged is left out, and the page says how many.
 
+## How 100x talks
+
+Every mode answers in the same short shape: the result on line 1, one idea per line, and one question last with a guess attached. Nothing is dropped to get there. Errors, numbers and commands stay, and anything risky is written out in full. Say `more` and the agent gives that answer in full, or `shorter` and the next ones come at half the length. The final message that `100x finish` prints has the same shape, with the verdict alone on its first line. For a slower talk, one question at a time, call `/100x-adhd`. The rules are in [`skills/100x/references/voice.md`](../skills/100x/references/voice.md).
+
 ## The helper skill
 
 `unslop-text` is part of the workflow, not an extra. It keeps its own repository, docs and tests. 100x ships a pinned copy in `vendor/`, unchanged, so a fresh install works with no network, and runs it as `100x text`.

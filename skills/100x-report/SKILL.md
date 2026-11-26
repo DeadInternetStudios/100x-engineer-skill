@@ -17,6 +17,8 @@ The owner comes back to several prototypes and decides in minutes which deserve 
 
 Done when the reply has the ranking, what each run is, the reasons for every run the judge held back, every run still in progress, and the page path or URL, and every claim in the reply matches a registry entry.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Run `100x morning`. It prints the ranking, best verdict first, and writes `~/.100x/morning/index.html`. The command is yours: the owner calls this skill, and you never tell them to run it.

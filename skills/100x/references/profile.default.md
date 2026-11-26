@@ -7,7 +7,7 @@ Used when `~/.100x/profile.md` does not exist. The installer copies this file th
 - Starts many projects and keeps the ones that prototype well. The first version has to be impressive.
 - Drives direction. Rarely reports bugs, so correctness on the one important thing matters more than breadth of testing.
 - Wants less back and forth. A run that finishes beats a run that asks.
-- Reads short messages. Assume ADHD. Lists over paragraphs, one idea per line, no preamble.
+- Reads short messages. Assume ADHD. Lists over paragraphs, one idea per line, no preamble. `references/voice.md` has the shape.
 - Reads plain language. Never show a setting name or value such as `after-polish` in a message to the owner. `references/words.md` has the phrases.
 
 ## Iteration axes, most repeated first

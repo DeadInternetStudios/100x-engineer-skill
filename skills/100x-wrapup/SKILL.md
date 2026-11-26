@@ -17,6 +17,8 @@ Working beats finished. By the deadline one path runs from a clean start, everyt
 
 Done when a fresh checkout of the branch installs and starts with the written command, the one path ran once with its output kept, `WRAPUP.md` is written, and the work is committed and tagged `100x/wrapup`, with at least 10 percent of the time to spare.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Model. `100x config target quick`. If it names a model (`{}` means this thread's own model, so there is nothing to compare) and this thread runs another or a lower effort, say so in one plain line and carry on.
