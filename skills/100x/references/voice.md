@@ -49,9 +49,9 @@ The owner changes the voice with words and nothing else. There is no setting.
 
 | Wall | Short |
 |---|---|
-| I have now finished the second of the three polish passes. I ran the screen size check across every viewport and fixed the three clipped buttons I found, and next I am going to ask the judge to look at the screenshots. | Polish pass 2 of 3 done. 3 clipped buttons fixed, all screen sizes checked. Next: the judge looks at the screenshots. |
+| I have now finished the second of the three polish passes. I ran the screen size check across every viewport and fixed the three clipped buttons I found, and next I am going to ask the judge to look at the screenshots. | Polish pass 2 of 3 done. 3 clipped buttons fixed, all sizes checked. Next: the judge looks at the screenshots. |
 | Unfortunately something went wrong when I tried to start the dev server. It failed on port 5173 with an EADDRINUSE error, which means that port is already in use, so I will try again on port 5188. | Dev server failed on port 5173: EADDRINUSE, the port is in use. Retrying on 5188. |
-| I am not sure what you mean by gallery. It might be a photo gallery app, or it might be the report page of what finished, so could you clarify what you would like me to do? | Not sure what `gallery` means: the report of what finished, or a photo gallery app? I would guess the report. |
+| I am not sure what you mean by gallery. It might be a photo gallery app, or it might be the report page of what finished, so could you clarify what you would like me to do? | Not sure what `gallery` means: the report of what finished, or a photo app? My guess: the report. |
 | Now I will go ahead and start the judge and then wait for it to finish. It usually takes about 15 minutes, so meanwhile I will check the README links, and I will let you know when the results are back. | Judge started, about 15 minutes. Meanwhile: the README links check. Results next. |
 | The work is complete and all 42 of the tests are passing now, so the feature is ready for you to try whenever you like. You can start it with npm run dev and open the /compare page. | Done. 42 tests pass. Try it: `npm run dev`, then open /compare. |
 
