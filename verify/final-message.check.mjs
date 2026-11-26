@@ -39,18 +39,22 @@ const REASONS = [
 const NEXT = ['Save a list of friends', 'Round up to the dollar', 'Share the split as a picture', 'Add a tip jar', 'Dark mode'];
 const LAST_READY = { ready: true, notready: false, silent: null };
 
+// A value with a line break in the middle of it, the way a judge or a hurried owner types one. It reads as the same words once the whitespace is one space.
+const broken = (s, text) => (s.text === 'multi' ? text.replace(' ', ' \n\n ') : text);
+
 function entryOf(s) {
   const reviewed = s.review === 'reviewed';
+  const b = (text) => broken(s, text);
   return {
     title: TITLE,
     pitch: 'PITCH-SENTENCE-THAT-THE-CHAT-MESSAGE-NO-LONGER-CARRIES.',
     verdict: s.verdict,
-    verdictWhy: WHY,
-    moment: MOMENT,
-    runCmd: 'npm start',
+    verdictWhy: b(WHY),
+    moment: b(MOMENT),
+    runCmd: b('npm start'),
     url: s.url ? 'http://localhost:5173' : undefined,
-    tryFirst: STEPS.slice(0, s.steps),
-    mustNotBreak: CHECKS.slice(0, s.checks),
+    tryFirst: STEPS.slice(0, s.steps).map(b),
+    mustNotBreak: CHECKS.slice(0, s.checks).map((check) => ({ ...check, summary: b(check.summary) })),
     review: reviewed
       ? {
           status: 'reviewed',
@@ -59,14 +63,14 @@ function entryOf(s) {
           solo: s.judge === 'solo',
           flags: 3,
           fixed: 2,
-          rounds: s.rounds === 'none' ? undefined : { held: 2, planned: 3, lenses: ['the code and how it behaves'], lastReady: LAST_READY[s.rounds], why: s.rounds === 'notready' && s.reasons ? REASONS.slice(0, s.reasons) : undefined },
+          rounds: s.rounds === 'none' ? undefined : { held: 2, planned: 3, lenses: ['the code and how it behaves'], lastReady: LAST_READY[s.rounds], why: s.rounds === 'notready' && s.reasons ? REASONS.slice(0, s.reasons).map((reason) => ({ ...reason, title: b(reason.title) })) : undefined },
         }
       : { status: 'unreviewed', note: 'no judge was available' },
     matrix: s.matrix === 'ok' ? { totals: { broken: 0, weak: 1 }, viewports: 15, examined: 148 } : s.matrix === 'broken' ? { totals: { broken: 4, weak: 1 }, viewports: 15, examined: 148 } : undefined,
     matrixSkipped: s.matrix === 'skipped' ? 'a command line tool has no screen' : undefined,
     asks: s.asks ? { closed: 2, total: 3 } : { closed: 0, total: 0 },
     work: s.work ? { minutes: 120, totalMinutes: 180, rounds: 4 } : undefined,
-    nextAsks: NEXT.slice(0, s.nextAsks),
+    nextAsks: NEXT.slice(0, s.nextAsks).map(b),
     path: '/tmp/glow-verify',
   };
 }
@@ -136,18 +140,19 @@ const VALUES = {
   judge: ['other', 'same', 'solo'],
   review: ['reviewed', 'unreviewed'],
   rounds: ['none', 'ready', 'notready', 'silent'],
-  reasons: [0, 1, 4],
+  reasons: [0, 1, 3, 4],
   checks: [0, 1, 2],
   matrix: ['none', 'ok', 'broken', 'skipped'],
   asks: [0, 1],
   work: [0, 1],
-  nextAsks: [0, 2, 5],
+  nextAsks: [0, 2, 3, 4],
+  text: ['plain', 'multi'],
   steps: [1, 3],
   url: [0, 1],
 };
 const valid = (s) => (s.review === 'reviewed' || s.rounds === 'none') && (s.rounds === 'notready' || s.reasons === 0);
-// The verdict fills the first line and the judge adds one line, and nothing else reads either. Each is tried with every other piece at its start value, which keeps the model at a few thousand states.
-const ISOLATED = ['verdict', 'judge'];
+// The verdict fills the first line, the judge adds one line, and a line break in a value is the same for every line. Each is tried with every other piece at its start value, which keeps the model at a few thousand states.
+const ISOLATED = ['verdict', 'judge', 'text'];
 const START = { review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 };
 const atStart = (s) => Object.entries(START).every(([field, value]) => s[field] === value);
 const allowed = (s, field) => (ISOLATED.includes(field) ? atStart(s) && ISOLATED.filter((other) => other !== field).every((other) => s[other] === VALUES[other][0]) : ISOLATED.every((other) => s[other] === VALUES[other][0]));
@@ -161,6 +166,7 @@ const setField = (state, [field, value]) => {
 const FAMILY = {
   verdict: ['headline'],
   judge: ['Judged by'],
+  text: [],
   review: ['Review', 'Judged by', 'Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
   rounds: ['Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
   reasons: ['Why not ready to ship'],
@@ -176,12 +182,12 @@ const FAMILY = {
 const model = {
   name: 'the final message, every mix of optional data',
   assumptions: [
-    'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, review or none, 4 round outcomes, 0, 1 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2 or 5 next asks, 1 or 3 steps, a url or none)',
+    'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, 3 judges, review or none, 4 round outcomes, 0, 1, 3 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2, 3 or 4 next asks, 1 or 3 steps, a url or none, plain text or text with a line break in it)',
     'the verdict and the judge are each tried with every other piece at its start value, because only line 1 reads the verdict and only one line reads the judge',
-    'the text of each value is fixed: a longer title, reason or step is not tried here, because finish refuses them above a length before the message is built',
+    'the text of each value is one fixed sentence, written plain or with a line break in the middle of it. A longer title, reason or step is not tried here, because finish refuses them above a length before the message is built',
     'only the layout of the message is checked here. The words of each line are the words the report and the tests already pin',
   ],
-  init: () => ({ verdict: 'ship', judge: 'other', review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 }),
+  init: () => ({ verdict: 'ship', judge: 'other', text: 'plain', review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 }),
   terminal: () => true,
   actions: [
     {
@@ -190,7 +196,7 @@ const model = {
       pre: (s, [field, value]) => valid({ ...s, [field]: value }) && s[field] !== value && allowed(s, field),
       apply: setField,
       post: (before, after, [field, value]) => {
-        if (summaryOf(before) === summaryOf(after)) return `changing ${field} to ${value} changed nothing in the message`;
+        if (field !== 'text' && summaryOf(before) === summaryOf(after)) return `changing ${field} to ${value} changed nothing in the message`;
         const a = parse(summaryOf(before));
         const b = parse(summaryOf(after));
         for (const label of ORDER) {
@@ -299,6 +305,48 @@ const model = {
         const text = summaryOf(s);
         if (/[ \t]$/m.test(text)) return 'a line ends with a space';
         if (/undefined|NaN|\[object/.test(text)) return 'the message holds undefined, NaN or [object';
+        return true;
+      },
+    },
+    {
+      name: 'a-line-break-in-a-value-adds-no-line',
+      holds: (s) => s.text === 'plain' || summaryOf(s) === summaryOf({ ...s, text: 'plain' }) || 'a value with a line break in it changed the message',
+    },
+    {
+      name: 'the-run-is-left-as-it-was',
+      holds: (s) => {
+        const run = entryOf(s);
+        const before = JSON.stringify(run);
+        try { chatSummary(run); } catch { /* a crash is named by every-mix-builds-a-message */ }
+        return JSON.stringify(run) === before || 'building the message changed the run it was given';
+      },
+    },
+    {
+      name: 'key-order-does-not-matter',
+      holds: (s) => {
+        const reverse = (value) => (Array.isArray(value) ? value.map(reverse) : value && typeof value === 'object' ? Object.fromEntries(Object.entries(value).reverse().map(([key, inner]) => [key, reverse(inner)])) : value);
+        let text;
+        try { text = chatSummary(reverse(entryOf(s))); } catch (error) { text = `${CRASH}${error.message}`; }
+        return text === summaryOf(s) || 'the same run with its keys in another order gave another message';
+      },
+    },
+    {
+      name: 'no-memory-between-calls',
+      holds: (s) => {
+        try { chatSummary({ ...entryOf(s), title: 'Another run', path: '/tmp/another-run', moment: 'Something else happens', tryFirst: ['One', 'Two'], url: 'http://localhost:9999' }); } catch { /* named elsewhere */ }
+        return buildOf(s) === summaryOf(s) || 'a call for another run left something behind in this one';
+      },
+    },
+    {
+      name: 'lists-stop-at-three',
+      holds: (s) => {
+        const text = summaryOf(s);
+        const next = linesOf(text, 'Next likely asks')[0];
+        if (s.nextAsks > 0 && (s.nextAsks > 3) !== /; and \d+ more in the report$/.test(next ?? '')) return `${s.nextAsks} next asks, and the line reads ${JSON.stringify(next)}`;
+        if (next && s.nextAsks > 3 && !next.endsWith(`; and ${s.nextAsks - 3} more in the report`)) return `the count of next asks left out is wrong: ${JSON.stringify(next)}`;
+        const shown = linesOf(text, 'Why not ready to ship');
+        const withMore = shown.some((line) => /^and \d+ more in the report$/.test(line));
+        if (s.review === 'reviewed' && s.rounds === 'notready' && s.reasons > 0 && (s.reasons > 3) !== withMore) return `${s.reasons} reasons, and the more-line is ${withMore ? 'there' : 'missing'}`;
         return true;
       },
     },
