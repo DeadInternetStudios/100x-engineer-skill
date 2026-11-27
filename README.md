@@ -18,8 +18,6 @@
 
 *100x is a skill by a former Cursor engineer that turns prompts into formally verified, production-ready code.<br>I use it to ship over 1,000 PRs to production every month, with a rollback rate below 2%.*
 
-Terminal Bench 4.1 scores coming soon 😎
-
 <sub><b>English</b> · <a href="i18n/README.es.md">Español</a> · <a href="i18n/README.zh.md">中文</a> · <a href="i18n/README.pt.md">Português</a> · <a href="i18n/README.ru.md">Русский</a> · <a href="i18n/README.ja.md">日本語</a> · <a href="i18n/README.fr.md">Français</a> · <a href="i18n/README.de.md">Deutsch</a> · <a href="i18n/README.ar.md">العربية</a> · <a href="i18n/README.hi.md">हिन्दी</a> · <a href="i18n/README.ko.md">한국어</a> · <a href="i18n/README.id.md">Bahasa Indonesia</a> · <a href="i18n/README.tr.md">Türkçe</a> · <a href="i18n/README.vi.md">Tiếng Việt</a> · <a href="i18n/README.bn.md">বাংলা</a> · <a href="i18n/README.it.md">Italiano</a> · <a href="i18n/README.pl.md">Polski</a> · <a href="i18n/README.th.md">ไทย</a> · <a href="i18n/README.uk.md">Українська</a> · <a href="i18n/README.nl.md">Nederlands</a></sub>
 
 </div>
