@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { commandNames, commandUsages } from '../lib/commands/index.mjs';
+import { PLUGIN_NAME } from '../lib/claude-plugin.mjs';
 import { companionScript } from '../lib/companions.mjs';
 import { GRIND_LIMIT, GRIND_STALL, grindWords } from '../lib/rounds.mjs';
 import { validateRepo } from '../lib/validate.mjs';
@@ -254,7 +255,8 @@ test('the skill asks back when it cannot tell what the owner wants, and never wh
 
 test('every skill the code tells the owner to call is a skill in this repository', () => {
   const folders = new Set(skillFolders());
-  const temp = new Set(['100x-shots', '100x-readme-stamp', '100x-facts-']);
+  // Names that start with 100x- and are not skills: temporary folders, and the Claude plugin, which holds all of them.
+  const temp = new Set(['100x-shots', '100x-readme-stamp', '100x-facts-', PLUGIN_NAME]);
   const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => (entry.isDirectory() ? walk(path.join(dir, entry.name)) : entry.name.endsWith('.mjs') ? [path.join(dir, entry.name)] : []));
   const named = new Map();
   for (const file of [...walk(path.join(ROOT, 'lib')), ...walk(path.join(ROOT, 'bin'))]) {
