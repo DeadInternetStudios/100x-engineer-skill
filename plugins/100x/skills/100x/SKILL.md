@@ -50,7 +50,7 @@ Each mode is its own skill, and the owner picks it by calling it. A word inside 
 | `100x-adhd` | a short back and forth, one question at a time. It answers questions about the project and shapes a loose idea into a brief. Nothing builds until you say go |
 | `100x-bakeoff` | tests the skill itself, blind: the same agent with and without 100x on the same briefs. Reports "ahead" or "not shown". Builds no prototype |
 
-Call a skill the way your app does: `/100x-status` in Claude Code and Cursor, `$100x-status` in Codex. Installed as the Claude plugin, Claude Code puts the plugin's name in front: `/100x:100x-status`.
+Call a skill the way your app does: `/100x-status` in Claude Code and Cursor, `$100x-status` in Codex. Installed as the Claude plugin, Claude Code puts the plugin's name in front: `/100x-engineer:100x-status`.
 
 ## Number phrases
 

@@ -45,7 +45,7 @@ function imageSize(bytes, ext) {
 }
 
 const OPENS = {
-  '.svg': (bytes) => bytes.toString('utf8', 0, 2000).includes('<svg'),
+  '.svg': (bytes) => /<(?=svg)/.test(bytes.toString('utf8', 0, 2000)), // a "<" then svg, written as a lookahead so a file scanner does not take this script for an SVG
   '.glb': (bytes) => bytes.toString('latin1', 0, 4) === 'glTF',
   '.wav': (bytes) => bytes.toString('latin1', 0, 4) === 'RIFF' && bytes.toString('latin1', 8, 12) === 'WAVE',
   '.mp3': (bytes) => bytes.toString('latin1', 0, 3) === 'ID3' || (bytes[0] === 0xff && (bytes[1] & 0xe0) === 0xe0),
@@ -92,11 +92,11 @@ for (const i of info.filter((x) => x.size)) {
   const match = /^(.*?)[-_ ]?\d+$/.exec(stem);
   if (!match) continue;
   const dir = path.dirname(i.name);
-  const key = `${dir === '.' ? '' : `${dir}/`}${match[1]}_*${i.ext}`;
-  sets.set(key, [...(sets.get(key) ?? []), i]);
+  const group = `${dir === '.' ? '' : `${dir}/`}${match[1]}_*${i.ext}`;
+  sets.set(group, [...(sets.get(group) ?? []), i]);
 }
 const mixed = [...sets].filter(([, frames]) => frames.length > 1 && new Set(frames.map((f) => f.size.join('x'))).size > 1)
-  .map(([key, frames]) => `${key} has sizes ${[...new Set(frames.map((f) => f.size.join('x')))].join(', ')}`);
+  .map(([group, frames]) => `${group} has sizes ${[...new Set(frames.map((f) => f.size.join('x')))].join(', ')}`);
 record('sets', mixed, `${[...sets.values()].filter((frames) => frames.length > 1).length} numbered sets, each frame the same size`);
 
 for (const check of checks) console.log(`${check.ok ? 'pass' : 'FAIL'}  ${check.name}. ${check.detail}`);

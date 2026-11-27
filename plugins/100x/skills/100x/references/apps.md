@@ -8,7 +8,7 @@
 |---|---|---|---|
 | Cursor | `/100x` | `~/.agents/skills` or `~/.cursor/skills` | used by the author |
 | Claude Code | `/100x` | `~/.claude/skills` | used by the author |
-| Claude Code, as the plugin | `/100x:100x` | the plugin's own folder, which Claude Code keeps | the same skills as a copy, not run by the author yet |
+| Claude Code, as the plugin | `/100x-engineer:100x` | the plugin's own folder, which Claude Code keeps | the same skills as a copy, not run by the author yet |
 | Codex | `$100x` | `~/.codex/skills` or `~/.agents/skills` | folder from its docs, untested here |
 | opencode | name it in words | `~/.config/opencode/skills` | folder from its docs, untested here |
 
