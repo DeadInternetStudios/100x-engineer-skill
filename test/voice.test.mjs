@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
+import { pathToFileURL } from 'node:url';
 import { chatSummary } from '../lib/report.mjs';
 import { LEDGERLINE, SAMPLE } from '../scripts/readme-sample.mjs';
 import { cli, ROOT } from './helpers.mjs';
@@ -75,7 +76,7 @@ test('the property checker for the final message holds in every mix of optional 
 });
 
 test('the final message reads the same in another language and another time zone', () => {
-  const program = `import { chatSummary } from ${JSON.stringify(path.join(ROOT, 'lib', 'report.mjs'))}; import { SAMPLE } from ${JSON.stringify(path.join(ROOT, 'scripts', 'readme-sample.mjs'))}; process.stdout.write(chatSummary(SAMPLE));`;
+  const program = `import { chatSummary } from ${JSON.stringify(pathToFileURL(path.join(ROOT, 'lib', 'report.mjs')).href)}; import { SAMPLE } from ${JSON.stringify(pathToFileURL(path.join(ROOT, 'scripts', 'readme-sample.mjs')).href)}; process.stdout.write(chatSummary(SAMPLE));`;
   const built = (extra) => {
     const run = spawnSync(process.execPath, ['--input-type=module', '-e', program], { encoding: 'utf8', env: { ...process.env, ...extra } });
     assert.equal(run.status, 0, run.stderr);
