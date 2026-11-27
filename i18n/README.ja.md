@@ -143,7 +143,8 @@ Compare with the S&P 500: ready to ship.
 The split math matches a hand count and both lines start on the same day. Dividends are not counted yet.
 
 The moment: Type a ticker and both lines start at 0% on the same day, so the gap is the whole story
-Run: npm run dev, then open http://localhost:5173/compare
+Run: npm run dev
+Open: http://localhost:5173/compare
 Try first:
 1) Type a ticker you hold and read the gap to the index
 2) Pick a stock that split two for one and check the split day shows no drop

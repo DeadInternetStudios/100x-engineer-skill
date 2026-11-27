@@ -11,7 +11,8 @@ Ledgerline: ready to ship.
 The numbers add up to the cent and the first screen answers the question the owner came with. The second day is thin.
 
 The moment: Move a late invoice and the whole forecast redraws, with the low point marked
-Run: npm run dev, then open http://localhost:5173
+Run: npm run dev
+Open: http://localhost:5173
 Try first:
 1) Open the sample business and read the months of runway
 2) Move a late invoice back two weeks and watch the low point

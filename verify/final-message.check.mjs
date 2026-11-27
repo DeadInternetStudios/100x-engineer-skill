@@ -99,7 +99,7 @@ function parse(text) {
     if (index === 0) label = 'headline';
     else if (index === 1) label = 'why';
     else if (/^\d+\) /.test(line) || /^and \d+ more in the report$/.test(line)) { /* stays with the label above */ } else {
-      const found = line.match(/^(Look first|Why not ready to ship|The moment|Run|Try first|Must not break|Review|Judged by|Judge rounds|Looked at|Screen sizes|Asks|Work|Report|Next likely asks)\b/);
+      const found = line.match(/^(Look first|Why not ready to ship|The moment|Run|Open|Try first|Must not break|Review|Judged by|Judge rounds|Looked at|Screen sizes|Asks|Work|Report|Next likely asks)\b/);
       label = found ? found[1] : `unknown:${line}`;
     }
     owner.push(label);
@@ -108,7 +108,7 @@ function parse(text) {
 }
 const linesOf = (text, wanted) => { const { lines, owner } = parse(text); return lines.filter((_, i) => owner[i] === wanted); };
 const countOf = (text, wanted) => { const { lines, owner } = parse(text); return lines.filter((line, i) => owner[i] === wanted && !/^\d+\) /.test(line) && !/^and \d+ more/.test(line) && line !== '').length; };
-const ORDER = ['headline', 'why', 'Look first', 'Why not ready to ship', 'The moment', 'Run', 'Try first', 'Must not break', 'Review', 'Judged by', 'Judge rounds', 'Looked at', 'Screen sizes', 'Asks', 'Work', 'Report', 'Next likely asks'];
+const ORDER = ['headline', 'why', 'Look first', 'Why not ready to ship', 'The moment', 'Run', 'Open', 'Try first', 'Must not break', 'Review', 'Judged by', 'Judge rounds', 'Looked at', 'Screen sizes', 'Asks', 'Work', 'Report', 'Next likely asks'];
 
 // What the data says should be there, written from the data and not from the code.
 const wanted = (s) => {
@@ -120,6 +120,7 @@ const wanted = (s) => {
     'Why not ready to ship': reviewed && s.rounds === 'notready' ? 1 : 0,
     'The moment': 1,
     Run: 1,
+    Open: s.url ? 1 : 0,
     'Try first': 1,
     'Must not break': s.checks,
     Review: 1,
@@ -179,7 +180,7 @@ const FAMILY = {
   work: ['Work'],
   nextAsks: ['Next likely asks'],
   steps: ['Try first'],
-  url: ['Run'],
+  url: ['Open'],
 };
 
 const model = {
@@ -284,7 +285,7 @@ const model = {
       name: 'every-fact-is-kept',
       holds: (s) => {
         const text = summaryOf(s);
-        const must = [`Run: npm start${s.url ? ', then open http://localhost:5173' : ''}`, `The moment: ${MOMENT.replace(/\.$/, '')}`, 'Report: file:///tmp/glow-verify/.100x/REPORT.html', 'Review'];
+        const must = ['Run: npm start', ...(s.url ? ['Open: http://localhost:5173'] : []), `The moment: ${MOMENT.replace(/\.$/, '')}`, 'Report: file:///tmp/glow-verify/.100x/REPORT.html', 'Review'];
         for (const check of CHECKS.slice(0, s.checks)) must.push(check.summary);
         if (s.review === 'reviewed' && s.rounds !== 'none') {
           must.push('Judge rounds: 2 of 3 done', 'Looked at: the code and how it behaves');
