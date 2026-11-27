@@ -24,7 +24,7 @@ test('a failing check is the first thing after the verdict in the message, the r
   makeProject(box, { run: runJson(FAILING), checkFiles: FAILING_OUTPUT });
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Verdict: fine\. [^\n]*\nLook first: Numbers check FAILED\nThe moment:/);
+  assert.match(done.out, /^Glow: fine\.\n[^\n]+\nLook first: Numbers check FAILED\n\nThe moment:/);
   assert.match(read(box, 'REPORT.md'), /Verdict: fine\. [^\n]*\n\nLook first: Numbers check FAILED\n\nThe moment:/);
   const page = read(box, 'REPORT.html');
   assert.match(page, /<section class="alert" id="look-first" role="note" aria-label="Look first"><ul><li>Numbers check FAILED<\/li><\/ul><\/section>/, 'the red block starts with its first line, and its name is for a screen reader, because the pill above already says it');
@@ -52,7 +52,7 @@ test('a judge that said not ready to ship is the first thing the report says, ev
   makeProject(box, { findings: FINDINGS.replace('Ready to ship: yes', 'Ready to ship: no') });
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Verdict: ready to ship\. [^\n]*\nLook first: The judge said NOT ready to ship\nWhy not ready to ship: 1\) Upgrade button clipped at 320px \(fixed, not checked again\)\nThe moment:/);
+  assert.match(done.out, /^Glow: ready to ship\.\n[^\n]+\nLook first: The judge said NOT ready to ship\nWhy not ready to ship:\n1\) Upgrade button clipped at 320px \(fixed, not checked again\)\n\nThe moment:/);
   assert.match(read(box, 'REPORT.md'), /Verdict: ready to ship\. [^\n]*\n\nLook first: The judge said NOT ready to ship\n\nWhy not ready to ship:\n\n- Upgrade button clipped at 320px \(fixed, not checked again\)\n\nThe moment:/);
   const page = read(box, 'REPORT.html');
   assert.match(page, /<span class="chip dud">Not ready to ship<\/span>1 of 1 done/);
@@ -70,7 +70,7 @@ test('a judge that refused for many reasons gets three in the message and the re
   makeProject(box, { findings, triage });
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /\nWhy not ready to ship: 1\) Reason number 2 \(left for later\); 2\) Reason number 3 \(left for later\); 3\) Reason number 4 \(left for later\); and 2 more in the report\n/, 'what still stands comes first, and the fixed one is among the rest');
+  assert.match(done.out, /\nWhy not ready to ship:\n1\) Reason number 2 \(left for later\)\n2\) Reason number 3 \(left for later\)\n3\) Reason number 4 \(left for later\)\nand 2 more in the report\n/, 'what still stands comes first, and the fixed one is among the rest');
   assert.equal([...read(box, 'REPORT.md').matchAll(/^- Reason number \d/gm)].length, 5, 'the markdown report lists all five');
   const page = read(box, 'REPORT.html');
   assert.equal([...page.slice(page.indexOf('class="reasons"'), page.indexOf('<h2>The moment</h2>')).matchAll(/<li>Reason number \d/g)].length, 5, 'and so does the page');
@@ -85,7 +85,7 @@ test('a report whose reasons all ended the same way says it once under them', ()
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
   assert.match(read(box, 'REPORT.html'), /<li>The judge said NOT ready to ship<ul class="reasons" aria-label="Why not ready to ship"><li>Reason number 1<\/li><li>Reason number 2<\/li><li>Reason number 3<\/li><\/ul><p class="state left">All 3 reasons were left for later\.<\/p><\/li>/);
-  assert.match(done.out, /\nWhy not ready to ship: 1\) Reason number 1 \(left for later\); 2\) Reason number 2 \(left for later\); 3\) Reason number 3 \(left for later\)\n/, 'the message is plain text and keeps its own words on each reason');
+  assert.match(done.out, /\nWhy not ready to ship:\n1\) Reason number 1 \(left for later\)\n2\) Reason number 2 \(left for later\)\n3\) Reason number 3 \(left for later\)\n/, 'the message is plain text and keeps its own words on each reason');
   box.cleanup();
 });
 

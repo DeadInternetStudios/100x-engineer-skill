@@ -12,7 +12,8 @@ test('finish closes a valid run, writes the report and registers it once', () =>
   makeProject(box);
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Glow: A thing that glows\. Verdict: ready to ship\./);
+  assert.match(done.out, /^Glow: ready to ship\.\n[^\n]+\n/, 'the verdict is alone on line 1, and the reason follows on line 2');
+  assert.doesNotMatch(done.out, /A thing that glows/, 'the pitch is on the report page, and the chat message leaves it there');
   assert.match(done.out, /\nIt is on the report page with every finished run\. Call `100x-report` to open that page\.\n?$/);
   assert.doesNotMatch(done.out, /100x morning/, 'the owner does not say morning, so the message never tells them to');
   assert.match(done.out, /Asks: 2 of 2 closed\n/);
@@ -36,7 +37,7 @@ test('a run.json from before the verdict and moment words changed still finishes
   makeProject(box, { run: legacy });
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Glow: A thing that glows\. Verdict: ready to ship\./);
+  assert.match(done.out, /^Glow: ready to ship\.\n/);
   assert.match(done.out, /\nThe moment: The first tap lights the whole screen\n/);
   const run = JSON.parse(fs.readFileSync(path.join(box.project, '.100x', 'run.json'), 'utf8'));
   assert.equal(run.verdict, 'ship');
@@ -118,7 +119,7 @@ test('a judge that is the model that built the run is named in the warning, the 
   const done = finish(box);
   assert.equal(done.code, 0, done.err + done.out);
   assert.match(done.out, /warn\s+the judge \(muse-wonder-1\.0\) is the same model as the builder in your settings/);
-  assert.match(done.out, /Review \(muse-wonder-1\.0, the same model that built it\):/);
+  assert.match(done.out, /Review \(muse-wonder-1\.0\): [^\n]*\nJudged by: the same model that built it\n/);
   assert.match(fs.readFileSync(path.join(box.project, '.100x', 'REPORT.md'), 'utf8'), /Review \(muse-wonder-1\.0, the same model that built it\)/);
   const page = cli(['morning', '--all'], { env: box.env });
   assert.equal(page.code, 0, page.err + page.out);
@@ -131,6 +132,7 @@ const BLOCKERS = [
   ['a verdict outside the three words', { run: runJson({ verdict: 'great' }) }, /verdict must be one of/],
   ['a missing hero file', { run: runJson({ hero: '.100x/nope.png' }) }, /hero .* does not exist/],
   ['too few try-first steps', { run: runJson({ tryFirst: ['Tap once'] }) }, /tryFirst needs at least 2/],
+  ['too many try-first steps', { run: runJson({ tryFirst: ['Tap once', 'Tap twice', 'Tap three times', 'Tap four times', 'Tap five times'] }) }, /tryFirst has 5 steps, 4 at most/],
   ['an unreviewed run with no reason', { run: runJson({ review: { status: 'unreviewed' } }) }, /needs review\.note/],
   ['a must-not-break check without a status', { run: runJson({ mustNotBreak: { kind: 'numbers', summary: 'x' } }) }, /the must-not-break check "numbers"\. The status must be one of pass, fail, skipped/],
   ['a verdict text the owner could not read in ten seconds', { run: runJson({ verdictWhy: 'Scored 5 of 6 (first minute 2, screenshot 2, second day 1): a frame 216 ms after tapping 25% shows the button squashed, the friends mid-hop, a ring crossing the screen and the number rolling to its answer, and 0 broken of 2149 elements over 14 states, which is why it stays a ship even though the second day only scored 1 of 2 and the audio was never heard.' }) }, /verdictWhy is 3\d\d characters, 320 at most\. The owner reads it first.*100x run set verdictWhy "<shorter>"/],

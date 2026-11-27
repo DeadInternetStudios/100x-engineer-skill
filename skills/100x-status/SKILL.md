@@ -13,6 +13,8 @@ metadata:
 
 The owner asks where we are at with this project. Answer short, always in this shape. Nothing builds, nothing is asked back unless one line at the end names the one decision waiting on the owner.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Run `100x status`. Read `.100x/STATE.md` and the last five lines of `.100x/decisions.tsv`. `git log --oneline -5`. Its Stage, Next and Risks lines are cut short, and a State line means STATE.md is behind the log, so trust the log and the commits over the file.

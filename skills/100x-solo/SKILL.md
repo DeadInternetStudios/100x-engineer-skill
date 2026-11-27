@@ -17,6 +17,8 @@ This is weaker than a second model, and the run says so. A builder cannot see al
 
 Done when `100x finish` has accepted the run, every challenge file passes `100x solo check`, every round and loop file holds its suspicions, and the final message says that no other model looked.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## What changes from `100x`
 
 - **No one else starts.** No subagent, helper, child or judge, for any reason. Where any guide says to start a judge, a backup judge, a fallback or a child, a challenge takes that step instead. Not the Task tool, `100x helper`, `100x review-run`, `100x night`, `claude -p`, `codex exec`, `cursor-agent` or a browser subagent. Tools are fine. Handing work to another model is not. The first three refuse in a solo run, `100x run unset mode` refuses too (the flag is one way), and `100x finish` refuses a run that started one.

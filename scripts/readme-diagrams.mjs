@@ -319,14 +319,21 @@ function finalMessage() {
   const FW = 560;
   b += `<path d="M${PAD} 66H${FW - PAD}" stroke="${C.edge}" stroke-width="1.5"/>`;
   let y = 104;
-  for (const line of text.split('\n')) {
-    const cut = line.indexOf(': ');
-    const label = line.slice(0, cut), rest = line.slice(cut + 2);
-    const review = label.startsWith('Review') || label.startsWith('Judge rounds');
-    b += mono(PAD, y, label, 22, review ? C.amber : C.muted, bold);
-    y += 32;
-    for (const part of wrap(rest, 36)) { b += mono(PAD, y, part, 22, C.text); y += 31; }
-    y += 14;
+  for (const [index, line] of text.split('\n').entries()) {
+    // A blank line is the gap between two blocks. A numbered line and the reason on line 2 have no label, and a label with nothing after it heads the lines below.
+    if (line === '') { y += 20; continue; }
+    const item = /^\d+\) /.test(line) || index === 1 ? null : line.match(/^([^:]+):(?: (.*))?$/);
+    if (item) {
+      const [, label, rest = ''] = item;
+      const review = label.startsWith('Review') || label.startsWith('Judge rounds');
+      b += mono(PAD, y, label, 22, review ? C.amber : C.muted, bold);
+      y += 32;
+      for (const part of rest ? wrap(rest, 36) : []) { b += mono(PAD, y, part, 22, C.text); y += 31; }
+      if (rest) y += 14;
+    } else {
+      for (const part of wrap(line, 36)) { b += mono(PAD, y, part, 22, C.text); y += 31; }
+      y += 10;
+    }
   }
   return frame(y + 4, 'The final message of an illustrated run', text, b, FW);
 }

@@ -17,6 +17,8 @@ The green light is a ship test (the last lens, over everything) where the judge 
 
 Done when `100x triage` said Green light and `100x finish` accepted the run. Or the grind stopped on a stall, the round limit or the clock, the final message says which in plain words, and the run is finished that way.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Read the message and `100x status`. A solo run (`run.json` says mode solo) cannot grind, because the green light has to come from a fresh judge and this model cannot be one. Say so in one line and stop.

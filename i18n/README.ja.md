@@ -18,8 +18,6 @@
 
 *100x は Cursor の元エンジニアが作ったスキルで、プロンプトを形式検証済みの本番投入できるコードに変えます。<br>私はこれで毎月 1,000 件を超える PR を本番に出荷しており、ロールバック率は 2% 未満です。*
 
-Terminal Bench 4.1 のスコアは近日公開 😎
-
 <sub><a href="../README.md">English</a> · <a href="README.es.md">Español</a> · <a href="README.zh.md">中文</a> · <a href="README.pt.md">Português</a> · <a href="README.ru.md">Русский</a> · <b>日本語</b> · <a href="README.fr.md">Français</a> · <a href="README.de.md">Deutsch</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.ko.md">한국어</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.bn.md">বাংলা</a> · <a href="README.it.md">Italiano</a> · <a href="README.pl.md">Polski</a> · <a href="README.th.md">ไทย</a> · <a href="README.uk.md">Українська</a> · <a href="README.nl.md">Nederlands</a></sub>
 
 </div>
@@ -139,15 +137,24 @@ FAIL  inv:shares-keep-every-cent. a cent was lost or made. Steps: set-bill(1), s
 <summary>同じメッセージのプレーンテキスト</summary>
 
 ```text
-Compare with the S&P 500: A chart in a research app that shows how any stock has moved against the S&P 500 since the first day both have prices. Verdict: ready to ship. The split math matches a hand count and both lines start on the same day. Dividends are not counted yet.
+Compare with the S&P 500: ready to ship.
+The split math matches a hand count and both lines start on the same day. Dividends are not counted yet.
+
 The moment: Type a ticker and both lines start at 0% on the same day, so the gap is the whole story
-Run: npm run dev, then open http://localhost:5173/compare
-Try first: 1) Type a ticker you hold and read the gap to the index 2) Pick a stock that split two for one and check the split day shows no drop 3) Pick a stock listed this year and see where both lines start
+Run: npm run dev
+Open: http://localhost:5173/compare
+Try first:
+1) Type a ticker you hold and read the gap to the index
+2) Pick a stock that split two for one and check the split day shows no drop
+3) Pick a stock listed this year and see where both lines start
+
 Must not break: numbers passed (Percent change across a two-for-one split matches a hand count on 40 split cases, 0 failing)
 Review (claude-opus-5-5): 9 flagged, 7 fixed, 1 rejected, 1 deferred
-Judge rounds: 5 of 5 done, on the code and how it behaves, the UI and UX and whether it is ready to ship, and the last word was ready to ship
+Judge rounds: 5 of 5 done, and the last word was ready to ship
+Looked at: the code and how it behaves, the UI and UX and whether it is ready to ship
 Screen sizes: 0 broken, 2 weak, 15 sizes and 148 elements checked
 Asks: 9 of 9 closed
+
 Report: file:///Users/you/projects/research-app/.100x/REPORT.html
 Next likely asks: Count dividends in the comparison; Show the gap for several stocks in one table
 ```

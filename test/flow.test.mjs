@@ -86,7 +86,7 @@ test('the whole agent sequence works on a fixture project, from init to the morn
   const finish = run('finish');
   ok(finish, 'finish');
   assert.match(finish.out, /Glow/);
-  assert.match(finish.out, /Judge rounds: 2 of 2 done, on the code and how it behaves and whether it is ready to ship, and the last word was ready to ship\n/);
+  assert.match(finish.out, /Judge rounds: 2 of 2 done, and the last word was ready to ship\nLooked at: the code and how it behaves and whether it is ready to ship\n/);
   assert.ok(fs.existsSync(dot('REPORT.md')));
   assert.ok(fs.existsSync(dot('REPORT.html')));
   assert.match(finish.out, /Report: file:\/\/.*\/\.100x\/REPORT\.html/);

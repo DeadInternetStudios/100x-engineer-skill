@@ -19,6 +19,8 @@ In a solo run (`run.json` says mode solo) no second model starts, so skip steps 
 
 Done when `100x triage` says all rounds are done, every accepted finding is fixed and re-checked, and the run is marked reviewed, or it is UNREVIEWED with the reason.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 The same judge also sits in every loop, not only here. Each polish pass and each fill round asks a fresh judge the brutal question through `100x review-call --loop <name>`, with the ask at `.100x/loops/<name>/ask.md` and the answers at `answers.md`. The polish and fill references say when. Start and wait for a loop judge exactly as in steps 5 and 6 below, with the loop's 20 minute deadline. A loop judge adapts to its loop: it judges what a user sees with its eyes on the single screenshots and never from code, runs flows end to end, and tests numbers with its own inputs. Its first line says how it judged.
 
 ## Steps, once per round

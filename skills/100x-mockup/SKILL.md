@@ -17,6 +17,8 @@ Only one thing has to really work: the moment. Everything else can be fake, stat
 
 Done when it runs from one command, you have looked at its screenshots, `MOCKUP.md` says whether the idea holds, it is committed, and `100x finish` has accepted the run, so it shows on the report page. Aim for 15 minutes, never past 30.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Model. `100x config target quick`. When it prints a model and your app shows this thread on another model or a lower effort, say so in one plain line and carry on. Never switch or wait.

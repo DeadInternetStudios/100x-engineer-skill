@@ -17,6 +17,8 @@ Two arms, `skill-off` and `skill-on`, make the same briefs under the same model 
 
 Done when `100x eval bakeoff score` has written `report.md`, the report sits in `docs/evals/` with a picture of each pair, and the reply carries the counts and the verdict line of `score` word for word, and every caution under it. A report that says "not shown" is a finished bake-off.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. The helper. `100x helper models` is the check: it lists the model ids, or says why it cannot. `The Cursor SDK is not installed. Run `100x helper setup` once.` means run `100x helper setup`. `The Cursor SDK has no valid login.` means run `100x helper login` once, which opens a browser to approve this machine, or set `CURSOR_API_KEY`. Run the one it names and `100x helper models` again, and do not go on until it lists models. When it still cannot, stop with the line it printed and the one step that is the owner's, which is the login. The pairs step photographs every page, so `100x eval bakeoff init` prints a Browsers line when no Chromium is installed. Run `100x browsers` before any arm starts, not after.

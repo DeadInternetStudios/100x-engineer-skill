@@ -15,6 +15,8 @@ Nobody answers until morning, so every run has to finish or end in a stated bloc
 
 Done when every brief has a finished run or a stated block, the watchdog is deleted, and the final message is the ranking from the `100x-report` skill. With fill, no run finishes before the work time is over.
 
+Messages to the owner follow `100x ref voice`: the answer first, one idea per line, one question last, every fact kept.
+
 ## Steps
 
 1. Briefs. Split what the owner wrote into separate ideas. Wake time from the owner's words. With none, use 07:00 and log it. Never ask what a brief means: take the most reasonable reading and log it. With no brief at all there is nothing to read, so ask for one and start nothing until it comes. A length of work ("work for 10 hours", "use all night") means use all of it, called fill. The wake time is then that length from now.

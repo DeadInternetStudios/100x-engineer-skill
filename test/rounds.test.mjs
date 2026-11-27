@@ -119,7 +119,7 @@ test('finish waits for the planned rounds, and a clock with no room for another 
   const warned = run(box, 'finish');
   assert.equal(warned.code, 0, warned.err + warned.out);
   assert.match(warned.out, /warn\s+the judge held 1 of 3 rounds\. The clock had no room for round 2/);
-  assert.match(warned.out, /Judge rounds: 1 of 3 done, on the code and how it behaves,/);
+  assert.match(warned.out, /Judge rounds: 1 of 3 done, .*\nLooked at: the code and how it behaves\n/);
   box.cleanup();
 });
 
@@ -131,7 +131,7 @@ test('a run under lite says it took fewer passes and rounds than the usual, even
   run(box, 'clock', 'set', '+12m');
   const done = run(box, 'finish');
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Judge rounds: 1 of 2 done, .* \(this project's setting is lower than the usual 5\)/);
+  assert.match(done.out, /Judge rounds: 1 of 2 done \(this project's setting is lower than the usual 5\), .*\nLooked at: /);
   assert.match(fs.readFileSync(dot(box, 'REPORT.md'), 'utf8'), /1 of 3/, 'the report says one polish pass of the usual three');
   box.cleanup();
 });
@@ -142,7 +142,7 @@ test('a project setting that asks for fewer judge rounds than the owner usually 
   assert.equal(run(box, 'config', 'set', 'review.rounds', '1', '--local').code, 0);
   const done = run(box, 'finish');
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Judge rounds: 1 of 1 done, on whether it is ready to ship \(this project's setting is lower than the usual 3\)/);
+  assert.match(done.out, /Judge rounds: 1 of 1 done \(this project's setting is lower than the usual 3\), .*\nLooked at: whether it is ready to ship\n/);
   assert.match(fs.readFileSync(dot(box, 'REPORT.md'), 'utf8'), /this project's setting is lower than the usual 3\)/);
   assert.match(fs.readFileSync(dot(box, 'REPORT.html'), 'utf8'), /this project&#39;s setting is lower than the usual 3\)|this project's setting is lower than the usual 3\)/);
   box.cleanup();
@@ -159,7 +159,7 @@ test('a judge that says not ready is shown in the warning, the report and the fi
   assert.equal(done.code, 0, done.err + done.out);
   assert.match(done.out, /\nLook first: The judge said NOT ready to ship\n/);
   assert.doesNotMatch(done.out, /warn\s+the judge's last word/, 'the Look first line already says it');
-  assert.match(done.out, /Judge rounds: 1 of 1 done, on whether it is ready to ship, and the last word was NOT ready to ship\n/);
+  assert.match(done.out, /Judge rounds: 1 of 1 done, and the last word was NOT ready to ship\nLooked at: whether it is ready to ship\n/);
   assert.match(fs.readFileSync(dot(box, 'REPORT.md'), 'utf8'), /the last word was NOT ready to ship/);
   box.cleanup();
 });
@@ -399,7 +399,7 @@ test('finish waits while the grind has another round planned, and takes a green 
   fs.writeFileSync(dot(box, 'review', 'triage.md'), 'F1 accept. fixed in a1b2c3d, the hint is darker\n');
   const done = run(box, 'finish');
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Judge rounds: 1 of 1 done, on whether it is ready to ship,/);
+  assert.match(done.out, /Judge rounds: 1 of 1 done, .*\nLooked at: whether it is ready to ship\n/);
   box.cleanup();
 });
 
@@ -413,7 +413,7 @@ test('the report counts the grind rounds against what was held, not against the 
   writeRound(box, { minors: 1, ready: true });
   const done = run(box, 'finish');
   assert.equal(done.code, 0, done.err + done.out);
-  assert.match(done.out, /Judge rounds: 2 of 2 done, on whether it is ready to ship,/);
+  assert.match(done.out, /Judge rounds: 2 of 2 done, .*\nLooked at: whether it is ready to ship\n/);
   assert.doesNotMatch(done.out, /2 of 1 done/);
   assert.match(fs.readFileSync(dot(box, 'REPORT.md'), 'utf8'), /2 of 2 done/);
   box.cleanup();
@@ -431,7 +431,7 @@ test('a run that finished with a judge saying no can be ground afterwards, and f
   assert.match(writeRound(box, { minors: 1, ready: true }).out, /\nGreen light\. The judge of round 2 said ready to ship/);
   const again = run(box, 'finish');
   assert.equal(again.code, 0, again.err + again.out);
-  assert.match(again.out, /Judge rounds: 2 of 2 done, on whether it is ready to ship, and the last word was ready to ship\n/);
+  assert.match(again.out, /Judge rounds: 2 of 2 done, and the last word was ready to ship\nLooked at: whether it is ready to ship\n/);
   assert.doesNotMatch(again.out, /Look first: The judge said NOT ready/);
   assert.equal(JSON.parse(cli(['registry', 'list', '--json'], { env: box.env }).out).length, 1, 'the second finish replaced the row');
   box.cleanup();
