@@ -94,7 +94,7 @@ Say "max effort" or "high effort". Never say `reasoning_effort` or `effort=max`.
 
 ## What the owner says
 
-The owner calls skills and runs no commands. Never tell them to run `100x <command>`: those are yours. Tell them the skill to call, the way their app calls it (`/100x-report` in Claude Code and Cursor, `$100x-report` in Codex).
+The owner calls skills and runs no commands. Never tell them to run `100x <command>`: those are yours. Tell them the skill to call, the way their app calls it (`/100x-report` in Claude Code and Cursor, `$100x-report` in Codex, `/100x:100x-report` when Claude Code has it from the plugin).
 
 | To | Tell them to call |
 |---|---|

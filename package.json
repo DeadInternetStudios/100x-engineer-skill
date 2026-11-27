@@ -16,7 +16,8 @@
     "test:fast": "node scripts/test-fast.mjs",
     "validate": "node bin/100x.mjs validate",
     "validate:spec": "node scripts/validate-spec.mjs",
-    "stamp": "node scripts/stamp-skills.mjs"
+    "stamp": "node scripts/stamp-skills.mjs",
+    "plugin": "node scripts/build-claude-plugin.mjs"
   },
   "repository": {
     "type": "git",

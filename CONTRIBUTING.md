@@ -50,6 +50,7 @@ Then open a pull request. Keep it to one change and say how you checked it. CI r
 | `lib/`, `bin/100x.mjs` | The `100x` command line tool: clock, screenshots, judge, proof checks, report. |
 | `test/` | Tests, run with `node --test`. New behaviour needs a test. |
 | `docs/` | The longer docs the README links to. |
+| `plugins/100x/` | The Claude plugin, as listed in Anthropic's plugin directory. A copy of `skills/` with a manifest, written by `npm run plugin`. Only its `README.md` and icon are edited by hand. |
 | `vendor/` | A pinned copy of `unslop-text`. Don't edit it here. |
 
 More detail: [inside the skills, and verifying the repo](docs/contributing.md), [CLI and file layout](docs/cli.md), [design notes](docs/design.md).
@@ -59,6 +60,7 @@ More detail: [inside the skills, and verifying the repo](docs/contributing.md), 
 - The README's mode table and number phrases match the skills. Add or rename a mode and the tests tell you what else to update.
 - The final message shown in the README is the one the code prints.
 - Each skill's license and metadata come from `package.json`. After you change them, run `npm run stamp`.
+- `plugins/100x/` matches `skills/`, `package.json`, `LICENSE` and `NOTICE.md`, and keeps to the plugin directory's limits. After you change any of them, run `npm run plugin`.
 - The report picture in the README is drawn from the current report page. If you change the report, the test failure tells you how to redraw it.
 
 Two rules no test checks:
