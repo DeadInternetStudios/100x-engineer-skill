@@ -10,7 +10,7 @@
 ### No more "almost works" agentic coding
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
-[![release: 0.1.0](docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
+[![release: 0.1.1](docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
 [![node: ≥ 22](docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](docs/img/badges/license.svg)](LICENSE)
 ![status: beta](docs/img/badges/status.svg)
@@ -313,24 +313,31 @@ You need Claude Code, Cursor or Codex, and Node.js 22 or newer.
 
 **1. Install the tool and the skills**
 
+The tool comes from a release pinned to one version, and you check its checksum before anything runs. The checksum, and the commands for Windows, are in [docs/install.md](docs/install.md#install-a-pinned-release).
+
 Choose one:
 
 **npm**
 
 ```bash
-npm install -g github:DeadInternetStudios/100x-engineer-skill
+curl -fsSLO https://github.com/DeadInternetStudios/100x-engineer-skill/releases/download/v0.1.1/100x-engineer-skill-0.1.1.tgz
+shasum -a 256 100x-engineer-skill-0.1.1.tgz
+npm install -g ./100x-engineer-skill-0.1.1.tgz
 100x install
 ```
 
+The `shasum` line must print the checksum in [docs/install.md](docs/install.md#install-a-pinned-release). If it prints another, stop.
+
 **skills.sh**
 
+Run the first three lines above, check the checksum the same way, then:
+
 ```bash
-npm install -g github:DeadInternetStudios/100x-engineer-skill
 npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
 100x install
 ```
 
-The `skills` tool copies the skills only, so the `100x` tool still comes from npm. `100x install` then sees the copies and leaves them alone. Update them with `npx skills update -g`.
+The `skills` tool copies the skills only, so the `100x` tool still comes from the release. `100x install` then sees the copies and leaves them alone. Update them with `npx skills update -g`.
 
 **2. Set up, in your agent**
 

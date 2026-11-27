@@ -2,7 +2,7 @@
   "name": "100x-engineer",
   "displayName": "100x Engineer",
   "icon": "./assets/icon.png",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Runs one brief from plan to a reviewed, screenshot-proven prototype with a report: build, polish, a check on the one thing that must not break, and rounds of review by a second model. Needs the separate 100x command line tool.",
   "author": {
     "name": "Dead Internet Studios",

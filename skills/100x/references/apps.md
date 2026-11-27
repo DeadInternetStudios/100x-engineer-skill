@@ -42,16 +42,16 @@ Either way the log holds the start and the task id, so a resumed thread knows on
 
 ## The judge as a command
 
-When `review.command` is set, `100x review-run` starts it in the background. It is set only in the global config, because a shell command in a project file would run for anyone who opens that project. The command reads its settings from environment variables. `X100_MODEL`, `X100_EFFORT`, `X100_TASK`, plus `X100_OPT_<ID>` for every other option. Empty ones are left out by the `${VAR:+...}` form below. The judge runs unattended and must write files and run the project, so every template turns the approval prompts off. That is the same trust as a subagent with full access, and it runs with the owner's permissions on the owner's machine. Use it on projects the owner wrote. For a project the owner cloned or was sent, judge through the app's own subagent tool instead, because that project's files are part of what the judge reads.
+When `review.command` is set, `100x review-run` starts it in the background. It is set only in the global config, because a shell command in a project file would run for anyone who opens that project. The command reads its settings from environment variables. `X100_MODEL`, `X100_EFFORT`, `X100_TASK`, plus `X100_OPT_<ID>` for every other option. Empty ones are left out by the `${VAR:+...}` form below. The judge runs unattended, so nothing can answer an approval prompt. No template starts an app with its approvals off. Each one names the commands the judge may run in an allow rule, and the app refuses everything else. The judge reads the project, writes its findings and screenshots under `.100x/`, runs `100x`, and starts the project with its own run command. Add that run command to the allow rule when it is not `npm run` or `npm test`. The judge still runs the owner's project code with the owner's permissions on the owner's machine. Use it on projects the owner wrote. For a project the owner cloned or was sent, judge through the app's own subagent tool instead, because that project's files are part of what the judge reads.
 
 Write the command and the model together. `100x config set review.command '<command>' --global` and `100x config role review --model <id> [--option effort=<level>] --global`. A command wins over the app's own subagent tool, so a person who uses two apps clears it in one of them with `100x config unset review.command --global`.
 
 ### claude
 
-Flags read from `claude --help`. Run once against `claude` 2.1.319, which accepted them and stopped at sign in because the login had expired. No review has come back yet.
+Flags read from `claude --help`, and run against `claude` 2.1.332. It answered a one-word task, wrote a file under `.100x/` and refused one outside it. No review has come back yet. The task goes before `--allowedTools`, which takes every word after it as a tool. Only `Edit(path)` rules limit where it writes, and they cover every tool that writes a file.
 
 ```sh
-claude -p ${X100_MODEL:+--model "$X100_MODEL"} ${X100_EFFORT:+--effort "$X100_EFFORT"} --permission-mode bypassPermissions "$X100_TASK"
+claude -p "$X100_TASK" ${X100_MODEL:+--model "$X100_MODEL"} ${X100_EFFORT:+--effort "$X100_EFFORT"} --allowedTools "Read,Glob,Grep,Edit(.100x/**),Bash(100x *),Bash(git status *),Bash(git diff *),Bash(git log *),Bash(npm run *),Bash(npm test *)"
 ```
 
 ### cursor
@@ -71,16 +71,20 @@ The Task tool is not a way to start a helper in Cursor, and neither is `cursor-a
 From memory of its docs. Check `codex exec --help` first.
 
 ```sh
-codex exec ${X100_MODEL:+-m "$X100_MODEL"} ${X100_EFFORT:+-c model_reasoning_effort="$X100_EFFORT"} --dangerously-bypass-approvals-and-sandbox "$X100_TASK"
+codex exec ${X100_MODEL:+-m "$X100_MODEL"} ${X100_EFFORT:+-c model_reasoning_effort="$X100_EFFORT"} --sandbox workspace-write "$X100_TASK"
 ```
+
+The sandbox lets it write in the project and keeps it out of the rest of the machine. If the project's run command needs more, widen it from the app's own docs, one rule at a time, and never to full access.
 
 ### gemini
 
 From memory of its docs. Check `gemini --help` first.
 
 ```sh
-gemini ${X100_MODEL:+-m "$X100_MODEL"} --yolo -p "$X100_TASK"
+gemini ${X100_MODEL:+-m "$X100_MODEL"} -p "$X100_TASK"
 ```
+
+Run this way it reads and answers, and stops at any tool that needs approval. Add the commands the judge needs to the app's own allow list, which `gemini --help` names, and never a mode that turns approvals off.
 
 ### opencode
 

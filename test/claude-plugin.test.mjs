@@ -100,7 +100,7 @@ test('the README has at least 40 words outside code blocks, and the license is t
 test('the README names every way the skills leave the machine or change a permission', () => {
   const skills = files.filter((rel) => rel.startsWith('skills/') && rel.endsWith('.md')).map((rel) => fs.readFileSync(path.join(dir, rel), 'utf8')).join('\n');
   const mustSay = [
-    [/bypassPermissions/, 'bypassPermissions'],
+    [/--allowedTools/, '--allowedTools'],
     [/@cursor\/sdk/, '@cursor/sdk'],
     [/100x browsers/, '100x browsers'],
     [/deploy\.preview|preview URL/, 'preview'],
@@ -111,6 +111,15 @@ test('the README names every way the skills leave the machine or change a permis
   for (const rel of files.filter((f) => SCRIPT.test(f.replace(/\.md$/, '')) && f.endsWith('.md'))) {
     const script = path.basename(rel, '.md');
     if (/\bfetch\(/.test(scriptCode(fs.readFileSync(path.join(dir, rel), 'utf8')))) assert.ok(readme.includes(script), `${script} makes a request, so the README must name it`);
+  }
+});
+
+// The directory's policy review failed the plugin with DP_TAG_BAN for a documented command that starts an agent with its approvals off.
+test('no file in the plugin starts an agent with a flag that skips permission prompts or turns approvals off', () => {
+  const flags = /bypassPermissions|--dangerously-[a-z-]+|--yolo\b|--full-auto\b|--permission-mode\s+(?:bypass|dontAsk|auto|acceptEdits)|--approval-mode\s+(?:yolo|auto)|--ask-for-approval\s+never|danger-full-access|--no-approvals?\b/i;
+  for (const rel of files.filter((f) => !IMAGES.has(path.extname(f).toLowerCase()))) {
+    const hit = flags.exec(fs.readFileSync(path.join(dir, rel), 'utf8'));
+    assert.equal(hit, null, `${rel} shows ${hit?.[0]}: name the commands the agent may run in an allow rule instead`);
   }
 });
 

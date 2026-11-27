@@ -5,7 +5,7 @@ license: MIT
 compatibility: "Needs the 100x command line tool on PATH (Node 22 or newer, and git) and the other skills of the 100x suite that this one names. Install the tool as the repository README says. Browser checks use Playwright, which `100x browsers` installs."
 metadata:
   author: "DeadInternetStudios"
-  version: "0.1.0"
+  version: "0.1.1"
   repository: "https://github.com/DeadInternetStudios/100x-engineer-skill"
 ---
 
