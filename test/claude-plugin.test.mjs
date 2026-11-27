@@ -15,7 +15,7 @@ const files = listFiles(dir);
 const readme = fs.readFileSync(path.join(dir, 'README.md'), 'utf8');
 
 const IMAGES = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp']);
-const TEXT = new Set(['.md', '.mjs', '.js', '.json', '.txt', '.tsv', '.sh', '.yml', '.yaml', '.html', '.css', '.svg']);
+const TEXT = new Set(['.md', '.mjs', '.js', '.json', '.txt', '.tsv', '.sh', '.yml', '.yaml', '.html', '.css']);
 
 test('plugins/100x is what the build writes from package.json, skills/, LICENSE and NOTICE.md', () => {
   assert.deepEqual(pluginProblems(ROOT), [], 'run `node scripts/build-claude-plugin.mjs` and commit the result');
@@ -57,9 +57,24 @@ test('the plugin folder holds no script, no package-manager file and none of the
     assert.notEqual(bytes.subarray(0, 2).toString('latin1'), '#!', `${rel} starts with #!`);
     assert.ok(!bytes.includes(0), `${rel} holds a NUL byte`);
     assert.doesNotThrow(() => utf8.decode(bytes), `${rel} is not UTF-8`);
+    // The portal blocked asset-check.mjs, the one file that held this literal, and takes an .svg only as the plugin icon. A script that checks SVG files writes the tag as a lookahead, /<(?=svg)/.
+    assert.ok(!/<svg\b/i.test(bytes.toString('utf8')), `${rel} holds an SVG tag, which the portal can take for an SVG file under another name`);
   }
   const inManifestFolder = files.filter((rel) => rel.startsWith('.claude-plugin/'));
   assert.deepEqual(inManifestFolder, ['.claude-plugin/plugin.json'], 'only the manifest goes in .claude-plugin');
+});
+
+test('every call in the plugin form names the plugin by its manifest name', () => {
+  const callForm = /\/([a-z0-9][a-z0-9-]*):100x\b/g;
+  let seen = 0;
+  for (const rel of files.filter((f) => f.endsWith('.md'))) {
+    for (const [, prefix] of fs.readFileSync(path.join(dir, rel), 'utf8').matchAll(callForm)) {
+      seen += 1;
+      assert.equal(prefix, manifest.name, `${rel} calls /${prefix}:100x… but the plugin is ${manifest.name}`);
+    }
+  }
+  assert.ok(seen >= 4, 'the README and the skills show how to call the plugin');
+  assert.notEqual(manifest.name, '100x', 'the directory refuses 100x as a look-alike of loot, Loop and 1dox');
 });
 
 test('the icon is a square PNG of 512 to 2048 pixels under 2 MB, which the directory takes once, at the first submission', () => {
@@ -89,6 +104,10 @@ test('the README names every way the skills leave the machine or change a permis
     [/Never push to a remote/, 'never pushes to a remote'],
   ];
   for (const [inSkills, inReadme] of mustSay) if (inSkills.test(skills)) assert.ok(readme.includes(inReadme), `the skills say ${inSkills}, so the README must say "${inReadme}"`);
+  // A shipped script that opens a connection is named in the README: the portal pairs a script that can send data off the machine with anything that reads a key.
+  for (const rel of files.filter((f) => /\.(mjs|js)$/.test(f))) {
+    if (/\bfetch\(/.test(fs.readFileSync(path.join(dir, rel), 'utf8'))) assert.ok(readme.includes(path.basename(rel)), `${rel} makes a request, so the README must name it`);
+  }
 });
 
 test('a rebuild repairs a plugin folder that holds a stale file, a deleted skill and an empty folder, and keeps the hand-written files', () => {

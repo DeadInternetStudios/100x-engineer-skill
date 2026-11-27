@@ -1,4 +1,4 @@
-# 100x
+# 100x Engineer
 
 Give your coding agent one brief and get back a prototype worth keeping. 100x writes the prompt you would have written with an hour to spare. Then it builds the thing and polishes the look. It checks the one part that must not break, and a second model reviews it in rounds. You get a report with screenshots, test results and anything still open.
 
@@ -16,18 +16,18 @@ You need Claude Code, Node.js 22 or newer, and git. The skills also load in Clau
    100x install
    ```
 
-3. In Claude Code, run `/100x:100x-setup`. It asks which plan you are on and picks which model builds and which one judges.
+3. In Claude Code, run `/100x-engineer:100x-setup`. It asks which plan you are on and picks which model builds and which one judges.
 4. Give it a job:
 
    ```text
-   /100x:100x Let me compare any stock with the S&P 500 in my stock market research app
+   /100x-engineer:100x Let me compare any stock with the S&P 500 in my stock market research app
    ```
 
 `100x install` sets up `~/.100x`, puts a link to `100x` in `~/.local/bin`, and links the skills into `~/.agents/skills` for agents that read that folder. It writes nothing into `~/.claude`, so the plugin's skills are the only copies Claude Code sees. `100x doctor` checks the result.
 
 ## Modes
 
-Each mode is a skill of its own. A word inside your brief never picks a mode, so `/100x:100x an overnight oats app` builds an oats app.
+Each mode is a skill of its own. A word inside your brief never picks a mode, so `/100x-engineer:100x an overnight oats app` builds an oats app.
 
 | Skill | What it does |
 |---|---|
@@ -55,6 +55,7 @@ Only these reach the network, and only when you ask for them:
 
 - Your model host sees the brief and the files Claude reads, as in any Claude session.
 - `100x browsers` downloads Playwright and Chromium into `~/.100x`, from npm and Playwright's download servers.
+- The live-data template `fresh-data-check.mjs` makes one GET request to the URL you give it, to read a timestamp. It sends no headers or body of yours, reads no credentials and runs only against the source your brief names.
 - A run deploys a **preview** when your project already has a deploy setup (Vercel, Netlify, Cloudflare Pages, Firebase or Fly). It uses the login that is already on your machine and never the production flag, unless your brief says "deploy to production" in words. It does not create accounts or paste tokens.
 - On Cursor only, `100x helper setup`, `login` and `run` install `@cursor/sdk` from npm and start helpers on your own Cursor account. You sign in once in the browser, or set `CURSOR_API_KEY` yourself. 100x never prints the key. The helper's task and what it reads go to Cursor. Claude Code users never need these.
 
