@@ -43,6 +43,25 @@ test('the plugin folder holds only what the directory accepts without a reviewer
   assert.ok(!fs.existsSync(path.join(dir, '.mcp.json')));
 });
 
+// The directory accepts these only from a Verified organization, and the portal blocks the submission for any other: see LOCAL_CODE_FILE_TYPE in its report.
+test('the plugin folder holds no script, no package-manager file and none of the file kinds the portal restricts to Verified organizations', () => {
+  const utf8 = new TextDecoder('utf-8', { fatal: true });
+  const packageFiles = /^(package(-lock)?\.json|npm-shrinkwrap\.json|pnpm-(lock|workspace)\.ya?ml|yarn\.lock|bun\.lockb?|requirements[^/]*\.txt|pyproject\.toml|Pipfile(\.lock)?|poetry\.lock|uv\.lock|Gemfile(\.lock)?|\.npmrc|\.yarnrc(\.yml)?|bunfig\.toml|uv\.toml)$/i;
+  for (const rel of files) {
+    const name = path.basename(rel);
+    const bytes = fs.readFileSync(path.join(dir, rel));
+    assert.ok(!packageFiles.test(name), `${rel} is a package manager file`);
+    assert.ok(!/^(claude|claude\.local|agents)\.md$/i.test(name), `${rel} is a file Claude Code reads as instructions`);
+    assert.ok(!/[:\\<>"|?*]/.test(rel) && !/(^|\/)(con|prn|aux|nul|com\d|lpt\d)(\.|\/|$)/i.test(rel), `${rel} has a name not every computer keeps`);
+    if (IMAGES.has(path.extname(rel).toLowerCase())) continue;
+    assert.notEqual(bytes.subarray(0, 2).toString('latin1'), '#!', `${rel} starts with #!`);
+    assert.ok(!bytes.includes(0), `${rel} holds a NUL byte`);
+    assert.doesNotThrow(() => utf8.decode(bytes), `${rel} is not UTF-8`);
+  }
+  const inManifestFolder = files.filter((rel) => rel.startsWith('.claude-plugin/'));
+  assert.deepEqual(inManifestFolder, ['.claude-plugin/plugin.json'], 'only the manifest goes in .claude-plugin');
+});
+
 test('the icon is a square PNG of 512 to 2048 pixels under 2 MB, which the directory takes once, at the first submission', () => {
   assert.equal(manifest.icon, `./${ICON}`);
   const bytes = fs.readFileSync(path.join(dir, ICON));

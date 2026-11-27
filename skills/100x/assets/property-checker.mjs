@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Property checker. Copy into the project, for example .100x/must-not-break/property-checker.mjs.
 // It explores every state a small model of the software can reach and checks the properties you wrote.
 // This is explicit-state model checking with the project's own functions as the transitions.

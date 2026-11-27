@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Asset check for products whose art, sound or models are the product. Copy into the project, for example .100x/must-not-break/.
 //   node asset-check.mjs <folder> [--max-kb 1024] [--max-total-mb 25] [--min-px 16]
 // Checks. there are assets, every file opens (real header, not empty), every file is under budget, the whole folder is under budget,
