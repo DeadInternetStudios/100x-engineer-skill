@@ -2,8 +2,8 @@
 // Replace the example functions with imports of the project's own, keep the harness and the invariants,
 // then add golden cases from an authority. Run with `node --test test/must-not-break/money.test.mjs`.
 // Money is integer cents. If the project stores floats, the first finding is that it should not.
-import assert from 'node:assert/strict';
-import test from 'node:test';
+import assert from 'node:assert/strict'
+import test from 'node:test'
 
 // Example targets so the template runs as it is. Replace these.
 function splitCents(totalCents, parts) {

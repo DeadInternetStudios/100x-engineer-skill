@@ -3,9 +3,9 @@
 // Checks. there are assets, every file opens (real header, not empty), every file is under budget, the whole folder is under budget,
 // no two files are the same bytes, and frames of one set ("run_01.png", "run_02.png") share a size.
 // It cannot judge taste. Open the files or a contact sheet and look. Exit code 1 when any check fails.
-import crypto from 'node:crypto';
-import fs from 'node:fs';
-import path from 'node:path';
+import crypto from 'node:crypto'
+import fs from 'node:fs'
+import path from 'node:path'
 
 const args = process.argv.slice(2);
 const option = (name, fallback) => {

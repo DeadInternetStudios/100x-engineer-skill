@@ -1,3 +1,8 @@
+# seed-localstorage.js
+
+The Claude plugin ships this script as Markdown, because the directory takes no script files. Save the code below as a file named `seed-localstorage.js`, for example in `.100x/must-not-break/`, and run it from there as the skill says. It needs only Node.js.
+
+```js
 // Init script for `100x shots --init-script`. It runs before the page loads, so the game boots into a late game save.
 //   100x shots http://localhost:5173 --init-script .100x/must-not-break/seed-localstorage.js --label must-not-break --matrix all
 // 1. Find the save key. Run the game once, then read Object.keys(localStorage) in the console.
@@ -15,3 +20,4 @@
   };
   localStorage.setItem(KEY, JSON.stringify(save));
 })();
+```

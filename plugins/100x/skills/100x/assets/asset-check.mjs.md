@@ -1,11 +1,16 @@
+# asset-check.mjs
+
+The Claude plugin ships this script as Markdown, because the directory takes no script files. Save the code below as a file named `asset-check.mjs`, for example in `.100x/must-not-break/`, and run it from there as the skill says. It needs only Node.js.
+
+```js
 // Asset check for products whose art, sound or models are the product. Copy into the project, for example .100x/must-not-break/.
 //   node asset-check.mjs <folder> [--max-kb 1024] [--max-total-mb 25] [--min-px 16]
 // Checks. there are assets, every file opens (real header, not empty), every file is under budget, the whole folder is under budget,
 // no two files are the same bytes, and frames of one set ("run_01.png", "run_02.png") share a size.
 // It cannot judge taste. Open the files or a contact sheet and look. Exit code 1 when any check fails.
-import crypto from 'node:crypto';
-import fs from 'node:fs';
-import path from 'node:path';
+import crypto from 'node:crypto'
+import fs from 'node:fs'
+import path from 'node:path'
 
 const args = process.argv.slice(2);
 const option = (name, fallback) => {
@@ -101,3 +106,4 @@ record('sets', mixed, `${[...sets.values()].filter((frames) => frames.length > 1
 
 for (const check of checks) console.log(`${check.ok ? 'pass' : 'FAIL'}  ${check.name}. ${check.detail}`);
 process.exitCode = checks.every((check) => check.ok) ? 0 : 1;
+```

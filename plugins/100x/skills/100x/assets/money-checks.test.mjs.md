@@ -1,9 +1,14 @@
+# money-checks.test.mjs
+
+The Claude plugin ships this script as Markdown, because the directory takes no script files. Save the code below as a file named `money-checks.test.mjs`, for example in `.100x/must-not-break/`, and run it from there as the skill says. It needs only Node.js.
+
+```js
 // Property tests for money math. Copy into the project, for example test/must-not-break/money.test.mjs.
 // Replace the example functions with imports of the project's own, keep the harness and the invariants,
 // then add golden cases from an authority. Run with `node --test test/must-not-break/money.test.mjs`.
 // Money is integer cents. If the project stores floats, the first finding is that it should not.
-import assert from 'node:assert/strict';
-import test from 'node:test';
+import assert from 'node:assert/strict'
+import test from 'node:test'
 
 // Example targets so the template runs as it is. Replace these.
 function splitCents(totalCents, parts) {
@@ -88,3 +93,4 @@ test('boundaries hold', () => {
   assert.deepEqual(splitCents(1, 3), [1, 0, 0]);
   assert.equal(sum(splitCents(Number.MAX_SAFE_INTEGER, 7)), Number.MAX_SAFE_INTEGER);
 });
+```

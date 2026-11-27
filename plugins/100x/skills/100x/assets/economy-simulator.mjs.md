@@ -1,3 +1,8 @@
+# economy-simulator.mjs
+
+The Claude plugin ships this script as Markdown, because the directory takes no script files. Save the code below as a file named `economy-simulator.mjs`, for example in `.100x/must-not-break/`, and run it from there as the skill says. It needs only Node.js.
+
+```js
 // Idle game economy simulator. Copy into the project, for example .100x/must-not-break/economy-simulator.mjs.
 // Replace the model block with the game's own rules. If the rules live inside UI code, extract them first
 // into pure functions of state and elapsed seconds. The rules must be importable for this to prove anything.
@@ -18,21 +23,21 @@
 //   gaps        over the whole run the longest wait stays under STALL_MINUTES
 //   offline     returning after hours away pays what the same hours of play would have produced
 //   runs        (PRESTIGE=1) no run between resets is shorter than RUN_MIN_MINUTES, so the loop never becomes a chore
-const env = (name, fallback) => (process.env[name] === undefined ? fallback : Number(process.env[name]));
-const HOURS = env('HOURS', 48);
-const GROWTH = env('GROWTH', 1.07);
-const TAPS_PER_SECOND = env('TAPS', 3);
-const EARLY_GAP_MINUTES = env('EARLY_GAP_MINUTES', 5);
-const STALL_MINUTES = env('STALL_MINUTES', 60);
-const FIRST_BUY_SECONDS = env('FIRST_BUY_SECONDS', 30);
-const OFFLINE_HOURS = env('OFFLINE_HOURS', 8);
+const num = (value, fallback) => (value === undefined ? fallback : Number(value));
+const HOURS = num(process.env.HOURS, 48);
+const GROWTH = num(process.env.GROWTH, 1.07);
+const TAPS_PER_SECOND = num(process.env.TAPS, 3);
+const EARLY_GAP_MINUTES = num(process.env.EARLY_GAP_MINUTES, 5);
+const STALL_MINUTES = num(process.env.STALL_MINUTES, 60);
+const FIRST_BUY_SECONDS = num(process.env.FIRST_BUY_SECONDS, 30);
+const OFFLINE_HOURS = num(process.env.OFFLINE_HOURS, 8);
 const MILESTONES = [1e3, 1e6, 1e9, 1e12, 1e15, 1e18];
 // Optional reset loop. The player resets when the points on offer are at least WORTH of what they hold.
-const PRESTIGE = env('PRESTIGE', 0) === 1;
-const PRESTIGE_STEP = env('PRESTIGE_STEP', 5e6); // a run must earn this much before it pays one point
-const PRESTIGE_BONUS = env('PRESTIGE_BONUS', 0.1); // each point adds this share to all income
-const RUN_MIN_MINUTES = env('RUN_MIN_MINUTES', 3);
-const WORTH = env('WORTH', 0.5);
+const PRESTIGE = num(process.env.PRESTIGE, 0) === 1;
+const PRESTIGE_STEP = num(process.env.PRESTIGE_STEP, 5e6); // a run must earn this much before it pays one point
+const PRESTIGE_BONUS = num(process.env.PRESTIGE_BONUS, 0.1); // each point adds this share to all income
+const RUN_MIN_MINUTES = num(process.env.RUN_MIN_MINUTES, 3);
+const WORTH = num(process.env.WORTH, 0.5);
 
 // Model. Replace.
 const UPGRADES = [
@@ -127,3 +132,4 @@ if (process.argv.includes('--json')) {
   for (const check of checks) console.log(`${check.ok ? 'pass' : 'FAIL'}  ${check.name}. ${check.detail}`);
 }
 process.exitCode = checks.every((check) => check.ok) ? 0 : 1;
+```
