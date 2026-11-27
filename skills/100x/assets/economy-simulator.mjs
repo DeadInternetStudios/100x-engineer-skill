@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Idle game economy simulator. Copy into the project, for example .100x/must-not-break/economy-simulator.mjs.
 // Replace the model block with the game's own rules. If the rules live inside UI code, extract them first
 // into pure functions of state and elapsed seconds. The rules must be importable for this to prove anything.

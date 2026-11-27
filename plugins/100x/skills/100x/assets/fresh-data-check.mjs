@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // Data fresh-data check for apps that show live or cached data. Copy into the project, for example .100x/must-not-break/.
 //   node fresh-data-check.mjs <url> [--field updated_at] [--max-age-hours 24] [--array items] [--timeout 10000]
 // Checks. the request succeeds in time, the body is JSON, the timestamp field is recent, a named array is not empty.
