@@ -318,7 +318,11 @@ const model = {
     },
     {
       name: 'the-message-fits-in-thirty-lines',
-      holds: (s) => summaryOf(s).split('\n').length <= 30 || `the message is ${summaryOf(s).split('\n').length} lines, and 30 is the most a run with every list full may print`,
+      // The judge is tried on its own, so a run that every other list fills never also has the line a solo judge adds. That line is counted here.
+      holds: (s) => {
+        const lines = summaryOf(s).split('\n').length + (s.review === 'reviewed' && s.judge === 'other' ? 1 : 0);
+        return lines <= 30 || `the message is ${lines} lines with the judge line counted, and 30 is the most a run with every list full may print`;
+      },
     },
     {
       name: 'no-control-characters',

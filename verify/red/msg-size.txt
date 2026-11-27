@@ -1,0 +1,28 @@
+Model the final message, every mix of optional data. 9223 states, 149780 transitions, deepest path 9.
+Exhaustive. Every reachable state was visited, so a pass is a proof for this model and these bounds.
+  assumes one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, 3 judges, review or none, 4 round outcomes, 0, 1, 3 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2, 3 or 4 next asks, 1, 3 or 4 steps, a url or none, plain text, text with a line break in it or text with control codes in it, and a blank step beside the real ones or none)
+  assumes the verdict and the judge are each tried with every other piece at its start value, because only line 1 reads the verdict and only one line reads the judge
+  assumes the text of each value is one fixed sentence, written plain, with a line break in the middle of it or with control codes in the middle of it. A longer title, reason or step is not tried here, because finish refuses them above a length before the message is built
+  assumes only the layout of the message is checked here. The words of each line are the words the report and the tests already pin
+pass  inv:every-mix-builds-a-message. 9223 states checked, exhaustive
+pass  inv:verdict-alone-on-line-one. 9223 states checked, exhaustive
+pass  inv:the-pitch-is-left-to-the-report. 9223 states checked, exhaustive
+FAIL  inv:every-label-once-when-its-data-exists. Asks appears 2 times, and the data says 1 (and 4614 more).
+pass  inv:steps-one-per-line. 9223 states checked, exhaustive
+pass  inv:reasons-one-per-line. 9223 states checked, exhaustive
+pass  inv:blocks-in-order-with-one-blank-line-between. 9223 states checked, exhaustive
+pass  inv:every-fact-is-kept. 9223 states checked, exhaustive
+pass  inv:clean-lines. 9223 states checked, exhaustive
+pass  inv:a-line-break-in-a-value-adds-no-line. 9223 states checked, exhaustive
+pass  inv:the-message-fits-in-thirty-lines. 9223 states checked, exhaustive
+pass  inv:no-control-characters. 9223 states checked, exhaustive
+pass  inv:the-run-is-left-as-it-was. 9223 states checked, exhaustive
+pass  inv:key-order-does-not-matter. 9223 states checked, exhaustive
+pass  inv:no-memory-between-calls. 9223 states checked, exhaustive
+pass  inv:lists-stop-at-three. 9223 states checked, exhaustive
+pass  inv:same-run-same-message. 9223 states checked, exhaustive
+pass  guard:set. 378143 enabled and refused cases agree with the implementation, exhaustive
+pass  post:set. 149780 transitions checked, exhaustive
+pass  pure. no apply changed its input
+pass  deadlock. every state has a step or is a stopping point, exhaustive
+pass  coverage. every step was possible somewhere, 1 of 1
