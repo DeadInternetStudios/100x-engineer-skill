@@ -104,3 +104,5 @@ ts	id	event	commit	hash	note	result
 2026-11-27T00:33:17Z	msg-picture	add	aa902a4	0bafb199dd18bbc3	The picture of the final message in the README says exactly what the code prints for the sample run	unchecked
 2026-11-27T00:33:29Z	msg-copies	run	0ff97a3	de5ee5ec9258b939	exit 0, 0.6 s	holds
 2026-11-27T00:33:30Z	msg-picture	run	0ff97a3	0bafb199dd18bbc3	exit 0, 2.6 s	holds
+2026-11-27T09:53:50Z	msg-locale	run	030b781	14799ea051e43703	exit 0, 3 s	holds
+2026-11-27T09:54:10Z	msg-locale	sync	99ae69b	14799ea051e43703	The test now imports its modules by file URL, so it runs on Windows. Same checks, and the seeded locale defect still fails it.	holds
