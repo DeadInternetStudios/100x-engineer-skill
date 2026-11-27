@@ -14,7 +14,7 @@ pass  inv:blocks-in-order-with-one-blank-line-between. 9223 states checked, exha
 pass  inv:every-fact-is-kept. 9223 states checked, exhaustive
 pass  inv:clean-lines. 9223 states checked, exhaustive
 pass  inv:a-line-break-in-a-value-adds-no-line. 9223 states checked, exhaustive
-pass  inv:the-message-fits-in-thirty-lines. 9223 states checked, exhaustive
+FAIL  inv:the-message-fits-in-thirty-lines. the message is 31 lines with the judge line counted, and 30 is the most a run with every list full may print (and 11 more). Steps: set(["rounds","notready"]), set(["reasons",4]), set(["checks",2]), set(["work",1]), set(["steps",4]).
 pass  inv:no-control-characters. 9223 states checked, exhaustive
 pass  inv:the-run-is-left-as-it-was. 9223 states checked, exhaustive
 pass  inv:key-order-does-not-matter. 9223 states checked, exhaustive
