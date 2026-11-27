@@ -132,6 +132,7 @@ const BLOCKERS = [
   ['a verdict outside the three words', { run: runJson({ verdict: 'great' }) }, /verdict must be one of/],
   ['a missing hero file', { run: runJson({ hero: '.100x/nope.png' }) }, /hero .* does not exist/],
   ['too few try-first steps', { run: runJson({ tryFirst: ['Tap once'] }) }, /tryFirst needs at least 2/],
+  ['too many try-first steps', { run: runJson({ tryFirst: ['Tap once', 'Tap twice', 'Tap three times', 'Tap four times', 'Tap five times'] }) }, /tryFirst has 5 steps, 4 at most/],
   ['an unreviewed run with no reason', { run: runJson({ review: { status: 'unreviewed' } }) }, /needs review\.note/],
   ['a must-not-break check without a status', { run: runJson({ mustNotBreak: { kind: 'numbers', summary: 'x' } }) }, /the must-not-break check "numbers"\. The status must be one of pass, fail, skipped/],
   ['a verdict text the owner could not read in ten seconds', { run: runJson({ verdictWhy: 'Scored 5 of 6 (first minute 2, screenshot 2, second day 1): a frame 216 ms after tapping 25% shows the button squashed, the friends mid-hop, a ring crossing the screen and the number rolling to its answer, and 0 broken of 2149 elements over 14 states, which is why it stays a ship even though the second day only scored 1 of 2 and the audio was never heard.' }) }, /verdictWhy is 3\d\d characters, 320 at most\. The owner reads it first.*100x run set verdictWhy "<shorter>"/],

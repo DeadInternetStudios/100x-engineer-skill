@@ -24,7 +24,7 @@ const TITLE = 'Glow';
 const WHY = 'The first tap lights the screen. Nothing else is claimed.';
 const MOMENT = 'The first tap lights the whole screen.';
 const SAY = { ship: 'ready to ship', fine: 'fine', dud: 'needs work' };
-const STEPS = ['Tap once and watch the glow', 'Tap five times fast', 'Turn the phone sideways'];
+const STEPS = ['Tap once and watch the glow', 'Tap five times fast', 'Turn the phone sideways', 'Hold it and let go'];
 const CHECKS = [
   { kind: 'numbers', status: 'pass', summary: '40 cases match a hand count, 0 failing' },
   { kind: 'screen-sizes', status: 'fail', summary: '3 broken of 212 elements' },
@@ -150,7 +150,7 @@ const VALUES = {
   nextAsks: [0, 2, 3, 4],
   text: ['plain', 'multi', 'control'],
   blank: [0, 1],
-  steps: [1, 3],
+  steps: [1, 3, 4],
   url: [0, 1],
 };
 const valid = (s) => (s.review === 'reviewed' || s.rounds === 'none') && (s.rounds === 'notready' || s.reasons === 0);
@@ -186,7 +186,7 @@ const FAMILY = {
 const model = {
   name: 'the final message, every mix of optional data',
   assumptions: [
-    'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, 3 judges, review or none, 4 round outcomes, 0, 1, 3 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2, 3 or 4 next asks, 1 or 3 steps, a url or none, plain text, text with a line break in it or text with control codes in it, and a blank step beside the real ones or none)',
+    'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, 3 judges, review or none, 4 round outcomes, 0, 1, 3 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2, 3 or 4 next asks, 1, 3 or 4 steps, a url or none, plain text, text with a line break in it or text with control codes in it, and a blank step beside the real ones or none)',
     'the verdict and the judge are each tried with every other piece at its start value, because only line 1 reads the verdict and only one line reads the judge',
     'the text of each value is one fixed sentence, written plain, with a line break in the middle of it or with control codes in the middle of it. A longer title, reason or step is not tried here, because finish refuses them above a length before the message is built',
     'only the layout of the message is checked here. The words of each line are the words the report and the tests already pin',
@@ -315,6 +315,10 @@ const model = {
     {
       name: 'a-line-break-in-a-value-adds-no-line',
       holds: (s) => s.text !== 'multi' || summaryOf(s) === summaryOf({ ...s, text: 'plain' }) || 'a value with a line break in it changed the message',
+    },
+    {
+      name: 'the-message-fits-in-thirty-lines',
+      holds: (s) => summaryOf(s).split('\n').length <= 30 || `the message is ${summaryOf(s).split('\n').length} lines, and 30 is the most a run with every list full may print`,
     },
     {
       name: 'no-control-characters',
