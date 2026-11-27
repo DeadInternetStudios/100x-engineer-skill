@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { HAND_WRITTEN, ICON, LIMITS, listFiles, PLUGIN_DIR, pluginProblems } from '../lib/claude-plugin.mjs';
+import { buildPlugin, HAND_WRITTEN, ICON, LIMITS, listFiles, PLUGIN_DIR, pluginProblems } from '../lib/claude-plugin.mjs';
 import { ROOT } from './helpers.mjs';
 
 // These are the checks of https://claude.com/docs/plugins/pre-submission-checklist that `claude plugin validate` does not run, so a change here cannot
@@ -69,6 +70,37 @@ test('the README names every way the skills leave the machine or change a permis
     [/Never push to a remote/, 'never pushes to a remote'],
   ];
   for (const [inSkills, inReadme] of mustSay) if (inSkills.test(skills)) assert.ok(readme.includes(inReadme), `the skills say ${inSkills}, so the README must say "${inReadme}"`);
+});
+
+test('a rebuild repairs a plugin folder that holds a stale file, a deleted skill and an empty folder, and keeps the hand-written files', () => {
+  const root = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), '100x-plugin-'));
+  try {
+    const put = (rel, text = 'x\n') => {
+      fs.mkdirSync(path.dirname(path.join(root, rel)), { recursive: true });
+      fs.writeFileSync(path.join(root, rel), text);
+    };
+    put('package.json', JSON.stringify({ version: '1.2.3', license: 'MIT', repository: { url: 'git+https://github.com/o/r.git' }, keywords: ['k'] }));
+    put('LICENSE');
+    put('NOTICE.md');
+    put('skills/kept/SKILL.md');
+    const at = (rel) => path.join(root, PLUGIN_DIR, rel);
+    put(`${PLUGIN_DIR}/README.md`, 'mine\n');
+    put(`${PLUGIN_DIR}/${ICON}`, 'icon');
+    put(`${PLUGIN_DIR}/skills/deleted/SKILL.md`);
+    put(`${PLUGIN_DIR}/bin/tool`);
+    assert.notDeepEqual(pluginProblems(root), []);
+
+    buildPlugin(root);
+    assert.deepEqual(pluginProblems(root), []);
+    assert.ok(!fs.existsSync(at('bin')), 'the folder the stale file sat in is gone too');
+    assert.ok(!fs.existsSync(at('skills/deleted')));
+    assert.equal(fs.readFileSync(at('README.md'), 'utf8'), 'mine\n');
+    assert.equal(fs.readFileSync(at(ICON), 'utf8'), 'icon');
+    assert.equal(JSON.parse(fs.readFileSync(at('.claude-plugin/plugin.json'), 'utf8')).version, '1.2.3');
+    assert.deepEqual(buildPlugin(root), { written: 0, removed: 0 }, 'a second build changes nothing');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test('.gitattributes stays free of what makes the directory refuse to read the repository', () => {
