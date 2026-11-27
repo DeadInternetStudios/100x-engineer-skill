@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { buildPlugin, HAND_WRITTEN, ICON, LIMITS, listFiles, PLUGIN_DIR, pluginProblems } from '../lib/claude-plugin.mjs';
+import { buildPlugin, HAND_WRITTEN, ICON, LIMITS, listFiles, PLUGIN_DIR, pluginProblems, SCRIPT, scriptAsMarkdown, scriptCode } from '../lib/claude-plugin.mjs';
 import { ROOT } from './helpers.mjs';
 
 // These are the checks of https://claude.com/docs/plugins/pre-submission-checklist that `claude plugin validate` does not run, so a change here cannot
@@ -15,7 +15,7 @@ const files = listFiles(dir);
 const readme = fs.readFileSync(path.join(dir, 'README.md'), 'utf8');
 
 const IMAGES = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp']);
-const TEXT = new Set(['.md', '.mjs', '.js', '.json', '.txt', '.tsv', '.sh', '.yml', '.yaml', '.html', '.css']);
+const TEXT = new Set(['.md', '.json', '.txt', '.tsv', '.yml', '.yaml', '.html', '.css']);
 
 test('plugins/100x is what the build writes from package.json, skills/, LICENSE and NOTICE.md', () => {
   assert.deepEqual(pluginProblems(ROOT), [], 'run `node scripts/build-claude-plugin.mjs` and commit the result');
@@ -50,6 +50,7 @@ test('the plugin folder holds no script, no package-manager file and none of the
   for (const rel of files) {
     const name = path.basename(rel);
     const bytes = fs.readFileSync(path.join(dir, rel));
+    assert.ok(!SCRIPT.test(name), `${rel} is a script, which the portal takes only from a Verified organization: ship it as Markdown`);
     assert.ok(!packageFiles.test(name), `${rel} is a package manager file`);
     assert.ok(!/^(claude|claude\.local|agents)\.md$/i.test(name), `${rel} is a file Claude Code reads as instructions`);
     assert.ok(!/[:\\<>"|?*]/.test(rel) && !/(^|\/)(con|prn|aux|nul|com\d|lpt\d)(\.|\/|$)/i.test(rel), `${rel} has a name not every computer keeps`);
@@ -59,6 +60,8 @@ test('the plugin folder holds no script, no package-manager file and none of the
     assert.doesNotThrow(() => utf8.decode(bytes), `${rel} is not UTF-8`);
     // The portal blocked asset-check.mjs, the one file that held this literal, and takes an .svg only as the plugin icon. A script that checks SVG files writes the tag as a lookahead, /<(?=svg)/.
     assert.ok(!/<svg\b/i.test(bytes.toString('utf8')), `${rel} holds an SVG tag, which the portal can take for an SVG file under another name`);
+    // A content sniffer (libmagic's `file`) calls any file with a line that starts `import x from 'y';` Java source, so the file is not text to it. The templates leave the semicolon off.
+    assert.ok(!/^import [^\n]*;[ \t]*$/m.test(bytes.toString('utf8')), `${rel} has an import line that ends with a semicolon, which a content sniffer reads as Java source`);
   }
   const inManifestFolder = files.filter((rel) => rel.startsWith('.claude-plugin/'));
   assert.deepEqual(inManifestFolder, ['.claude-plugin/plugin.json'], 'only the manifest goes in .claude-plugin');
@@ -105,9 +108,25 @@ test('the README names every way the skills leave the machine or change a permis
   ];
   for (const [inSkills, inReadme] of mustSay) if (inSkills.test(skills)) assert.ok(readme.includes(inReadme), `the skills say ${inSkills}, so the README must say "${inReadme}"`);
   // A shipped script that opens a connection is named in the README: the portal pairs a script that can send data off the machine with anything that reads a key.
-  for (const rel of files.filter((f) => /\.(mjs|js)$/.test(f))) {
-    if (/\bfetch\(/.test(fs.readFileSync(path.join(dir, rel), 'utf8'))) assert.ok(readme.includes(path.basename(rel)), `${rel} makes a request, so the README must name it`);
+  for (const rel of files.filter((f) => SCRIPT.test(f.replace(/\.md$/, '')) && f.endsWith('.md'))) {
+    const script = path.basename(rel, '.md');
+    if (/\bfetch\(/.test(scriptCode(fs.readFileSync(path.join(dir, rel), 'utf8')))) assert.ok(readme.includes(script), `${script} makes a request, so the README must name it`);
   }
+});
+
+test('each script under skills/ ships as a Markdown file with the same code, and its skill says how to use it', () => {
+  const sources = listFiles(path.join(ROOT, 'skills')).filter((rel) => SCRIPT.test(rel));
+  assert.ok(sources.length >= 6, 'the 100x skill carries its six templates');
+  for (const rel of sources) {
+    const copy = fs.readFileSync(path.join(dir, 'skills', `${rel}.md`), 'utf8');
+    assert.equal(scriptCode(copy), fs.readFileSync(path.join(ROOT, 'skills', rel), 'utf8'), `${rel} and its Markdown copy hold different code`);
+    assert.ok(copy.startsWith(`# ${path.basename(rel)}\n`) && copy.includes(`file named \`${path.basename(rel)}\``), `${rel} copy says which file to save the code as`);
+    const skill = fs.readFileSync(path.join(dir, 'skills', rel.split('/')[0], 'SKILL.md'), 'utf8');
+    assert.equal(skill.split('## In the Claude plugin').length - 1, 1, `${rel.split('/')[0]}/SKILL.md explains the .md copies once`);
+  }
+  const tricky = 'const a = `x`;\n// ```\nconst b = ````;\n';
+  assert.equal(scriptCode(scriptAsMarkdown('t.mjs', tricky)), tricky, 'a script that holds backticks keeps its code, with a longer fence');
+  assert.equal(scriptCode(scriptAsMarkdown('t.mjs', 'no newline')), 'no newline\n');
 });
 
 test('a rebuild repairs a plugin folder that holds a stale file, a deleted skill and an empty folder, and keeps the hand-written files', () => {

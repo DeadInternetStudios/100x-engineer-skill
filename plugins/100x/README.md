@@ -42,7 +42,7 @@ Each mode is a skill of its own. A word inside your brief never picks a mode, so
 
 ## What it runs, sends and fetches
 
-The plugin has no hooks, no commands, no agents and no MCP servers. It sends nothing itself. It is Markdown guides plus six small test templates in `skills/100x/assets/`, which Claude copies into your project and runs there.
+The plugin has no hooks, no commands, no agents and no MCP servers. It sends nothing itself. It is Markdown guides plus six small test templates in `skills/100x/assets/`. The directory takes no script files, so each template is a Markdown file that holds its code. Claude saves the code as a script in your project and runs it there.
 
 What the skills tell Claude to do, all on your computer:
 

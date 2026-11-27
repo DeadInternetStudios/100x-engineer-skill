@@ -144,3 +144,7 @@ The other modes are the skills in the table above, next to this one. Helpers: `r
 ## Reply
 
 The output of `100x finish` is the final message, with the review state and the next likely asks. Point to `100x-report` for the gallery. End there.
+
+## In the Claude plugin
+
+The directory takes no script files, so each script named under `assets/` is a Markdown file with `.md` added to its name, such as `assets/asset-check.mjs.md`. Its code block is the whole script. Save the code as a file with the original name in the project, for example in `.100x/must-not-break/`, and run it from there as written above.

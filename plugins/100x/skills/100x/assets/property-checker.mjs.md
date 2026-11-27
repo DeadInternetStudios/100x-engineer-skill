@@ -1,3 +1,8 @@
+# property-checker.mjs
+
+The Claude plugin ships this script as Markdown, because the directory takes no script files. Save the code below as a file named `property-checker.mjs`, for example in `.100x/must-not-break/`, and run it from there as the skill says. It needs only Node.js.
+
+```js
 // Property checker. Copy into the project, for example .100x/must-not-break/property-checker.mjs.
 // It explores every state a small model of the software can reach and checks the properties you wrote.
 // This is explicit-state model checking with the project's own functions as the transitions.
@@ -26,9 +31,9 @@
 //                visited. It is not a proof, and every liveness line says "not decided".
 // The model is a claim about the software. The proof covers the model, and the checks named guard and post tie the real
 // functions to it. Say in the assumptions what the model leaves out.
-const env = (name, fallback) => (process.env[name] === undefined ? fallback : Number(process.env[name]));
-const MAX_STATES = env('MAX_STATES', 200000);
-const MAX_DEPTH = env('MAX_DEPTH', Infinity);
+const num = (value, fallback) => (value === undefined ? fallback : Number(value));
+const MAX_STATES = num(process.env.MAX_STATES, 200000);
+const MAX_DEPTH = num(process.env.MAX_DEPTH, Infinity);
 
 // ---- The implementation under test. Replace with imports of the project's own functions, which must be pure. ----
 function pay(state, amount) {
@@ -365,3 +370,4 @@ if (process.argv.includes('--json')) {
   for (const check of checks) console.log((check.ok ? 'pass' : 'FAIL') + '  ' + check.name + '. ' + check.detail);
 }
 process.exitCode = checks.every((check) => check.ok) ? 0 : 1;
+```

@@ -1,3 +1,8 @@
+# fresh-data-check.mjs
+
+The Claude plugin ships this script as Markdown, because the directory takes no script files. Save the code below as a file named `fresh-data-check.mjs`, for example in `.100x/must-not-break/`, and run it from there as the skill says. It needs only Node.js.
+
+```js
 // Data fresh-data check for apps that show live or cached data. Copy into the project, for example .100x/must-not-break/.
 //   node fresh-data-check.mjs <url> [--field updated_at] [--max-age-hours 24] [--array items] [--timeout 10000]
 // Checks. the request succeeds in time, the body is JSON, the timestamp field is recent, a named array is not empty.
@@ -46,3 +51,4 @@ if (body !== null) {
 }
 for (const check of checks) console.log(`${check.ok ? 'pass' : 'FAIL'}  ${check.name}. ${check.detail}`);
 process.exitCode = checks.every((check) => check.ok) ? 0 : 1;
+```
