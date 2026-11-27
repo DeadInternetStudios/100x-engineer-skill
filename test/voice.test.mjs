@@ -73,3 +73,23 @@ test('the property checker for the final message holds in every mix of optional 
   assert.equal(run.status, 0, run.stdout.split('\n').filter((line) => line.startsWith('FAIL')).join('\n'));
   assert.match(run.stdout, /Exhaustive\. Every reachable state was visited/);
 });
+
+test('the final message reads the same in another language and another time zone', () => {
+  const program = `import { chatSummary } from ${JSON.stringify(path.join(ROOT, 'lib', 'report.mjs'))}; import { SAMPLE } from ${JSON.stringify(path.join(ROOT, 'scripts', 'readme-sample.mjs'))}; process.stdout.write(chatSummary(SAMPLE));`;
+  const built = (extra) => {
+    const run = spawnSync(process.execPath, ['--input-type=module', '-e', program], { encoding: 'utf8', env: { ...process.env, ...extra } });
+    assert.equal(run.status, 0, run.stderr);
+    return run.stdout;
+  };
+  const here = chatSummary(SAMPLE);
+  for (const env of [{ TZ: 'UTC', LANG: 'C', LC_ALL: 'C' }, { TZ: 'Pacific/Kiritimati', LANG: 'tr_TR.UTF-8', LC_ALL: 'tr_TR.UTF-8' }, { TZ: 'America/St_Johns', LANG: 'ja_JP.UTF-8', LC_ALL: 'ja_JP.UTF-8' }]) {
+    assert.equal(built(env), here, `the message changed under ${JSON.stringify(env)}`);
+  }
+});
+
+test('a control code in a value never reaches the message, and a blank step takes no number', () => {
+  const text = chatSummary({ ...SAMPLE, title: 'Glow\u001b[2J', moment: 'Tap\u0007 now\u0000done\u009b', tryFirst: ['Open it', '   ', 'Tap Go'] });
+  assert.ok(!/[\u0000-\u0009\u000b-\u001f\u007f-\u009f]/.test(text), 'no control character is left');
+  assert.ok(text.includes('The moment: Tap now done'), 'the words stay');
+  assert.deepEqual(text.split('\n').filter((line) => /^\d\) /.test(line)), ['1) Open it', '2) Tap Go']);
+});

@@ -39,8 +39,9 @@ const REASONS = [
 const NEXT = ['Save a list of friends', 'Round up to the dollar', 'Share the split as a picture', 'Add a tip jar', 'Dark mode'];
 const LAST_READY = { ready: true, notready: false, silent: null };
 
-// A value with a line break in the middle of it, the way a judge or a hurried owner types one. It reads as the same words once the whitespace is one space.
-const broken = (s, text) => (s.text === 'multi' ? text.replace(' ', ' \n\n ') : text);
+// A value with a line break in the middle of it, the way a judge or a hurried owner types one, or with control codes in it, the way a copied page can carry them. Both read as the same words once the whitespace is one space and the codes are gone.
+const CONTROL = ' \u001b\u0007\u0000\u009b ';
+const broken = (s, text) => (s.text === 'multi' ? text.replace(' ', ' \n\n ') : s.text === 'control' ? text.replace(' ', CONTROL) : text);
 
 function entryOf(s) {
   const reviewed = s.review === 'reviewed';
@@ -53,7 +54,7 @@ function entryOf(s) {
     moment: b(MOMENT),
     runCmd: b('npm start'),
     url: s.url ? 'http://localhost:5173' : undefined,
-    tryFirst: STEPS.slice(0, s.steps).map(b),
+    tryFirst: STEPS.slice(0, s.steps).flatMap((step, index) => (index === 0 && s.blank ? [step, '   '] : [step])).map(b),
     mustNotBreak: CHECKS.slice(0, s.checks).map((check) => ({ ...check, summary: b(check.summary) })),
     review: reviewed
       ? {
@@ -146,13 +147,14 @@ const VALUES = {
   asks: [0, 1],
   work: [0, 1],
   nextAsks: [0, 2, 3, 4],
-  text: ['plain', 'multi'],
+  text: ['plain', 'multi', 'control'],
+  blank: [0, 1],
   steps: [1, 3],
   url: [0, 1],
 };
 const valid = (s) => (s.review === 'reviewed' || s.rounds === 'none') && (s.rounds === 'notready' || s.reasons === 0);
-// The verdict fills the first line, the judge adds one line, and a line break in a value is the same for every line. Each is tried with every other piece at its start value, which keeps the model at a few thousand states.
-const ISOLATED = ['verdict', 'judge', 'text'];
+// The verdict fills the first line, the judge adds one line, a line break or a control code in a value is the same for every line, and a blank step is the same whichever other piece changes. Each is tried with every other piece at its start value, which keeps the model at a few thousand states.
+const ISOLATED = ['verdict', 'judge', 'text', 'blank'];
 const START = { review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 };
 const atStart = (s) => Object.entries(START).every(([field, value]) => s[field] === value);
 const allowed = (s, field) => (ISOLATED.includes(field) ? atStart(s) && ISOLATED.filter((other) => other !== field).every((other) => s[other] === VALUES[other][0]) : ISOLATED.every((other) => s[other] === VALUES[other][0]));
@@ -167,6 +169,7 @@ const FAMILY = {
   verdict: ['headline'],
   judge: ['Judged by'],
   text: [],
+  blank: [],
   review: ['Review', 'Judged by', 'Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
   rounds: ['Look first', 'Judge rounds', 'Looked at', 'Why not ready to ship'],
   reasons: ['Why not ready to ship'],
@@ -182,12 +185,12 @@ const FAMILY = {
 const model = {
   name: 'the final message, every mix of optional data',
   assumptions: [
-    'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, 3 judges, review or none, 4 round outcomes, 0, 1, 3 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2, 3 or 4 next asks, 1 or 3 steps, a url or none, plain text or text with a line break in it)',
+    'one run at a time, the values listed for each field and the data below stand for every run (3 verdicts, 3 judges, review or none, 4 round outcomes, 0, 1, 3 or 4 reasons, 0 to 2 checks, 4 screen size outcomes, asks, work, 0, 2, 3 or 4 next asks, 1 or 3 steps, a url or none, plain text, text with a line break in it or text with control codes in it, and a blank step beside the real ones or none)',
     'the verdict and the judge are each tried with every other piece at its start value, because only line 1 reads the verdict and only one line reads the judge',
-    'the text of each value is one fixed sentence, written plain or with a line break in the middle of it. A longer title, reason or step is not tried here, because finish refuses them above a length before the message is built',
+    'the text of each value is one fixed sentence, written plain, with a line break in the middle of it or with control codes in the middle of it. A longer title, reason or step is not tried here, because finish refuses them above a length before the message is built',
     'only the layout of the message is checked here. The words of each line are the words the report and the tests already pin',
   ],
-  init: () => ({ verdict: 'ship', judge: 'other', text: 'plain', review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 }),
+  init: () => ({ verdict: 'ship', judge: 'other', text: 'plain', blank: 0, review: 'reviewed', rounds: 'ready', reasons: 0, checks: 1, matrix: 'ok', asks: 1, work: 0, nextAsks: 2, steps: 3, url: 1 }),
   terminal: () => true,
   actions: [
     {
@@ -196,7 +199,7 @@ const model = {
       pre: (s, [field, value]) => valid({ ...s, [field]: value }) && s[field] !== value && allowed(s, field),
       apply: setField,
       post: (before, after, [field, value]) => {
-        if (field !== 'text' && summaryOf(before) === summaryOf(after)) return `changing ${field} to ${value} changed nothing in the message`;
+        if (field !== 'text' && field !== 'blank' && summaryOf(before) === summaryOf(after)) return `changing ${field} to ${value} changed nothing in the message`;
         const a = parse(summaryOf(before));
         const b = parse(summaryOf(after));
         for (const label of ORDER) {
@@ -310,7 +313,11 @@ const model = {
     },
     {
       name: 'a-line-break-in-a-value-adds-no-line',
-      holds: (s) => s.text === 'plain' || summaryOf(s) === summaryOf({ ...s, text: 'plain' }) || 'a value with a line break in it changed the message',
+      holds: (s) => s.text !== 'multi' || summaryOf(s) === summaryOf({ ...s, text: 'plain' }) || 'a value with a line break in it changed the message',
+    },
+    {
+      name: 'no-control-characters',
+      holds: (s) => !/[\u0000-\u0009\u000b-\u001f\u007f-\u009f]/.test(summaryOf(s)) || 'a control character reached the message',
     },
     {
       name: 'the-run-is-left-as-it-was',
