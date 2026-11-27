@@ -48,10 +48,10 @@ Write the command and the model together. `100x config set review.command '<comm
 
 ### claude
 
-Flags read from `claude --help`, and run against `claude` 2.1.332. It answered a one-word task, wrote a file under `.100x/` and refused one outside it. No review has come back yet. The task goes before `--allowedTools`, which takes every word after it as a tool. Only `Edit(path)` rules limit where it writes, and they cover every tool that writes a file.
+Flags read from `claude --help`, and run against `claude` 2.1.332. With project settings only, it wrote a file under `.100x/` and refused one outside it. It ran 8 commands the rule names (`git status`, `git diff`, `git log`, `npm test`, `npm run build`, `100x text lint`, `100x shots`) and refused 8 it does not (`git push`, `git commit`, `100x doctor`, `100x install`, `100x browsers`, `npm run deploy`, `npm run build-and-ship`, `rm -rf`). A hook in the owner's own settings that rewrites shell commands can make a command miss its rule, and then the judge is refused it. No review has come back yet. The task goes before `--allowedTools`, which takes every word after it as a tool. Only `Edit(path)` rules limit where it writes, and they cover every tool that writes a file. The rule names the two `100x` tools the judge's task offers, `shots` and `text lint`, and nothing else of `100x`: `install`, `browsers`, `helper` and `upstream` write outside the project or use the network, so they stay out of reach. It allows `npm run` for `build` and `lint` only, because any other project script can deploy.
 
 ```sh
-claude -p "$X100_TASK" ${X100_MODEL:+--model "$X100_MODEL"} ${X100_EFFORT:+--effort "$X100_EFFORT"} --allowedTools "Read,Glob,Grep,Edit(.100x/**),Bash(100x *),Bash(git status *),Bash(git diff *),Bash(git log *),Bash(npm run *),Bash(npm test *)"
+claude -p "$X100_TASK" ${X100_MODEL:+--model "$X100_MODEL"} ${X100_EFFORT:+--effort "$X100_EFFORT"} --allowedTools "Read,Glob,Grep,Edit(.100x/**),Bash(100x shots *),Bash(100x text lint *),Bash(git status *),Bash(git diff *),Bash(git log *),Bash(npm test *),Bash(npm run build *),Bash(npm run lint *)"
 ```
 
 ### cursor

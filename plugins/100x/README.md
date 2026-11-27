@@ -13,7 +13,7 @@ You need Claude Code, Node.js 22 or newer, and git. The skills also load in Clau
 
    ```bash
    curl -fsSLO https://github.com/DeadInternetStudios/100x-engineer-skill/releases/download/v0.1.1/100x-engineer-skill-0.1.1.tgz &&
-   echo "5b8ecf6ce51a61000fe09281324c7fa8ad4f09a84a96aae918ec0d193f9eb765  100x-engineer-skill-0.1.1.tgz" | shasum -a 256 -c - &&
+   echo "c7132d2898a4cd890cf1a73c564bc8e5005de2e894a3e6359e0f800e75af5401  100x-engineer-skill-0.1.1.tgz" | shasum -a 256 -c - &&
    npm install -g ./100x-engineer-skill-0.1.1.tgz &&
    100x install
    ```
@@ -63,7 +63,7 @@ Only these reach the network, and only when you ask for them:
 - A run deploys a **preview** when your project already has a deploy setup (Vercel, Netlify, Cloudflare Pages, Firebase or Fly). It uses the login that is already on your machine and never the production flag, unless your brief says "deploy to production" in words. It does not create accounts or paste tokens.
 - On Cursor only, `100x helper setup`, `login` and `run` install `@cursor/sdk` 1.4.2 from npm, pinned the same way, and start helpers on your own Cursor account. You sign in once in the browser, or set `CURSOR_API_KEY` yourself. 100x never prints the key. The helper's task and what it reads go to Cursor. Claude Code users never need these.
 
-One setting is off until you turn it on. `review.command` lets you start the judge as a shell command, set only in your global config, and only when you ask for it. The example for Claude in `skills/100x/references/apps.md` runs `claude -p` with an allow rule (`--allowedTools`) that names what the judge may do: read the project, edit files under `.100x/`, run `100x`, run a few read-only `git` commands, and run `npm run` and `npm test`. Claude refuses everything else. No example starts an app with its approvals off. The plugin never writes that setting itself, and it never changes Claude's permission settings.
+One setting is off until you turn it on. `review.command` lets you start the judge as a shell command, set only in your global config, and only when you ask for it. The example for Claude in `skills/100x/references/apps.md` runs `claude -p` with an allow rule (`--allowedTools`) that names what the judge may do: read the project, edit files under `.100x/`, run `100x shots` and `100x text lint`, run a few read-only `git` commands, and run the project's `npm test`, `npm run build` and `npm run lint`. Claude refuses everything else, including the rest of `100x`. No example starts an app with its approvals off. The plugin never writes that setting itself, and it never changes Claude's permission settings.
 
 The `100x` tool has no analytics and no server of its own.
 

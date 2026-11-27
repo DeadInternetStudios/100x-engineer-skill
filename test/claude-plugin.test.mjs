@@ -123,6 +123,18 @@ test('no file in the plugin starts an agent with a flag that skips permission pr
   }
 });
 
+// GitHub's AI scan flagged `Bash(100x *)` on the policy PR: it lets the judge run `100x install`, `browsers` and `helper`, which write outside the project or use the network.
+test('an allow rule in the plugin names single commands, never a whole tool, a shell or a package script', () => {
+  const broad = /^(\*|100x( \*)?|npm( run)?( \*)?|npx\b.*|pnpm\b.*|yarn\b.*|node\b.*|(ba|z)?sh\b.*|python3?\b.*|curl\b.*|wget\b.*|git( \*)?|git push\b.*|rm\b.*)$/;
+  const rules = [];
+  for (const rel of listFiles(dir).filter((f) => f.endsWith('.md'))) {
+    for (const [, rule] of fs.readFileSync(path.join(dir, rel), 'utf8').matchAll(/Bash\(([^()"]*)\)/g)) rules.push({ rel, rule });
+  }
+  assert.ok(rules.length >= 8, 'the Claude example carries its allow rules');
+  for (const { rel, rule } of rules) assert.doesNotMatch(rule, broad, `${rel} allows Bash(${rule}), which is wider than one command`);
+  assert.ok(rules.some(({ rule }) => rule === '100x shots *') && rules.some(({ rule }) => rule === '100x text lint *'), 'the judge keeps the two 100x tools its task offers');
+});
+
 test('each script under skills/ ships as a Markdown file with the same code, and its skill says how to use it', () => {
   const sources = listFiles(path.join(ROOT, 'skills')).filter((rel) => SCRIPT.test(rel));
   assert.ok(sources.length >= 6, 'the 100x skill carries its six templates');
