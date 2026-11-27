@@ -1,0 +1,37 @@
+FAIL  the picture of the final message says exactly what the code prints (11.587792ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2602.145125
+
+FAIL  failing tests:
+
+test at test/readme.test.mjs:26:1
+FAIL  the picture of the final message says exactly what the code prints (11.587792ms)
+  AssertionError [ERR_ASSERTION]: Run node scripts/readme-diagrams.mjs to redraw docs/img/diagrams/final-message.svg
+  + actual - expected
+  
+  + 'Compare with the S&P 500: ready to ship!\n' +
+  - 'Compare with the S&P 500: ready to ship.\n' +
+      'The split math matches a hand count and both lines start on the same day. Dividends are not counted yet.\n' +
+      '\n' +
+      'The moment: Type a ticker and both lines start at 0% on the same day, so the gap is the whole story\n' +
+      'Run: npm run dev\n' +
+      'Open: http://localhost:5173/compare\n' +
+  
+      at TestContext.<anonymous> (file:///private/tmp/red/msg-picture/test/readme.test.mjs:29:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Compare with the S&P 500: ready to ship!\nThe split math matches a hand count and both lines start on the same day. Dividends are not counted yet.\n\nThe moment: Type a ticker and both lines start at 0% on the same day, so the gap is the whole story\nRun: npm run dev\nOpen: http://localhost:5173/compare\nTry first:\n1) Type a ticker you hold and read the gap to the index\n2) Pick a stock that split two for one and check the split day shows no drop\n3) Pick a stock listed this year and see where both lines start\n\nMust not break: numbers passed (Percent change across a two-for-one split matches a hand count on 40 split cases, 0 failing)\nReview (claude-opus-5-5): 9 flagged, 7 fixed, 1 rejected, 1 deferred\nJudge rounds: 5 of 5 done, and the last word was ready to ship\nLooked at: the code and how it behaves, the UI and UX and whether it is ready to ship\nScreen sizes: 0 broken, 2 weak, 15 sizes and 148 elements checked\nAsks: 9 of 9 closed\n\nReport: file:///Users/you/projects/research-app/.100x/REPORT.html\nNext likely asks: Count dividends in the comparison; Show the gap for several stocks in one table',
+    expected: 'Compare with the S&P 500: ready to ship.\nThe split math matches a hand count and both lines start on the same day. Dividends are not counted yet.\n\nThe moment: Type a ticker and both lines start at 0% on the same day, so the gap is the whole story\nRun: npm run dev\nOpen: http://localhost:5173/compare\nTry first:\n1) Type a ticker you hold and read the gap to the index\n2) Pick a stock that split two for one and check the split day shows no drop\n3) Pick a stock listed this year and see where both lines start\n\nMust not break: numbers passed (Percent change across a two-for-one split matches a hand count on 40 split cases, 0 failing)\nReview (claude-opus-5-5): 9 flagged, 7 fixed, 1 rejected, 1 deferred\nJudge rounds: 5 of 5 done, and the last word was ready to ship\nLooked at: the code and how it behaves, the UI and UX and whether it is ready to ship\nScreen sizes: 0 broken, 2 weak, 15 sizes and 148 elements checked\nAsks: 9 of 9 closed\n\nReport: file:///Users/you/projects/research-app/.100x/REPORT.html\nNext likely asks: Count dividends in the comparison; Show the gap for several stocks in one table',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

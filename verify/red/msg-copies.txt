@@ -1,0 +1,1 @@
+FAIL  i18n/README.fr.md shows an old message
