@@ -313,24 +313,11 @@ You need Claude Code, Cursor or Codex, and Node.js 22 or newer.
 
 **1. Install the tool and the skills**
 
-The tool comes from a release pinned to one version, and you check its checksum before anything runs. The checksum, and the commands for Windows, are in [docs/install.md](docs/install.md#install-a-pinned-release).
+The tool comes from a release pinned to one version and one SHA-256. The commands that download it, check the checksum and only then install it are in [Install a pinned release](docs/install.md#install-a-pinned-release), for macOS, Linux and Windows. Run them. The last one, `100x install`, links the skills into your agent.
 
-Choose one:
+This page holds no install commands of its own. It is part of the release file, so it cannot carry that file's checksum, and a copy of the commands here would run without the check.
 
-**npm**
-
-```bash
-curl -fsSLO https://github.com/DeadInternetStudios/100x-engineer-skill/releases/download/v0.1.1/100x-engineer-skill-0.1.1.tgz
-shasum -a 256 100x-engineer-skill-0.1.1.tgz
-npm install -g ./100x-engineer-skill-0.1.1.tgz
-100x install
-```
-
-The `shasum` line must print the checksum in [docs/install.md](docs/install.md#install-a-pinned-release). If it prints another, stop.
-
-**skills.sh**
-
-Run the first three lines above, check the checksum the same way, then:
+To get the skills through skills.sh, install the tool with those commands first, then run:
 
 ```bash
 npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g

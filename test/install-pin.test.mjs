@@ -37,13 +37,24 @@ test('the plugin README and the install page carry the same checksum, in the sha
   assert.equal(read(INSTALL_PAGE).split(plugin[0]).length - 1, 3, 'the page lists it once, then uses it in the shell command and in the PowerShell command');
 });
 
-test('the root README cannot hold the checksum of a tarball it is packed into, so it sends the reader to the install page', () => {
+// The root README is inside the release file, so it cannot carry that file's checksum. A copy of the commands without it would run without the check, which a reader
+// who pastes the whole block cannot tell apart from the real thing. So the README holds no command that fetches or installs the tool, and links to the one that does.
+test('the root README holds no command that downloads or installs the tool, and links to the install page that does the check', () => {
   const readme = read('README.md');
   assert.deepEqual(readme.match(SHA256) ?? [], [], 'no 64-hex string in the packed README');
-  assert.ok(readme.includes(URL), 'it downloads the pinned release');
-  assert.ok(readme.includes(`shasum -a 256 ${FILE}`), 'it prints the checksum for the reader to compare');
+  assert.doesNotMatch(readme, /\bcurl\b|npm (install|i|add) -g|releases\/download/, 'no download or global install in the README');
   assert.ok(readme.includes('docs/install.md#install-a-pinned-release'), 'it links to the page that has the checksum');
   assert.match(read(INSTALL_PAGE), /^### Install a pinned release$/m, 'and that link lands on a heading');
+});
+
+test('the install page does not go on to install when the checksum or npm fails', () => {
+  const page = read(INSTALL_PAGE);
+  const bash = page.split('\n').filter((line) => line.includes(FILE) || line.startsWith('100x install'));
+  const chain = bash.slice(0, 4);
+  assert.deepEqual(chain.map((line) => line.trimEnd().endsWith('&&') || line === '100x install'), [true, true, true, true], 'every shell line stops the chain when it fails');
+  const powershell = page.split('\n').find((line) => line.startsWith('if ((Get-FileHash'));
+  assert.ok(powershell?.includes('if ($LASTEXITCODE -eq 0) { 100x install }'), 'PowerShell runs 100x install only after npm exits 0');
+  assert.ok(page.includes('`--ignore-scripts`'), 'the page says the pinned installs run no package script');
 });
 
 test('no step in the plugin folder or the install docs installs code from a branch, a bare name or a latest tag', () => {

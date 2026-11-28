@@ -78,6 +78,7 @@ test('browsers asks npm for the pinned version of Playwright and its core, never
   const args = JSON.parse(fs.readFileSync(path.join(box.dir, 'npm-args.json'), 'utf8'));
   assert.ok(args.includes(`playwright@${PINS.playwright.version}`) && args.includes(`playwright-core@${PINS['playwright-core'].version}`), args.join(' '));
   assert.ok(args.includes('--save-exact'));
+  assert.ok(args.includes('--ignore-scripts'), 'no package script runs before the hash is checked');
   assert.ok(!args.includes('playwright'), 'a bare package name would take whatever is newest');
   box.cleanup();
 });
@@ -98,6 +99,7 @@ test('helper setup asks npm for the pinned SDK version, checks its hash, and say
   assert.equal(result.code, 0, result.err);
   const args = JSON.parse(fs.readFileSync(path.join(box.dir, 'npm-args.json'), 'utf8'));
   assert.ok(args.includes(`@cursor/sdk@${PINS['@cursor/sdk'].version}`) && args.includes('--save-exact'), args.join(' '));
+  assert.ok(args.includes('--ignore-scripts'), 'no package script runs before the hash is checked');
   assert.match(result.out, /its hash matches the one pinned in 100x/);
   box.cleanup();
 });
