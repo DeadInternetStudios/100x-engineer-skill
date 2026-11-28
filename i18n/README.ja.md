@@ -7,6 +7,18 @@
 
 # 100× ENGINEER SKILL
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Upstar-%231_Trending_Agent_Skill-gold" alt="Upstar: #1 Trending Agent Skill" height="20">
+  <img src="https://img.shields.io/badge/Upstar-%231_Agent_Skill_%7C_Nov_2026-gold" alt="Upstar: #1 Agent Skill, November 2026" height="20">
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://upstar.dev/badge/DeadInternetStudios/100x-engineer-skill/day/agent-skills-dark.svg">
+    <img src="https://upstar.dev/badge/DeadInternetStudios/100x-engineer-skill/day/agent-skills.svg" alt="Upstar: #1 Riser Of The Day in Agent skills, November 27, 2026" width="250" height="55">
+  </picture>
+</p>
+
 ### もう「ほぼ動く」で終わらせない AI コーディング
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
