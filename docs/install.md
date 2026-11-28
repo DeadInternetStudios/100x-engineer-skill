@@ -29,13 +29,13 @@ Run it again any time. It reports `unchanged` for what is already right. It neve
 Each release has one file, `100x-engineer-skill-<version>.tgz`. This page names the SHA-256 of the current one, so you can check it before npm runs anything from it. No clone is needed.
 
 - Version: `0.1.1`
-- SHA-256: `5875cfd8e41eec802e40633173df22e2c8f8fd980db3e54275bb47c00d972241`
+- SHA-256: `1a745ddade5db30a413baafe8dc7e1ef91bc9b8c4486d8be220b047013257118`
 
 On macOS and Linux:
 
 ```bash
 curl -fsSLO https://github.com/DeadInternetStudios/100x-engineer-skill/releases/download/v0.1.1/100x-engineer-skill-0.1.1.tgz &&
-echo "5875cfd8e41eec802e40633173df22e2c8f8fd980db3e54275bb47c00d972241  100x-engineer-skill-0.1.1.tgz" | shasum -a 256 -c - &&
+echo "1a745ddade5db30a413baafe8dc7e1ef91bc9b8c4486d8be220b047013257118  100x-engineer-skill-0.1.1.tgz" | shasum -a 256 -c - &&
 npm install -g ./100x-engineer-skill-0.1.1.tgz &&
 100x install
 ```
@@ -46,12 +46,12 @@ On Windows, in PowerShell:
 
 ```powershell
 curl.exe -fsSLO https://github.com/DeadInternetStudios/100x-engineer-skill/releases/download/v0.1.1/100x-engineer-skill-0.1.1.tgz
-if ((Get-FileHash .\100x-engineer-skill-0.1.1.tgz -Algorithm SHA256).Hash -eq '5875cfd8e41eec802e40633173df22e2c8f8fd980db3e54275bb47c00d972241') { npm install -g .\100x-engineer-skill-0.1.1.tgz; if ($LASTEXITCODE -eq 0) { 100x install } } else { Write-Error 'The checksum does not match. Nothing was installed.' }
+if ((Get-FileHash .\100x-engineer-skill-0.1.1.tgz -Algorithm SHA256).Hash -eq '1a745ddade5db30a413baafe8dc7e1ef91bc9b8c4486d8be220b047013257118') { npm install -g .\100x-engineer-skill-0.1.1.tgz; if ($LASTEXITCODE -eq 0) { 100x install } } else { Write-Error 'The checksum does not match. Nothing was installed.' }
 ```
 
 The install line puts the tool on your PATH, with the skills inside the package. `100x install` does what the installer above does, from there. To update, install the newer release the same way, with the checksum this page names for it, then run `100x install` again. `npm update -g` does not look for releases, because the package came from a file.
 
-What 100x downloads later is pinned too. `100x browsers` installs Playwright 1.65.1 and `100x helper setup` installs `@cursor/sdk` 1.4.2. The tool holds both versions and the npm integrity hash (SHA-512) of each package. It installs with package scripts off (`--ignore-scripts`), so nothing from a package runs during the install, and checks the hash right after. Only then does it run a browser download or the helper. On a mismatch it deletes the package from `node_modules`, from the prefix's `package.json` and from both lockfiles, so a later install cannot bring it back, and stops. The browser build is the one that Playwright version names.
+What 100x downloads later is pinned too. `100x browsers` installs Playwright 1.65.1 and `100x helper setup` installs `@cursor/sdk` 1.4.2. The tool holds an exact version and the npm integrity hash (SHA-512) for every package in both: Playwright and playwright-core, and the SDK with its dependencies, its zod peer and the platform package for your machine. It asks npm for each of them by exact name, so a range that the SDK publishes cannot pick a newer release. It installs with package scripts off (`--ignore-scripts`), so nothing from a package runs during the install, and checks every hash right after. Only then does it run a browser download or the helper. On a mismatch it deletes the package from `node_modules`, from the prefix's `package.json` and from both lockfiles, so a later install cannot bring it back, and stops. The browser build is the one that Playwright version names.
 
 ### On Windows
 

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import { chromiumBuilds, resolvePlaywright } from '../lib/playwright.mjs';
-import { PINS } from '../lib/pins.mjs';
+import { INSTALLS, PINS } from '../lib/pins.mjs';
 import { cli, sandbox } from './helpers.mjs';
 import { fakeBin } from './helpers.mjs';
 
@@ -41,11 +41,12 @@ fs.writeFileSync(${JSON.stringify(path.join(box.dir, 'npm-args.json'))}, JSON.st
 const pins = ${JSON.stringify(PINS)};
 const hash = ${JSON.stringify(hash)};
 const packages = {};
-for (const arg of args.filter((a) => /^@?[a-z][a-z0-9/-]*@\\d/.test(a))) {
+const named = args.filter((a) => /^@?[a-z][a-z0-9/-]*@\\d/.test(a));
+for (const arg of named) {
   const name = arg.slice(0, arg.lastIndexOf('@'));
   const folder = path.join(prefix, 'node_modules', ...name.split('/'));
   fs.mkdirSync(folder, { recursive: true });
-  fs.writeFileSync(path.join(folder, 'package.json'), JSON.stringify({ name, version: arg.slice(arg.lastIndexOf('@') + 1) }));
+  fs.writeFileSync(path.join(folder, 'package.json'), JSON.stringify({ name, version: arg.slice(arg.lastIndexOf('@') + 1), ...(name === '@cursor/sdk' ? { dependencies: Object.fromEntries(named.map((n) => n.slice(0, n.lastIndexOf('@'))).filter((n) => n !== name).map((n) => [n, '*'])) } : {}) }));
   packages['node_modules/' + name] = { version: arg.slice(arg.lastIndexOf('@') + 1), integrity: hash[name] ?? pins[name]?.integrity };
 }
 fs.mkdirSync(path.join(prefix, 'node_modules'), { recursive: true });
@@ -98,9 +99,10 @@ test('helper setup asks npm for the pinned SDK version, checks its hash, and say
   const result = cli(['helper', 'setup'], { cwd: box.project, env: { ...fakeInstallers(box), X100_CURSOR_SDK_FROM: '' } });
   assert.equal(result.code, 0, result.err);
   const args = JSON.parse(fs.readFileSync(path.join(box.dir, 'npm-args.json'), 'utf8'));
-  assert.ok(args.includes(`@cursor/sdk@${PINS['@cursor/sdk'].version}`) && args.includes('--save-exact'), args.join(' '));
-  assert.ok(args.includes('--ignore-scripts'), 'no package script runs before the hash is checked');
-  assert.match(result.out, /its hash matches the one pinned in 100x/);
+  assert.ok(args.includes('--save-exact') && args.includes('--ignore-scripts'), args.join(' '));
+  for (const name of INSTALLS.sdk) assert.ok(args.includes(`${name}@${PINS[name].version}`), `${name} is asked for at its pinned version, so a range the SDK publishes cannot pick another`);
+  assert.ok(!args.some((a) => a.startsWith('@cursor/sdk-')), 'the platform packages come from the SDK, and are checked after');
+  assert.match(result.out, new RegExp(`It and the ${INSTALLS.sdk.length - 1} packages it needs match the hashes pinned in 100x`));
   box.cleanup();
 });
 
@@ -122,5 +124,18 @@ test('a failed install shows the end of what the installer said', () => {
   assert.match(result.err, /disk is full/);
   assert.match(result.err, /95% of 160 MiB/);
   assert.doesNotMatch(result.err, /\|progress\| 0% of/, 'only the last lines are shown');
+  box.cleanup();
+});
+
+test('helper setup refuses an SDK whose dependency has another hash, forgets the whole install and leaves Playwright alone', () => {
+  const box = sandbox();
+  const env = fakeInstallers(box, { hash: { zod: `sha512-${'D'.repeat(86)}==` } });
+  assert.equal(cli(['browsers'], { cwd: box.project, env }).code, 0);
+  const result = cli(['helper', 'setup'], { cwd: box.project, env: { ...env, X100_CURSOR_SDK_FROM: '' } });
+  assert.equal(result.code, 1);
+  assert.match(result.err, /zod does not match what 100x pins/);
+  const modules = path.join(box.home, '.100x', 'node_modules');
+  for (const name of ['@cursor/sdk', 'zod', '@statsig/js-client']) assert.ok(!fs.existsSync(path.join(modules, ...name.split('/'))), `${name} is gone`);
+  assert.ok(fs.existsSync(path.join(modules, 'playwright')), 'Playwright, checked and fine, stays');
   box.cleanup();
 });
