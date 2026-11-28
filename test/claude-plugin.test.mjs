@@ -100,7 +100,7 @@ test('the README has at least 40 words outside code blocks, and the license is t
 test('the README names every way the skills leave the machine or change a permission', () => {
   const skills = files.filter((rel) => rel.startsWith('skills/') && rel.endsWith('.md')).map((rel) => fs.readFileSync(path.join(dir, rel), 'utf8')).join('\n');
   const mustSay = [
-    [/bypassPermissions/, 'bypassPermissions'],
+    [/--allowedTools/, '--allowedTools'],
     [/@cursor\/sdk/, '@cursor/sdk'],
     [/100x browsers/, '100x browsers'],
     [/deploy\.preview|preview URL/, 'preview'],
@@ -112,6 +112,27 @@ test('the README names every way the skills leave the machine or change a permis
     const script = path.basename(rel, '.md');
     if (/\bfetch\(/.test(scriptCode(fs.readFileSync(path.join(dir, rel), 'utf8')))) assert.ok(readme.includes(script), `${script} makes a request, so the README must name it`);
   }
+});
+
+// The directory's policy review failed the plugin with DP_TAG_BAN for a documented command that starts an agent with its approvals off.
+test('no file in the plugin starts an agent with a flag that skips permission prompts or turns approvals off', () => {
+  const flags = /bypassPermissions|--dangerously-[a-z-]+|--yolo\b|--full-auto\b|--permission-mode\s+(?:bypass|dontAsk|auto|acceptEdits)|--approval-mode\s+(?:yolo|auto)|--ask-for-approval\s+never|danger-full-access|--no-approvals?\b/i;
+  for (const rel of files.filter((f) => !IMAGES.has(path.extname(f).toLowerCase()))) {
+    const hit = flags.exec(fs.readFileSync(path.join(dir, rel), 'utf8'));
+    assert.equal(hit, null, `${rel} shows ${hit?.[0]}: name the commands the agent may run in an allow rule instead`);
+  }
+});
+
+// GitHub's AI scan flagged `Bash(100x *)` on the policy PR: it lets the judge run `100x install`, `browsers` and `helper`, which write outside the project or use the network.
+test('an allow rule in the plugin names single commands, never a whole tool, a shell or a package script', () => {
+  const broad = /^(\*|100x( \*)?|npm( run)?( \*)?|npx\b.*|pnpm\b.*|yarn\b.*|node\b.*|(ba|z)?sh\b.*|python3?\b.*|curl\b.*|wget\b.*|git( \*)?|git push\b.*|rm\b.*)$/;
+  const rules = [];
+  for (const rel of listFiles(dir).filter((f) => f.endsWith('.md'))) {
+    for (const [, rule] of fs.readFileSync(path.join(dir, rel), 'utf8').matchAll(/Bash\(([^()"]*)\)/g)) rules.push({ rel, rule });
+  }
+  assert.ok(rules.length >= 8, 'the Claude example carries its allow rules');
+  for (const { rel, rule } of rules) assert.doesNotMatch(rule, broad, `${rel} allows Bash(${rule}), which is wider than one command`);
+  assert.ok(rules.some(({ rule }) => rule === '100x shots *') && rules.some(({ rule }) => rule === '100x text lint *'), 'the judge keeps the two 100x tools its task offers');
 });
 
 test('each script under skills/ ships as a Markdown file with the same code, and its skill says how to use it', () => {

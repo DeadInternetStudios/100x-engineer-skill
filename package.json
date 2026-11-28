@@ -1,6 +1,6 @@
 {
   "name": "100x-engineer-skill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "100x is a skill by a former Cursor engineer that turns prompts into formally verified, production-ready code",
   "private": true,
   "type": "module",

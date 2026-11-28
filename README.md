@@ -10,7 +10,7 @@
 ### No more "almost works" agentic coding
 
 [![ci](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DeadInternetStudios/100x-engineer-skill/actions/workflows/ci.yml)
-[![release: 0.1.0](docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
+[![release: 0.1.1](docs/img/badges/release.svg)](https://github.com/DeadInternetStudios/100x-engineer-skill/releases)
 [![node: ≥ 22](docs/img/badges/node.svg)](https://nodejs.org/)
 [![license: MIT](docs/img/badges/license.svg)](LICENSE)
 ![status: beta](docs/img/badges/status.svg)
@@ -313,24 +313,18 @@ You need Claude Code, Cursor or Codex, and Node.js 22 or newer.
 
 **1. Install the tool and the skills**
 
-Choose one:
+The tool comes from a release pinned to one version and one SHA-256. The commands that download it, check the checksum and only then install it are in [Install a pinned release](docs/install.md#install-a-pinned-release), for macOS, Linux and Windows. Run them. The last one, `100x install`, links the skills into your agent.
 
-**npm**
+This page holds no install commands of its own. It is part of the release file, so it cannot carry that file's checksum, and a copy of the commands here would run without the check.
 
-```bash
-npm install -g github:DeadInternetStudios/100x-engineer-skill
-100x install
-```
-
-**skills.sh**
+To get the skills through skills.sh, install the tool with those commands first, then run:
 
 ```bash
-npm install -g github:DeadInternetStudios/100x-engineer-skill
 npx skills add DeadInternetStudios/100x-engineer-skill --skill '*' -g
 100x install
 ```
 
-The `skills` tool copies the skills only, so the `100x` tool still comes from npm. `100x install` then sees the copies and leaves them alone. Update them with `npx skills update -g`.
+The `skills` tool copies the skills only, so the `100x` tool still comes from the release. `100x install` then sees the copies and leaves them alone. Update them with `npx skills update -g`.
 
 **2. Set up, in your agent**
 

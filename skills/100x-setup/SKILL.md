@@ -5,7 +5,7 @@ license: MIT
 compatibility: "Needs the 100x command line tool on PATH (Node 22 or newer, and git) and the other skills of the 100x suite that this one names. Install the tool as the repository README says. Browser checks use Playwright, which `100x browsers` installs."
 metadata:
   author: "DeadInternetStudios"
-  version: "0.1.0"
+  version: "0.1.1"
   repository: "https://github.com/DeadInternetStudios/100x-engineer-skill"
 ---
 
@@ -88,7 +88,7 @@ Shortest possible. One idea per line, no paragraphs, no preamble. Use the phrase
 
 ## Where the answers are used
 
-`100x review-call` says how the judge starts and `100x review-run` starts a command judge. The backup runs when the first cannot start. A command judge runs unattended with the approval prompts off, so set one only when the owner asks for it, and say so in one line when you do. Quick jobs (`100x-mockup` and `100x-wrapup`) run in the thread and only compare it with the quick model, in one line. Overnight children start with the app's subagent tool (in Cursor `100x helper run`), and you pass `target` from `100x config target overnight`. An empty target means the child follows the thread, except where `helper.only` is set: then the target is the locked selection. The builder line is never sent anywhere. Stage 0 compares it with the thread and tells the owner in one line when they differ.
+`100x review-call` says how the judge starts and `100x review-run` starts a command judge. The backup runs when the first cannot start. A command judge runs unattended under an allow rule that names the commands it may run, so set one only when the owner asks for it, and say so in one line when you do. Quick jobs (`100x-mockup` and `100x-wrapup`) run in the thread and only compare it with the quick model, in one line. Overnight children start with the app's subagent tool (in Cursor `100x helper run`), and you pass `target` from `100x config target overnight`. An empty target means the child follows the thread, except where `helper.only` is set: then the target is the locked selection. The builder line is never sent anywhere. Stage 0 compares it with the thread and tells the owner in one line when they differ.
 
 ## Examples
 

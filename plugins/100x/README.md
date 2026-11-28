@@ -9,12 +9,16 @@ This plugin is the skills. They call the `100x` command line tool, which keeps t
 You need Claude Code, Node.js 22 or newer, and git. The skills also load in Claude's other apps. A run needs a shell with the tool installed, so Claude Code is where it is used and tested.
 
 1. Add this plugin from the directory.
-2. Install the tool, once:
+2. Install the tool, once. It comes from release 0.1.1, one file with a fixed SHA-256, and npm runs nothing until the checksum matches:
 
    ```bash
-   npm install -g github:DeadInternetStudios/100x-engineer-skill
+   curl -fsSLO https://github.com/DeadInternetStudios/100x-engineer-skill/releases/download/v0.1.1/100x-engineer-skill-0.1.1.tgz &&
+   echo "1a745ddade5db30a413baafe8dc7e1ef91bc9b8c4486d8be220b047013257118  100x-engineer-skill-0.1.1.tgz" | shasum -a 256 -c - &&
+   npm install -g ./100x-engineer-skill-0.1.1.tgz &&
    100x install
    ```
+
+   The check prints `100x-engineer-skill-0.1.1.tgz: OK`. If it prints anything else, the chain stops and nothing is installed. Windows commands are in [docs/install.md](https://github.com/DeadInternetStudios/100x-engineer-skill/blob/main/docs/install.md#install-a-pinned-release).
 
 3. In Claude Code, run `/100x-engineer:100x-setup`. It asks which plan you are on and picks which model builds and which one judges.
 4. Give it a job:
@@ -54,12 +58,12 @@ What the skills tell Claude to do, all on your computer:
 Only these reach the network, and only when you ask for them:
 
 - Your model host sees the brief and the files Claude reads, as in any Claude session.
-- `100x browsers` downloads Playwright and Chromium into `~/.100x`, from npm and Playwright's download servers.
+- `100x browsers` downloads Playwright 1.65.1 and the Chromium build it names into `~/.100x`, from npm and Playwright's download servers. The version is fixed in the tool, and so is the npm integrity hash (SHA-512) of each package. The tool installs with package scripts off, so nothing from a package runs during the install. It checks the hash right after, and before it runs the browser download. If it differs, the tool deletes the package, including its entries in the prefix's manifest and lockfiles, and stops.
 - The live-data template `fresh-data-check.mjs` makes one GET request to the URL you give it, to read a timestamp. It sends no headers or body of yours, reads no credentials and runs only against the source your brief names.
 - A run deploys a **preview** when your project already has a deploy setup (Vercel, Netlify, Cloudflare Pages, Firebase or Fly). It uses the login that is already on your machine and never the production flag, unless your brief says "deploy to production" in words. It does not create accounts or paste tokens.
-- On Cursor only, `100x helper setup`, `login` and `run` install `@cursor/sdk` from npm and start helpers on your own Cursor account. You sign in once in the browser, or set `CURSOR_API_KEY` yourself. 100x never prints the key. The helper's task and what it reads go to Cursor. Claude Code users never need these.
+- On Cursor only, `100x helper setup`, `login` and `run` install `@cursor/sdk` 1.4.2 from npm, with every package it needs pinned the same way, and start helpers on your own Cursor account. You sign in once in the browser, or set `CURSOR_API_KEY` yourself. 100x never prints the key. The helper's task and what it reads go to Cursor. Claude Code users never need these.
 
-One setting is off until you turn it on. `review.command` lets you start the judge as a shell command, set only in your global config, and only when you ask for it. The example for Claude in `skills/100x/references/apps.md` runs `claude -p` with `--permission-mode bypassPermissions`, so the judge can work unattended. The plugin never writes that setting itself, and it never changes Claude's permission settings.
+One setting is off until you turn it on. `review.command` lets you start the judge as a shell command, set only in your global config, and only when you ask for it. The example for Claude in `skills/100x/references/apps.md` runs `claude -p` with an allow rule (`--allowedTools`) that names what the judge may do: read the project, edit files under `.100x/`, run `100x shots` and `100x text lint`, run a few read-only `git` commands, and run the project's `npm test`, `npm run build` and `npm run lint`. Those three run the project's own scripts with your permissions, and a script can write outside `.100x/`, so use the command judge only on a project you wrote. `Edit(.100x/**)` limits the judge's file tools, not these commands. The rule adds approvals to the ones in your own Claude settings, so a broader rule there still applies. With none, Claude refuses everything else, including the rest of `100x`. No example starts an app with its approvals off. The plugin never writes that setting itself, and it never changes Claude's permission settings.
 
 The `100x` tool has no analytics and no server of its own.
 
